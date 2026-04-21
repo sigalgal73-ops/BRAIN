@@ -108,133 +108,44 @@
 
 /* ── MOBILE ── */
 @media(max-width:900px){
-  /* סדר אנכי: badge → רובוט → כותרת → טקסט → כפתורים */
   .hero{
     display:flex !important;
     flex-direction:column !important;
-    align-items:center !important;
-    text-align:center !important;
-    padding:72px 18px 28px !important;
+    grid-template-columns:none !important;
+    padding:70px 18px 28px !important;
     min-height:auto !important;
-    gap:10px !important;
+    gap:0 !important;
   }
-
-  /* badge בתוך hero-text */
-  .hero-badge{
-    display:inline-flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    gap:6px !important;
-    font-size:9px !important;
-    padding:5px 12px !important;
-    margin:0 auto !important;
-    border-radius:18px !important;
-  }
-
-  /* רובוט שני */
   .hero-robot{
-    order:2 !important;
+    order:-1 !important;
     width:100% !important;
     display:flex !important;
+    float:none !important;
     justify-content:center !important;
     align-items:center !important;
-    padding:0 !important;
+    padding:14px 0 6px !important;
+    animation:float 5s ease-in-out infinite !important;
     position:relative !important;
-    margin:0 !important;
   }
-  .robot-img{
-    width:84vw !important;
-    max-width:320px !important;
+  .hero-robot svg, .robot-img{
+    width:78vw !important;
+    max-width:280px !important;
     height:auto !important;
-    margin-top:0 !important;
-    display:block !important;
   }
-
-  /* hero-text שקוף — ילדיו משתתפים ישירות ב-flex */
+  .mc{display:none !important;}
+  .robot-glow,.scan{display:none !important;}
   .hero-text{
-    display:contents !important;
-  }
-  /* badge ראשון */
-  .hero-badge{
-    order:1 !important;
-  }
-  /* hero-top-mobile (כותרת) שלישי */
-  .hero-top-mobile{
-    order:3 !important;
-    display:block !important;
+    order:0 !important;
+    padding:0 !important;
     width:100% !important;
-    text-align:center !important;
   }
-  .hero-top-copy{
-    display:block !important;
-    width:100% !important;
-    text-align:center !important;
-  }
-  /* hero-bottom-mobile רביעי */
-  .hero-bottom-mobile{
-    order:4 !important;
-    display:block !important;
-    width:100% !important;
-    text-align:center !important;
-  }
-  /* hero-stats מוסתר */
-  .hero-stats{
-    display:none !important;
-  }
-  .hero-title{
-    font-size:34px !important;
-    line-height:1.02 !important;
-    margin-bottom:6px !important;
-    text-align:center !important;
-  }
-  .hero-subtitle{
-    font-size:18px !important;
-    margin-bottom:10px !important;
-    text-align:center !important;
-  }
-
-  /* 4. טקסט */
-  .hero-desc{
-    font-size:15px !important;
-    line-height:1.75 !important;
-    max-width:92% !important;
-    margin:0 auto 14px !important;
-    text-align:center !important;
-  }
-
-  /* 5. כפתורים */
-  .hero-actions{
-    display:flex !important;
-    gap:10px !important;
-    flex-wrap:nowrap !important;
-    justify-content:center !important;
-    width:100% !important;
-    margin-bottom:6px !important;
-  }
-  .hero-actions .btn{
-    flex:1 !important;
-    min-height:54px !important;
-    font-size:15px !important;
-    padding:14px 18px !important;
-    border-radius:24px !important;
-  }
-
-  /* מוסתרים */
-  .hero-stats,
-  .mc,
-  .robot-glow,
-  .scan{
-    display:none !important;
-  }
-
-  /* בועת צ'אט */
-  .bot-fab{
-    transform:scale(0.82) !important;
-    transform-origin:bottom left !important;
-    bottom:14px !important;
-    left:10px !important;
-  }
-
+  .hero-badge{font-size:9px !important;padding:4px 10px !important;margin-bottom:10px !important;}
+  .hero-title{font-size:32px !important;margin-bottom:6px !important;}
+  .hero-subtitle{font-size:17px !important;margin-bottom:10px !important;}
+  .hero-desc{font-size:14px !important;max-width:100% !important;margin-bottom:18px !important;}
+  .hero-actions{gap:10px !important;margin-bottom:18px !important;}
+  .hero-stats{gap:16px !important;padding-top:16px !important;flex-wrap:wrap !important;}
+  .stat-n{font-size:22px !important;}
   .clients{padding:12px 16px !important;gap:8px !important;}
   .clients-label{width:100% !important;text-align:center !important;}
   .features-grid{grid-template-columns:1fr !important;}
@@ -242,7 +153,7 @@
 }
 @media(max-width:480px){
   .hero{padding:58px 12px 20px !important;}
-  .hero-robot svg, .robot-img{width:84vw !important;max-width:240px !important;margin-top:0 !important;}
+  .hero-robot svg, .robot-img{width:84vw !important;max-width:240px !important;}
   .hero-title{font-size:28px !important;}
 }
 </style>
@@ -262,7 +173,7 @@
     <div class="mc mc2"><div class="mc-t">PERFORMANCE</div><div class="mc-v">+35%</div><div class="mc-s">YSB Tech</div><div class="mc-b"><div class="mc-f" style="width:85%"></div></div></div>
     <div class="mc mc3"><div class="mc-t">GROWTH</div><div class="mc-v">+20%</div><div class="mc-s">דלויט</div><div class="mc-b"><div class="mc-f" style="width:60%"></div></div></div>
 
-    <img src="robot_navy.png" alt="Brain AI Robot" style="
+    <img src="robot.png" alt="Brain AI Robot" style="
       width:min(34vw,400px);
       height:auto;
       object-fit:contain;
@@ -273,25 +184,19 @@
   </div>
 
   <div class="hero-text">
-  <div class="hero-badge"><div class="badge-dot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
-  <div class="hero-top-mobile">
-    <div class="hero-top-copy">
-      <h1 class="hero-title">Brain<br><em>Co-Manager</em></h1>
-      <div class="hero-subtitle">תומך ניהולי מבוסס AI</div>
-    </div>
-  </div>
-  <div class="hero-bottom-mobile">
+    <div class="hero-badge"><div class="badge-dot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
+    <h1 class="hero-title">Brain<br><em>Co-Manager</em></h1>
+    <div class="hero-subtitle">תומך ניהולי מבוסס AI</div>
     <p class="hero-desc">לא רק ידע – שינוי התנהגות בפועל.<br>Brain מלווה את הארגון יום-יום, שולח מסרים חכמים, עושה פולו-אפ ומודד תוצאות.</p>
     <div class="hero-actions">
-      <a href="demo.html" class="btn btn-primary">צפו בדמו ▶</a>
+      <a href="demo.html" class="btn btn-primary">קבע דמו ←</a>
       <a href="process.html" class="btn btn-ghost">איך זה עובד ▼</a>
     </div>
-  </div>
-  <div class="hero-stats">
-    <div><div class="stat-n">8<span>K+</span></div><div class="stat-l">ORGANIZATIONS</div></div>
-    <div><div class="stat-n">40<span>+</span></div><div class="stat-l">INDUSTRIES</div></div>
-    <div><div class="stat-n">27<span>%</span></div><div class="stat-l">AVG GROWTH</div></div>
-  </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">8<span>K+</span></div><div class="stat-l">ORGANIZATIONS</div></div>
+      <div><div class="stat-n">40<span>+</span></div><div class="stat-l">INDUSTRIES</div></div>
+      <div><div class="stat-n">27<span>%</span></div><div class="stat-l">AVG GROWTH</div></div>
+    </div>
   </div>
 </section>
 
@@ -329,16 +234,16 @@
 <div style="position:relative;z-index:1;padding:36px 60px 60px;" class="reveal">
   <div class="cta-box">
     <h2 class="cta-title">מוכנים לראות את Brain<br>בפעולה בארגון שלכם?</h2>
-    <p class="cta-sub">צפו בדמו ללא התחייבות · תוצאות מיידיות</p>
+    <p class="cta-sub">דמו של 15 דקות · ללא התחייבות · תוצאות מיידיות</p>
     <div class="cta-btns">
-      <a href="demo.html" class="btn btn-primary">צפו בדמו ▶</a>
+      <a href="demo.html" class="btn btn-primary">קבע דמו עכשיו ←</a>
       <a href="about.html" class="btn btn-ghost">קרא עוד עלינו</a>
     </div>
   </div>
 </div>
 
 <footer>
-  
+  <div class="footer-logo">b<sup>2</sup> BRAIN</div>
   <div class="footer-links">
     <a href="about.html">אודותינו</a>
     <a href="process.html">התהליך</a>
@@ -355,6 +260,6 @@
 
 <script src="shared.js"></script>
 <script>renderNav('home');</script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </body>
 </html>
-<!-- mobile robot style patch -->
