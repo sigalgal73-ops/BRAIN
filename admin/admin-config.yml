@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: sigalgal73-ops/BRAIN
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: he
+
+collections:
+  - name: "articles"
+    label: "מאמרים"
+    label_singular: "מאמר"
+    folder: "_articles"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "כותרת", name: "title", widget: "string"}
+      - {label: "תיאור קצר", name: "description", widget: "string"}
+      - {label: "תאריך פרסום", name: "date", widget: "datetime", format: "DD/MM/YYYY"}
+      - {label: "כותב", name: "author", widget: "string", default: "צוות Brain"}
+      - {label: "תוכן המאמר", name: "body", widget: "markdown"}
