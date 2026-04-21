@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo | Brain Co-Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.video-overlay{
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(2,13,26,0.92);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+}
+.video-overlay.active{display:flex;}
+.video-modal{
+  width:min(400px,94vw);background:#020d1a;
+  border:1px solid rgba(45,156,255,0.25);border-radius:20px;overflow:hidden;
+  box-shadow:0 0 60px rgba(140,40,255,0.25),0 20px 60px rgba(0,0,0,0.6);
+  animation:popIn .35s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes popIn{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
+.video-modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;border-bottom:1px solid rgba(45,156,255,0.12);
+}
+.video-modal-title{display:flex;align-items:center;gap:10px;}
+.video-modal-title img{width:32px;height:32px;object-fit:contain;}
+.video-modal-title span{font-size:15px;font-weight:700;color:var(--white);}
+.video-modal-title small{font-size:11px;color:var(--teal);display:block;}
+.video-close{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  color:var(--muted);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.video-close:hover{background:rgba(255,255,255,0.12);color:var(--white);}
+.video-wrap{position:relative;width:100%;padding-top:177.77%;background:#010810;}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.video-modal-footer{
+  padding:12px 20px;display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(45,156,255,0.1);
+}
+.video-modal-footer span{font-size:12px;color:var(--muted);}
+.video-modal-footer a{font-size:13px;color:var(--sky);font-weight:600;}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+
+<!-- VIDEO POPUP -->
+<div class="video-overlay" id="videoOverlay" onclick="closeVideo(event)">
+  <div class="video-modal">
+    <div class="video-modal-header">
+      <div class="video-modal-title">
+        <img src="brain2spark-logo.png" alt="Brain">
+        <div>
+          <span>Brain Co-Manager בפעולה</span>
+          <small>צפו איך Brain משנה ארגונים</small>
+        </div>
+      </div>
+      <button class="video-close" onclick="closeVideoBtn()">✕</button>
+    </div>
+    <div class="video-wrap">
+      <iframe id="demoVideo" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="video-modal-footer">
+      <span>ניצור איתך קשר בהקדם</span>
+      <a href="https://wa.me/972">שאלות? וואטסאפ ←</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-hero">
+    <div class="page-tag">DEMO</div>
+    <h1 class="page-title">צפו ב<em>דמו</em></h1>
+    <p class="page-sub">השאירו פרטים וצפו בדמו · ללא התחייבות</p>
+  </div>
+
+  <div class="sec reveal">
+    <div style="max-width:680px;margin:0 auto">
+      <div class="card" style="padding:44px">
+        <div style="text-align:center;margin-bottom:36px">
+          <div style="margin-bottom:16px;display:flex;justify-content:center">
+            <img src="brain2spark-logo.png" alt="Brain" style="width:120px;height:auto;object-fit:contain;filter:drop-shadow(0 0 12px rgba(140,40,255,0.6));">
+          </div>
+          <div style="font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px">מוכנים לראות את Brain בפעולה?</div>
+          <div style="font-size:15px;color:var(--muted)">השאירו פרטים וצפו בדמו</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px">
+          <div style="padding:14px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:12px;text-align:center">
+            <div style="font-size:22px;font-weight:900;color:var(--teal)">▶</div>
+            <div style="font-size:12px;color:var(--muted)">סרטון דמו</div>
+          </div>
+          <div style="padding:14px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:12px;text-align:center">
+            <div style="font-size:22px;font-weight:900;color:var(--teal)">0</div>
+            <div style="font-size:12px;color:var(--muted)">התחייבות</div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
+          <input id="f-name" type="text" placeholder="שם מלא" style="padding:13px 16px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:12px;color:var(--white);font-size:14px;font-family:Heebo,sans-serif;outline:none;width:100%">
+          <input id="f-company" type="text" placeholder="שם החברה" style="padding:13px 16px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:12px;color:var(--white);font-size:14px;font-family:Heebo,sans-serif;outline:none;width:100%">
+          <input id="f-email" type="email" placeholder="מייל" style="padding:13px 16px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:12px;color:var(--white);font-size:14px;font-family:Heebo,sans-serif;outline:none;width:100%">
+          <input id="f-phone" type="tel" placeholder="טלפון" style="padding:13px 16px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:12px;color:var(--white);font-size:14px;font-family:Heebo,sans-serif;outline:none;width:100%">
+        </div>
+
+        <button class="btn btn-primary" style="width:100%;padding:15px;font-size:16px" onclick="submitForm()">צפו בדמו ▶</button>
+        <div style="text-align:center;margin-top:20px;font-size:13px;color:var(--muted)">או שלח/י וואטסאפ: <a href="https://wa.me/972" style="color:var(--sky)">לחץ כאן</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouTube Section -->
+  <div class="sec reveal" style="padding-top:0">
+    <div style="max-width:680px;margin:0 auto">
+      <div class="card" style="padding:32px;text-align:center">
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          <span style="font-size:17px;font-weight:700;color:var(--white)">הערוץ שלנו ביוטיוב</span>
+        </div>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:20px">סרטונים נוספים על Brain Co-Manager, טיפים לניהול ושינוי ארגוני</p>
+        <a href="https://www.youtube.com/@Brain.co.manager" target="_blank" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          לצפייה בכל הסרטונים ←
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:60px"></div>
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">אודותינו</a>
+      <a href="process.html">התהליך</a>
+      <a href="uses.html">שימושים</a>
+      <a href="roi.html">ROI</a>
+      <a href="smb.html">SMB</a>
+      <a href="pricing.html">מחירים</a>
+      <a href="demo.html">Demo</a>
+      <a href="articles.html">מאמרים</a>
+      <a href="jobs.html">דרושים</a>
+    </div>
+    <div class="footer-copy">© 2025 כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
+  </footer>
+</div>
+
+<!-- Netlify Form Detection -->
+<form name="brain-demo" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="text" name="company">
+  <input type="tel" name="phone">
+</form>
+
+<script src="shared.js"></script>
+<script>renderNav('demo');</script>
+<script>
+function submitForm(){
+  var name = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  if(!name || !email){ alert('נא למלא שם ומייל'); return; }
+  fetch('/', {
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body: new URLSearchParams({
+      'form-name':'brain-demo',
+      'name': name, 'email': email,
+      'company': document.getElementById('f-company').value.trim(),
+      'phone': document.getElementById('f-phone').value.trim()
+    }).toString()
+  }).catch(function(){});
+  openVideo();
+}
+function openVideo(){
+  document.getElementById('demoVideo').src = 'https://www.youtube.com/embed/O3yF5ee2iEI?autoplay=1&rel=0';
+  document.getElementById('videoOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideo(e){
+  if(e.target === document.getElementById('videoOverlay')) closeVideoBtn();
+}
+function closeVideoBtn(){
+  document.getElementById('videoOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+  document.getElementById('demoVideo').src = '';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape') closeVideoBtn();
+});
+</script>
+</body>
+</html>
