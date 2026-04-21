@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מחירים | Brain Co-Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+  <div class="page-hero">
+    <div class="page-tag">PRICING</div>
+    <h1 class="page-title">תמחור – <em>Brain Co-Manager</em></h1>
+    <p class="page-sub">תומך ניהולי – בחר את החבילה שמתאימה לארגון שלך</p>
+  </div>
+  
+<div class="sec reveal">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:960px;margin:0 auto">
+    <div class="card">
+      <div style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:6px">Starter</div>
+      <div style="font-size:34px;font-weight:900;color:var(--bright);margin:14px 0 4px">15,000</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:16px">₪ לפני מע"מ</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px">מתאים להתחלה חכמה, פיילוט ממוקד ובדיקה מהירה של התאמה.</div>
+      <ul class="dot-list" style="margin-bottom:22px">
+        <li>3 סרטונים קצרים</li><li>מצגת אחת</li>
+        <li>4 שעות ייעוץ</li><li>בניית קן מסרים ראשוני</li>
+      </ul>
+      <a href="demo.html" class="btn btn-ghost" style="display:block;text-align:center;text-decoration:none">צפייה בדמו</a>
+    </div>
+    <div class="card" style="border-color:rgba(45,156,255,0.4);background:rgba(26,111,196,0.12);position:relative">
+      <div style="position:absolute;top:14px;left:14px;padding:3px 12px;background:var(--accent);border-radius:10px;font-size:10px;font-weight:700;color:#fff;letter-spacing:.06em">הכי פופולרי</div>
+      <div style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:6px">Growth</div>
+      <div style="font-size:34px;font-weight:900;color:var(--bright);margin:14px 0 4px">35,000</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:16px">₪ לפני מע"מ / חצי שנה</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px">קמפיין מלא לחצי שנה עם מעקב, פולו-אפ ומדידת תוצאות.</div>
+      <ul class="dot-list" style="margin-bottom:22px">
+        <li>10 סרטוני אווטאר</li><li>3 מצגות</li>
+        <li>קמפיין מסרים מלא</li><li>12 שעות ייעוץ</li>
+        <li>דשבורד מנהלים</li><li>פולו-אפ אוטומטי</li>
+      </ul>
+      <a href="demo.html" class="btn btn-primary" style="display:block;text-align:center;text-decoration:none">צפייה בדמו</a>
+    </div>
+    <div class="card">
+      <div style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:6px">Enterprise</div>
+      <div style="font-size:34px;font-weight:900;color:var(--bright);margin:14px 0 4px">מותאם</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:16px">אישית</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px">פתרון מותאם לארגונים גדולים עם צרכים ייחודיים.</div>
+      <ul class="dot-list" style="margin-bottom:22px">
+        <li>ללא הגבלת סרטונים</li><li>אינטגרציה מלאה</li>
+        <li>מנטור אווטאר ייעודי</li><li>ליווי שנתי</li><li>ROI מובטח</li>
+      </ul>
+      <a href="demo.html" class="btn btn-ghost" style="display:block;text-align:center;text-decoration:none">צור קשר</a>
+    </div>
+  </div>
+</div>
+
+  <div style="height:60px"></div>
+  <footer>
+    <div class="footer-logo">b<sup>2</sup> BRAIN</div>
+    <div class="footer-links">
+      <a href="about.html">אודותינו</a>
+      <a href="process.html">התהליך</a>
+      <a href="uses.html">שימושים</a>
+      <a href="roi.html">ROI</a>
+      <a href="smb.html">SMB</a>
+      <a href="pricing.html">מחירים</a>
+      <a href="demo.html">Demo</a>
+      <a href="articles.html">מאמרים</a>
+      <a href="jobs.html">דרושים</a>
+    </div>
+    <div class="footer-copy">© 2025 כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
+  </footer>
+</div>
+<script src="shared.js"></script>
+<script>renderNav('pricing');</script>
+</body>
+</html>
