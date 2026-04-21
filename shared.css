@@ -49,6 +49,11 @@ nav{
   max-height:48px;
   height:auto;
   display:block;
+  transition:all 0.3s ease;
+}
+.nav-logo:hover img{
+  transform:scale(1.05);
+  filter:drop-shadow(0 0 8px rgba(45,156,255,0.5));
 }
 .nav-logo sup{font-size:13px;color:var(--teal);}
 .nav-links{
@@ -194,9 +199,16 @@ footer{
     min-width:170px;
   }
   .nav-logo img{
-    width:150px;
-    max-height:40px;
-  }
+  width:200px;
+  max-height:48px;
+  height:auto;
+  display:block;
+  transition:all 0.3s ease;
+}
+.nav-logo:hover img{
+  transform:scale(1.05);
+  filter:drop-shadow(0 0 8px rgba(45,156,255,0.5));
+}
   .nav-links{display:none;}
   .nav-mobile-btn{
     display:flex;align-items:center;justify-content:center;

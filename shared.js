@@ -22,7 +22,7 @@ function renderNav(activePage) {
   document.getElementById('nav-placeholder').innerHTML = `
     <nav>
       <a href="index.html" class="nav-logo">
-        <img src="brain2spark-logo.png" alt="Brain2Spark">
+        <img src="logo-header.png" alt="Brain2Spark">
       </a>
       <div class="nav-links">${desktopLinks}</div>
       <div class="nav-left">

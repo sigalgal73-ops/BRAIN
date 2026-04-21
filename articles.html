@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מאמרים | Brain Co-Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;max-width:1100px;margin:0 auto;}
+.art-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px;text-decoration:none;display:block;transition:all .3s;position:relative;overflow:hidden;}
+.art-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.35),transparent);}
+.art-card:hover{border-color:rgba(45,156,255,.3);transform:translateY(-4px);}
+.art-num{font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.1em;margin-bottom:10px;}
+.art-title{font-size:19px;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.4;}
+.art-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px;}
+.art-read{font-size:12px;color:var(--bright);font-weight:600;letter-spacing:.03em;}
+.art-date{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.loading{text-align:center;padding:40px;color:var(--muted);font-size:15px;}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+  <div class="page-hero">
+    <div class="page-tag">ARTICLES</div>
+    <h1 class="page-title"><em>מאמרים</em></h1>
+    <p class="page-sub">תוכן מקצועי על AI בניהול, ביצועי עובדים ושינוי ארגוני</p>
+  </div>
+  <div class="sec reveal">
+    <div class="articles-grid" id="articlesGrid">
+      <!-- מאמרים קבועים -->
+      <a href="article1.html" class="art-card">
+        <div class="art-num">מאמר 01</div>
+        <div class="art-title">AI כארגז כלים לחיים ולעבודה</div>
+        <div class="art-desc">תמיד מדברים על 'ארגז כלים'. רוב האנשים בפועל לא מחוברים, לא מותאמים אליהם. AI משנה את זה.</div>
+        <div class="art-read">להמשך קריאה »</div>
+      </a>
+      <a href="article2.html" class="art-card">
+        <div class="art-num">מאמר 02</div>
+        <div class="art-title">AI יכול לעודד שיחה בין הנהלה לעובדים</div>
+        <div class="art-desc">רוב הארגונים מתקשרים מלמעלה למטה. לפעמים נכון, לא תמיד מבין. לעיתים מתנגד – בשקט. וכאן בדיוק נוצר הפער.</div>
+        <div class="art-read">להמשך קריאה »</div>
+      </a>
+      <a href="article3.html" class="art-card">
+        <div class="art-num">מאמר 03</div>
+        <div class="art-title">900 מיקרו-למידות בשנה</div>
+        <div class="art-desc">ארגונים עדיין נשענים על סדנאות: 2-4 פעמים בשנה. בפועל, רוב הידע נשכח תוך ימים. האלטרנטיבה: 900 מיקרו-למידות בשנה.</div>
+        <div class="art-read">להמשך קריאה »</div>
+      </a>
+      <a href="article4.html" class="art-card">
+        <div class="art-num">מאמר 04</div>
+        <div class="art-title">AI במלא בעידן הניהולי</div>
+        <div class="art-desc">בניהול ניתוח מצב, קבלת החלטות בזמן אמת, מעקב אחר ביצועים וניהול תהליכים – AI הופך לשותף אמיתי של המנהל.</div>
+        <div class="art-read">להמשך קריאה »</div>
+      </a>
+      <a href="article5.html" class="art-card">
+        <div class="art-num">מאמר 05</div>
+        <div class="art-title">AI בניהול פנים מתחרים</div>
+        <div class="art-desc">כשהשוק מתחרותי, הניצחון מגיע מפנים הארגון. Brain עוזר לבנות יתרון תחרותי פנימי שקשה לשכפל.</div>
+        <div class="art-read">להמשך קריאה »</div>
+      </a>
+      <a href="article6.html" class="art-card">
+        <div class="art-num">מאמר 06</div>
+        <div class="art-title">בגיאול מחסומים ארגוניים</div>
+        <div class="art-desc">כל ארגון מכיר את זה: יש תוכנית, יש רצון – ואז זה נתקע. Brain מזהה את חסמי הביצוע ועוזר להתגבר עליהם.</div>
+        <div class="art-read">להמשך קריאה »</div>
+      </a>
+      <!-- מאמרים דינמיים יתווספו כאן -->
+      <div id="dynamicArticles"></div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">אודותינו</a><a href="process.html">התהליך</a>
+      <a href="uses.html">שימושים</a><a href="roi.html">ROI</a>
+      <a href="smb.html">SMB</a><a href="pricing.html">מחירים</a>
+      <a href="demo.html">Demo</a><a href="articles.html">מאמרים</a><a href="jobs.html">דרושים</a>
+    </div>
+    <div class="footer-copy">© 2025 כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
+  </footer>
+</div>
+<script src="shared.js"></script>
+<script>renderNav('articles');</script>
+<script>
+// טעינת מאמרים דינמיים מ-Google Sheets
+const SCRIPT_URL_KEY = 'brain_script_url';
+async function loadDynamicArticles() {
+  const url = localStorage.getItem(SCRIPT_URL_KEY);
+  if (!url) return;
+  try {
+    const res = await fetch(url + '?action=list');
+    const data = await res.json();
+    if (!data.articles || data.articles.length === 0) return;
+    const container = document.getElementById('dynamicArticles');
+    container.style.display = 'contents';
+    const baseNum = 7;
+    container.innerHTML = data.articles.map((a, i) => `
+      <a href="article-view.html?id=${a.id}" class="art-card">
+        <div class="art-num">מאמר ${String(baseNum + i).padStart(2,'0')}</div>
+        <div class="art-date">${a.date}</div>
+        <div class="art-title">${a.title}</div>
+        <div class="art-desc">${a.desc}</div>
+        <div class="art-read">להמשך קריאה »</div>
+      </a>
+    `).join('');
+  } catch(e) {}
+}
+loadDynamicArticles();
+</script>
+</body>
+</html>
