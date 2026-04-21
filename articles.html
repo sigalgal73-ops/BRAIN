@@ -74,7 +74,7 @@
     </div>
   </div>
   <footer>
-    <div class="footer-logo">b<sup>2</sup> BRAIN</div>
+    
     <div class="footer-links">
       <a href="about.html">אודותינו</a><a href="process.html">התהליך</a>
       <a href="uses.html">שימושים</a><a href="roi.html">ROI</a>
@@ -86,5 +86,71 @@
 </div>
 <script src="shared.js"></script>
 <script>renderNav('articles');</script>
+
+<!-- מאמרים דינמיים מ-GitHub -->
+<div id="dynamic-articles-wrap" style="display:none">
+  <div class="sec">
+    <div class="articles-grid" id="dynamicGrid"></div>
+  </div>
+</div>
+
+<script>
+// טעינת מאמרים דינמיים מ-GitHub
+const REPO = 'sigalgal73-ops/BRAIN';
+const FOLDER = '_articles';
+const BASE_NUM = 7; // מאמרים קבועים הם 1-6
+
+async function loadDynamicArticles() {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}`);
+    if (!res.ok) return;
+    const files = await res.json();
+    if (!Array.isArray(files) || files.length === 0) return;
+
+    // מיין לפי תאריך — החדש ראשון
+    files.sort((a, b) => b.name.localeCompare(a.name));
+
+    const grid = document.getElementById('dynamicGrid');
+    const wrap = document.getElementById('dynamic-articles-wrap');
+
+    const cards = await Promise.all(files.map(async (file, i) => {
+      try {
+        const r = await fetch(file.download_url);
+        const text = await r.text();
+        // parse frontmatter
+        const fm = parseFrontmatter(text);
+        const num = String(BASE_NUM + i).padStart(2, '0');
+        return `<a href="article-view.html?repo=${encodeURIComponent(file.download_url)}" class="art-card">
+          <div class="art-num">מאמר ${num}</div>
+          <div class="art-date" style="font-size:11px;color:var(--muted);margin-bottom:8px">${fm.date || ''}</div>
+          <div class="art-title">${fm.title || file.name}</div>
+          <div class="art-desc">${fm.description || ''}</div>
+          <div class="art-read">להמשך קריאה »</div>
+        </a>`;
+      } catch(e) { return ''; }
+    }));
+
+    const validCards = cards.filter(c => c);
+    if (validCards.length > 0) {
+      grid.innerHTML = validCards.join('');
+      wrap.style.display = 'block';
+    }
+  } catch(e) {}
+}
+
+function parseFrontmatter(text) {
+  const match = text.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return {};
+  const fm = {};
+  match[1].split('\n').forEach(line => {
+    const [key, ...val] = line.split(':');
+    if (key && val.length) fm[key.trim()] = val.join(':').trim().replace(/^["']|["']$/g, '');
+  });
+  return fm;
+}
+
+loadDynamicArticles();
+</script>
+
 </body>
 </html>

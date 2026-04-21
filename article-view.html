@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מאמר | Brain Co-Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<!-- Marked.js לפרסור Markdown -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+.article-body{max-width:720px;margin:0 auto;padding:0 60px 60px;}
+.article-body h3{font-size:20px;font-weight:700;color:var(--sky);margin:32px 0 12px;}
+.article-body p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:16px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--sky);font-size:13px;font-weight:600;padding:40px 60px 0;}
+.art-meta{font-size:12px;color:var(--muted);margin-bottom:24px;}
+@media(max-width:900px){
+  .article-body{padding:0 18px 40px;}
+  .back-link{padding:24px 18px 0;}
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+  <div class="page-hero" id="articleHero">
+    <div class="page-tag">ARTICLE</div>
+    <h1 class="page-title" id="articleTitle">טוען...</h1>
+    <p class="page-sub" id="articleDesc"></p>
+  </div>
+  <a href="articles.html" class="back-link">← חזרה למאמרים</a>
+  <div class="article-body reveal" id="articleBody">
+    <div style="color:var(--muted);padding:40px 0">טוען מאמר...</div>
+  </div>
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">אודותינו</a><a href="process.html">התהליך</a>
+      <a href="uses.html">שימושים</a><a href="roi.html">ROI</a>
+      <a href="smb.html">SMB</a><a href="pricing.html">מחירים</a>
+      <a href="demo.html">Demo</a><a href="articles.html">מאמרים</a><a href="jobs.html">דרושים</a>
+    </div>
+    <div class="footer-copy">© 2025 כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
+  </footer>
+</div>
+<script src="shared.js"></script>
+<script>renderNav('articles');</script>
+<script>
+function parseFrontmatter(text) {
+  const match = text.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)/);
+  if (!match) return { body: text, meta: {} };
+  const meta = {};
+  match[1].split('\n').forEach(line => {
+    const [key, ...val] = line.split(':');
+    if (key && val.length) meta[key.trim()] = val.join(':').trim().replace(/^["']|["']$/g, '');
+  });
+  return { meta, body: match[2] };
+}
+
+async function loadArticle() {
+  const params = new URLSearchParams(window.location.search);
+  const url = params.get('repo');
+  if (!url) { window.location = 'articles.html'; return; }
+
+  try {
+    const res = await fetch(decodeURIComponent(url));
+    const text = await res.text();
+    const { meta, body } = parseFrontmatter(text);
+
+    document.title = (meta.title || 'מאמר') + ' | Brain Co-Manager';
+    document.getElementById('articleTitle').textContent = meta.title || 'מאמר';
+    document.getElementById('articleDesc').textContent = meta.description || '';
+
+    const bodyEl = document.getElementById('articleBody');
+    bodyEl.innerHTML =
+      `<div class="art-meta">${meta.date || ''} · ${meta.author || 'צוות Brain'}</div>` +
+      marked.parse(body);
+  } catch(e) {
+    document.getElementById('articleBody').innerHTML = '<p>שגיאה בטעינת המאמר</p>';
+  }
+}
+
+loadArticle();
+</script>
+</body>
+</html>
