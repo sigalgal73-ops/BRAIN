@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brain Co-Manager | AI Management Support</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+<style>
+.hero{
+  position:relative;z-index:1;min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:0 60px;padding-top:64px;overflow:hidden;
+  direction:ltr;
+}
+.hero-robot{display:flex;justify-content:center;align-items:center;order:2;}
+.hero-text{padding:40px 0;animation:fadeUp .9s ease both;order:1;direction:ltr;text-align:left;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 16px;margin-bottom:26px;
+  border:1px solid rgba(0,212,170,0.45);border-radius:20px;
+  background:rgba(0,212,170,0.1);font-size:11px;font-weight:700;
+  color:var(--teal);letter-spacing:.1em;
+}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);animation:pulse 2s ease-in-out infinite;}
+.hero-title{font-size:clamp(48px,5.5vw,80px);font-weight:900;line-height:1.04;letter-spacing:-.03em;margin-bottom:10px;}
+.hero-title em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-subtitle{font-size:clamp(20px,2.4vw,30px);font-weight:700;color:var(--sky);margin-bottom:22px;}
+.hero-desc{font-size:17px;color:var(--muted);line-height:1.8;margin-bottom:40px;max-width:480px;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:50px;}
+.hero-stats{display:flex;gap:38px;padding-top:36px;border-top:1px solid rgba(45,156,255,.25);}
+.stat-n{font-size:34px;font-weight:900;color:var(--white);letter-spacing:-.02em;}
+.stat-n span{color:var(--teal);}
+.stat-l{font-size:11px;color:var(--muted);letter-spacing:.08em;margin-top:3px;}
+.hero-robot{position:relative;display:flex;justify-content:center;align-items:center;animation:float 5s ease-in-out infinite;}
+.robot-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;height:80%;background:radial-gradient(ellipse,rgba(45,156,255,0.32) 0%,transparent 70%);animation:glow-pulse 4s ease-in-out infinite;pointer-events:none;}
+@keyframes glow-pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+.scan{position:absolute;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(0,212,170,0.7),transparent);animation:scan 3.5s linear infinite;pointer-events:none;z-index:5;}
+@keyframes scan{from{top:6%;}to{top:94%;}}
+.mc{position:absolute;z-index:10;background:rgba(4,20,40,0.88);backdrop-filter:blur(10px);border:1px solid rgba(45,156,255,0.22);border-radius:13px;padding:11px 15px;box-shadow:0 8px 24px rgba(0,0,0,0.4);animation:cardFloat 5s ease-in-out infinite;}
+.mc:nth-child(3){animation-delay:-2s;}.mc:nth-child(4){animation-delay:-3.5s;}
+@keyframes cardFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+.mc-t{font-size:9px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:3px;}
+.mc-v{font-size:18px;font-weight:900;color:var(--white);}
+.mc-s{font-size:9px;color:var(--muted);margin-top:2px;}
+.mc-b{height:2.5px;background:rgba(45,156,255,0.15);border-radius:2px;margin-top:6px;overflow:hidden;}
+.mc-f{height:100%;background:linear-gradient(90deg,var(--accent),var(--teal));}
+.mc1{top:18%;right:2%;}.mc2{top:46%;right:2%;}.mc3{top:74%;right:2%;}
+.clients{position:relative;z-index:1;padding:28px 60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;background:rgba(4,20,40,0.3);}
+.clients-label{font-size:12px;color:var(--white);letter-spacing:.1em;font-weight:700;white-space:nowrap;opacity:0.75;}
+.client-pill{padding:7px 20px;border:1px solid rgba(255,255,255,0.35);border-radius:16px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:.06em;transition:all .2s;}
+.client-pill:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,0.08);}
+.features-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto;}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:all .3s;position:relative;overflow:hidden;text-align:center;}
+.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.35),transparent);}
+.feat:hover{border-color:rgba(45,156,255,.28);transform:translateY(-4px);}
+.feat-icon{font-size:30px;margin-bottom:14px;}
+.feat-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px;}
+.feat-desc{font-size:14px;color:var(--muted);line-height:1.7;}
+.robot-img{width:min(34vw,380px);height:auto;object-fit:contain;display:block;filter:drop-shadow(0 0 30px rgba(45,156,255,0.3));}
+.cta-box{max-width:700px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:26px;padding:56px 44px;text-align:center;position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,var(--teal),var(--bright),transparent);}
+.cta-title{font-size:clamp(22px,3vw,38px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.2;}
+.cta-sub{font-size:15px;color:var(--muted);margin-bottom:34px;line-height:1.7;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+@media(max-width:900px){
+  .hero{display:flex !important;flex-direction:column !important;align-items:center !important;text-align:center !important;padding:72px 18px 28px !important;min-height:auto !important;gap:10px !important;}
+  .hero-badge{order:1 !important;display:inline-flex !important;justify-content:center !important;gap:6px !important;font-size:9px !important;padding:5px 12px !important;margin:0 auto !important;}
+  .hero-robot{order:2 !important;width:100% !important;display:flex !important;justify-content:center !important;align-items:center !important;padding:0 !important;position:relative !important;margin:0 !important;}
+  .robot-img{width:84vw !important;max-width:320px !important;height:auto !important;display:block !important;}
+  .hero-text{order:3 !important;width:100% !important;padding:0 !important;text-align:center !important;display:contents !important;}
+  .hero-title{order:3 !important;font-size:34px !important;line-height:1.02 !important;margin-bottom:6px !important;text-align:center !important;}
+  .hero-subtitle{order:3 !important;font-size:18px !important;margin-bottom:10px !important;text-align:center !important;}
+  .hero-desc{order:4 !important;font-size:15px !important;max-width:92% !important;margin:0 auto 14px !important;text-align:center !important;}
+  .hero-actions{order:5 !important;display:flex !important;gap:10px !important;flex-wrap:nowrap !important;justify-content:center !important;width:100% !important;margin-bottom:6px !important;}
+  .hero-actions .btn{flex:1 !important;min-height:54px !important;font-size:15px !important;padding:14px 18px !important;border-radius:24px !important;}
+  .hero-stats,.mc,.robot-glow,.scan{display:none !important;}
+  .bot-fab{transform:scale(0.82) !important;transform-origin:bottom left !important;bottom:14px !important;left:10px !important;}
+  .clients{padding:12px 16px !important;gap:8px !important;}
+  .clients-label{width:100% !important;text-align:center !important;}
+  .features-grid{grid-template-columns:1fr !important;}
+  .cta-box{padding:26px 16px !important;}
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+
+<section class="hero">
+  <div class="hero-robot">
+    <div class="robot-glow"></div>
+    <div class="scan"></div>
+    <div class="mc mc1"><div class="mc-t">SALES</div><div class="mc-v">+27%</div><div class="mc-s">Steimatzky</div><div class="mc-b"><div class="mc-f" style="width:72%"></div></div></div>
+    <div class="mc mc2"><div class="mc-t">PERFORMANCE</div><div class="mc-v">+35%</div><div class="mc-s">YSB Tech</div><div class="mc-b"><div class="mc-f" style="width:85%"></div></div></div>
+    <div class="mc mc3"><div class="mc-t">GROWTH</div><div class="mc-v">+20%</div><div class="mc-s">Deloitte</div><div class="mc-b"><div class="mc-f" style="width:60%"></div></div></div>
+    <img src="../robot_navy.png" alt="Brain AI Robot" style="width:min(34vw,400px);height:auto;object-fit:contain;filter:drop-shadow(0 0 40px rgba(45,156,255,0.25));animation:float 5s ease-in-out infinite;margin-top:-80px;" class="robot-img">
+  </div>
+
+  <div class="hero-text">
+    <div class="hero-badge"><div class="badge-dot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
+    <h1 class="hero-title">Brain<br><em>Co-Manager</em></h1>
+    <div class="hero-subtitle">AI-Powered Management Support</div>
+    <p class="hero-desc">Not just knowledge – real behavior change.<br>Brain accompanies your organization daily, sends smart messages, follows up, and measures results.</p>
+    <div class="hero-actions">
+      <a href="demo.html" class="btn btn-primary">Watch Demo ▶</a>
+      <a href="process.html" class="btn btn-ghost">How It Works ▼</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">8<span>K+</span></div><div class="stat-l">ORGANIZATIONS</div></div>
+      <div><div class="stat-n">40<span>+</span></div><div class="stat-l">INDUSTRIES</div></div>
+      <div><div class="stat-n">27<span>%</span></div><div class="stat-l">AVG GROWTH</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="clients">
+  <span class="clients-label">Organizations working with Brain:</span>
+  <div class="client-pill">STEIMATZKY</div>
+  <div class="client-pill">DELOITTE</div>
+  <div class="client-pill">SOLTAM</div>
+  <div class="client-pill">BY THE WAY</div>
+  <div class="client-pill">YSB TECH</div>
+  <div class="client-pill">MINILINE</div>
+</div>
+
+<div style="position:relative;z-index:1;padding:52px 60px 40px;" class="reveal">
+  <div style="text-align:center;margin-bottom:36px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:10px">HOW IT WORKS</div>
+    <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;color:var(--white);letter-spacing:-.02em">Not just knowledge – <em style="font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">real behavior change</em></h2>
+  </div>
+  <div class="features-grid">
+    <div class="feat"><div class="feat-icon">🧠</div><div class="feat-title">Behavior Analysis</div><div class="feat-desc">Analyzes employee and manager patterns and identifies exactly where the gaps are.</div></div>
+    <div class="feat"><div class="feat-icon">⚡</div><div class="feat-title">Smart Messages</div><div class="feat-desc">Sends targeted messages, short training videos, and tasks – at exactly the right time.</div></div>
+    <div class="feat"><div class="feat-icon">🔄</div><div class="feat-title">Automated Follow-Up</div><div class="feat-desc">Tracks execution, sends reminders, and measures behavioral change over time.</div></div>
+    <div class="feat"><div class="feat-icon">📊</div><div class="feat-title">Management Dashboard</div><div class="feat-desc">Managers see what's happening in real time – not just in reports.</div></div>
+    <div class="feat"><div class="feat-icon">🎯</div><div class="feat-title">Personalization</div><div class="feat-desc">Every campaign is tailored to the organization's specific challenge.</div></div>
+    <div class="feat"><div class="feat-icon">🚀</div><div class="feat-title">Fast Implementation</div><div class="feat-desc">No IT needed. Brain starts working within days and shows results within weeks.</div></div>
+  </div>
+  <div style="text-align:center;margin-top:28px">
+    <a href="process.html" class="btn btn-ghost">See the Full Process ←</a>
+  </div>
+</div>
+
+<div style="position:relative;z-index:1;padding:36px 60px 60px;" class="reveal">
+  <div class="cta-box">
+    <h2 class="cta-title">Ready to see Brain<br>in action at your organization?</h2>
+    <p class="cta-sub">15-minute demo · No commitment · Immediate insights</p>
+    <div class="cta-btns">
+      <a href="demo.html" class="btn btn-primary">Watch the Demo ▶</a>
+      <a href="about.html" class="btn btn-ghost">Learn More About Us</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="process.html">Process</a>
+    <a href="uses.html">Use Cases</a>
+    <a href="roi.html">ROI</a>
+    <a href="smb.html">SMB</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="demo.html">Demo</a>
+    <a href="articles.html">Articles</a>
+    <a href="jobs.html">Careers</a>
+  </div>
+  <div class="footer-copy">© 2025 All rights reserved · Brain Co-Manager · brain2spark.ai</div>
+</footer>
+
+<script src="../shared.js"></script>
+<script>renderNav('home','en');</script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</body>
+</html>
