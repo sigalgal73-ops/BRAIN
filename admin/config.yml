@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: sigalgal73-ops/BRAIN
+  name: git-gateway
   branch: main
 
 media_folder: "images/uploads"
