@@ -1,6 +1,20 @@
 // ── SHARED NAV ──
-function renderNav(activePage) {
-  const pages = [
+function renderNav(activePage, lang) {
+  const isEn = lang === 'en';
+  const prefix = isEn ? '../' : '';
+  const enPrefix = isEn ? '' : 'en/';
+
+  const pages = isEn ? [
+    { id: 'about',    label: 'About',      href: prefix + 'en/about.html' },
+    { id: 'process',  label: 'Process',    href: prefix + 'en/process.html' },
+    { id: 'uses',     label: 'Use Cases',  href: prefix + 'en/uses.html' },
+    { id: 'roi',      label: 'ROI',        href: prefix + 'en/roi.html' },
+    { id: 'smb',      label: 'SMB',        href: prefix + 'en/smb.html' },
+    { id: 'pricing',  label: 'Pricing',    href: prefix + 'en/pricing.html' },
+    { id: 'demo',     label: 'Demo',       href: prefix + 'en/demo.html', cta: true },
+    { id: 'articles', label: 'Articles',   href: prefix + 'en/articles.html' },
+    { id: 'jobs',     label: 'Careers',    href: prefix + 'en/jobs.html' },
+  ] : [
     { id: 'about',    label: 'אודותינו',  href: 'about.html' },
     { id: 'process',  label: 'התהליך',    href: 'process.html' },
     { id: 'uses',     label: 'שימושים',   href: 'uses.html' },
@@ -11,6 +25,12 @@ function renderNav(activePage) {
     { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
   ];
+
+  // כפתור מעבר שפה
+  const langBtn = isEn
+    ? `<a href="${prefix}index.html" class="lang-btn" title="עברית"><img src="${prefix}flag-il.svg" alt="עברית" width="24" height="24" style="border-radius:4px"></a>`
+    : `<a href="en/index.html" class="lang-btn" title="English"><img src="flag-us.svg" alt="English" width="24" height="24" style="border-radius:4px"></a>`;
+
   const desktopLinks = pages.map(p => {
     if (p.cta) return `<a href="${p.href}" class="nav-demo${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
     return `<a href="${p.href}" class="nav-link${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
@@ -19,17 +39,18 @@ function renderNav(activePage) {
     `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`
   ).join('');
 
+  const logoHref = isEn ? prefix + 'en/index.html' : 'index.html';
+
   document.getElementById('nav-placeholder').innerHTML = `
     <nav>
-      <a href="index.html" class="nav-logo">
-        <img src="brain2spark-logo.png" alt="Brain2Spark">
-      </a>
-      <div class="nav-links">${desktopLinks}</div>
       <div class="nav-left">
-        <a href="https://www.youtube.com/@Brain.co.manager" target="_blank" class="nav-icon" title="YouTube">▶</a>
         <a href="https://wa.me/972" class="nav-icon" title="WhatsApp">💬</a>
-        <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
+        <a href="https://www.youtube.com/@Brain.co.manager" target="_blank" class="nav-icon" title="YouTube">▶</a>
+        ${langBtn}
+        <button class="nav-mobile-btn" id="nav-hamburger" aria-label="Menu">☰</button>
       </div>
+      <div class="nav-links">${desktopLinks}</div>
+      <a href="${logoHref}" class="nav-logo"><img src="${prefix}brain2spark-logo.png" alt="Brain2Spark" style="width:140px;height:auto"></a>
     </nav>
     <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
 
