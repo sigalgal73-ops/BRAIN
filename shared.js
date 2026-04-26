@@ -335,7 +335,7 @@ function initBot() {
       opts:['כן, יש CRM','כן, יש הדרכות','שניהם','לא'], run:(c,n)=>{state.existing=c;n();}},
     {step:8, bot:()=>{const e=state.existing;if(e==='כן, יש CRM'||e==='שניהם')return 'Brain לא מחליף מערכות – הוא מחבר אותן.\n\nמה הכי חשוב לשפר?';if(e==='כן, יש הדרכות')return 'Brain לא מחליף הדרכות – הוא הופך אותן לביצוע.\n\nמה הכי חשוב לשפר?';return 'Brain יכול להיות הבסיס לתשתית הניהולית.\n\nמה הכי חשוב לשפר?';},
       opts:['הגדלת מכירות','שיפור ביצועי עובדים','שימור עובדים','הטמעת AI','אחר'],
-      run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n();}}},
+      run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n(10);}}},
     {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n(10);}},
     {step:9, bot:()=>`מצוין!\n\nאיך תרצו לקבל מידע על Brain?`,
       opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n();}},
@@ -386,6 +386,7 @@ function initBot() {
   FLOW.forEach((s,i)=>{ if(s.id)stepMap[s.id]=i; else flowIndex.push(i); });
 
   function nextSeq(idx) {
+    if (idx === 9) return 10;
     const pos = flowIndex.indexOf(idx);
     return pos >= 0 && pos + 1 < flowIndex.length ? flowIndex[pos + 1] : null;
   }
