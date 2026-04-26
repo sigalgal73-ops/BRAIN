@@ -1,4 +1,4 @@
-  // ── SHARED NAV ──
+// ── SHARED NAV ──
 function renderNav(activePage) {
   const pages = [
     { id: 'about',    label: 'אודותינו',  href: 'about.html' },
@@ -337,15 +337,13 @@ function initBot() {
       run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n(8);}}},
     {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n(8);}},
     {step:9, bot:()=>`מצוין!\n\nאיך תרצו לקבל מידע על Brain?`,
-      opts:['סרטון הסבר 3 דקות','מידע כתוב'], run:(c,n)=>{state.cta=c;n(9);}},
-    {step:10, bot:'כדי לשלוח לך את המידע נצטרך כמה פרטים.\n\nשם מלא:', isInput:true, ph:'שם מלא', run:(v,n)=>{state.name=v;n(10);}},
-    {step:11, bot:'שם החברה:', isInput:true, ph:'שם החברה', run:(v,n)=>{state.company=v;n(11);}},
-    {step:12, bot:'מספר טלפון:', isInput:true, ph:'מספר טלפון', run:(v,n)=>{state.phone=v;n(12);}},
-    {step:12, id:'email_step', bot:'כתובת מייל:', isInput:true, ph:'כתובת מייל', run:(v,n)=>{state.email=v;n(13);}},
-    {step:13, bot:()=>{
+      opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n(9);}},
+    {step:10, bot:()=>`מעולה, ${fn()}!\n\nנשמח לשלוח לך את המידע.\n\nמספר טלפון:`, isInput:true, ph:'מספר טלפון', run:(v,n)=>{state.phone=v;n(10);}},
+    {step:11, bot:'כתובת מייל:', isInput:true, ph:'כתובת מייל', run:(v,n)=>{state.email=v;n(11);}},
+    {step:12, bot:()=>{
       const PDF='https://brain2spark.mysitemail.co.il/wp-content/uploads/2026/03/Deno_%D7%90%D7%AA%D7%A8-%D7%A2%D7%91%D7%A8%D7%99%D7%AA.pdf';
-      if(state.cta==='מידע כתוב') return `תודה רבה, ${state.name}! 🎉\n\n📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">לחצו כאן לצפייה במסמך</a>\n\nנציג Brain יצור איתך קשר בהקדם 🙂`;
-      return `תודה רבה, ${state.name}! 🎉\n\nנשלח לך את הסרטון למייל בהקדם 🎬\nנציג Brain יצור איתך קשר בהקדם.`;
+      if(state.cta==='הסבר כתוב') return `תודה רבה, ${state.name}! 🎉\n\n📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">לחצו כאן לצפייה במסמך</a>\n\nנציג Brain יצור איתך קשר בהקדם 🙂`;
+      return `תודה רבה, ${state.name}! 🎉\n\nנשלח לך את סרטון הדמו למייל בהקדם 🎬\nנציג Brain יצור איתך קשר בהקדם.`;
     }, isSummary:true, run:()=>{}},
   ];
 
