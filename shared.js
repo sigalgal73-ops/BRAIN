@@ -41,14 +41,16 @@ function renderNav(activePage) {
       <div class="nav-left">
         <a href="https://wa.me/972" class="nav-icon" title="WhatsApp">💬</a>
         <a href="#" class="nav-icon" title="YouTube">▶</a>
-        <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')">🇮🇱</button>
-        <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')">🇺🇸</button>
         <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
       </div>
       <div class="nav-links">${desktopLinks}</div>
-      <a href="index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
+      <div style="display:flex;align-items:center;gap:4px;">
+        <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')">🇮🇱</button>
+        <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')">🇺🇸</button>
+        <a href="index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
+      </div>
     </nav>
-    <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
+    <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}<div style="display:flex;gap:12px;padding:10px 14px;border-top:1px solid var(--border);margin-top:4px;"><button class="nav-lang" id="nav-lang-he-m" title="עברית" onclick="setLang('he')">🇮🇱 עברית</button><button class="nav-lang" id="nav-lang-en-m" title="English" onclick="setLang('en')">🇺🇸 English</button></div></div>`;
 
   document.getElementById('nav-hamburger').onclick = function() {
     const m = document.getElementById('nav-mobile-menu');
@@ -430,7 +432,7 @@ function setLang(lang) {
 document.addEventListener('DOMContentLoaded', () => {
   // nav-lang style
   const ls = document.createElement('style');
-  ls.textContent = `.nav-lang{background:none;border:none;cursor:pointer;font-size:20px;padding:0 3px;opacity:.55;transition:opacity .2s,transform .2s;line-height:1;}.nav-lang:hover,.nav-lang.active{opacity:1;transform:scale(1.15);}`;
+  ls.textContent = `.nav-lang{background:none;border:none;cursor:pointer;font-size:20px;padding:2px 5px;opacity:.65;transition:opacity .2s,transform .2s;line-height:1;display:inline-flex;align-items:center;gap:4px;color:var(--muted);font-family:'Heebo',sans-serif;}.nav-lang:hover,.nav-lang.active{opacity:1;transform:scale(1.1);}`;
   document.head.appendChild(ls);
   // restore saved lang
   const saved = localStorage.getItem('bcm-lang');
