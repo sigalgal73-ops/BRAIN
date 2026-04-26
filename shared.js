@@ -28,8 +28,8 @@ function renderNav(activePage, lang) {
 
   // כפתור מעבר שפה
   const langBtn = isEn
-    ? `<a href="${prefix}index.html" class="lang-btn" title="עברית"><img src="${prefix}flag-il.svg" alt="עברית" width="24" height="24" style="border-radius:4px"></a>`
-    : `<a href="en/index.html" class="lang-btn" title="English"><img src="flag-us.svg" alt="English" width="24" height="24" style="border-radius:4px"></a>`;
+    ? `<a href="${prefix}index.html" class="lang-btn" title="עברית"><img src="${prefix}flag-il.png" alt="עברית" width="24" height="24" style="border-radius:4px"></a>`
+    : `<a href="en/index.html" class="lang-btn" title="English"><img src="flag-us.png" alt="English" width="24" height="24" style="border-radius:4px"></a>`;
 
   const desktopLinks = pages.map(p => {
     if (p.cta) return `<a href="${p.href}" class="nav-demo${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
