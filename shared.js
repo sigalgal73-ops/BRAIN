@@ -356,6 +356,11 @@ function initBot() {
           'role': state.role || ''
         }).toString()
       }).catch(()=>{});
+      // אם בחר סרטון — מעבר לדף הדמו
+      if(state.cta==='סרטון דמו קצר'){
+        setTimeout(()=>{ window.location.href='demo.html?autoplay=1'; },400);
+        return;
+      }
       n(11);
     }},
     {step:12, bot:()=>{
