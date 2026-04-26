@@ -319,27 +319,27 @@ function initBot() {
   }
 
   const FLOW = [
-    {step:1, bot:'שלום!\nאני הבוט של Brain – Manager-Co.\n\nנתחיל בהיכרות קצרה – מה שמך?', isInput:true, ph:'שם מלא', run:(v,n)=>{state.name=v;n(1);}},
-    {step:2, bot:()=>`נעים להכיר, ${fn()}!\n\nמאיזו חברה?`, isInput:true, ph:'שם החברה', run:(v,n)=>{state.company=v;n(2);}},
+    {step:1, bot:'שלום!\nאני הבוט של Brain – Manager-Co.\n\nנתחיל בהיכרות קצרה – מה שמך?', isInput:true, ph:'שם מלא', run:(v,n)=>{state.name=v;n();}},
+    {step:2, bot:()=>`נעים להכיר, ${fn()}!\n\nמאיזו חברה?`, isInput:true, ph:'שם החברה', run:(v,n)=>{state.company=v;n();}},
     {step:3, bot:()=>`מעולה, ${fn()}!\nמה האתגר המרכזי ב${state.company} כרגע?`,
       opts:['הגדלת מכירות','שיפור ביצועי עובדים','שימור עובדים','הטמעת AI בעסק','אחר'],
-      run:(c,n)=>{if(c==='אחר')n('other_ch');else{state.challenge=c;n(3);}}},
-    {step:3, id:'other_ch', bot:'במה נדרשת עזרה?', isInput:true, ph:'תיאור האתגר', run:(v,n)=>{state.challenge=v;n(4);}},
+      run:(c,n)=>{if(c==='אחר')n('other_ch');else{state.challenge=c;n();}}},
+    {step:3, id:'other_ch', bot:'במה נדרשת עזרה?', isInput:true, ph:'תיאור האתגר', run:(v,n)=>{state.challenge=v;n();}},
     {step:4, bot:()=>{const m={'הגדלת מכירות':'אנשי מכירות יודעים מה לעשות – אבל לא תמיד מבצעים.','שיפור ביצועי עובדים':'יש ידע בארגון, אבל הוא לא הופך להרגל.','שימור עובדים':'קשה לשמור על מוטיבציה לאורך זמן.','הטמעת AI בעסק':'AI שמתחבר לניהול יומיומי – לא רק כלי.'};return (m[state.challenge]||'זה אתגר שאנחנו מכירים.')+'\n\nזה גם קורה אצלכם?';},
-      opts:['כן, בהחלט','חלקית','לא ממש'], run:(c,n)=>{state.feels=c;n(4);}},
+      opts:['כן, בהחלט','חלקית','לא ממש'], run:(c,n)=>{state.feels=c;n();}},
     {step:5, bot:()=>`מובן.\n\nכמה אנשים עובדים ב${state.company}?`,
-      opts:['1–10','11–25','26–50','51–200','200–1,000','מעל 1,000'], run:(c,n)=>{state.size=c;n(5);}},
+      opts:['1–10','11–25','26–50','51–200','200–1,000','מעל 1,000'], run:(c,n)=>{state.size=c;n();}},
     {step:6, bot:()=>(state.size==='1–10'||state.size==='11–25'?'Brain עובד מצוין לעסקים קטנים!\n• לא דורש צוות IT\n• מתחיל תוך ימים\n':'Brain הוא שכבת AI שמנהלת ביצוע יומיומי.\n1. מנתחת התנהגות\n2. שולחת מסרים חכמים\n3. עושה פולו-אפ\n')+`\nמה התפקיד שלך, ${fn()}?`,
-      opts:['בעלי/ת עסק – מנכ״ל/ית','סמנכ״ל/ית מכירות','סמנכ״ל/ית משאבי אנוש','מנהל/ת','תפקיד אחר'], run:(c,n)=>{state.role=c;n(6);}},
+      opts:['בעלי/ת עסק – מנכ״ל/ית','סמנכ״ל/ית מכירות','סמנכ״ל/ית משאבי אנוש','מנהל/ת','תפקיד אחר'], run:(c,n)=>{state.role=c;n();}},
     {step:7, bot:()=>{const r=state.role||'';const t=r.includes('מכירות')?'Brain מזהה פערים בשיחות מכירה ומשפר תוך שבועיים.':r.includes('משאבי')?'Brain מזהה ירידה באנרגיה ומציע פעולות ניהוליות.':r.includes('מנכ')||r.includes('בעל')?'Brain נותן שליטה על ביצועי הצוות יום-יום.':'Brain מותאם לכל מי שרוצה לשפר ביצועים.';return t+`\n\nהאם קיימות מערכות כמו CRM ב${state.company}?`;},
-      opts:['כן, יש CRM','כן, יש הדרכות','שניהם','לא'], run:(c,n)=>{state.existing=c;n(7);}},
+      opts:['כן, יש CRM','כן, יש הדרכות','שניהם','לא'], run:(c,n)=>{state.existing=c;n();}},
     {step:8, bot:()=>{const e=state.existing;if(e==='כן, יש CRM'||e==='שניהם')return 'Brain לא מחליף מערכות – הוא מחבר אותן.\n\nמה הכי חשוב לשפר?';if(e==='כן, יש הדרכות')return 'Brain לא מחליף הדרכות – הוא הופך אותן לביצוע.\n\nמה הכי חשוב לשפר?';return 'Brain יכול להיות הבסיס לתשתית הניהולית.\n\nמה הכי חשוב לשפר?';},
       opts:['הגדלת מכירות','שיפור ביצועי עובדים','שימור עובדים','הטמעת AI','אחר'],
-      run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n(null);}}},
-    {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n(null);}},
+      run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n();}}},
+    {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n();}},
     {step:9, bot:()=>`מצוין!\n\nאיך תרצו לקבל מידע על Brain?`,
-      opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n(null);}},
-    {step:10, bot:()=>`מעולה, ${fn()}!\n\nנשמח לשלוח לך את המידע.\n\nמספר טלפון:`, isInput:true, ph:'מספר טלפון', run:(v,n)=>{state.phone=v;n(10);}},
+      opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n();}},
+    {step:10, bot:()=>`מעולה, ${fn()}!\n\nנשמח לשלוח לך את המידע.\n\nמספר טלפון:`, isInput:true, ph:'מספר טלפון', run:(v,n)=>{state.phone=v;n();}},
     {step:11, bot:'כתובת מייל:', isInput:true, ph:'כתובת מייל', run:(v,n)=>{
       state.email=v;
       fetch('/', {
@@ -387,7 +387,7 @@ function initBot() {
 
   function nextSeq(idx) {
     const pos = flowIndex.indexOf(idx);
-    return pos >= 0 && pos + 1 < flowIndex.length ? pos + 1 : null;
+    return pos >= 0 && pos + 1 < flowIndex.length ? flowIndex[pos + 1] : null;
   }
 
   function runStep(idxOrKey) {
@@ -401,8 +401,8 @@ function initBot() {
       const ns=nextSeq(idx);
       if(isCal){addCal(v=>{addUser(v);state.contact=v;setTimeout(()=>runStep(ns),500);});return;}
       if(isCon){setTimeout(()=>runStep(ns),700);return;}
-      if(s.isInput){addInput(s.ph,v=>{addUser(v);s.run(v,k=>{setTimeout(()=>runStep((k !== undefined && k !== null) ? k : ns),350);});});return;}
-      if(s.opts){addOpts(s.opts,c=>{addUser(c);s.run(c,k=>{setTimeout(()=>runStep((k !== undefined && k !== null) ? k : ns),350);});});}
+      if(s.isInput){addInput(s.ph,v=>{addUser(v);s.run(v,k=>{setTimeout(()=>runStep(typeof k==='string' ? k : ns),350);});});return;}
+      if(s.opts){addOpts(s.opts,c=>{addUser(c);s.run(c,k=>{setTimeout(()=>runStep(typeof k==='string' ? k : ns),350);});});}
     });
   }
 }
