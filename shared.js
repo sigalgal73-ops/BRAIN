@@ -411,11 +411,14 @@ function initBot() {
 
 // ── LANGUAGE SWITCH ──
 function setLang(lang) {
-  const page = window.location.pathname.split('/').pop() || 'index.html';
-  if (lang === 'he') {
-    window.location.href = '../' + page;
+  const path = window.location.pathname;
+  const page = path.split('/').pop() || 'index.html';
+  const isEn = path.includes('/en/');
+  if (lang === 'en' && !isEn) {
+    window.location.href = '/en/' + page;
+  } else if (lang === 'he' && isEn) {
+    window.location.href = '/' + page;
   }
-  // lang === 'en' — already here, do nothing
 }
 
 // ── INIT ──
