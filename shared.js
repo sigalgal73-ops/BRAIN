@@ -402,8 +402,14 @@ function initBot() {
       const ns=nextSeq(idx);
       if(isCal){addCal(v=>{addUser(v);state.contact=v;setTimeout(()=>runStep(ns),500);});return;}
       if(isCon){setTimeout(()=>runStep(ns),700);return;}
-      if(s.isInput){addInput(s.ph,v=>{addUser(v);s.run(v,k=>{setTimeout(()=>runStep(typeof k==='string' ? k : ns),350);});});return;}
-      if(s.opts){addOpts(s.opts,c=>{addUser(c);s.run(c,k=>{setTimeout(()=>runStep(typeof k==='string' ? k : ns),350);});});}
+      if(s.isInput){addInput(s.ph,v=>{addUser(v);s.run(v,k=>{
+        const next = (k !== undefined && k !== null) ? k : ns;
+        setTimeout(()=>runStep(next),350);
+      });});return;}
+      if(s.opts){addOpts(s.opts,c=>{addUser(c);s.run(c,k=>{
+        const next = (k !== undefined && k !== null) ? k : ns;
+        setTimeout(()=>runStep(next),350);
+      });});}
     });
   }
 }
