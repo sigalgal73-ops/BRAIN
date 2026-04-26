@@ -1,156 +1,200 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מאמרים | Brain Co-Manager</title>
+<title>Articles | Brain Co-Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-.articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;max-width:1100px;margin:0 auto;}
-.art-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px;text-decoration:none;display:block;transition:all .3s;position:relative;overflow:hidden;}
-.art-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.35),transparent);}
-.art-card:hover{border-color:rgba(45,156,255,.3);transform:translateY(-4px);}
-.art-num{font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.1em;margin-bottom:10px;}
-.art-title{font-size:19px;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.4;}
-.art-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px;}
-.art-read{font-size:12px;color:var(--bright);font-weight:600;letter-spacing:.03em;}
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;max-width:1100px;margin:0 auto;}
+.article-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;position:relative;overflow:hidden;transition:all .3s;cursor:pointer;}
+.article-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.6),transparent);}
+.article-card:hover{border-color:rgba(45,156,255,.5);background:var(--card-hover);transform:translateY(-4px);box-shadow:0 8px 32px rgba(45,156,255,.12);}
+.article-title{font-size:20px;font-weight:900;color:var(--white);margin-bottom:14px;line-height:1.35;}
+.article-excerpt{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:20px;}
+.article-read{font-size:12px;font-weight:700;color:var(--sky);letter-spacing:.06em;cursor:pointer;}
+.article-body{display:none;font-size:14px;color:var(--muted);line-height:1.9;margin-top:16px;border-top:1px solid var(--border);padding-top:16px;}
+.article-body p{margin-bottom:14px;}
+.article-body p:last-child{margin-bottom:0;}
+.article-card.open .article-body{display:block;}
+.article-card.open .article-read{color:var(--teal);}
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div id="nav-placeholder"></div>
 <div class="page">
+
   <div class="page-hero">
-    <div class="page-tag">ARTICLES</div>
-    <h1 class="page-title"><em>מאמרים</em></h1>
-    <p class="page-sub">תוכן מקצועי על AI בניהול, ביצועי עובדים ושינוי ארגוני</p>
+    <div class="page-tag">ARTICLES · INSIGHTS</div>
+    <h1 class="page-title">Articles – <em>AI & Leadership</em></h1>
+    <p class="page-sub">Insights on management, artificial intelligence, and the future of organizations</p>
   </div>
+
   <div class="sec reveal">
     <div class="articles-grid">
 
-      <a href="article1.html" class="art-card">
-        <div class="art-num">מאמר 01</div>
-        <div class="art-title">AI כארגז כלים לחיים ולעבודה</div>
-        <div class="art-desc">תמיד מדברים על 'ארגז כלים'. רוב האנשים בפועל לא מחוברים, לא מותאמים אליהם. AI משנה את זה.</div>
-        <div class="art-read">להמשך קריאה »</div>
-      </a>
+      <!-- Article 1 -->
+      <div class="article-card" onclick="toggleArticle(this)">
+        <div class="article-title">The Shock Phase: Many Managers Are Still Watching from the Side</div>
+        <div class="article-excerpt">Many people in organizations are currently in a state of quiet shock. They see the rapid development of Artificial Intelligence, but instead of engaging with it, they are standing on the sidelines and watching.</div>
+        <div class="article-read">READ MORE »</div>
+        <div class="article-body">
+          <p>Many people in organizations are currently in a state of quiet shock. They see the rapid development of Artificial Intelligence, but instead of engaging with it, they are standing on the sidelines and watching.</p>
+          <p>This reaction is especially visible among managers. A large number of them are still operating according to management concepts that were designed decades ago. Their daily work revolves around supervision, approvals, and controlling the work of other managers.</p>
+          <p>They are managing layers of management. They are managing meetings about management. They are managing reports about reports. But the ground beneath this structure is already moving.</p>
+          <p>Within a very short period of time, organizations will begin working with thousands of AI agents. These agents will write reports, analyze data, prepare strategies, track performance, manage workflows, communicate with customers, and support employees in real time.</p>
+          <p>Instead of large management hierarchies, organizations will operate with networks of intelligent agents. In that world, the role of a manager changes dramatically.</p>
+          <p>The manager is no longer the person who supervises every small action. The manager becomes the brain that designs the system. Their role becomes much more strategic: Mapping the organization. Designing processes. Defining goals. Coordinating between AI agents. Making final decisions where judgment is required.</p>
+          <p>In other words, management is moving from supervision to architecture. From controlling people to designing systems. From managing tasks to orchestrating intelligence.</p>
+          <p>Many managers are still thinking in terms of "how do I control my team?" But the real question of the next era is very different: "How do I design the system that runs the organization?"</p>
+          <p>The managers who understand this shift will become the architects of powerful organizations. Those who continue managing yesterday's structures may soon discover that the organization no longer needs those structures at all.</p>
+        </div>
+      </div>
 
-      <a href="article2.html" class="art-card">
-        <div class="art-num">מאמר 02</div>
-        <div class="art-title">AI יכול לעודד שיחה בין הנהלה לעובדים</div>
-        <div class="art-desc">רוב הארגונים מתקשרים מלמעלה למטה. לפעמים נכון, לא תמיד מבין. לעיתים מתנגד – בשקט. וכאן בדיוק נוצר הפער.</div>
-        <div class="art-read">להמשך קריאה »</div>
-      </a>
+      <!-- Article 2 -->
+      <div class="article-card" onclick="toggleArticle(this)">
+        <div class="article-title">The New Skill of Management: Thinking</div>
+        <div class="article-excerpt">Today, any manager can receive almost any dashboard within seconds. Any graph. Any trend. Any indicator. AI can generate them instantly. So what is missing? Your brain. Your thinking.</div>
+        <div class="article-read">READ MORE »</div>
+        <div class="article-body">
+          <p>Today, any manager can receive almost any dashboard within seconds. Any graph. Any trend. Any indicator. Green lights, yellow warnings, red alerts. Performance data. Customer data. Operational metrics. AI can generate them instantly.</p>
+          <p>You can ask for a new dashboard and receive it in seconds. You can ask for analysis and get a full breakdown immediately. You can request forecasts, comparisons, and explanations. The technological barrier has disappeared.</p>
+          <p>So what is missing? Your brain. Your thinking.</p>
+          <p>The world is shifting toward a new managerial capability: the ability to think clearly. For decades, managers and employees have been trained to operate differently. Most organizational life is built around constant activity — meetings, operations, urgent problems, firefighting, running from task to task.</p>
+          <p>In many organizations, people spend 85% of their time in operational mode. And strangely, people often like it. Being busy feels familiar. Being overloaded feels normal. But thinking is different. Thinking requires quiet. Thinking requires space. Thinking requires pauses.</p>
+          <p>Something significant changed around mid-2025. Advanced AI systems became widely accessible. From that moment, the management equation changed. Information became abundant. Analysis became fast. Dashboards became easy. The scarce resource is now something else: clear thinking.</p>
+          <p>Today, managers are holding a powerful joystick in their hands — a control system capable of guiding an entire organization. But a joystick without a thinking pilot is useless.</p>
+          <p>Managers must now learn a new habit: intentional thinking pauses. Even twenty minutes of quiet thinking can dramatically change the quality of decisions.</p>
+          <p>The new leadership challenge is therefore simple: Learn to think again. In that era, thinking is not optional. It is the core skill of leadership.</p>
+        </div>
+      </div>
 
-      <a href="article3.html" class="art-card">
-        <div class="art-num">מאמר 03</div>
-        <div class="art-title">900 מיקרו-למידות בשנה</div>
-        <div class="art-desc">ארגונים עדיין נשענים על סדנאות: 2-4 פעמים בשנה. בפועל, רוב הידע נשכח תוך ימים. האלטרנטיבה: 900 מיקרו-למידות בשנה.</div>
-        <div class="art-read">להמשך קריאה »</div>
-      </a>
+      <!-- Article 3 -->
+      <div class="article-card" onclick="toggleArticle(this)">
+        <div class="article-title">The Ego Barrier: Why Some Managers Will Miss the AI Revolution</div>
+        <div class="article-excerpt">Artificial Intelligence is the most powerful management tool ever created. But there is a hidden barrier that may prevent many managers from using it effectively. That barrier is ego.</div>
+        <div class="article-read">READ MORE »</div>
+        <div class="article-body">
+          <p>Artificial Intelligence is the most powerful management tool ever created. In many ways, it is like a fighter jet suddenly placed in the hands of leaders and organizations. But there is a hidden barrier that may prevent many managers from using it effectively. That barrier is ego.</p>
+          <p>Many senior managers in organizations are strong, experienced, intelligent professionals. They are often between 35 and 50+ years old, with years of knowledge, authority, and successful decision making behind them. And paradoxically, those exact strengths may slow down their ability to adopt AI.</p>
+          <p>Experience creates habits. Seniority creates confidence. Success creates attachment to existing ways of thinking. But AI introduces something very unusual: an intelligence that can often analyze problems faster, wider, and deeper than any individual human.</p>
+          <p>To work with AI effectively requires something that is not always easy for experienced leaders. It requires humility. It requires the willingness to say: "This system can help me think better."</p>
+          <p>That does not mean the manager becomes irrelevant. Quite the opposite. The best results happen when human judgment and AI intelligence work together.</p>
+          <p>A useful way to think about it is aviation. AI is like a powerful F-35 aircraft. But the aircraft still needs a pilot. The leader remains the one who sets direction, defines objectives, and makes final decisions. Yet the aircraft dramatically expands what the pilot can do.</p>
+          <p>In the future, effective leadership may look like a two-pilot cockpit: the human leader leading the mission, the AI system supporting analysis, navigation, and operational intelligence.</p>
+          <p>Managers who understand this partnership will become dramatically more powerful leaders. Those who reject it may discover that the battlefield of business has changed.</p>
+        </div>
+      </div>
 
-      <a href="article4.html" class="art-card">
-        <div class="art-num">מאמר 04</div>
-        <div class="art-title">AI במלא בעידן הניהולי</div>
-        <div class="art-desc">בניהול ניתוח מצב, קבלת החלטות בזמן אמת, מעקב אחר ביצועים וניהול תהליכים – AI הופך לשותף אמיתי של המנהל.</div>
-        <div class="art-read">להמשך קריאה »</div>
-      </a>
+      <!-- Article 4 -->
+      <div class="article-card" onclick="toggleArticle(this)">
+        <div class="article-title">Sales Has Changed Overnight – But Many Sales Managers Haven't</div>
+        <div class="article-excerpt">The world of sales is changing faster than most organizations are willing to admit. Both B2B and B2C sales are entering a completely new era driven by Artificial Intelligence.</div>
+        <div class="article-read">READ MORE »</div>
+        <div class="article-body">
+          <p>The world of sales is changing faster than most organizations are willing to admit. Both B2B and B2C sales are entering a completely new era driven by Artificial Intelligence.</p>
+          <p>Today, AI can monitor and optimize almost every element of the sales process. It can analyze customer behavior. It can track every interaction with potential clients. It can recommend the best sales sentence to use in a conversation. It can suggest upsell opportunities in real time.</p>
+          <p>Yet despite these extraordinary capabilities, many senior sales managers are still operating according to very old patterns. They spend their time repeatedly monitoring salespeople, checking targets again and again, asking for updates, and reviewing performance numbers. The process often looks like a loop of supervision rather than a system of intelligent optimization.</p>
+          <p>The truth is that the sales profession has already changed dramatically. What has not changed is something very important: the relationship between people. Human trust, emotional connection, authenticity, and personal interaction will always remain the number one factor in successful sales.</p>
+          <p>If salespeople are the pilots, then AI is becoming the aircraft, the radar, the navigation system, the protective equipment, and the ammunition — all combined and improved by a factor of one hundred.</p>
+          <p>The paradox is that the technology is ready, but human ego is often blocking the transformation. The most powerful sales leaders of the future may spend less time managing chaos and more time thinking quietly — asking one simple but profound question: "How can I use this incredibly powerful AI system to achieve my goals?"</p>
+        </div>
+      </div>
 
-      <a href="article5.html" class="art-card">
-        <div class="art-num">מאמר 05</div>
-        <div class="art-title">AI בניהול פנים מתחרים</div>
-        <div class="art-desc">כשהשוק מתחרותי, הניצחון מגיע מפנים הארגון. Brain עוזר לבנות יתרון תחרותי פנימי שקשה לשכפל.</div>
-        <div class="art-read">להמשך קריאה »</div>
-      </a>
+      <!-- Article 5 -->
+      <div class="article-card" onclick="toggleArticle(this)">
+        <div class="article-title">Do Not Open Emails at 08:30</div>
+        <div class="article-excerpt">Many managers start their morning the same way. 08:30 arrives. They open email. Then WhatsApp. Then messages. Within minutes, the day is no longer theirs. The agenda has already been stolen.</div>
+        <div class="article-read">READ MORE »</div>
+        <div class="article-body">
+          <p>Many managers start their morning the same way. 08:30 arrives. They open email. Then WhatsApp. Then messages. Then Slack. Within minutes, the day is no longer theirs. The agenda has already been stolen.</p>
+          <p>The moment you open emails in the morning, your attention is captured by other people's priorities. Requests, questions, small problems, and operational issues begin to dictate the direction of your day. Instead of leading the day, you start reacting to it.</p>
+          <p>Morning hours are the most valuable cognitive time of the day. That is when thinking is sharp, attention is fresh, and strategic clarity is possible. Yet many managers give those hours away to inboxes.</p>
+          <p>Instead, the morning should begin in a completely different environment. A cockpit. A dashboard of thinking. A place where the manager focuses on planning, innovation, future direction, and execution design.</p>
+          <p>KPIs mostly measure yesterday. They are results of what already happened. But leadership must constantly design tomorrow.</p>
+          <p>A powerful way to begin the morning is with a long horizon. Start with 2035. Ask: What does my organization look like in 2035? What capabilities must exist by then? Then reverse the thinking — if that future is the destination, what must happen today?</p>
+          <p>Only after this thinking process should operational communication begin. The morning should belong to strategy, design, and direction. Not to the inbox.</p>
+        </div>
+      </div>
 
-      <a href="article6.html" class="art-card">
-        <div class="art-num">מאמר 06</div>
-        <div class="art-title">בגיאול מחסומים ארגוניים</div>
-        <div class="art-desc">כל ארגון מכיר את זה: יש תוכנית, יש רצון – ואז זה נתקע. Brain מזהה את חסמי הביצוע ועוזר להתגבר עליהם.</div>
-        <div class="art-read">להמשך קריאה »</div>
-      </a>
+      <!-- Article 6 -->
+      <div class="article-card" onclick="toggleArticle(this)">
+        <div class="article-title">Co-Manager: The Future of AI in Leadership</div>
+        <div class="article-excerpt">For many organizations, AI is still perceived as a tool. A tool to automate tasks. A tool to summarize documents. But this way of thinking is already outdated. AI is becoming a Co-Manager.</div>
+        <div class="article-read">READ MORE »</div>
+        <div class="article-body">
+          <p>For many organizations, AI is still perceived as a tool. A tool to automate tasks. A tool to summarize documents. A tool to generate reports. But this way of thinking is already outdated.</p>
+          <p>AI is not just another software layer inside the organization. The real shift is much bigger. AI is becoming a Co-Manager. A partner in thinking, analysis, and decision preparation.</p>
+          <p>The question leaders should ask themselves today is not "Which AI tool should we install?" The real question is: Who is my partner in the AI revolution?</p>
+          <p>APIs are infrastructure. Automation is basic capability. They are necessary, but they are not where the transformation happens. The real revolution happens at the level of thinking systems — systems that help leaders break down complex problems, analyze strategic options, and design new operating models.</p>
+          <p>The AI Co-Manager is not replacing the leader. It is amplifying the leader. The human leader still defines purpose, direction, values, and judgment. But the AI Co-Manager becomes the partner that analyzes faster, sees patterns earlier, and helps design better decisions.</p>
+          <p>Together, they form a new type of leadership cockpit. A two-pilot model. Organizations that understand this shift will move faster, see opportunities earlier, and design smarter systems.</p>
+          <p>The companies that adopt AI merely as a tool will improve efficiency. But the companies that adopt AI as a Co-Manager will redesign leadership itself.</p>
+        </div>
+      </div>
+
+      <!-- Article 7 -->
+      <div class="article-card" onclick="toggleArticle(this)">
+        <div class="article-title">AI and Leadership: A New Era for Managers</div>
+        <div class="article-excerpt">Every Executive Must Understand the Power of AI. The world of management is changing faster than ever before. Artificial Intelligence is no longer a futuristic technology reserved for engineers and researchers.</div>
+        <div class="article-read">READ MORE »</div>
+        <div class="article-body">
+          <p>The world of management is changing faster than ever before. Artificial Intelligence is no longer a futuristic technology reserved for engineers and researchers. It is becoming the most powerful management tool ever created.</p>
+          <p>For senior executives, AI is not just another software system. It is a thinking assistant that can analyze information, generate strategies, write plans, summarize data, and support decisions. In many cases, it can perform hours of analytical work within minutes.</p>
+          <p>A manager who learns how to work with AI gains a major advantage. Instead of spending time collecting information, writing reports, or preparing presentations, the manager can simply instruct the AI system: "Analyze this situation." "Prepare a strategy." "Give me options." "Build a plan."</p>
+          <p>In other words, AI allows managers to focus on leadership, judgment, and direction while the machine handles large parts of the analytical workload.</p>
+          <p>The leaders who understand this shift will become dramatically more effective. Those who ignore it will gradually fall behind competitors who are already using AI as a strategic co-manager.</p>
+          <p>The message is simple: AI is becoming the most powerful management partner ever built.</p>
+        </div>
+      </div>
+
+      <!-- Article 8 -->
+      <div class="article-card" onclick="toggleArticle(this)">
+        <div class="article-title">A Firefighter Instead of a Builder</div>
+        <div class="article-excerpt">Many managers proudly say one sentence again and again: "I'm extremely busy." But constant overload is not a sign of strong management. In many cases, it is the opposite.</div>
+        <div class="article-read">READ MORE »</div>
+        <div class="article-body">
+          <p>Many managers proudly say one sentence again and again. "I'm extremely busy." They say it to employees. They say it to suppliers. They say it to people who are waiting for answers. But constant overload is not a sign of strong management. In many cases, it is the opposite.</p>
+          <p>A strong manager builds systems that prevent chaos. Processes are clear. Responsibilities are defined. Automation supports repetitive work. Decisions move through simple and predictable flows. When the system is built well, the manager is not constantly overwhelmed.</p>
+          <p>When a manager is always busy, something deeper is usually happening. The organization is being managed reactively instead of being designed properly. Instead of building systems, the manager handles problems all day. Instead of creating stability, the manager is constantly putting out fires.</p>
+          <p>That is how a manager slowly becomes a firefighter instead of a builder. The signs are easy to recognize: the manager speaks quickly, every issue sounds urgent, meetings fill the calendar, new instructions arrive constantly. The atmosphere becomes tense — not because the work requires it, but because the system has never been properly built.</p>
+          <p>Strong leadership looks very different. Processes are stable. Automation handles routine tasks. Decisions follow clear paths. Managers spend time improving systems instead of reacting to problems.</p>
+          <p>Builders create organizations that run smoothly. Firefighters create organizations that run on adrenaline. And while adrenaline may feel powerful in the moment, it is not a sustainable way to lead.</p>
+        </div>
+      </div>
 
     </div>
   </div>
-  <!-- מאמרים דינמיים מ-GitHub -->
-  <div id="dynamic-articles-wrap" style="display:none">
-    <div class="sec reveal">
-      <div class="articles-grid" id="dynamicGrid"></div>
-    </div>
-  </div>
 
+  <div style="height:60px"></div>
   <footer>
-    
     <div class="footer-links">
-      <a href="about.html">אודותינו</a><a href="process.html">התהליך</a>
-      <a href="uses.html">שימושים</a><a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a><a href="pricing.html">מחירים</a>
-      <a href="demo.html">Demo</a><a href="articles.html">מאמרים</a><a href="jobs.html">דרושים</a>
+      <a href="about.html">About</a><a href="process.html">Process</a>
+      <a href="uses.html">Use Cases</a><a href="roi.html">ROI</a>
+      <a href="smb.html">SMB</a><a href="municipalities.html">Municipalities</a>
+      <a href="pricing.html">Pricing</a><a href="demo.html">Demo</a>
+      <a href="articles.html">Articles</a><a href="jobs.html">Careers</a>
     </div>
-    <div class="footer-copy">© 2025 כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
+    <div class="footer-copy">© 2025 All rights reserved · Brain Co-Manager · brain2spark.ai</div>
   </footer>
 </div>
 <script src="shared.js"></script>
-<script>renderNav('articles');</script>
-
+<script>renderNav('articles','en');</script>
 <script>
-// טעינת מאמרים דינמיים מ-GitHub
-const REPO = 'sigalgal73-ops/BRAIN';
-const FOLDER = '_articles';
-const BASE_NUM = 7; // מאמרים קבועים הם 1-6
-
-async function loadDynamicArticles() {
-  try {
-    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}`);
-    if (!res.ok) return;
-    const files = await res.json();
-    if (!Array.isArray(files) || files.length === 0) return;
-
-    // מיין לפי תאריך — החדש ראשון
-    files.sort((a, b) => b.name.localeCompare(a.name));
-
-    const grid = document.getElementById('dynamicGrid');
-    const wrap = document.getElementById('dynamic-articles-wrap');
-
-    const cards = await Promise.all(files.map(async (file, i) => {
-      try {
-        const r = await fetch(file.download_url);
-        const text = await r.text();
-        // parse frontmatter
-        const fm = parseFrontmatter(text);
-        const num = String(BASE_NUM + i).padStart(2, '0');
-        return `<a href="article-view.html?repo=${encodeURIComponent(file.download_url)}" class="art-card">
-          <div class="art-num">מאמר ${num}</div>
-          <div class="art-date" style="font-size:11px;color:var(--muted);margin-bottom:8px">${fm.date || ''}</div>
-          <div class="art-title">${fm.title || file.name}</div>
-          <div class="art-desc">${fm.description || ''}</div>
-          <div class="art-read">להמשך קריאה »</div>
-        </a>`;
-      } catch(e) { return ''; }
-    }));
-
-    const validCards = cards.filter(c => c);
-    if (validCards.length > 0) {
-      grid.innerHTML = validCards.join('');
-      wrap.style.display = 'block';
-    }
-  } catch(e) {}
-}
-
-function parseFrontmatter(text) {
-  const match = text.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return {};
-  const fm = {};
-  match[1].split('\n').forEach(line => {
-    const [key, ...val] = line.split(':');
-    if (key && val.length) fm[key.trim()] = val.join(':').trim().replace(/^["']|["']$/g, '');
+function toggleArticle(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.article-card').forEach(c => {
+    c.classList.remove('open');
+    c.querySelector('.article-read').textContent = 'READ MORE »';
   });
-  return fm;
+  if (!isOpen) {
+    card.classList.add('open');
+    card.querySelector('.article-read').textContent = 'CLOSE ✕';
+    card.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
 }
-
-loadDynamicArticles();
 </script>
-
 </body>
 </html>
