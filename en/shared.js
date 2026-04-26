@@ -7,6 +7,7 @@ function renderNav(activePage) {
     { id: 'uses',     label: 'Use Cases',   href: 'uses.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
+    { id: 'municipalities', label: 'Municipalities', href: 'municipalities.html' },
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'Articles',    href: 'articles.html' },
