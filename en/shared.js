@@ -11,6 +11,7 @@ function renderNav(activePage) {
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'Articles',    href: 'articles.html' },
+    { id: 'success',  label: 'Success Stories', href: 'success-stories.html' },
     { id: 'jobs',     label: 'Jobs',    href: 'jobs.html' },
   ];
   const desktopLinks = pages.map(p => {
