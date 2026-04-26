@@ -7,7 +7,7 @@ function renderNav(activePage) {
     { id: 'uses',     label: 'שימושים',   href: 'uses.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
-    { id: 'investors', label: 'משקיעים', href: 'investors.html', submenu: [
+    { id: 'investors', label: 'משקיעים', href: 'investors-engine.html', submenu: [
       { label: 'מנוע בתוך מנוע', href: 'investors-engine.html' },
       { label: 'הוכחת שווי Brain', href: 'investors-value.html' },
       { label: 'Go to Market', href: 'investors-gtm.html' },
