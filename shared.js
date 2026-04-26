@@ -335,10 +335,10 @@ function initBot() {
       opts:['כן, יש CRM','כן, יש הדרכות','שניהם','לא'], run:(c,n)=>{state.existing=c;n(7);}},
     {step:8, bot:()=>{const e=state.existing;if(e==='כן, יש CRM'||e==='שניהם')return 'Brain לא מחליף מערכות – הוא מחבר אותן.\n\nמה הכי חשוב לשפר?';if(e==='כן, יש הדרכות')return 'Brain לא מחליף הדרכות – הוא הופך אותן לביצוע.\n\nמה הכי חשוב לשפר?';return 'Brain יכול להיות הבסיס לתשתית הניהולית.\n\nמה הכי חשוב לשפר?';},
       opts:['הגדלת מכירות','שיפור ביצועי עובדים','שימור עובדים','הטמעת AI','אחר'],
-      run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n(9);}}},
-    {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n(9);}},
+      run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n(null);}}},
+    {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n(null);}},
     {step:9, bot:()=>`מצוין!\n\nאיך תרצו לקבל מידע על Brain?`,
-      opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n(9);}},
+      opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n(null);}},
     {step:10, bot:()=>`מעולה, ${fn()}!\n\nנשמח לשלוח לך את המידע.\n\nמספר טלפון:`, isInput:true, ph:'מספר טלפון', run:(v,n)=>{state.phone=v;n(10);}},
     {step:11, bot:'כתובת מייל:', isInput:true, ph:'כתובת מייל', run:(v,n)=>{
       state.email=v;
@@ -401,8 +401,8 @@ function initBot() {
       const ns=nextSeq(idx);
       if(isCal){addCal(v=>{addUser(v);state.contact=v;setTimeout(()=>runStep(ns),500);});return;}
       if(isCon){setTimeout(()=>runStep(ns),700);return;}
-      if(s.isInput){addInput(s.ph,v=>{addUser(v);s.run(v,k=>{setTimeout(()=>runStep(k !== undefined ? k : ns),350);});});return;}
-      if(s.opts){addOpts(s.opts,c=>{addUser(c);s.run(c,k=>{setTimeout(()=>runStep(k !== undefined ? k : ns),350);});});}
+      if(s.isInput){addInput(s.ph,v=>{addUser(v);s.run(v,k=>{setTimeout(()=>runStep((k !== undefined && k !== null) ? k : ns),350);});});return;}
+      if(s.opts){addOpts(s.opts,c=>{addUser(c);s.run(c,k=>{setTimeout(()=>runStep((k !== undefined && k !== null) ? k : ns),350);});});}
     });
   }
 }
