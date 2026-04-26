@@ -339,12 +339,30 @@ function initBot() {
     {step:9, bot:()=>`מצוין!\n\nאיך תרצו לקבל מידע על Brain?`,
       opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n(9);}},
     {step:10, bot:()=>`מעולה, ${fn()}!\n\nנשמח לשלוח לך את המידע.\n\nמספר טלפון:`, isInput:true, ph:'מספר טלפון', run:(v,n)=>{state.phone=v;n(10);}},
-    {step:11, bot:'כתובת מייל:', isInput:true, ph:'כתובת מייל', run:(v,n)=>{state.email=v;n(11);}},
+    {step:11, bot:'כתובת מייל:', isInput:true, ph:'כתובת מייל', run:(v,n)=>{
+      state.email=v;
+      // שליחה ל-Netlify Forms
+      fetch('/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({
+          'form-name': 'brain-demo',
+          'name': state.name || '',
+          'company': state.company || '',
+          'phone': state.phone || '',
+          'email': state.email || '',
+          'cta': state.cta || '',
+          'challenge': state.challenge || '',
+          'role': state.role || ''
+        }).toString()
+      }).catch(()=>{});
+      n(11);
+    }},
     {step:12, bot:()=>{
       const PDF='https://brain2spark.mysitemail.co.il/wp-content/uploads/2026/03/Deno_%D7%90%D7%AA%D7%A8-%D7%A2%D7%91%D7%A8%D7%99%D7%AA.pdf';
       if(state.cta==='הסבר כתוב') return `תודה רבה, ${state.name}! 🎉\n\n📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">לחצו כאן לצפייה במסמך</a>\n\nנציג Brain יצור איתך קשר בהקדם 🙂`;
       return `תודה רבה, ${state.name}! 🎉\n\nנשלח לך את סרטון הדמו למייל בהקדם 🎬\nנציג Brain יצור איתך קשר בהקדם.`;
-    }, isSummary:true, run:()=>{}},
+    }, run:()=>{}},
   ];
 
   FLOW.forEach((s,i)=>{ if(s.id)stepMap[s.id]=i; else flowIndex.push(i); });
@@ -360,7 +378,7 @@ function initBot() {
     const s=FLOW[idx]; updProg(s.step);
     const text=typeof s.bot==='function'?s.bot():s.bot;
     addBot(text,120).then(()=>{
-      if(s.isSummary){addSum(state);const rb=document.createElement('button');rb.className='bot-restart';rb.textContent='↺ התחל מחדש';rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);return;}
+      if(s.isSummary){const rb=document.createElement('button');rb.className='bot-restart';rb.textContent='↺ התחל מחדש';rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);return;}
       const isCal=s.isCalendly&&s.isCalendly(), isCon=s.isConfirm&&s.isConfirm();
       const ns=nextSeq(idx);
       if(isCal){addCal(v=>{addUser(v);state.contact=v;setTimeout(()=>runStep(ns),500);});return;}
