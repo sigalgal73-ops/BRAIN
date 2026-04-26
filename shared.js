@@ -335,7 +335,7 @@ function initBot() {
       opts:['כן, יש CRM','כן, יש הדרכות','שניהם','לא'], run:(c,n)=>{state.existing=c;n(7);}},
     {step:8, bot:()=>{const e=state.existing;if(e==='כן, יש CRM'||e==='שניהם')return 'Brain לא מחליף מערכות – הוא מחבר אותן.\n\nמה הכי חשוב לשפר?';if(e==='כן, יש הדרכות')return 'Brain לא מחליף הדרכות – הוא הופך אותן לביצוע.\n\nמה הכי חשוב לשפר?';return 'Brain יכול להיות הבסיס לתשתית הניהולית.\n\nמה הכי חשוב לשפר?';},
       opts:['הגדלת מכירות','שיפור ביצועי עובדים','שימור עובדים','הטמעת AI','אחר'],
-      run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n(8);}}},
+      run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n(9);}}},
     {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n(9);}},
     {step:9, bot:()=>`מצוין!\n\nאיך תרצו לקבל מידע על Brain?`,
       opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n(9);}},
@@ -357,7 +357,25 @@ function initBot() {
         }).toString()
       }).catch(err=>console.log('Form send error:',err));
       if(state.cta==='סרטון דמו קצר'){
-        addBot(`תודה ${state.name}! 🎥<br><br>הנה סרטון הדמו:<br><br><iframe width="100%" height="220" src="https://www.youtube.com/embed/O3yF5ee2iEI?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`,200);
+        addBot(`תודה ${state.name}! 🎥 הסרטון נפתח עכשיו...`,200);
+        setTimeout(()=>{
+          // פתיחת modal מסך מלא
+          const ov=document.createElement('div');
+          ov.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(2,13,26,0.96);display:flex;align-items:center;justify-content:center;';
+          ov.innerHTML=`<div style="position:relative;width:min(560px,96vw);background:#020d1a;border:1px solid rgba(45,156,255,0.25);border-radius:20px;overflow:hidden;box-shadow:0 0 60px rgba(45,156,255,0.2);">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(45,156,255,0.12);">
+              <span style="font-size:15px;font-weight:700;color:#eaf4ff;font-family:Heebo,sans-serif;">Brain Co-Manager בפעולה</span>
+              <button onclick="this.closest('div[style*=fixed]').remove();document.body.style.overflow='';" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#aaa;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+            </div>
+            <div style="position:relative;padding-top:56.25%;background:#010810;">
+              <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/O3yF5ee2iEI?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div style="padding:12px 20px;text-align:center;font-size:13px;color:#7ec8ff;font-family:Heebo,sans-serif;">נציג Brain יצור איתך קשר בהקדם</div>
+          </div>`;
+          ov.onclick=e=>{if(e.target===ov){ov.remove();document.body.style.overflow='';}};
+          document.body.appendChild(ov);
+          document.body.style.overflow='hidden';
+        },400);
       } else {
         const PDF='https://brain2spark.mysitemail.co.il/wp-content/uploads/2026/03/Deno_%D7%90%D7%AA%D7%A8-%D7%A2%D7%91%D7%A8%D7%99%D7%AA.pdf';
         addBot(`תודה רבה, ${state.name}! 🎉<br><br>📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">לחצו כאן לצפייה במסמך</a><br><br>נציג Brain יצור איתך קשר בהקדם 🙂`,200);
