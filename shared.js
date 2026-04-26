@@ -1,56 +1,49 @@
 // ── SHARED NAV ──
-function renderNav(activePage, lang) {
-  const isEn = lang === 'en';
-  const prefix = isEn ? '../' : '';
-  const enPrefix = isEn ? '' : 'en/';
-
-  const pages = isEn ? [
-    { id: 'about',    label: 'About',      href: prefix + 'en/about.html' },
-    { id: 'process',  label: 'Process',    href: prefix + 'en/process.html' },
-    { id: 'uses',     label: 'Use Cases',  href: prefix + 'en/uses.html' },
-    { id: 'roi',      label: 'ROI',        href: prefix + 'en/roi.html' },
-    { id: 'smb',      label: 'SMB',        href: prefix + 'en/smb.html' },
-    { id: 'pricing',  label: 'Pricing',    href: prefix + 'en/pricing.html' },
-    { id: 'demo',     label: 'Demo',       href: prefix + 'en/demo.html', cta: true },
-    { id: 'articles', label: 'Articles',   href: prefix + 'en/articles.html' },
-    { id: 'jobs',     label: 'Careers',    href: prefix + 'en/jobs.html' },
-  ] : [
+function renderNav(activePage) {
+  const pages = [
     { id: 'about',    label: 'אודותינו',  href: 'about.html' },
     { id: 'process',  label: 'התהליך',    href: 'process.html' },
     { id: 'uses',     label: 'שימושים',   href: 'uses.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
+    { id: 'investors', label: 'משקיעים', href: 'investors.html', submenu: [
+      { label: 'מנוע בתוך מנוע', href: 'investors-engine.html' },
+      { label: 'הוכחת שווי Brain', href: 'investors-value.html' },
+      { label: 'Go to Market', href: 'investors-gtm.html' },
+      { label: 'מתחרים', href: 'investors-competition.html' },
+      { label: 'קרנות VC', href: 'investors-vc.html' },
+      { label: 'שאלות תשובות', href: 'investors-faq.html' },
+    ]},
     { id: 'pricing',  label: 'מחירים',    href: 'pricing.html' },
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
   ];
-
-  // כפתור מעבר שפה
-  const langBtn = isEn
-    ? `<a href="${prefix}index.html" class="lang-btn" title="עברית"><img src="${prefix}flag-il.png" alt="עברית" width="24" height="24" style="border-radius:4px"></a>`
-    : `<a href="en/index.html" class="lang-btn" title="English"><img src="flag-us.png" alt="English" width="24" height="24" style="border-radius:4px"></a>`;
-
   const desktopLinks = pages.map(p => {
+    if (p.submenu) {
+      const sub = p.submenu.map(s => `<a href="${s.href}" class="nav-sub-link">${s.label}</a>`).join('');
+      return `<div class="nav-dropdown${p.id===activePage?' active':''}"><a href="${p.href}" class="nav-link">${p.label} ▾</a><div class="nav-dropdown-menu">${sub}</div></div><span class="sep">|</span>`;
+    }
     if (p.cta) return `<a href="${p.href}" class="nav-demo${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
     return `<a href="${p.href}" class="nav-link${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
   }).join('');
-  const mobileLinks = pages.map(p =>
-    `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`
-  ).join('');
-
-  const logoHref = isEn ? prefix + 'en/index.html' : 'index.html';
+  const mobileLinks = pages.map(p => {
+    if (p.submenu) {
+      const sub = p.submenu.map(s => `<a href="${s.href}" class="nav-sub-mobile">${s.label}</a>`).join('');
+      return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>${sub}`;
+    }
+    return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
+  }).join('');
 
   document.getElementById('nav-placeholder').innerHTML = `
     <nav>
       <div class="nav-left">
         <a href="https://wa.me/972" class="nav-icon" title="WhatsApp">💬</a>
-        <a href="https://www.youtube.com/@Brain.co.manager" target="_blank" class="nav-icon" title="YouTube">▶</a>
-        ${langBtn}
-        <button class="nav-mobile-btn" id="nav-hamburger" aria-label="Menu">☰</button>
+        <a href="#" class="nav-icon" title="YouTube">▶</a>
+        <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
       </div>
       <div class="nav-links">${desktopLinks}</div>
-      <a href="${logoHref}" class="nav-logo"><img src="${prefix}brain2spark-logo.png" alt="Brain2Spark" style="width:140px;height:auto"></a>
+      <a href="index.html" class="nav-logo">b<sup>2</sup></a>
     </nav>
     <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
 
