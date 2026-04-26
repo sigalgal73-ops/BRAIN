@@ -342,8 +342,6 @@ function initBot() {
     {step:10, bot:()=>`מעולה, ${fn()}!\n\nנשמח לשלוח לך את המידע.\n\nמספר טלפון:`, isInput:true, ph:'מספר טלפון', run:(v,n)=>{state.phone=v;n(10);}},
     {step:11, bot:'כתובת מייל:', isInput:true, ph:'כתובת מייל', run:(v,n)=>{
       state.email=v;
-      const PDF='https://brain2spark.mysitemail.co.il/wp-content/uploads/2026/03/Deno_%D7%90%D7%AA%D7%A8-%D7%A2%D7%91%D7%A8%D7%99%D7%AA.pdf';
-      // שליחה ל-Netlify Forms
       fetch('/', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -357,16 +355,15 @@ function initBot() {
           'challenge': state.challenge || '',
           'role': state.role || ''
         }).toString()
-      }).catch(()=>{});
+      }).catch(err=>console.log('Form send error:',err));
       if(state.cta==='סרטון דמו קצר'){
-        setTimeout(()=>{ window.open('demo.html?autoplay=1','_self'); },400);
+        addBot(`תודה ${state.name}! 🎥<br><br>הנה סרטון הדמו:<br><br><iframe width="100%" height="220" src="https://www.youtube.com/embed/O3yF5ee2iEI?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`,200);
       } else {
-        addBot(`תודה רבה, ${state.name}! 🎉\n\n📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">לחצו כאן לצפייה במסמך</a>\n\nנציג Brain יצור איתך קשר בהקדם 🙂`, 200);
-        const rb=document.createElement('button');rb.className='bot-restart';rb.textContent='↺ התחל מחדש';
-        setTimeout(()=>{rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);},1500);
+        const PDF='https://brain2spark.mysitemail.co.il/wp-content/uploads/2026/03/Deno_%D7%90%D7%AA%D7%A8-%D7%A2%D7%91%D7%A8%D7%99%D7%AA.pdf';
+        addBot(`תודה רבה, ${state.name}! 🎉<br><br>📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">לחצו כאן לצפייה במסמך</a><br><br>נציג Brain יצור איתך קשר בהקדם 🙂`,200);
       }
-    }},
-  ];
+      setTimeout(()=>{const rb=document.createElement('button');rb.className='bot-restart';rb.textContent='↺ התחל מחדש';rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);},2000);
+    }}  ];
 
   FLOW.forEach((s,i)=>{ if(s.id)stepMap[s.id]=i; else flowIndex.push(i); });
 
