@@ -3,320 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brain Co-Manager | תומך ניהולי מבוסס AI</title>
+<title>אודותינו | Brain Co-Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
-<style>
-/* ── HERO HOME ── */
-.hero{
-  position:relative;z-index:1;min-height:100vh;
-  display:grid;grid-template-columns:1fr 1fr;
-  align-items:center;padding:0 60px;padding-top:64px;overflow:hidden;
-  direction:ltr;
-}
-/* text on left (order:1), robot on right (order:2) */
-.hero-robot{display:flex;justify-content:center;align-items:center;order:2;}
-.hero-text{padding:40px 0;animation:fadeUp .9s ease both;order:1;direction:rtl;text-align:right;}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;padding:6px 16px;margin-bottom:26px;
-  border:1px solid rgba(0,212,170,0.45);border-radius:20px;
-  background:rgba(0,212,170,0.1);font-size:11px;font-weight:700;
-  color:var(--teal);letter-spacing:.1em;
-}
-.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);animation:pulse 2s ease-in-out infinite;}
-.hero-title{font-size:clamp(48px,5.5vw,80px);font-weight:900;line-height:1.04;letter-spacing:-.03em;margin-bottom:10px;}
-.hero-title em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-subtitle{font-size:clamp(20px,2.4vw,30px);font-weight:700;color:var(--sky);margin-bottom:22px;}
-.hero-desc{font-size:17px;color:var(--muted);line-height:1.8;margin-bottom:40px;max-width:480px;}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:50px;}
-.hero-stats{display:flex;gap:38px;padding-top:36px;border-top:1px solid rgba(45,156,255,.25);}
-.stat-n{font-size:34px;font-weight:900;color:var(--white);letter-spacing:-.02em;}
-.stat-n span{color:var(--teal);}
-.stat-l{font-size:11px;color:var(--muted);letter-spacing:.08em;margin-top:3px;}
-
-/* ROBOT SIDE */
-.hero-robot{
-  position:relative;display:flex;justify-content:center;align-items:center;
-  animation:float 5s ease-in-out infinite;
-}
-.robot-glow{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:90%;height:80%;
-  background:radial-gradient(ellipse,rgba(45,156,255,0.32) 0%,transparent 70%);
-  animation:glow-pulse 4s ease-in-out infinite;pointer-events:none;
-}
-@keyframes glow-pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
-.scan{
-  position:absolute;left:8%;right:8%;height:1.5px;
-  background:linear-gradient(90deg,transparent,rgba(0,212,170,0.7),transparent);
-  animation:scan 3.5s linear infinite;pointer-events:none;z-index:5;
-}
-@keyframes scan{from{top:6%;}to{top:94%;}}
-
-/* floating metric cards */
-.mc{
-  position:absolute;z-index:10;background:rgba(4,20,40,0.88);backdrop-filter:blur(10px);
-  border:1px solid rgba(45,156,255,0.22);border-radius:13px;padding:11px 15px;
-  box-shadow:0 8px 24px rgba(0,0,0,0.4);animation:cardFloat 5s ease-in-out infinite;
-}
-.mc:nth-child(3){animation-delay:-2s;}.mc:nth-child(4){animation-delay:-3.5s;}
-@keyframes cardFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
-.mc-t{font-size:9px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:3px;}
-.mc-v{font-size:18px;font-weight:900;color:var(--white);}
-.mc-s{font-size:9px;color:var(--muted);margin-top:2px;}
-.mc-b{height:2.5px;background:rgba(45,156,255,0.15);border-radius:2px;margin-top:6px;overflow:hidden;}
-.mc-f{height:100%;background:linear-gradient(90deg,var(--accent),var(--teal));}
-.mc1{top:18%;right:2%;left:auto;}
-.mc2{top:46%;right:2%;left:auto;}
-.mc3{top:74%;right:2%;left:auto;bottom:auto;}
-
-/* clients strip */
-.clients{
-  position:relative;z-index:1;padding:28px 60px;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;
-  background:rgba(4,20,40,0.3);
-}
-.clients-label{font-size:12px;color:var(--white);letter-spacing:.1em;font-weight:700;white-space:nowrap;opacity:0.75;}
-.client-pill{padding:7px 20px;border:1px solid rgba(255,255,255,0.35);border-radius:16px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:.06em;transition:all .2s;}
-.client-pill:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,0.08);}
-
-/* features grid home */
-.features-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto;}
-.feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:all .3s;position:relative;overflow:hidden;text-align:center;}
-.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.35),transparent);}
-.feat:hover{border-color:rgba(45,156,255,.28);transform:translateY(-4px);}
-.feat-icon{font-size:30px;margin-bottom:14px;}
-.feat-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px;}
-.feat-desc{font-size:14px;color:var(--muted);line-height:1.7;}
-
-/* ROBOT IMAGE */
-.robot-img{
-  width:min(34vw,380px);
-  height:auto;
-  object-fit:contain;
-  display:block;
-  filter:drop-shadow(0 0 30px rgba(45,156,255,0.3));
-}
-
-/* CTA box */
-.cta-box{max-width:700px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:26px;padding:56px 44px;text-align:center;position:relative;overflow:hidden;}
-.cta-box::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,var(--teal),var(--bright),transparent);}
-.cta-title{font-size:clamp(22px,3vw,38px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.2;}
-.cta-sub{font-size:15px;color:var(--muted);margin-bottom:34px;line-height:1.7;}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-
-/* ── MOBILE ── */
-@media(max-width:900px){
-  .hero{
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:center !important;
-    text-align:center !important;
-    padding:72px 18px 28px !important;
-    min-height:auto !important;
-    gap:10px !important;
-  }
-  .hero-badge{
-    order:1 !important;
-    display:inline-flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    gap:6px !important;
-    font-size:9px !important;
-    padding:5px 12px !important;
-    margin:0 auto !important;
-    border-radius:18px !important;
-  }
-  .hero-robot{
-    order:2 !important;
-    width:100% !important;
-    display:flex !important;
-    justify-content:center !important;
-    align-items:center !important;
-    padding:0 !important;
-    position:relative !important;
-    margin:0 !important;
-  }
-  .robot-img{
-    width:84vw !important;
-    max-width:320px !important;
-    height:auto !important;
-    margin-top:0 !important;
-    display:block !important;
-  }
-  .hero-text{
-    order:3 !important;
-    width:100% !important;
-    padding:0 !important;
-    text-align:center !important;
-    display:contents !important;
-  }
-  .hero-top-mobile,
-  .hero-top-copy,
-  .hero-bottom-mobile{
-    display:block !important;
-    width:100% !important;
-    text-align:center !important;
-  }
-  .hero-title{
-    order:3 !important;
-    font-size:34px !important;
-    line-height:1.02 !important;
-    margin-bottom:6px !important;
-    text-align:center !important;
-  }
-  .hero-subtitle{
-    order:3 !important;
-    font-size:18px !important;
-    margin-bottom:10px !important;
-    text-align:center !important;
-  }
-  .hero-desc{
-    order:4 !important;
-    font-size:15px !important;
-    line-height:1.75 !important;
-    max-width:92% !important;
-    margin:0 auto 14px !important;
-    text-align:center !important;
-  }
-  .hero-actions{
-    order:5 !important;
-    display:flex !important;
-    gap:10px !important;
-    flex-wrap:nowrap !important;
-    justify-content:center !important;
-    width:100% !important;
-    margin-bottom:6px !important;
-  }
-  .hero-actions .btn{
-    flex:1 !important;
-    min-height:54px !important;
-    font-size:15px !important;
-    padding:14px 18px !important;
-    border-radius:24px !important;
-  }
-  .hero-stats,
-  .mc,
-  .robot-glow,
-  .scan{
-    display:none !important;
-  }
-  .bot-fab{
-    transform:scale(0.82) !important;
-    transform-origin:bottom left !important;
-    bottom:14px !important;
-    left:10px !important;
-  }
-  .clients{padding:12px 16px !important;gap:8px !important;}
-  .clients-label{width:100% !important;text-align:center !important;}
-  .features-grid{grid-template-columns:1fr !important;}
-  .cta-box{padding:26px 16px !important;}
-}
-</style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div id="nav-placeholder"></div>
-
-<!-- ══ HERO ══ -->
-<section class="hero">
-
-  <!-- ROBOT (before text so float works on mobile) -->
-  <div class="hero-robot">
-    <div class="robot-glow"></div>
-    <div class="scan"></div>
-    <div class="mc mc1"><div class="mc-t">SALES</div><div class="mc-v">+27%</div><div class="mc-s">סטימצקי</div><div class="mc-b"><div class="mc-f" style="width:72%"></div></div></div>
-    <div class="mc mc2"><div class="mc-t">PERFORMANCE</div><div class="mc-v">+35%</div><div class="mc-s">YSB Tech</div><div class="mc-b"><div class="mc-f" style="width:85%"></div></div></div>
-    <div class="mc mc3"><div class="mc-t">GROWTH</div><div class="mc-v">+20%</div><div class="mc-s">דלויט</div><div class="mc-b"><div class="mc-f" style="width:60%"></div></div></div>
-
-    <img src="robot_navy.png" alt="Brain AI Robot" style="
-      width:min(34vw,400px);
-      height:auto;
-      object-fit:contain;
-      filter:drop-shadow(0 0 40px rgba(45,156,255,0.25));
-      animation:float 5s ease-in-out infinite;
-      margin-top:-80px;
-    " class="robot-img">
+<div class="page">
+  <div class="page-hero">
+    <div class="page-tag">ABOUT US</div>
+    <h1 class="page-title">המוצר – <em>אודותינו</em></h1>
+    <p class="page-sub">Brain היא חברת סטארטאפ רשומה לפיתוח מוחות ארגוניים</p>
   </div>
-
-  <div class="hero-text">
-    <div class="hero-badge"><div class="badge-dot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
-    <h1 class="hero-title">Brain<br><em>Co-Manager</em></h1>
-    <div class="hero-subtitle">תומך ניהולי מבוסס AI</div>
-    <p class="hero-desc">לא רק ידע – שינוי התנהגות בפועל.<br>Brain מלווה את הארגון יום-יום, שולח מסרים חכמים, עושה פולו-אפ ומודד תוצאות.</p>
-    <div class="hero-actions">
-      <a href="demo.html" class="btn btn-primary">צפו בדמו ▶</a>
-      <a href="process.html" class="btn btn-ghost">איך זה עובד ▼</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-n">8<span>K+</span></div><div class="stat-l">ORGANIZATIONS</div></div>
-      <div><div class="stat-n">40<span>+</span></div><div class="stat-l">INDUSTRIES</div></div>
-      <div><div class="stat-n">27<span>%</span></div><div class="stat-l">AVG GROWTH</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CLIENTS STRIP -->
-<div class="clients">
-  <span class="clients-label">לקוחות שעובדים עם Brain:</span>
-  <div class="client-pill">STEIMATZKY</div>
-  <div class="client-pill">DELOITTE</div>
-  <div class="client-pill">SOLTAM</div>
-  <div class="client-pill">BY THE WAY</div>
-  <div class="client-pill">YSB TECH</div>
-  <div class="client-pill">MINILINE</div>
-</div>
-
-<!-- FEATURES -->
-<div style="position:relative;z-index:1;padding:52px 60px 40px;" class="reveal">
-  <div style="text-align:center;margin-bottom:36px">
-    <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:10px">HOW IT WORKS</div>
-    <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;color:var(--white);letter-spacing:-.02em">לא רק ידע – <em style="font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">שינוי התנהגות</em></h2>
-  </div>
-  <div class="features-grid">
-    <div class="feat"><div class="feat-icon">🧠</div><div class="feat-title">ניתוח התנהגות</div><div class="feat-desc">מנתח דפוסי עובדים ומנהלים ומזהה בדיוק היכן נמצאים הפערים.</div></div>
-    <div class="feat"><div class="feat-icon">⚡</div><div class="feat-title">מסרים חכמים</div><div class="feat-desc">שליחת מסרים ממוקדים, סרטוני הדרכה קצרים ומשימות – בזמן הנכון.</div></div>
-    <div class="feat"><div class="feat-icon">🔄</div><div class="feat-title">פולו-אפ אוטומטי</div><div class="feat-desc">עוקב אחרי ביצוע, שולח תזכורות ומודד שינוי התנהגות לאורך זמן.</div></div>
-    <div class="feat"><div class="feat-icon">📊</div><div class="feat-title">דשבורד ניהולי</div><div class="feat-desc">מנהלים רואים בזמן אמת מה קורה בשטח – לא רק בדוחות.</div></div>
-    <div class="feat"><div class="feat-icon">🎯</div><div class="feat-title">התאמה אישית</div><div class="feat-desc">כל קמפיין מותאם לאתגר הספציפי של הארגון.</div></div>
-    <div class="feat"><div class="feat-icon">🚀</div><div class="feat-title">הטמעה מהירה</div><div class="feat-desc">אין צורך ב-IT. Brain מתחיל לעבוד תוך ימים ורואים תוצאות תוך שבועות.</div></div>
-  </div>
-  <div style="text-align:center;margin-top:28px">
-    <a href="process.html" class="btn btn-ghost">לכל התהליך ←</a>
-  </div>
-</div>
-
-<!-- CTA -->
-<div style="position:relative;z-index:1;padding:36px 60px 60px;" class="reveal">
-  <div class="cta-box">
-    <h2 class="cta-title">מוכנים לראות את Brain<br>בפעולה בארגון שלכם?</h2>
-    <p class="cta-sub">דמו של 15 דקות · ללא התחייבות · תוצאות מיידיות</p>
-    <div class="cta-btns">
-      <a href="demo.html" class="btn btn-primary">צפו בדמו עכשיו ▶</a>
-      <a href="about.html" class="btn btn-ghost">עוד עלינו</a>
-    </div>
-  </div>
-</div>
-
-<footer>
   
-  <div class="footer-links">
-    <a href="about.html">אודותינו</a>
-    <a href="process.html">התהליך</a>
-    <a href="uses.html">שימושים</a>
-    <a href="roi.html">ROI</a>
-    <a href="smb.html">SMB</a>
-    <a href="pricing.html">מחירים</a>
-    <a href="demo.html">Demo</a>
-    <a href="articles.html">מאמרים</a>
-    <a href="jobs.html">דרושים</a>
+<div class="sec reveal">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">🚀 Brain – חברת סטארטאפ רשומה</div>
+      <ul class="dot-list">
+        <li>חברה לפיתוח מוחות – brain 1, Brain 2, …</li>
+        <li><strong style="color:var(--sky)">לארגונים!</strong> הלקוחות מס׳ 1 שלנו מאז ולתמיד 😊</li>
+        <li><strong style="color:var(--sky)">לעיריות</strong> – גימלאים – לקוח מס׳ 2</li>
+        <li><strong style="color:var(--sky)">לרובוטים הומנואידים</strong> – רובוטים תומכי אדם</li>
+        <li>משרדים – מרכז Vibe, כפר סבא · חברה רזה (אבל חכמה)</li>
+        <li>צוות פיתוח חיצוני – חברת Commit</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">👥 הצוות שלנו</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+        <div style="background:rgba(45,156,255,0.07);border:1px solid var(--border);border-radius:10px;padding:12px">
+          <div style="font-size:9px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:3px">CEO</div>
+          <div style="font-size:14px;font-weight:700;color:var(--white)">ערן שחר</div>
+          <div style="font-size:11px;color:var(--muted)">מנכ"ל</div>
+        </div>
+        <div style="background:rgba(45,156,255,0.07);border:1px solid var(--border);border-radius:10px;padding:12px">
+          <div style="font-size:9px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:3px">CTO · Commit</div>
+          <div style="font-size:14px;font-weight:700;color:var(--white)">רונן</div>
+          <div style="font-size:11px;color:var(--muted)">מנהל טכנולוגי</div>
+        </div>
+        <div style="background:rgba(45,156,255,0.07);border:1px solid var(--border);border-radius:10px;padding:12px">
+          <div style="font-size:9px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:3px">AI Product Manager</div>
+          <div style="font-size:14px;font-weight:700;color:var(--white)">אביאל</div>
+          <div style="font-size:11px;color:var(--muted)">מנהל מוצר AI</div>
+        </div>
+        <div style="background:rgba(45,156,255,0.07);border:1px solid var(--border);border-radius:10px;padding:12px">
+          <div style="font-size:9px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:3px">לקוחות ומשקיעים</div>
+          <div style="font-size:14px;font-weight:700;color:var(--white)">דונה</div>
+          <div style="font-size:11px;color:var(--muted)">קשרי לקוחות</div>
+        </div>
+        <div style="background:rgba(45,156,255,0.07);border:1px solid var(--border);border-radius:10px;padding:12px;grid-column:1/-1">
+          <div style="font-size:9px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:3px">מומחית אווטארים</div>
+          <div style="font-size:14px;font-weight:700;color:var(--white)">סיגל</div>
+          <div style="font-size:11px;color:var(--muted)">עיצוב ובניית אווטארים דמויי אדם</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="footer-copy">© 2025 כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
-</footer>
+</div>
+<div class="divider"></div>
+<div class="sec sec-alt reveal">
+  <div class="sec-title">מה Brain עושה?</div>
+  <p class="sec-sub">זה כמו GPT משודרג מאוד – שורת GPT עם ים של שכל ארגוני מאחוריה</p>
+  <div class="grid-auto">
+    <div class="card"><div class="card-title">🧠 מנטור/פרזנטור</div><div class="card-body">אווטאר דמוי אדם 1 על 1 – מלווה כל עובד אישית</div></div>
+    <div class="card"><div class="card-title">💡 משכנען</div><div class="card-body">מוצר AI שעושה שכנוע והנעה לפעולה</div></div>
+    <div class="card"><div class="card-title">🗣️ יודע לדבר מעולה</div><div class="card-body">מביא משפטים יותר טובים לכל דבר</div></div>
+    <div class="card"><div class="card-title">📞 פאלוואפר</div><div class="card-body">פולו-אפ וידוא שעושים – אוטומטי ומדויק</div></div>
+    <div class="card"><div class="card-title">🎯 קמפיינר / מטמיען</div><div class="card-body">מטמיע כל דבר שאתם רוצים לאורך שנה-שנתיים</div></div>
+    <div class="card"><div class="card-title">🎚️ אקווולייזר</div><div class="card-body">דיבור עממי חברי + שנון, מותאם לארגונים</div></div>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="sec reveal">
+  <div class="sec-title">הצלחות מוכחות</div>
+  <p class="sec-sub">8,000 ארגונים, 40 ענפים – מכירים את האתגרים, המדדים והאילוצים</p>
+  <div class="grid-auto" style="margin-top:28px">
+    <div class="card" style="text-align:center">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">STEIMATZKY</div>
+      <div style="font-size:42px;font-weight:900;color:var(--white)">27<span style="color:var(--teal)">%</span></div>
+      <div style="font-size:12px;color:var(--muted)">גידול במכירות</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">YSB TECH</div>
+      <div style="font-size:42px;font-weight:900;color:var(--white)">35<span style="color:var(--teal)">%</span></div>
+      <div style="font-size:12px;color:var(--muted)">שיפור ביצועים</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">DELOITTE</div>
+      <div style="font-size:42px;font-weight:900;color:var(--white)">20<span style="color:var(--teal)">%+</span></div>
+      <div style="font-size:12px;color:var(--muted)">יעד צמיחה</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">SOLTAM</div>
+      <div style="font-size:42px;font-weight:900;color:var(--white)">20<span style="color:var(--teal)">%+</span></div>
+      <div style="font-size:12px;color:var(--muted)">יעד צמיחה</div>
+    </div>
+  </div>
+</div>
 
+  <div style="height:60px"></div>
+  <footer>
+    
+    <div class="footer-links">
+      <a href="about.html">אודותינו</a>
+      <a href="process.html">התהליך</a>
+      <a href="uses.html">שימושים</a>
+      <a href="roi.html">ROI</a>
+      <a href="smb.html">SMB</a>
+      <a href="pricing.html">מחירים</a>
+      <a href="demo.html">Demo</a>
+      <a href="articles.html">מאמרים</a>
+      <a href="jobs.html">דרושים</a>
+    </div>
+    <div class="footer-copy">© 2025 כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
+  </footer>
+</div>
 <script src="shared.js"></script>
-<script>renderNav('home');</script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>renderNav('about');</script>
 </body>
 </html>
