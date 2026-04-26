@@ -41,14 +41,16 @@ function renderNav(activePage) {
       <div class="nav-left">
         <a href="https://wa.me/972" class="nav-icon" title="WhatsApp">💬</a>
         <a href="#" class="nav-icon" title="YouTube">▶</a>
-        <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="22" height="16" alt="עברית" style="border-radius:2px;display:block;"></button>
-        <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="22" height="16" alt="English" style="border-radius:2px;display:block;"></button>
         <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
       </div>
       <div class="nav-links">${desktopLinks}</div>
-      <a href="index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="24" height="17" alt="IL" style="border-radius:2px;display:block;"></button>
+        <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="24" height="17" alt="US" style="border-radius:2px;display:block;"></button>
+        <a href="index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
+      </div>
     </nav>
-    <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}<div style="display:flex;gap:12px;padding:10px 14px;border-top:1px solid var(--border);margin-top:4px;"><button class="nav-lang" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="22" height="16" alt="עברית" style="border-radius:2px;display:block;"> עברית</button><button class="nav-lang" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="22" height="16" alt="English" style="border-radius:2px;display:block;"> English</button></div></div>`;
+    <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
 
   document.getElementById('nav-hamburger').onclick = function() {
     const m = document.getElementById('nav-mobile-menu');
@@ -418,12 +420,15 @@ function initBot() {
 
 // ── LANGUAGE SWITCH ──
 function setLang(lang) {
-  document.documentElement.lang = lang === 'en' ? 'en' : 'he';
-  document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
-  localStorage.setItem('bcm-lang', lang);
-  document.querySelectorAll('.nav-lang').forEach(b => b.classList.remove('active'));
-  const btn = document.getElementById('nav-lang-' + lang);
-  if (btn) btn.classList.add('active');
+  const path = window.location.pathname;
+  const isEn = path.includes('/en/');
+  if (lang === 'en' && !isEn) {
+    const page = path.split('/').pop() || 'index.html';
+    window.location.href = '/en/' + page;
+  } else if (lang === 'he' && isEn) {
+    const page = path.split('/').pop() || 'index.html';
+    window.location.href = '/' + page;
+  }
 }
 
 // ── INIT ──
@@ -432,10 +437,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const ls = document.createElement('style');
   ls.textContent = `.nav-lang{background:none;border:none;cursor:pointer;font-size:20px;padding:0 3px;opacity:.55;transition:opacity .2s,transform .2s;line-height:1;}.nav-lang:hover,.nav-lang.active{opacity:1;transform:scale(1.15);}`;
   document.head.appendChild(ls);
-  // restore saved lang
-  const saved = localStorage.getItem('bcm-lang');
-  if (saved) setLang(saved);
-  else { const btn = document.getElementById('nav-lang-he'); if(btn) btn.classList.add('active'); }
+  // mark active flag
+  const isEn = window.location.pathname.includes('/en/');
+  const activeLang = isEn ? 'en' : 'he';
+  setTimeout(() => {
+    const btn = document.getElementById('nav-lang-' + activeLang);
+    if (btn) btn.style.opacity = '1';
+  }, 100);
   initParticles();
   initReveal();
   initNavScroll();
