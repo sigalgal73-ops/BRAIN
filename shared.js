@@ -43,7 +43,7 @@ function renderNav(activePage) {
         <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
       </div>
       <div class="nav-links">${desktopLinks}</div>
-      <a href="index.html" class="nav-logo">b<sup>2</sup></a>
+      <a href="index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
     </nav>
     <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
 
