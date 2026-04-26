@@ -368,8 +368,8 @@ function initBot() {
   FLOW.forEach((s,i)=>{ if(s.id)stepMap[s.id]=i; else flowIndex.push(i); });
 
   function nextSeq(idx) {
-    const pos=flowIndex.indexOf(idx);
-    return pos>=0&&pos+1<flowIndex.length?flowIndex[pos+1]:null;
+    const pos = flowIndex.indexOf(idx);
+    return pos >= 0 && pos + 1 < flowIndex.length ? pos + 1 : null;
   }
 
   function runStep(idxOrKey) {
@@ -383,8 +383,8 @@ function initBot() {
       const ns=nextSeq(idx);
       if(isCal){addCal(v=>{addUser(v);state.contact=v;setTimeout(()=>runStep(ns),500);});return;}
       if(isCon){setTimeout(()=>runStep(ns),700);return;}
-      if(s.isInput){addInput(s.ph,v=>{addUser(v);s.run(v,k=>{setTimeout(()=>runStep(typeof k==='string'?k:ns),350);});});return;}
-      if(s.opts){addOpts(s.opts,c=>{addUser(c);s.run(c,k=>{setTimeout(()=>runStep(typeof k==='string'?k:ns),350);});});}
+      if(s.isInput){addInput(s.ph,v=>{addUser(v);s.run(v,k=>{setTimeout(()=>runStep(k !== undefined ? k : ns),350);});});return;}
+      if(s.opts){addOpts(s.opts,c=>{addUser(c);s.run(c,k=>{setTimeout(()=>runStep(k !== undefined ? k : ns),350);});});}
     });
   }
 }
