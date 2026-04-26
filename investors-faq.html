@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שאלות תשובות למשקיעים | Brain Co-Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.faq-section{max-width:820px;margin:0 auto 40px}
+.faq-category{font-size:11px;color:var(--teal);font-weight:700;letter-spacing:.12em;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.faq-item{margin-bottom:12px;}
+.faq-q{padding:14px 18px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:12px;font-size:14px;font-weight:700;color:var(--white);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all .2s;}
+.faq-q:hover{border-color:rgba(45,156,255,0.3);background:rgba(45,156,255,0.1);}
+.faq-q.open{border-color:rgba(45,156,255,0.4);background:rgba(45,156,255,0.12);border-bottom-left-radius:0;border-bottom-right-radius:0;}
+.faq-a{padding:14px 18px;background:rgba(4,20,40,0.6);border:1px solid rgba(45,156,255,0.2);border-top:none;border-bottom-left-radius:12px;border-bottom-right-radius:12px;font-size:14px;color:var(--muted);line-height:1.7;display:none;}
+.faq-a.open{display:block;}
+.faq-arrow{font-size:12px;color:var(--teal);transition:transform .2s;flex-shrink:0;}
+.faq-q.open .faq-arrow{transform:rotate(180deg);}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+  <div class="page-hero">
+    <div class="page-tag">INVESTORS · FAQ</div>
+    <h1 class="page-title">שאלות ותשובות <em>למשקיעים</em></h1>
+    <p class="page-sub">כל מה שרוצים לדעת על Brain Co-Manager לפני שמשקיעים</p>
+  </div>
+
+<div class="sec reveal">
+
+  <!-- מוצר וליבה -->
+  <div class="faq-section">
+    <div class="faq-category">מוצר וליבה</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה בדיוק Brain עושה? <span class="faq-arrow">▼</span></div><div class="faq-a">Brain מנתח ארגונים, מזהה צרכים ואתגרים, משכנע לפעולה ומוודא ביצוע.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">במה Brain שונה מ-ERP / BI / CRM? <span class="faq-arrow">▼</span></div><div class="faq-a">הן מציגות נתונים. Brain מניע אנשים לפעולה עד ביצוע.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה הבעיה המרכזית שאתם פותרים? <span class="faq-arrow">▼</span></div><div class="faq-a">פער בין הנהלה לבין ביצוע בפועל בארגון.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה זה The 8-Year Gap? <span class="faq-arrow">▼</span></div><div class="faq-a">פער של 3–8 שנים בין טכנולוגיה לבין הטמעה בארגון. Brain יושב בדיוק על הפער הזה.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">איפה Brain יושב ביחס למערכות קיימות? <span class="faq-arrow">▼</span></div><div class="faq-a">בין הקוד לבין ההתנהגות הארגונית — שכבת ניהול מעל ERP / CRM / BI.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">איך Brain עובד בפועל? <span class="faq-arrow">▼</span></div><div class="faq-a">אנליזה ← פתרון ← שכנוע ← פולו-אפ ← מדידה. לולאה שמתחזקת ומשתפרת עם הזמן.</div></div>
+  </div>
+
+  <!-- שימוש וחוויה -->
+  <div class="faq-section">
+    <div class="faq-category">שימוש וחוויית משתמש</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">איך Brain נראה ביום הראשון? <span class="faq-arrow">▼</span></div><div class="faq-a">צ'אט עם Brain ואז שאלון אבחון ארגוני. תוך 30 דקות מקבלים אנליזה ראשונית והמלצות פעולה.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מתי רואים ערך ראשוני? <span class="faq-arrow">▼</span></div><div class="faq-a">כבר ביום הראשון. תוצאות עסקיות מדידות מתחילות להופיע לאחר כחודש.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">כמה זמן ביום משתמשים במערכת? <span class="faq-arrow">▼</span></div><div class="faq-a">כ-20 דקות ביום בלבד.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה קורה אחרי שנה של שימוש? <span class="faq-arrow">▼</span></div><div class="faq-a">המערכת הופכת להרגל ניהולי. שיפור תהליכים עמוק וניהול עצמאי על בסיס Brain.</div></div>
+  </div>
+
+  <!-- ערך כלכלי -->
+  <div class="faq-section">
+    <div class="faq-category">ערך כלכלי</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">איזה ערך כלכלי אתם מייצרים? <span class="faq-arrow">▼</span></div><div class="faq-a">גידול מכירות של כ-20%, שיפור מקצוענות של כ-30%, שימור עובדים כפול.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">איך זה נראה במספרים? <span class="faq-arrow">▼</span></div><div class="faq-a">ארגון עם מחזור 200 מיליון ₪ יכול לצפות לתוספת של כ-40 מיליון ₪ בשנה.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">למה לקוח ישלם? <span class="faq-arrow">▼</span></div><div class="faq-a">כי מקבל ערך של עשרות מיליונים בהשקעה של עשרות אלפים. ROI ברור ומיידי.</div></div>
+  </div>
+
+  <!-- מודל עסקי -->
+  <div class="faq-section">
+    <div class="faq-category">מודל עסקי</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">כמה עולה המוצר? <span class="faq-arrow">▼</span></div><div class="faq-a">כ-45,000 ₪ לשנה לארגון. מודל SaaS מנוי שנתי.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">כמה לקוחות צפויים בשנה הראשונה? <span class="faq-arrow">▼</span></div><div class="faq-a">כ-10 לקוחות משלמים. ARR ממוצע 35,000–45,000 ₪ ללקוח.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">כמה זמן לוקח מכירה והטמעה? <span class="faq-arrow">▼</span></div><div class="faq-a">מכירה: 3–4 חודשים. הטמעה: 3–6 חודשים.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה אסטרטגיית Go to Market? <span class="faq-arrow">▼</span></div><div class="faq-a">שותפויות אסטרטגיות + מכירה דיגיטלית אוטומטית דרך SaaS. גישה מהירה לארגונים גדולים.</div></div>
+  </div>
+
+  <!-- שוק וסקייל -->
+  <div class="faq-section">
+    <div class="faq-category">שוק וסקייל</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה גודל השוק? <span class="faq-arrow">▼</span></div><div class="faq-a">כ-300 מיליארד דולר. כ-300,000 ארגונים רלוונטיים עם ממוצע 1,000 עובדים.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה קצב חדירת השוק? <span class="faq-arrow">▼</span></div><div class="faq-a">3% ← 10% ← 25% ← 40% עם פוטנציאל הכנסות של מיליארדי דולרים.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">האם יש שוק לרובוטים? <span class="faq-arrow">▼</span></div><div class="faq-a">כן — שוק ענק. Brain יכול לשמש מוח לרובוטים הומנואידים שמלווים גמלאים, חצי-סיעודיים וילדים.</div></div>
+  </div>
+
+  <!-- יתרון תחרותי -->
+  <div class="faq-section">
+    <div class="faq-category">יתרון תחרותי וסיכונים</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה היתרון התחרותי? <span class="faq-arrow">▼</span></div><div class="faq-a">אנליזה עמוקה של 40 ענפים, 20 תפקידים, 10 צרכים. ידע ארגוני ושכנוע אנושי שנצבר לאורך שנים.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">למה מתחרים לא יעתיקו? <span class="faq-arrow">▼</span></div><div class="faq-a">נדרש ידע עמוק של אלפי ארגונים והתנהגות אנושית. יתרון של 2–3 שנים קדימה.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה הסיכון המרכזי? <span class="faq-arrow">▼</span></div><div class="faq-a">קצב אימוץ ארגוני. מתמודדים עם הוכחת ROI מהירה כבר מהשבוע הראשון.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">איך בונים יתרון דאטה? <span class="faq-arrow">▼</span></div><div class="faq-a">צבירת אנליזות מארגונים — כל לקוח מחזק את המודל ויוצר Data Moat שקשה לשכפל.</div></div>
+  </div>
+
+  <!-- סיכום למשקיע -->
+  <div class="faq-section">
+    <div class="faq-category">סיכום למשקיע</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">למה Brain ינצח? <span class="faq-arrow">▼</span></div><div class="faq-a">שוק גדול, מוצר חזק, צוות מנוסה. שילוב ייחודי של אנליזה, שכנוע ופולו-אפ שאין לאף מתחרה.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה הסיפור למשקיע? <span class="faq-arrow">▼</span></div><div class="faq-a">רווח כפול: שיפור ביצועי ארגון + השקעה בטכנולוגיית עתיד. Brain הוא תשתית הניהול של 2030.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">מה החזון? <span class="faq-arrow">▼</span></div><div class="faq-a">חברה לפיתוח מוחות ארגוניים — Brain 1, Brain 2, Brain 3. שכבת ה-AI שיושבת מעל כל ארגון בעולם.</div></div>
+  </div>
+
+</div>
+
+  <div style="height:60px"></div>
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">אודותינו</a><a href="process.html">התהליך</a>
+      <a href="uses.html">שימושים</a><a href="roi.html">ROI</a>
+      <a href="smb.html">SMB</a><a href="pricing.html">מחירים</a>
+      <a href="demo.html">Demo</a><a href="articles.html">מאמרים</a><a href="jobs.html">דרושים</a>
+    </div>
+    <div class="footer-copy">© 2025 כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
+  </footer>
+</div>
+<script src="shared.js"></script>
+<script>renderNav('investors');</script>
+<script>
+function toggle(el) {
+  const ans = el.nextElementSibling;
+  el.classList.toggle('open');
+  ans.classList.toggle('open');
+}
+</script>
+</body>
+</html>

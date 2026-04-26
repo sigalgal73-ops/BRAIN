@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מנוע בתוך מנוע | Brain Co-Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+  <div class="page-hero">
+    <div class="page-tag">INVESTORS · STRATEGY</div>
+    <h1 class="page-title">Brain – <em>מנוע בתוך מנוע</em></h1>
+    <p class="page-sub">למה האסטרטגיה שלנו היא להיות בתוך GPT/Claude ולא עוד פלטפורמת SaaS</p>
+  </div>
+
+<div class="sec reveal">
+  <div style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+
+    <!-- פתיחה -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(26,111,196,0.15),rgba(0,212,170,0.08));border-color:rgba(0,212,170,0.3);padding:36px">
+      <div style="font-size:16px;color:var(--muted);line-height:2">
+        רוב החברות בונות עוד מערכת.<br>
+        עוד מסך. עוד דשבורד. עוד כניסה.<br><br>
+        <strong style="color:var(--white)">אנחנו בונים שכבה אחרת לגמרי.</strong><br><br>
+        Brain לא שואף להיות עוד Monday.com או Salesforce.<br>
+        הוא שואף להיות <strong style="color:var(--teal)">כפתור בתוך ChatGPT, בתוך Claude, ובכל מנוע AI מרכזי אחר.</strong><br><br>
+        <span style="font-size:20px;font-weight:900;color:var(--white)">אנחנו לא עוד פלטפורמה. אנחנו מנוע בתוך מנוע.</span>
+      </div>
+    </div>
+
+    <!-- הנחת היסוד -->
+    <div class="card" style="padding:32px">
+      <div class="card-title" style="font-size:18px;margin-bottom:16px">הנחת היסוד: AI הופך לפורטל הכניסה</div>
+      <div style="font-size:14px;color:var(--muted);line-height:2;margin-bottom:16px">האדם לא ייכנס לעשר מערכות. הוא ייכנס ל-AI אחד.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">
+        <div style="padding:16px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:12px;text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">🚪</div>
+          <div style="font-size:12px;font-weight:700;color:var(--sky)">שם הוא יתחיל את היום</div>
+        </div>
+        <div style="padding:16px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:12px;text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">❓</div>
+          <div style="font-size:12px;font-weight:700;color:var(--sky)">שם הוא ישאל שאלות</div>
+        </div>
+        <div style="padding:16px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:12px;text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">✅</div>
+          <div style="font-size:12px;font-weight:700;color:var(--sky)">שם הוא יקבל החלטות</div>
+        </div>
+        <div style="padding:16px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:12px;text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">⚡</div>
+          <div style="font-size:12px;font-weight:700;color:var(--sky)">שם הוא יפעיל את הארגון</div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:14px;background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.2);border-radius:10px;font-size:13px;color:var(--teal);text-align:center;font-weight:700">
+        AI הופך להיות: שער הכניסה · שכבת ההבנה · שכבת ההפעלה. כל השאר – יורד שכבה.
+      </div>
+    </div>
+
+    <!-- הבחירה האסטרטגית -->
+    <div class="card" style="padding:32px">
+      <div class="card-title" style="font-size:18px;margin-bottom:16px">הבחירה האסטרטגית שלנו</div>
+      <div style="font-size:15px;color:var(--muted);line-height:2;margin-bottom:16px">
+        במקום להילחם על המסך — אנחנו נכנסים לתוך המסך.<br>
+        Brain יהיה <strong style="color:var(--white)">כפתור, יכולת, מודול</strong> בתוך מערכות AI מרכזיות.
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="padding:20px;background:rgba(226,75,74,0.06);border:1px solid rgba(226,75,74,0.2);border-radius:12px">
+          <div style="font-size:12px;font-weight:700;color:#ff6b6b;margin-bottom:10px">❌ הדרך הישנה</div>
+          <ul class="dot-list">
+            <li>עוד פלטפורמה</li>
+            <li>עוד מסך</li>
+            <li>מכירה ארגון-ארגון</li>
+            <li>הטמעה כבדה</li>
+          </ul>
+        </div>
+        <div style="padding:20px;background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.2);border-radius:12px">
+          <div style="font-size:12px;font-weight:700;color:var(--teal);margin-bottom:10px">✅ הדרך שלנו</div>
+          <ul class="dot-list">
+            <li>שכבה בתוך AI</li>
+            <li>כפתור בתוך ChatGPT/Claude</li>
+            <li>סקייל של מיליוני משתמשים</li>
+            <li>שימוש מיידי</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- למה זה חזק -->
+    <div class="card" style="padding:32px">
+      <div class="card-title" style="font-size:18px;margin-bottom:16px">למה זה מהלך חזק יותר</div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div style="width:36px;height:36px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0">1</div>
+          <div><div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px">איפה שהמשתמש כבר נמצא</div><div style="font-size:13px;color:var(--muted)">לא צריך להביא את המשתמש אלינו. אנחנו מגיעים אליו.</div></div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div style="width:36px;height:36px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0">2</div>
+          <div><div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px">מהירות אימוץ</div><div style="font-size:13px;color:var(--muted)">אין צורך בהטמעה כבדה. יש שימוש מיידי.</div></div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div style="width:36px;height:36px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0">3</div>
+          <div><div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px">סקייל עצום</div><div style="font-size:13px;color:var(--muted)">במקום למכור ארגון-ארגון, נכנסים למנוע עם מיליוני משתמשים.</div></div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div style="width:36px;height:36px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0">4</div>
+          <div><div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px">מינוף טכנולוגי</div><div style="font-size:13px;color:var(--muted)">אנחנו לא בונים את ה-AI הבסיסי. אנחנו בונים את שכבת הניהול מעליו.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- מה Brain מביא -->
+    <div class="card" style="padding:32px">
+      <div class="card-title" style="font-size:18px;margin-bottom:16px">מה Brain מביא לתוך המנוע</div>
+      <div style="font-size:14px;color:var(--muted);margin-bottom:16px">Brain הוא לא עוד GPT. הוא שכבה של:</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+        <div style="padding:14px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:10px;text-align:center;font-size:13px;color:var(--white);font-weight:600">ניתוח שורש בעיות</div>
+        <div style="padding:14px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:10px;text-align:center;font-size:13px;color:var(--white);font-weight:600">הנעת תהליכים</div>
+        <div style="padding:14px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:10px;text-align:center;font-size:13px;color:var(--white);font-weight:600">שכנוע עובדים</div>
+        <div style="padding:14px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:10px;text-align:center;font-size:13px;color:var(--white);font-weight:600">פולו-אפ עד ביצוע</div>
+        <div style="padding:14px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:10px;text-align:center;font-size:13px;color:var(--white);font-weight:600">ניהול ארגוני</div>
+      </div>
+    </div>
+
+    <!-- שלבים -->
+    <div class="card" style="padding:32px">
+      <div class="card-title" style="font-size:18px;margin-bottom:20px">מפת הדרכים</div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div style="width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,var(--mid),var(--accent));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0">שלב 1</div>
+          <div><div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px">מכירת הטכנולוגיה למנועים</div><div style="font-size:13px;color:var(--muted)">מוכרים את היכולת שלנו ל-OpenAI, Anthropic ואחרים. הופכים להיות שכבה בתוכם.</div></div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div style="width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,var(--mid),var(--accent));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0">שלב 2</div>
+          <div><div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px">הרחבת Brain מעבר למסכים</div><div style="font-size:13px;color:var(--muted)">Brain נכנס לרובוטים, מערכות פיזיות, כלים תפעוליים — כל מקום שבו יש אדם, החלטה ופעולה.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- משפט מרכזי -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(26,111,196,0.2),rgba(0,212,170,0.1));border-color:rgba(0,212,170,0.4);padding:36px;text-align:center">
+      <div style="font-size:13px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:12px">המשפט המרכזי</div>
+      <div style="font-size:20px;font-weight:900;color:var(--white);line-height:1.6;margin-bottom:16px">
+        הקרב הוא לא על מי יבנה עוד מערכת.<br>
+        הקרב הוא על מי יהיה בתוך נקודת הכניסה של האדם.
+      </div>
+      <div style="font-size:16px;color:var(--teal);font-weight:700">AI הוא נקודת הכניסה. Brain יהיה בתוכו.<br>מנוע בתוך מנוע.</div>
+    </div>
+
+  </div>
+</div>
+
+  <div style="height:60px"></div>
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">אודותינו</a>
+      <a href="process.html">התהליך</a>
+      <a href="uses.html">שימושים</a>
+      <a href="roi.html">ROI</a>
+      <a href="smb.html">SMB</a>
+      <a href="pricing.html">מחירים</a>
+      <a href="demo.html">Demo</a>
+      <a href="articles.html">מאמרים</a>
+      <a href="jobs.html">דרושים</a>
+    </div>
+    <div class="footer-copy">© 2025 כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
+  </footer>
+</div>
+<script src="shared.js"></script>
+<script>renderNav('investors');</script>
+</body>
+</html>
