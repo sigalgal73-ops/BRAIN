@@ -36,7 +36,7 @@ function renderNav(activePage) {
       <div class="nav-left">
         <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="24" height="17" alt="IL" style="border-radius:2px;display:block;"></button>
         <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="24" height="17" alt="US" style="border-radius:2px;display:block;"></button>
-        <a href="#" class="nav-icon" title="YouTube">▶</a>
+        <a href="https://www.youtube.com/@Brain.co.manager" class="nav-icon" title="YouTube" target="_blank">▶</a>
         <a href="https://wa.me/972" class="nav-icon" title="WhatsApp">💬</a>
         <button class="nav-mobile-btn" id="nav-hamburger" aria-label="Menu">☰</button>
       </div>
