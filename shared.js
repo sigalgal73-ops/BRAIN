@@ -41,6 +41,8 @@ function renderNav(activePage) {
       <div class="nav-left">
         <a href="https://wa.me/972" class="nav-icon" title="WhatsApp">💬</a>
         <a href="#" class="nav-icon" title="YouTube">▶</a>
+        <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')">🇮🇱</button>
+        <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')">🇺🇸</button>
         <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
       </div>
       <div class="nav-links">${desktopLinks}</div>
@@ -414,8 +416,26 @@ function initBot() {
   }
 }
 
+// ── LANGUAGE SWITCH ──
+function setLang(lang) {
+  document.documentElement.lang = lang === 'en' ? 'en' : 'he';
+  document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+  localStorage.setItem('bcm-lang', lang);
+  document.querySelectorAll('.nav-lang').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('nav-lang-' + lang);
+  if (btn) btn.classList.add('active');
+}
+
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
+  // nav-lang style
+  const ls = document.createElement('style');
+  ls.textContent = `.nav-lang{background:none;border:none;cursor:pointer;font-size:20px;padding:0 3px;opacity:.55;transition:opacity .2s,transform .2s;line-height:1;}.nav-lang:hover,.nav-lang.active{opacity:1;transform:scale(1.15);}`;
+  document.head.appendChild(ls);
+  // restore saved lang
+  const saved = localStorage.getItem('bcm-lang');
+  if (saved) setLang(saved);
+  else { const btn = document.getElementById('nav-lang-he'); if(btn) btn.classList.add('active'); }
   initParticles();
   initReveal();
   initNavScroll();
