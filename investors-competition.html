@@ -3,29 +3,246 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>משקיעים | Brain Co-Manager</title>
+<title>מתחרים | Brain Co-Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
+<style>
+.comp-row{display:grid;grid-template-columns:160px 1fr 1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--border);}
+.comp-row:last-child{border-bottom:none;}
+.comp-cell{padding:12px 14px;font-size:13px;border-left:1px solid rgba(45,156,255,0.1);}
+.comp-cell:last-child{border-left:none;}
+.comp-header{background:rgba(45,156,255,0.08);font-weight:700;font-size:11px;color:var(--sky);letter-spacing:.06em;}
+.check{color:var(--teal);font-size:16px;}
+.cross{color:rgba(255,100,100,0.7);font-size:16px;}
+.partial{color:var(--sky);font-size:16px;}
+</style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div id="nav-placeholder"></div>
 <div class="page">
   <div class="page-hero">
-    <div class="page-tag">INVESTORS</div>
-    <h1 class="page-title"><em>בקרוב</em></h1>
-    <p class="page-sub">תוכן זה יתווסף בקרוב</p>
+    <div class="page-tag">INVESTORS · COMPETITION</div>
+    <h1 class="page-title">ניתוח <em>מתחרים</em></h1>
+    <p class="page-sub">Brain לעומת כלי AI ניהוליים מובילים — למה Brain שונה לגמרי</p>
   </div>
-  <div class="sec reveal">
-    <div style="max-width:600px;margin:0 auto;text-align:center">
-      <div class="card" style="padding:40px">
-        <div style="font-size:48px;margin-bottom:16px">🚀</div>
-        <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px">תוכן זה בהכנה</div>
-        <div style="font-size:14px;color:var(--muted);margin-bottom:24px">לפרטים נוספים צרו קשר</div>
-        <a href="investors-engine.html" class="btn btn-ghost">← מנוע בתוך מנוע</a>
+
+<div class="sec reveal">
+  <div style="max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+
+    <!-- מסר מרכזי -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(0,212,170,0.1),rgba(26,111,196,0.08));border-color:rgba(0,212,170,0.3);padding:28px;text-align:center">
+      <div style="font-size:18px;font-weight:900;color:var(--white);margin-bottom:10px">
+        המתחרים מציגים נתונים. Brain מניע לפעולה עד ביצוע.
+      </div>
+      <div style="font-size:14px;color:var(--muted)">
+        OpenAI מוכרת מודל · Monday מוכרת Work OS · ServiceNow מוכרת Workflow<br>
+        Brain מוכר: <strong style="color:var(--teal)">שינוי התנהגות מדיד → חיבור אנליזה לביצוע → אוטומציה עד KPI</strong>
       </div>
     </div>
+
+    <!-- טבלת השוואה -->
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="padding:20px 20px 0;font-size:11px;color:var(--teal);font-weight:700;letter-spacing:.12em">השוואה מלאה</div>
+      <div style="overflow-x:auto;padding:16px">
+        <div style="min-width:700px">
+          <!-- Header -->
+          <div class="comp-row" style="border-radius:10px 10px 0 0">
+            <div class="comp-cell comp-header">יכולת</div>
+            <div class="comp-cell comp-header" style="color:var(--teal)">Brain ✦</div>
+            <div class="comp-cell comp-header">OpenAI / GPT</div>
+            <div class="comp-cell comp-header">Monday.com</div>
+            <div class="comp-cell comp-header">ServiceNow</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell" style="color:var(--muted)">אנליזה ארגונית</div>
+            <div class="comp-cell" style="color:var(--white)"><span class="check">✓</span> עמוקה — 18 פרמטרים</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="partial">◐</span> כללית</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="partial">◐</span> דשבורד</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="partial">◐</span> Workflow</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell" style="color:var(--muted)">שכנוע לפעולה</div>
+            <div class="comp-cell" style="color:var(--white)"><span class="check">✓</span> AI Coach אישי</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell" style="color:var(--muted)">Follow-Up אוטומטי</div>
+            <div class="comp-cell" style="color:var(--white)"><span class="check">✓</span> עד ביצוע בפועל</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="partial">◐</span> חלקי</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="partial">◐</span> חלקי</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell" style="color:var(--muted)">מיקרו-למידה</div>
+            <div class="comp-cell" style="color:var(--white)"><span class="check">✓</span> 900 מסרים/שנה</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell" style="color:var(--muted)">אווטאר דמוי אדם</div>
+            <div class="comp-cell" style="color:var(--white)"><span class="check">✓</span> מנטור 1:1</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell" style="color:var(--muted)">חיבור ל-KPI אמיתי</div>
+            <div class="comp-cell" style="color:var(--white)"><span class="check">✓</span> מדיד ומוכח</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="cross">✗</span> לא</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="partial">◐</span> חלקי</div>
+            <div class="comp-cell" style="color:var(--muted)"><span class="partial">◐</span> חלקי</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell" style="color:var(--muted)">מיצוב</div>
+            <div class="comp-cell" style="color:var(--white)">Management AI Layer</div>
+            <div class="comp-cell" style="color:var(--muted)">General LLM</div>
+            <div class="comp-cell" style="color:var(--muted)">Work OS</div>
+            <div class="comp-cell" style="color:var(--muted)">IT Workflow</div>
+          </div>
+          <div class="comp-row" style="border-radius:0 0 10px 10px">
+            <div class="comp-cell" style="color:var(--muted)">מחיר ממוצע</div>
+            <div class="comp-cell" style="color:var(--teal);font-weight:700">25K–250K ₪/שנה</div>
+            <div class="comp-cell" style="color:var(--muted)">$20/user/month</div>
+            <div class="comp-cell" style="color:var(--muted)">$10–16/user/month</div>
+            <div class="comp-cell" style="color:var(--muted)">$100K+/שנה</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- קטגוריות מתחרות -->
+    <div style="font-size:11px;color:var(--teal);letter-spacing:.12em;font-weight:700;margin-bottom:4px">קטגוריות מתחרות — ואיפה Brain שונה</div>
+    <div class="grid-auto">
+
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:8px">🤖 LLM כלליים</div>
+        <div style="font-size:12px;color:var(--teal);margin-bottom:8px">OpenAI · Anthropic · Google Gemini</div>
+        <ul class="dot-list" style="font-size:13px">
+          <li>נותנים תשובות — לא מייצרים ביצוע</li>
+          <li>לא מחוברים ל-KPI ארגוני</li>
+          <li>לא עושים Follow-Up</li>
+          <li>לא מכירים את הארגון לעומק</li>
+        </ul>
+        <div style="margin-top:10px;padding:8px 12px;background:rgba(0,212,170,0.08);border-radius:8px;font-size:12px;color:var(--teal)">
+          Brain = Vertical AI על גבי LLM — לא מתחרה, שכבה עליונה
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:8px">📊 Work OS / Task Management</div>
+        <div style="font-size:12px;color:var(--teal);margin-bottom:8px">Monday.com · Asana · Notion</div>
+        <ul class="dot-list" style="font-size:13px">
+          <li>מנהלים משימות — לא מניעים אנשים</li>
+          <li>מציגים נתונים — לא משנים התנהגות</li>
+          <li>מרבים תפעול — לא מפחיתים אותו</li>
+          <li>אין שכנוע ואין פולואפ</li>
+        </ul>
+        <div style="margin-top:10px;padding:8px 12px;background:rgba(0,212,170,0.08);border-radius:8px;font-size:12px;color:var(--teal)">
+          Brain יושב מעליהם — לא מחליף אותם
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:8px">🔄 Workflow Automation</div>
+        <div style="font-size:12px;color:var(--teal);margin-bottom:8px">ServiceNow · Salesforce · SAP</div>
+        <ul class="dot-list" style="font-size:13px">
+          <li>מייעלים תהליכים — לא משנים אנשים</li>
+          <li>יקרים ומורכבים להטמעה</li>
+          <li>IT-first — לא מנהל-first</li>
+          <li>אין מנוע שכנוע</li>
+        </ul>
+        <div style="margin-top:10px;padding:8px 12px;background:rgba(0,212,170,0.08);border-radius:8px;font-size:12px;color:var(--teal)">
+          ServiceNow רכשה Armis ב-7.75B$ — כיוון אסטרטגי ל-Brain
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:8px">📈 BI & Analytics</div>
+        <div style="font-size:12px;color:var(--teal);margin-bottom:8px">Tableau · Power BI · Pyramid Analytics</div>
+        <ul class="dot-list" style="font-size:13px">
+          <li>מציגים נתונים — לא גורמים לפעולה</li>
+          <li>נדרשים אנשי נתונים לניתוח</li>
+          <li>אין המלצה ופולואפ</li>
+          <li>אין שינוי התנהגותי</li>
+        </ul>
+        <div style="margin-top:10px;padding:8px 12px;background:rgba(0,212,170,0.08);border-radius:8px;font-size:12px;color:var(--teal)">
+          Brain = Intelligence-to-Action, לא רק BI
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:8px">🎓 L&D / Micro-Learning</div>
+        <div style="font-size:12px;color:var(--teal);margin-bottom:8px">Cornerstone · Docebo · TalentLMS</div>
+        <ul class="dot-list" style="font-size:13px">
+          <li>מציעים תוכן — לא שינוי ביצועים</li>
+          <li>ROI לא מדיד</li>
+          <li>לא מחוברים ל-KPI עסקי</li>
+          <li>למידה חד-כיוונית</li>
+        </ul>
+        <div style="margin-top:10px;padding:8px 12px;background:rgba(0,212,170,0.08);border-radius:8px;font-size:12px;color:var(--teal)">
+          Brain = למידה → שכנוע → ביצוע → מדידה
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:8px">🤝 HR & People Analytics</div>
+        <div style="font-size:12px;color:var(--teal);margin-bottom:8px">Workday · BambooHR · Lattice</div>
+        <ul class="dot-list" style="font-size:13px">
+          <li>HR-centric — לא מנהל-centric</li>
+          <li>מנהלים תיקים — לא מניעים צוותים</li>
+          <li>מדידה לא מחוברת לשורת הרווח</li>
+          <li>אין שכנוע ומוטיבציה</li>
+        </ul>
+        <div style="margin-top:10px;padding:8px 12px;background:rgba(0,212,170,0.08);border-radius:8px;font-size:12px;color:var(--teal)">
+          Brain = Co-Manager שמשרת את המנהל, לא HR
+        </div>
+      </div>
+
+    </div>
+
+    <!-- יתרון תחרותי -->
+    <div class="card" style="padding:32px">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.12em;font-weight:700;margin-bottom:16px">יתרון תחרותי — למה לא יעתיקו</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="padding:14px 18px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--muted)">
+          <strong style="color:var(--white)">40 ענפים × 20 תפקידים × 18 פרמטרים</strong> — ידע עמוק שנצבר על אלפי ארגונים
+        </div>
+        <div style="padding:14px 18px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--muted)">
+          <strong style="color:var(--white)">Data Moat</strong> — מיליוני שיחות רתימה מתויגות → שיחה → פעולה → KPI
+        </div>
+        <div style="padding:14px 18px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--muted)">
+          <strong style="color:var(--white)">20 שנות ניסיון</strong> — הוכחה "על יבש" ב-8,000 ארגונים לפני ה-AI
+        </div>
+        <div style="padding:14px 18px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--muted)">
+          <strong style="color:var(--white)">לולאה סגורה</strong> — Detect → Decide → Drive → Deliver → Measure
+        </div>
+        <div style="padding:14px 18px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--muted)">
+          <strong style="color:var(--white)">יתרון 2–3 שנים</strong> — לשכפל ידע ארגוני עמוק וכנוע אנושי לוקח שנים
+        </div>
+      </div>
+    </div>
+
+    <!-- שוק פנוי -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(26,111,196,0.15),rgba(0,212,170,0.08));border-color:rgba(0,212,170,0.3);padding:28px;text-align:center">
+      <div style="font-size:16px;font-weight:900;color:var(--white);margin-bottom:12px">
+        Brain יוצר קטגוריה חדשה
+      </div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.9">
+        לא BI · לא CRM · לא LMS · לא HR<br>
+        <strong style="color:var(--teal)">Management Intelligence Layer</strong> —<br>
+        שכבת הבינה שמנתחת → מחליטה → מבצעת → מודדת<br>
+        עד שה-KPI משתנה.
+      </div>
+    </div>
+
   </div>
+</div>
+
+  <div style="height:60px"></div>
   <footer>
     <div class="footer-links">
       <a href="about.html">אודותינו</a><a href="process.html">התהליך</a>
