@@ -79,22 +79,17 @@
 <!-- VIDEO POPUP -->
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo(event)">
   <div class="video-modal">
-    <div class="video-modal-header">
-      <div class="video-modal-title">
-        <img src="robot_transparent.png" alt="Brain">
-        <div>
-          <span>Brain Co-Manager בפעולה</span>
-          <small>צפו איך Brain משנה ארגונים</small>
-        </div>
-      </div>
+    <div style="display:flex;justify-content:flex-end;padding:10px 14px;border-bottom:1px solid rgba(45,156,255,0.12);">
       <button class="video-close" onclick="closeVideoBtn()">✕</button>
     </div>
     <div class="video-wrap">
       <iframe id="demoVideo" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <div class="video-modal-footer">
-      <span>ניצור איתך קשר בהקדם</span>
-      <a href="https://wa.me/972" style="font-size:13px;color:var(--sky);font-weight:600;">שאלות? וואטסאפ ←</a>
+    <div style="padding:14px 18px;text-align:center;border-top:1px solid rgba(45,156,255,0.1);">
+      <a href="https://www.youtube.com/@Brain.co.manager" target="_blank" class="btn btn-ghost" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:10px 20px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+        לצפייה בסרטונים נוספים ←
+      </a>
     </div>
   </div>
 </div>
