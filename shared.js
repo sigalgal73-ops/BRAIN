@@ -391,7 +391,7 @@ function initBot() {
   }
 
   function runStep(idxOrKey) {
-    let idx = typeof idxOrKey==='string' ? stepMap[idxOrKey] : typeof idxOrKey==='number' ? (idxOrKey<flowIndex.length?flowIndex[idxOrKey]:null) : null;
+    let idx = typeof idxOrKey==='string' ? stepMap[idxOrKey] : typeof idxOrKey==='number' ? idxOrKey : null;
     if(idx===null||idx===undefined) return;
     const s=FLOW[idx]; updProg(s.step);
     const text=typeof s.bot==='function'?s.bot():s.bot;
