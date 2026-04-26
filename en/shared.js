@@ -5,7 +5,6 @@ function renderNav(activePage) {
     { id: 'about',    label: 'About',  href: 'about.html' },
     { id: 'process',  label: 'Process',    href: 'process.html' },
     { id: 'uses',     label: 'Use Cases',   href: 'uses.html' },
-    { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
     { id: 'municipalities', label: 'Municipalities', href: 'municipalities.html' },
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
@@ -362,7 +361,7 @@ function initBot() {
               <button onclick="this.closest('div[style*=fixed]').remove();document.body.style.overflow='';" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#aaa;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
             </div>
             <div style="position:relative;padding-top:56.25%;background:#010810;">
-              <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/O3yF5ee2iEI?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+              <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/u6m0OaCZpZU?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
             </div>
             <div style="padding:12px 20px;text-align:center;font-size:13px;color:#7ec8ff;font-family:Heebo,sans-serif;">A Brain representative will contact you shortly</div>
           </div>`;
