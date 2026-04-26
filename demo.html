@@ -218,6 +218,13 @@ function closeVideoBtn(){
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape') closeVideoBtn();
 });
+
+// פתיחה אוטומטית אם הגיע מהצ'אטבוט
+if(window.location.search.indexOf('autoplay=1') > -1 || document.referrer.indexOf('brain2spark') > -1){
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(openVideo, 600);
+  });
+}
 </script>
 </body>
 </html>
