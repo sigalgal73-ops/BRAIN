@@ -3,29 +3,306 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>משקיעים | Brain Co-Manager</title>
+<title>Go to Market | Brain Co-Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
+<style>
+.year-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;position:relative;overflow:hidden;}
+.year-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.6),transparent);}
+.year-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:16px;}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:8px;font-size:13px;margin-bottom:8px;}
+.tier-box{padding:20px;border:1px solid var(--border);border-radius:14px;background:rgba(45,156,255,0.04);}
+</style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div id="nav-placeholder"></div>
 <div class="page">
   <div class="page-hero">
-    <div class="page-tag">INVESTORS</div>
-    <h1 class="page-title"><em>בקרוב</em></h1>
-    <p class="page-sub">תוכן זה יתווסף בקרוב</p>
+    <div class="page-tag">INVESTORS · GO TO MARKET</div>
+    <h1 class="page-title">Go to <em>Market</em></h1>
+    <p class="page-sub">תוכנית חדירה מלאה — ישראל 2026–2027 + ארה"ב 2028</p>
   </div>
-  <div class="sec reveal">
-    <div style="max-width:600px;margin:0 auto;text-align:center">
-      <div class="card" style="padding:40px">
-        <div style="font-size:48px;margin-bottom:16px">🚀</div>
-        <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px">תוכן זה בהכנה</div>
-        <div style="font-size:14px;color:var(--muted);margin-bottom:24px">לפרטים נוספים צרו קשר</div>
-        <a href="investors-engine.html" class="btn btn-ghost">← מנוע בתוך מנוע</a>
+
+<div class="sec reveal">
+  <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+
+    <!-- שוק יעד -->
+    <div class="card" style="padding:32px">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.12em;font-weight:700;margin-bottom:16px">שוק יעד בישראל</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px">
+        <div style="text-align:center;padding:16px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:var(--white)">3,000–4,000</div>
+          <div style="font-size:12px;color:var(--muted)">ארגונים מעל 100 עובדים</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:var(--white)">~700</div>
+          <div style="font-size:12px;color:var(--muted)">ארגונים מעל 500 עובדים</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:var(--white)">~300</div>
+          <div style="font-size:12px;color:var(--muted)">ארגונים מעל 1,000 עובדים</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:var(--teal)">5%</div>
+          <div style="font-size:12px;color:var(--muted)">חדירה = 150–200 לקוחות</div>
+        </div>
+      </div>
+      <!-- ענפים -->
+      <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:10px">התפלגות לפי ענפים</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px">
+        <div class="stat-row"><span style="color:var(--muted)">הייטק וטכנולוגיה</span><span style="color:var(--white);font-weight:700">700–900</span></div>
+        <div class="stat-row"><span style="color:var(--muted)">תעשייה וייצור</span><span style="color:var(--white);font-weight:700">500–700</span></div>
+        <div class="stat-row"><span style="color:var(--muted)">קמעונאות ורשתות</span><span style="color:var(--white);font-weight:700">400–600</span></div>
+        <div class="stat-row"><span style="color:var(--muted)">פיננסים וביטוח</span><span style="color:var(--white);font-weight:700">150–250</span></div>
+        <div class="stat-row"><span style="color:var(--muted)">בריאות</span><span style="color:var(--white);font-weight:700">150–250</span></div>
+        <div class="stat-row"><span style="color:var(--muted)">שירותים מקצועיים</span><span style="color:var(--white);font-weight:700">150–200</span></div>
       </div>
     </div>
+
+    <!-- שכבות לקוחות -->
+    <div class="card" style="padding:32px">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.12em;font-weight:700;margin-bottom:16px">מודל חדירה — שכבות לקוחות</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <div class="tier-box">
+          <div style="font-size:11px;color:var(--teal);font-weight:700;margin-bottom:8px">TIER 1</div>
+          <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px">1,000+ עובדים</div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:10px">~300 ארגונים</div>
+          <div style="font-size:13px;color:var(--sky)">80K–250K ₪/שנה</div>
+        </div>
+        <div class="tier-box" style="border-color:rgba(45,156,255,0.4)">
+          <div style="font-size:11px;color:var(--bright);font-weight:700;margin-bottom:8px">TIER 2</div>
+          <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px">500–1,000 עובדים</div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:10px">~700 ארגונים</div>
+          <div style="font-size:13px;color:var(--sky)">50K–120K ₪/שנה</div>
+        </div>
+        <div class="tier-box">
+          <div style="font-size:11px;color:var(--muted);font-weight:700;margin-bottom:8px">TIER 3</div>
+          <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px">100–500 עובדים</div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:10px">~2,000 ארגונים</div>
+          <div style="font-size:13px;color:var(--sky)">25K–60K ₪/שנה</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- מודל מכירה אוטומטי -->
+    <div class="card" style="padding:32px">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.12em;font-weight:700;margin-bottom:16px">מנוע מכירה — Product-Led Growth אוטומטי</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="stat-row"><span style="color:var(--teal);font-weight:700;min-width:60px">שלב 1</span><span style="color:var(--muted)">בניית רשימת יעד — LinkedIn / Apollo / ZoomInfo / Startup Nation</span></div>
+        <div class="stat-row"><span style="color:var(--teal);font-weight:700;min-width:60px">שלב 2</span><span style="color:var(--muted)">פנייה אוטומטית מותאמת אישית — מייל / LinkedIn / WhatsApp</span></div>
+        <div class="stat-row"><span style="color:var(--teal);font-weight:700;min-width:60px">שלב 3</span><span style="color:var(--muted)">סרטון 90 שניות + דמו אינטראקטיבי — ללא פגישה</span></div>
+        <div class="stat-row"><span style="color:var(--teal);font-weight:700;min-width:60px">שלב 4</span><span style="color:var(--muted)">AI Sales Agent עונה לשאלות — מחליף איש מכירות</span></div>
+        <div class="stat-row"><span style="color:var(--teal);font-weight:700;min-width:60px">שלב 5</span><span style="color:var(--muted)">דמו מותאם אישית לפי 5 שאלות על הארגון</span></div>
+        <div class="stat-row"><span style="color:var(--teal);font-weight:700;min-width:60px">שלב 6</span><span style="color:var(--muted)">Workspace חינם לחודש — גישה מיידית ללא הטמעה</span></div>
+        <div class="stat-row"><span style="color:var(--teal);font-weight:700;min-width:60px">שלב 7</span><span style="color:var(--muted)">דוח תוצאות אוטומטי + הצעת מחיר → סגירה אונליין</span></div>
+      </div>
+      <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px">
+        <div style="text-align:center;padding:12px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:10px">
+          <div style="font-size:20px;font-weight:900;color:var(--white)">1,000</div>
+          <div style="font-size:11px;color:var(--muted)">פניות</div>
+        </div>
+        <div style="font-size:20px;color:var(--border);display:flex;align-items:center;justify-content:center">→</div>
+        <div style="text-align:center;padding:12px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:10px">
+          <div style="font-size:20px;font-weight:900;color:var(--white)">100</div>
+          <div style="font-size:11px;color:var(--muted)">כניסות לדמו</div>
+        </div>
+        <div style="font-size:20px;color:var(--border);display:flex;align-items:center;justify-content:center">→</div>
+        <div style="text-align:center;padding:12px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:10px">
+          <div style="font-size:20px;font-weight:900;color:var(--white)">15</div>
+          <div style="font-size:11px;color:var(--muted)">ניסיון חינם</div>
+        </div>
+        <div style="font-size:20px;color:var(--border);display:flex;align-items:center;justify-content:center">→</div>
+        <div style="text-align:center;padding:12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:10px">
+          <div style="font-size:20px;font-weight:900;color:var(--teal)">3–5</div>
+          <div style="font-size:11px;color:var(--muted)">לקוחות</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026 -->
+    <div class="year-card">
+      <div class="year-badge" style="background:rgba(45,156,255,0.15);color:var(--sky)">🇮🇱 2026 — חדירה ראשונית</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:10px">יעדים</div>
+          <ul class="dot-list">
+            <li>5–10 לקוחות עוגן ראשונים</li>
+            <li>פיילוט 3 חודשים עם מחיר חדירה</li>
+            <li>3 Case Studies עם ROI מוכח</li>
+            <li>1,500 פניות אוטומטיות למנהלים</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:10px">ענפים ראשוניים</div>
+          <ul class="dot-list">
+            <li>קמעונאות ורשתות</li>
+            <li>שירותים מקצועיים</li>
+            <li>תעשייה ויצור</li>
+            <li>חברות ייעוץ</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:14px;background:rgba(45,156,255,0.06);border-radius:10px;display:flex;justify-content:space-between">
+        <span style="font-size:13px;color:var(--muted)">יעד לקוחות</span>
+        <span style="font-weight:700;color:var(--white)">5–10 ארגונים</span>
+        <span style="font-size:13px;color:var(--muted)">ARR משוער</span>
+        <span style="font-weight:700;color:var(--teal)">300K–700K ₪</span>
+      </div>
+    </div>
+
+    <!-- 2027 -->
+    <div class="year-card">
+      <div class="year-badge" style="background:rgba(0,212,170,0.12);color:var(--teal)">🇮🇱 2027 — סקייל בישראל</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:10px">יעדים</div>
+          <ul class="dot-list">
+            <li>60–80 לקוחות משלמים</li>
+            <li>3,000 ארגונים ברשימת יעד</li>
+            <li>5,000–7,000 פניות בשנה</li>
+            <li>שיתופי פעולה עם ייעוץ / HR</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:10px">ערוצי הפצה</div>
+          <ul class="dot-list">
+            <li>שותפי ייעוץ ו-HR</li>
+            <li>חברות הדרכה</li>
+            <li>מערכות BI ו-CRM</li>
+            <li>Product-Led Growth</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:14px;background:rgba(0,212,170,0.06);border-radius:10px;display:flex;justify-content:space-between">
+        <span style="font-size:13px;color:var(--muted)">יעד לקוחות</span>
+        <span style="font-weight:700;color:var(--white)">60–80 ארגונים</span>
+        <span style="font-size:13px;color:var(--muted)">ARR משוער</span>
+        <span style="font-weight:700;color:var(--teal)">3–5 מיליון ₪</span>
+      </div>
+    </div>
+
+    <!-- 2028 USA -->
+    <div class="year-card" style="border-color:rgba(45,156,255,0.4)">
+      <div class="year-badge" style="background:rgba(45,156,255,0.2);color:var(--bright)">🇺🇸 2028 — חדירה לארה"ב</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--bright);margin-bottom:10px">יעדים</div>
+          <ul class="dot-list">
+            <li>50–100 לקוחות Enterprise</li>
+            <li>10,000 ארגונים ברשימת יעד</li>
+            <li>20,000–30,000 פניות בשנה</li>
+            <li>ללא צוות מכירות — רק שותפויות</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--bright);margin-bottom:10px">שותפים אסטרטגיים</div>
+          <ul class="dot-list">
+            <li>Deloitte / EY / PwC</li>
+            <li>Monday.com / Salesforce</li>
+            <li>OpenAI / Anthropic Module</li>
+            <li>חברות SaaS HR</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:14px;background:rgba(45,156,255,0.08);border-radius:10px;display:flex;justify-content:space-between">
+        <span style="font-size:13px;color:var(--muted)">יעד לקוחות</span>
+        <span style="font-weight:700;color:var(--white)">50–100 ארגונים</span>
+        <span style="font-size:13px;color:var(--muted)">ARR משוער</span>
+        <span style="font-weight:700;color:var(--bright)">2–5M$</span>
+      </div>
+    </div>
+
+    <!-- 200 ארגוני יעד -->
+    <div class="card" style="padding:32px">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.12em;font-weight:700;margin-bottom:16px">200 ארגוני יעד מובילים בישראל</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+        <div>
+          <div style="font-size:12px;color:var(--sky);font-weight:700;margin-bottom:8px">הייטק</div>
+          <ul class="dot-list" style="font-size:13px">
+            <li>Wix, Monday, CyberArk</li>
+            <li>JFrog, WalkMe, Taboola</li>
+            <li>AppsFlyer, SimilarWeb</li>
+            <li>Riskified, Payoneer, Fiverr</li>
+            <li>Lightricks, Yotpo, Navan</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--sky);font-weight:700;margin-bottom:8px">קמעונאות</div>
+          <ul class="dot-list" style="font-size:13px">
+            <li>Shufersal, Rami Levy</li>
+            <li>Fox Group, Castro, Super-Pharm</li>
+            <li>IKEA Israel, Golf Group</li>
+            <li>Steimatzky, ACE Israel</li>
+            <li>Terminal X, Adika</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--sky);font-weight:700;margin-bottom:8px">פיננסים</div>
+          <ul class="dot-list" style="font-size:13px">
+            <li>Bank Hapoalim, Bank Leumi</li>
+            <li>Discount, Mizrahi-Tefahot</li>
+            <li>Phoenix, Clal, Harel</li>
+            <li>Menora, Migdal</li>
+            <li>eToro, MAX, Isracard</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--sky);font-weight:700;margin-bottom:8px">תעשייה</div>
+          <ul class="dot-list" style="font-size:13px">
+            <li>Teva, Intel Israel</li>
+            <li>Elbit, IAI, Rafael</li>
+            <li>Strauss, Tnuva, SodaStream</li>
+            <li>Netafim, Keter, Avgol</li>
+            <li>Palram, Tadiran</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--sky);font-weight:700;margin-bottom:8px">שירותים וייעוץ</div>
+          <ul class="dot-list" style="font-size:13px">
+            <li>Deloitte, PwC, EY, KPMG</li>
+            <li>Herzog Fox, Meitar Law</li>
+            <li>Fattal Hotels, Isrotel</li>
+            <li>Dan Hotels, Brown Hotels</li>
+            <li>Clalit, Maccabi, Sheba</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--sky);font-weight:700;margin-bottom:8px">תחבורה ונדל"ן</div>
+          <ul class="dot-list" style="font-size:13px">
+            <li>El Al, ZIM, Israel Railways</li>
+            <li>Egged, Dan Bus</li>
+            <li>Azrieli Group, Shikun & Binui</li>
+            <li>Electra, Shapir Engineering</li>
+            <li>Melisron, Big Centers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- סיכום מספרי -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(26,111,196,0.15),rgba(0,212,170,0.08));border-color:rgba(0,212,170,0.3);padding:32px">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.12em;font-weight:700;margin-bottom:16px;text-align:center">יעד ARR — 3 שנים</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center">
+        <div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:6px">2026 ישראל</div>
+          <div style="font-size:26px;font-weight:900;color:var(--sky)">300K–700K ₪</div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:6px">2027 ישראל</div>
+          <div style="font-size:26px;font-weight:900;color:var(--teal)">3–5M ₪</div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:6px">2028 ישראל + ארה"ב</div>
+          <div style="font-size:26px;font-weight:900;color:var(--bright)">10–15M ₪ + 2–5M$</div>
+        </div>
+      </div>
+    </div>
+
   </div>
+</div>
+
+  <div style="height:60px"></div>
   <footer>
     <div class="footer-links">
       <a href="about.html">אודותינו</a><a href="process.html">התהליך</a>
