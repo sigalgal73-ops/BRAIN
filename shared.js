@@ -323,7 +323,7 @@ function initBot() {
     {step:3, bot:()=>`מעולה, ${fn()}!\nמה האתגר המרכזי ב${state.company} כרגע?`,
       opts:['הגדלת מכירות','שיפור ביצועי עובדים','שימור עובדים','הטמעת AI בעסק','אחר'],
       run:(c,n)=>{if(c==='אחר')n('other_ch');else{state.challenge=c;n(3);}}},
-    {step:3, id:'other_ch', bot:'במה נדרשת עזרה?', isInput:true, ph:'תיאור האתגר', run:(v,n)=>{state.challenge=v;n(3);}},
+    {step:3, id:'other_ch', bot:'במה נדרשת עזרה?', isInput:true, ph:'תיאור האתגר', run:(v,n)=>{state.challenge=v;n(4);}},
     {step:4, bot:()=>{const m={'הגדלת מכירות':'אנשי מכירות יודעים מה לעשות – אבל לא תמיד מבצעים.','שיפור ביצועי עובדים':'יש ידע בארגון, אבל הוא לא הופך להרגל.','שימור עובדים':'קשה לשמור על מוטיבציה לאורך זמן.','הטמעת AI בעסק':'AI שמתחבר לניהול יומיומי – לא רק כלי.'};return (m[state.challenge]||'זה אתגר שאנחנו מכירים.')+'\n\nזה גם קורה אצלכם?';},
       opts:['כן, בהחלט','חלקית','לא ממש'], run:(c,n)=>{state.feels=c;n(4);}},
     {step:5, bot:()=>`מובן.\n\nכמה אנשים עובדים ב${state.company}?`,
@@ -335,7 +335,7 @@ function initBot() {
     {step:8, bot:()=>{const e=state.existing;if(e==='כן, יש CRM'||e==='שניהם')return 'Brain לא מחליף מערכות – הוא מחבר אותן.\n\nמה הכי חשוב לשפר?';if(e==='כן, יש הדרכות')return 'Brain לא מחליף הדרכות – הוא הופך אותן לביצוע.\n\nמה הכי חשוב לשפר?';return 'Brain יכול להיות הבסיס לתשתית הניהולית.\n\nמה הכי חשוב לשפר?';},
       opts:['הגדלת מכירות','שיפור ביצועי עובדים','שימור עובדים','הטמעת AI','אחר'],
       run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n(8);}}},
-    {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n(8);}},
+    {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n(9);}},
     {step:9, bot:()=>`מצוין!\n\nאיך תרצו לקבל מידע על Brain?`,
       opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n(9);}},
     {step:10, bot:()=>`מעולה, ${fn()}!\n\nנשמח לשלוח לך את המידע.\n\nמספר טלפון:`, isInput:true, ph:'מספר טלפון', run:(v,n)=>{state.phone=v;n(10);}},
@@ -358,7 +358,7 @@ function initBot() {
         }).toString()
       }).catch(()=>{});
       if(state.cta==='סרטון דמו קצר'){
-        setTimeout(()=>{ window.location.href='demo.html?autoplay=1'; },400);
+        setTimeout(()=>{ window.open('demo.html?autoplay=1','_self'); },400);
       } else {
         addBot(`תודה רבה, ${state.name}! 🎉\n\n📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">לחצו כאן לצפייה במסמך</a>\n\nנציג Brain יצור איתך קשר בהקדם 🙂`, 200);
         const rb=document.createElement('button');rb.className='bot-restart';rb.textContent='↺ התחל מחדש';
