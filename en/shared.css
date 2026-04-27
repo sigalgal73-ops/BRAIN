@@ -6,7 +6,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Heebo',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;direction:rtl;}
+body{font-family:'Heebo',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;direction:ltr;text-align:left;}
 a{text-decoration:none !important;}
 #bg{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
