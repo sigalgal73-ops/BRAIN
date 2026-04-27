@@ -5,6 +5,7 @@ function renderNav(activePage) {
     { id: 'about',          label: 'About',          href: 'about.html' },
     { id: 'process',        label: 'Process',         href: 'process.html' },
     { id: 'uses',           label: 'Use Cases',       href: 'uses.html' },
+    { id: 'roi',            label: 'ROI',             href: 'roi.html' },
     { id: 'smb',            label: 'SMB',             href: 'smb.html' },
     { id: 'investors',      label: 'Investors',       href: 'investors-engine.html', submenu: [
       { label: 'Engine Within Engine', href: 'investors-engine.html' },
@@ -32,7 +33,7 @@ function renderNav(activePage) {
   const mobileLinks = pages.map(p => {
     if (p.submenu) {
       const sub = p.submenu.map(s => `<a href="${s.href}" class="nav-sub-mobile">${s.label}</a>`).join('');
-      return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>${sub}`;
+      return `<a href="#" class="nav-mobile-parent${p.id===activePage?' active':''}" onclick="toggleMobileSub(this);return false;">${p.label} <span style="font-size:10px">▼</span></a><div class="nav-mobile-sub" style="display:none">${sub}</div>`;
     }
     return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
   }).join('');
@@ -55,6 +56,13 @@ function renderNav(activePage) {
     m.classList.toggle('open');
     this.textContent = m.classList.contains('open') ? '✕' : '☰';
   };
+}
+
+function toggleMobileSub(el) {
+  const sub = el.nextElementSibling;
+  const isOpen = sub.style.display === 'block';
+  sub.style.display = isOpen ? 'none' : 'block';
+  el.querySelector('span').textContent = isOpen ? '▼' : '▲';
 }
 
 // ── PARTICLES ──
