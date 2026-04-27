@@ -131,13 +131,12 @@
       </div>
 
       <button class="btn btn-primary" style="width:100%;padding:15px;font-size:16px" onclick="submitForm()">צפו בדמו ▶</button>
-      <div style="text-align:center;margin-top:20px;font-size:13px;color:var(--muted)">או שלח/י וואטסאפ: <a href="https://wa.me/972" style="color:var(--sky)">לחץ כאן</a></div>
     </div>
   </div>
 </div>
 
-<!-- YouTube Section -->
-<div class="sec reveal" style="padding-top:0">
+<!-- YouTube Section - מוסתר עד לאחר הרשמה -->
+<div class="sec" style="padding-top:0;display:none" id="youtube-section">
   <div style="max-width:680px;margin:0 auto">
     <div class="card" style="padding:32px;text-align:center">
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px">
@@ -204,6 +203,8 @@ function openVideo(){
   document.getElementById('demoVideo').src = 'https://www.youtube.com/embed/O3yF5ee2iEI?autoplay=1&rel=0';
   document.getElementById('videoOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
+  // הצגת סקשן YouTube אחרי הרשמה
+  document.getElementById('youtube-section').style.display = 'block';
 }
 function closeVideo(e){
   if(e.target === document.getElementById('videoOverlay')) closeVideoBtn();
