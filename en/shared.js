@@ -2,20 +2,11 @@
 // ── SHARED NAV ──
 function renderNav(activePage) {
   const pages = [
-    { id: 'about',    label: 'About',  href: 'about.html' },
-    { id: 'process',  label: 'Process',    href: 'process.html' },
-    { id: 'uses',     label: 'Use Cases',   href: 'uses.html' },
-    { id: 'roi',      label: 'ROI',        href: 'roi.html' },
-    { id: 'smb',      label: 'SMB',        href: 'smb.html' },
-    { id: 'investors', label: 'Investors', href: 'investors-engine.html', submenu: [
-      { label: 'Engine Within Engine', href: 'investors-engine.html' },
-      { label: 'Brain Value Proof', href: 'investors-value.html' },
-      { label: 'Go to Market', href: 'investors-gtm.html' },
-      { label: 'Competition', href: 'investors-competition.html' },
-      { label: 'VC Funds', href: 'investors-vc.html' },
-      { label: 'FAQ', href: 'investors-faq.html' },
-    ]},
-    { id: 'investors', label: 'Investors', href: 'investors-engine.html', submenu: [
+    { id: 'about',          label: 'About',          href: 'about.html' },
+    { id: 'process',        label: 'Process',         href: 'process.html' },
+    { id: 'uses',           label: 'Use Cases',       href: 'uses.html' },
+    { id: 'smb',            label: 'SMB',             href: 'smb.html' },
+    { id: 'investors',      label: 'Investors',       href: 'investors-engine.html', submenu: [
       { label: 'Engine Within Engine', href: 'investors-engine.html' },
       { label: 'Brain Value Proof',    href: 'investors-value.html' },
       { label: 'Go to Market',         href: 'investors-gtm.html' },
@@ -23,12 +14,12 @@ function renderNav(activePage) {
       { label: 'VC Funds',             href: 'investors-vc.html' },
       { label: 'FAQ',                  href: 'investors-faq.html' },
     ]},
-    { id: 'municipalities', label: 'Municipalities', href: 'municipalities.html' },
-    { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
-    { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
-    { id: 'articles', label: 'Articles',    href: 'articles.html' },
-    { id: 'success',  label: 'Success Stories', href: 'success-stories.html' },
-    { id: 'jobs',     label: 'Jobs',    href: 'jobs.html' },
+    { id: 'municipalities', label: 'Municipalities',  href: 'municipalities.html' },
+    { id: 'pricing',        label: 'Pricing',         href: 'pricing.html' },
+    { id: 'demo',           label: 'Demo',            href: 'demo.html', cta: true },
+    { id: 'articles',       label: 'Articles',        href: 'articles.html' },
+    { id: 'success',        label: 'Success Stories', href: 'success-stories.html' },
+    { id: 'jobs',           label: 'Jobs',            href: 'jobs.html' },
   ];
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
@@ -437,7 +428,7 @@ function setLang(lang) {
 document.addEventListener('DOMContentLoaded', () => {
   // nav-lang style
   const ls = document.createElement('style');
-  ls.textContent = `.nav-lang{background:none;border:none;cursor:pointer;font-size:20px;padding:0 3px;opacity:.55;transition:opacity .2s,transform .2s;line-height:1;}.nav-lang:hover,.nav-lang.active{opacity:1;transform:scale(1.15);}`;
+  ls.textContent = `.nav-lang{background:none;border:none;cursor:pointer;font-size:20px;padding:0 3px;opacity:.55;transition:opacity .2s,transform .2s;line-height:1;}.nav-lang:hover,.nav-lang.active{opacity:1;transform:scale(1.15);}.nav-links{gap:0!important;}.nav-link{padding:5px 5px!important;font-size:11.5px!important;}.sep{padding:0 1px!important;}`;
   document.head.appendChild(ls);
   // mark active flag
   const isEn = window.location.pathname.includes('/en/');
