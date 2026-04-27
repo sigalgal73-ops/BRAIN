@@ -1,34 +1,24 @@
-// Brain Co-Manager shared.js EN v1
+// Brain Co-Manager shared.js v1
 // ── SHARED NAV ──
 function renderNav(activePage) {
   const pages = [
-    { id: 'about',    label: 'About',  href: 'about.html' },
-    { id: 'process',  label: 'Process',    href: 'process.html' },
-    { id: 'uses',     label: 'Use Cases',   href: 'uses.html' },
+    { id: 'about',    label: 'אודותינו',  href: 'about.html' },
+    { id: 'process',  label: 'התהליך',    href: 'process.html' },
+    { id: 'uses',     label: 'שימושים',   href: 'uses.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
-    { id: 'investors', label: 'Investors', href: 'investors-engine.html', submenu: [
-      { label: 'Engine Within Engine', href: 'investors-engine.html' },
-      { label: 'Brain Value Proof', href: 'investors-value.html' },
+    { id: 'investors', label: 'משקיעים', href: 'investors-engine.html', submenu: [
+      { label: 'מנוע בתוך מנוע', href: 'investors-engine.html' },
+      { label: 'הוכחת שווי Brain', href: 'investors-value.html' },
       { label: 'Go to Market', href: 'investors-gtm.html' },
-      { label: 'Competition', href: 'investors-competition.html' },
-      { label: 'VC Funds', href: 'investors-vc.html' },
-      { label: 'FAQ', href: 'investors-faq.html' },
+      { label: 'מתחרים', href: 'investors-competition.html' },
+      { label: 'קרנות VC', href: 'investors-vc.html' },
+      { label: 'שאלות תשובות', href: 'investors-faq.html' },
     ]},
-    { id: 'investors', label: 'Investors', href: 'investors-engine.html', submenu: [
-      { label: 'Engine Within Engine', href: 'investors-engine.html' },
-      { label: 'Brain Value Proof',    href: 'investors-value.html' },
-      { label: 'Go to Market',         href: 'investors-gtm.html' },
-      { label: 'Competition',          href: 'investors-competition.html' },
-      { label: 'VC Funds',             href: 'investors-vc.html' },
-      { label: 'FAQ',                  href: 'investors-faq.html' },
-    ]},
-    { id: 'municipalities', label: 'Municipalities', href: 'municipalities.html' },
-    { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
+    { id: 'pricing',  label: 'מחירים',    href: 'pricing.html' },
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
-    { id: 'articles', label: 'Articles',    href: 'articles.html' },
-    { id: 'success',  label: 'Success Stories', href: 'success-stories.html' },
-    { id: 'jobs',     label: 'Jobs',    href: 'jobs.html' },
+    { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
+    { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
   ];
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
@@ -41,20 +31,20 @@ function renderNav(activePage) {
   const mobileLinks = pages.map(p => {
     if (p.submenu) {
       const sub = p.submenu.map(s => `<a href="${s.href}" class="nav-sub-mobile">${s.label}</a>`).join('');
-      return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>${sub}`;
+      return `<a href="#" class="nav-mobile-parent${p.id===activePage?' active':''}" onclick="toggleMobileSub(this);return false;">${p.label} <span style="font-size:10px">▼</span></a><div class="nav-mobile-sub" style="display:none">${sub}</div>`;
     }
     return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
   }).join('');
 
   document.getElementById('nav-placeholder').innerHTML = `
-    <nav style="direction:ltr;">
-      <a href="../index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
-      <div class="nav-links" style="direction:ltr;">${desktopLinks}</div>
+    <nav>
+      <a href="index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
+      <div class="nav-links">${desktopLinks}</div>
       <div class="nav-left">
         <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="24" height="17" alt="IL" style="border-radius:2px;display:block;"></button>
         <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="24" height="17" alt="US" style="border-radius:2px;display:block;"></button>
         <a href="https://www.youtube.com/@Brain.co.manager" class="nav-icon" title="YouTube" target="_blank">▶</a>
-        <button class="nav-mobile-btn" id="nav-hamburger" aria-label="Menu">☰</button>
+        <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
       </div>
     </nav>
     <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
@@ -64,6 +54,13 @@ function renderNav(activePage) {
     m.classList.toggle('open');
     this.textContent = m.classList.contains('open') ? '✕' : '☰';
   };
+}
+
+function toggleMobileSub(el) {
+  const sub = el.nextElementSibling;
+  const isOpen = sub.style.display === 'block';
+  sub.style.display = isOpen ? 'none' : 'block';
+  el.querySelector('span').textContent = isOpen ? '▼' : '▲';
 }
 
 // ── PARTICLES ──
@@ -154,10 +151,10 @@ function initBot() {
     .bot-msgs{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:12px;background:#020d1a;}
     .bot-msgs::-webkit-scrollbar{width:4px;}
     .bot-msgs::-webkit-scrollbar-thumb{background:rgba(45,156,255,0.3);border-radius:2px;}
-    .bot-row{display:flex;gap:8px;align-items:flex-end;direction:ltr;}
+    .bot-row{display:flex;gap:8px;align-items:flex-end;direction:rtl;}
     .bot-row.user{flex-direction:row-reverse;}
     .bot-av-sm{width:26px;height:26px;flex-shrink:0;}
-    .bot-bubble{max-width:85%;padding:12px 16px;font-size:16px;line-height:1.75;border-radius:16px;font-family:Heebo,sans-serif;direction:ltr;}
+    .bot-bubble{max-width:85%;padding:12px 16px;font-size:16px;line-height:1.75;border-radius:16px;font-family:Heebo,sans-serif;direction:rtl;}
     .bot-bubble.bot{background:#0a2540;color:#eaf4ff;border:1px solid rgba(45,156,255,0.2);border-radius:16px 16px 16px 4px;}
     .bot-bubble.user{background:#0C447C;color:#E6F1FB;border-radius:16px 16px 4px 16px;}
     .bot-typing{background:#0a2540;border:1px solid rgba(45,156,255,0.18);border-radius:16px 16px 16px 4px;
@@ -165,16 +162,16 @@ function initBot() {
     .bot-dot{width:6px;height:6px;border-radius:50%;background:#7ec8ff;animation:bdot 1.2s infinite;}
     .bot-dot:nth-child(2){animation-delay:.2s;}.bot-dot:nth-child(3){animation-delay:.4s;}
     @keyframes bdot{0%,80%,100%{opacity:.3;transform:translateY(0);}40%{opacity:1;transform:translateY(-5px);}}
-    .bot-opts{display:flex;flex-direction:column;gap:7px;padding:0 18px 10px;direction:ltr;}
+    .bot-opts{display:flex;flex-direction:column;gap:7px;padding:0 18px 10px;direction:rtl;}
     .bot-opt{padding:10px 18px;font-size:14px;background:#020d1a;border:1.5px solid #1a6fc4;
-      color:#7ec8ff;border-radius:22px;cursor:pointer;text-align:left;font-family:Heebo,sans-serif;
+      color:#7ec8ff;border-radius:22px;cursor:pointer;text-align:right;font-family:Heebo,sans-serif;
       transition:all .18s;}
     .bot-opt:hover{background:#0C447C;color:#eaf4ff;}
     .bot-opt:disabled{opacity:.35;cursor:default;}
     .bot-input-row{display:flex;gap:8px;padding:14px 18px;background:#041428;border-top:1px solid rgba(45,156,255,0.12);}
     .bot-input{flex:1;padding:11px 16px;font-size:15px;font-family:Heebo,sans-serif;
       background:#020d1a;border:1px solid rgba(45,156,255,0.25);border-radius:20px;
-      color:#eaf4ff;outline:none;direction:ltr;}
+      color:#eaf4ff;outline:none;direction:rtl;}
     .bot-input:focus{border-color:#2d9cff;}
     .bot-send{padding:11px 18px;background:#0C447C;color:#eaf4ff;border:none;border-radius:20px;
       font-size:14px;font-weight:700;font-family:Heebo,sans-serif;cursor:pointer;transition:background .18s;}
@@ -249,11 +246,11 @@ function initBot() {
   win.innerHTML = `
     <div class="bot-head">
       ${AV}
-      <div><div class="bot-head-name">Brain – Co-Manager</div><div class="bot-head-sub">Organizational Sales Bot</div></div>
+      <div><div class="bot-head-name">Brain – Manager-Co</div><div class="bot-head-sub">בוט מכירות ארגוני</div></div>
       <div class="bot-head-dot"></div>
       <button class="bot-close" id="bot-close">✕</button>
     </div>
-    <div class="bot-prog"><span class="bot-prog-lbl" id="bp-lbl">Step 1 / ${TOTAL}</span><div class="bot-prog-track"><div class="bot-prog-fill" id="bp-fill" style="width:8%"></div></div></div>
+    <div class="bot-prog"><span class="bot-prog-lbl" id="bp-lbl">שלב 1 / ${TOTAL}</span><div class="bot-prog-track"><div class="bot-prog-fill" id="bp-fill" style="width:8%"></div></div></div>
     <div class="bot-msgs" id="bot-msgs"></div>`;
   document.body.appendChild(win);
 
@@ -270,7 +267,7 @@ function initBot() {
 
   function updProg(step) {
     FILL.style.width = Math.round((step/TOTAL)*100)+'%';
-    PLBL.textContent = 'Step '+step+' / '+TOTAL;
+    PLBL.textContent = 'שלב '+step+' / '+TOTAL;
   }
 
   function addBot(text, delay) {
@@ -324,34 +321,34 @@ function initBot() {
 
   function addSum(s) {
     const c=document.createElement('div'); c.className='bot-sum';
-    const rows=[['Challenge',s.challenge||'—'],['Company',s.company||'—'],['Role',s.role||'—'],['Name',s.name||'—'],['Email',s.email||'—'],['Phone',s.phone||'—'],['Request',s.cta||'—']];
-    c.innerHTML='<div style="font-size:10px;color:#00d4aa;letter-spacing:.1em;font-weight:700;margin-bottom:8px">CONVERSATION SUMMARY</div>'+rows.map(r=>`<div class="bot-sum-row"><span class="bot-sum-k">${r[0]}</span><span class="bot-sum-v">${r[1]}</span></div>`).join('');
+    const rows=[['אתגר',s.challenge||'—'],['חברה',s.company||'—'],['תפקיד',s.role||'—'],['שם',s.name||'—'],['מייל',s.email||'—'],['טלפון',s.phone||'—'],['בקשה',s.cta||'—']];
+    c.innerHTML='<div style="font-size:10px;color:#00d4aa;letter-spacing:.1em;font-weight:700;margin-bottom:8px">סיכום השיחה</div>'+rows.map(r=>`<div class="bot-sum-row"><span class="bot-sum-k">${r[0]}</span><span class="bot-sum-v">${r[1]}</span></div>`).join('');
     MSG.appendChild(c); MSG.scrollTop=MSG.scrollHeight;
   }
 
   const FLOW = [
-    {step:1, bot:'Hi!\nI\'m Brain\'s bot – Co-Manager.\n\nLet\'s start with a quick intro – what\'s your name?', isInput:true, ph:'Full name', run:(v,n)=>{state.name=v;n();}},
-    {step:2, bot:()=>`Nice to meet you, ${fn()}!\n\nWhat company are you from?`, isInput:true, ph:'Company name', run:(v,n)=>{state.company=v;n();}},
-    {step:3, bot:()=>`Great, ${fn()}!\nWhat is the main challenge at ${state.company} right now?`,
-      opts:['Increasing sales','Improving employee performance','Employee retention','Implementing AI in business','Other'],
-      run:(c,n)=>{if(c==='Other')n('other_ch');else{state.challenge=c;n();}}},
-    {step:3, id:'other_ch', bot:'What do you need help with?', isInput:true, ph:'Describe the challenge', run:(v,n)=>{state.challenge=v;n(10);}},
-    {step:4, bot:()=>{const m={'Increasing sales':'Salespeople know what to do – but don\'t always execute.','Improving employee performance':'Knowledge exists in the organization, but it doesn\'t become a habit.','Employee retention':'It\'s hard to maintain motivation over time.','Implementing AI in business':'AI that connects to daily management – not just a tool.'};return (m[state.challenge]||'That\'s a challenge we know well.')+'\n\nDoes this happen at your organization too?';},
-      opts:['Definitely yes','Partially','Not really'], run:(c,n)=>{state.feels=c;n();}},
-    {step:5, bot:()=>`Understood.\n\nHow many people work at ${state.company}?`,
-      opts:['1–10','11–25','26–50','51–200','200–1,000','Over 1,000'], run:(c,n)=>{state.size=c;n();}},
-    {step:6, bot:()=>(state.size==='1–10'||state.size==='11–25'?'Brain works great for small businesses!\n• No IT team required\n• Starts within days\n':'Brain is an AI layer that manages daily execution.\n1. Analyzes behavior\n2. Sends smart messages\n3. Follows up\n')+`\nWhat is your role, ${fn()}?`,
-      opts:['Business owner / CEO','VP Sales','VP HR','Manager','Other role'], run:(c,n)=>{state.role=c;n();}},
-    {step:7, bot:()=>{const r=state.role||'';const t=r.includes('Sales')?'Brain identifies gaps in sales conversations and improves within two weeks.':r.includes('HR')?'Brain detects energy drops and suggests managerial actions.':r.includes('CEO')||r.includes('owner')?'Brain gives you control over team performance day by day.':'Brain is tailored for anyone who wants to improve performance.';return t+`\n\nDoes ${state.company} have systems like CRM?`;},
-      opts:['Yes, we have CRM','Yes, we have training programs','Both','Neither'], run:(c,n)=>{state.existing=c;n();}},
-    {step:8, bot:()=>{const e=state.existing;if(e==='Yes, we have CRM'||e==='Both')return 'Brain doesn\'t replace systems – it connects them.\n\nWhat\'s most important to improve?';if(e==='Yes, we have training programs')return 'Brain doesn\'t replace training – it turns it into execution.\n\nWhat\'s most important to improve?';return 'Brain can be the foundation for your management infrastructure.\n\nWhat\'s most important to improve?';},
-      opts:['Increasing sales','Improving employee performance','Employee retention','Implementing AI','Other'],
-      run:(c,n)=>{if(c==='Other')n('other_b');else{state.benefit=c;n(10);}}},
-    {step:8, id:'other_b', bot:'What is important to improve?', isInput:true, ph:'Description', run:(v,n)=>{state.benefit=v;n(10);}},
-    {step:9, bot:()=>`Excellent!\n\nHow would you like to receive information about Brain?`,
-      opts:['Short demo video','Written explanation'], run:(c,n)=>{state.cta=c;n();}},
-    {step:10, bot:()=>`Great, ${fn()}!\n\nWe\'d love to send you the information.\n\nPhone number:`, isInput:true, ph:'Phone number', run:(v,n)=>{state.phone=v;n();}},
-    {step:11, bot:'Email address:', isInput:true, ph:'Email address', run:(v,n)=>{
+    {step:1, bot:'שלום!\nאני הבוט של Brain – Manager-Co.\n\nנתחיל בהיכרות קצרה – מה שמך?', isInput:true, ph:'שם מלא', run:(v,n)=>{state.name=v;n();}},
+    {step:2, bot:()=>`נעים להכיר, ${fn()}!\n\nמאיזו חברה?`, isInput:true, ph:'שם החברה', run:(v,n)=>{state.company=v;n();}},
+    {step:3, bot:()=>`מעולה, ${fn()}!\nמה האתגר המרכזי ב${state.company} כרגע?`,
+      opts:['הגדלת מכירות','שיפור ביצועי עובדים','שימור עובדים','הטמעת AI בעסק','אחר'],
+      run:(c,n)=>{if(c==='אחר')n('other_ch');else{state.challenge=c;n();}}},
+    {step:3, id:'other_ch', bot:'במה נדרשת עזרה?', isInput:true, ph:'תיאור האתגר', run:(v,n)=>{state.challenge=v;n(10);}},
+    {step:4, bot:()=>{const m={'הגדלת מכירות':'אנשי מכירות יודעים מה לעשות – אבל לא תמיד מבצעים.','שיפור ביצועי עובדים':'יש ידע בארגון, אבל הוא לא הופך להרגל.','שימור עובדים':'קשה לשמור על מוטיבציה לאורך זמן.','הטמעת AI בעסק':'AI שמתחבר לניהול יומיומי – לא רק כלי.'};return (m[state.challenge]||'זה אתגר שאנחנו מכירים.')+'\n\nזה גם קורה אצלכם?';},
+      opts:['כן, בהחלט','חלקית','לא ממש'], run:(c,n)=>{state.feels=c;n();}},
+    {step:5, bot:()=>`מובן.\n\nכמה אנשים עובדים ב${state.company}?`,
+      opts:['1–10','11–25','26–50','51–200','200–1,000','מעל 1,000'], run:(c,n)=>{state.size=c;n();}},
+    {step:6, bot:()=>(state.size==='1–10'||state.size==='11–25'?'Brain עובד מצוין לעסקים קטנים!\n• לא דורש צוות IT\n• מתחיל תוך ימים\n':'Brain הוא שכבת AI שמנהלת ביצוע יומיומי.\n1. מנתחת התנהגות\n2. שולחת מסרים חכמים\n3. עושה פולו-אפ\n')+`\nמה התפקיד שלך, ${fn()}?`,
+      opts:['בעלי/ת עסק – מנכ״ל/ית','סמנכ״ל/ית מכירות','סמנכ״ל/ית משאבי אנוש','מנהל/ת','תפקיד אחר'], run:(c,n)=>{state.role=c;n();}},
+    {step:7, bot:()=>{const r=state.role||'';const t=r.includes('מכירות')?'Brain מזהה פערים בשיחות מכירה ומשפר תוך שבועיים.':r.includes('משאבי')?'Brain מזהה ירידה באנרגיה ומציע פעולות ניהוליות.':r.includes('מנכ')||r.includes('בעל')?'Brain נותן שליטה על ביצועי הצוות יום-יום.':'Brain מותאם לכל מי שרוצה לשפר ביצועים.';return t+`\n\nהאם קיימות מערכות כמו CRM ב${state.company}?`;},
+      opts:['כן, יש CRM','כן, יש הדרכות','שניהם','לא'], run:(c,n)=>{state.existing=c;n();}},
+    {step:8, bot:()=>{const e=state.existing;if(e==='כן, יש CRM'||e==='שניהם')return 'Brain לא מחליף מערכות – הוא מחבר אותן.\n\nמה הכי חשוב לשפר?';if(e==='כן, יש הדרכות')return 'Brain לא מחליף הדרכות – הוא הופך אותן לביצוע.\n\nמה הכי חשוב לשפר?';return 'Brain יכול להיות הבסיס לתשתית הניהולית.\n\nמה הכי חשוב לשפר?';},
+      opts:['הגדלת מכירות','שיפור ביצועי עובדים','שימור עובדים','הטמעת AI','אחר'],
+      run:(c,n)=>{if(c==='אחר')n('other_b');else{state.benefit=c;n(10);}}},
+    {step:8, id:'other_b', bot:'מה חשוב לשפר?', isInput:true, ph:'תיאור', run:(v,n)=>{state.benefit=v;n(10);}},
+    {step:9, bot:()=>`מצוין!\n\nאיך תרצו לקבל מידע על Brain?`,
+      opts:['סרטון דמו קצר','הסבר כתוב'], run:(c,n)=>{state.cta=c;n();}},
+    {step:10, bot:()=>`מעולה, ${fn()}!\n\nנשמח לשלוח לך את המידע.\n\nמספר טלפון:`, isInput:true, ph:'מספר טלפון', run:(v,n)=>{state.phone=v;n();}},
+    {step:11, bot:'כתובת מייל:', isInput:true, ph:'כתובת מייל', run:(v,n)=>{
       state.email=v;
       fetch('/', {
         method: 'POST',
@@ -367,20 +364,21 @@ function initBot() {
           'role': state.role || ''
         }).toString()
       }).catch(err=>console.log('Form send error:',err));
-      if(state.cta==='Short demo video'){
-        addBot(`Thank you ${state.name}! 🎥 Opening the video now...`,200);
+      if(state.cta==='סרטון דמו קצר'){
+        addBot(`תודה ${state.name}! 🎥 הסרטון נפתח עכשיו...`,200);
         setTimeout(()=>{
+          // פתיחת modal מסך מלא
           const ov=document.createElement('div');
           ov.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(2,13,26,0.96);display:flex;align-items:center;justify-content:center;';
           ov.innerHTML=`<div style="position:relative;width:min(560px,96vw);background:#020d1a;border:1px solid rgba(45,156,255,0.25);border-radius:20px;overflow:hidden;box-shadow:0 0 60px rgba(45,156,255,0.2);">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(45,156,255,0.12);">
-              <span style="font-size:15px;font-weight:700;color:#eaf4ff;font-family:Heebo,sans-serif;">Brain Co-Manager in Action</span>
+              <span style="font-size:15px;font-weight:700;color:#eaf4ff;font-family:Heebo,sans-serif;">Brain Co-Manager בפעולה</span>
               <button onclick="this.closest('div[style*=fixed]').remove();document.body.style.overflow='';" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#aaa;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
             </div>
             <div style="position:relative;padding-top:56.25%;background:#010810;">
-              <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/u6m0OaCZpZU?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+              <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/O3yF5ee2iEI?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
             </div>
-            <div style="padding:12px 20px;text-align:center;font-size:13px;color:#7ec8ff;font-family:Heebo,sans-serif;">A Brain representative will contact you shortly</div>
+            <div style="padding:12px 20px;text-align:center;font-size:13px;color:#7ec8ff;font-family:Heebo,sans-serif;">נציג Brain יצור איתך קשר בהקדם</div>
           </div>`;
           ov.onclick=e=>{if(e.target===ov){ov.remove();document.body.style.overflow='';}};
           document.body.appendChild(ov);
@@ -388,9 +386,9 @@ function initBot() {
         },400);
       } else {
         const PDF='https://brain2spark.mysitemail.co.il/wp-content/uploads/2026/03/Deno_%D7%90%D7%AA%D7%A8-%D7%A2%D7%91%D7%A8%D7%99%D7%AA.pdf';
-        addBot(`Thank you, ${state.name}! 🎉<br><br>📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">Click here to view the document</a><br><br>A Brain representative will contact you shortly 🙂`,200);
+        addBot(`תודה רבה, ${state.name}! 🎉<br><br>📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">לחצו כאן לצפייה במסמך</a><br><br>נציג Brain יצור איתך קשר בהקדם 🙂`,200);
       }
-      setTimeout(()=>{const rb=document.createElement('button');rb.className='bot-restart';rb.textContent='↺ Start over';rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);},2000);
+      setTimeout(()=>{const rb=document.createElement('button');rb.className='bot-restart';rb.textContent='↺ התחל מחדש';rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);},2000);
     }}  ];
 
   FLOW.forEach((s,i)=>{ if(s.id)stepMap[s.id]=i; else flowIndex.push(i); });
@@ -426,11 +424,14 @@ function initBot() {
 
 // ── LANGUAGE SWITCH ──
 function setLang(lang) {
-  const page = window.location.pathname.split('/').pop() || 'index.html';
-  if (lang === 'he') {
-    window.location.href = '../' + page;
+  const path = window.location.pathname;
+  const page = path.split('/').pop() || 'index.html';
+  const isEn = path.includes('/en/');
+  if (lang === 'en' && !isEn) {
+    window.location.href = '/en/' + page;
+  } else if (lang === 'he' && isEn) {
+    window.location.href = '/' + page;
   }
-  // lang === 'en' — already here, do nothing
 }
 
 // ── INIT ──
