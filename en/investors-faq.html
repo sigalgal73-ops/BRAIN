@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor FAQ | Brain Co-Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.faq-section{max-width:820px;margin:0 auto 40px}
+.faq-category{font-size:11px;color:var(--teal);font-weight:700;letter-spacing:.12em;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.faq-item{margin-bottom:12px;}
+.faq-q{padding:14px 18px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:12px;font-size:14px;font-weight:700;color:var(--white);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all .2s;}
+.faq-q:hover{border-color:rgba(45,156,255,0.3);background:rgba(45,156,255,0.1);}
+.faq-q.open{border-color:rgba(45,156,255,0.4);background:rgba(45,156,255,0.12);border-bottom-left-radius:0;border-bottom-right-radius:0;}
+.faq-a{padding:14px 18px;background:rgba(4,20,40,0.6);border:1px solid rgba(45,156,255,0.2);border-top:none;border-bottom-left-radius:12px;border-bottom-right-radius:12px;font-size:14px;color:var(--muted);line-height:1.7;display:none;}
+.faq-a.open{display:block;}
+.faq-arrow{font-size:12px;color:var(--teal);transition:transform .2s;flex-shrink:0;}
+.faq-q.open .faq-arrow{transform:rotate(180deg);}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+  <div class="page-hero">
+    <div class="page-tag">INVESTORS · FAQ</div>
+    <h1 class="page-title">FAQ – <em>For Investors</em></h1>
+    <p class="page-sub">Everything you want to know about Brain Co-Manager before investing</p>
+  </div>
+
+<div class="sec reveal">
+
+  <!-- Product & Core -->
+  <div class="faq-section">
+    <div class="faq-category">Product & Core</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What exactly does Brain do? <span class="faq-arrow">▼</span></div><div class="faq-a">Brain analyzes organizations, identifies needs and challenges, persuades to action, and ensures execution.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How is Brain different from ERP / BI / CRM? <span class="faq-arrow">▼</span></div><div class="faq-a">They display data. Brain drives people to action until execution.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What core problem do you solve? <span class="faq-arrow">▼</span></div><div class="faq-a">The gap between management decisions and actual organizational execution.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What is The 8-Year Gap? <span class="faq-arrow">▼</span></div><div class="faq-a">A 3–8 year gap between technology and organizational adoption. Brain sits precisely on this gap.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Where does Brain sit relative to existing systems? <span class="faq-arrow">▼</span></div><div class="faq-a">Between the code and organizational behavior — a management layer above ERP / CRM / BI.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How does Brain work in practice? <span class="faq-arrow">▼</span></div><div class="faq-a">Analysis → Solution → Persuasion → Follow-up → Measurement. A loop that strengthens and improves over time.</div></div>
+  </div>
+
+  <!-- שימוש וחוויה -->
+  <div class="faq-section">
+    <div class="faq-category">Usage & User Experience</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What does Brain look like on day one? <span class="faq-arrow">▼</span></div><div class="faq-a">A chat with Brain followed by an organizational diagnostic questionnaire. Within 30 minutes you receive initial analysis and action recommendations.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">When do you see initial value? <span class="faq-arrow">▼</span></div><div class="faq-a">Already on day one. Measurable business results begin appearing after about a month.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How much time per day is the system used? <span class="faq-arrow">▼</span></div><div class="faq-a">About 20 minutes per day only.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What happens after a year of use? <span class="faq-arrow">▼</span></div><div class="faq-a">The system becomes a management habit. Deep process improvement and autonomous management based on Brain.</div></div>
+  </div>
+
+  <!-- Economic Value -->
+  <div class="faq-section">
+    <div class="faq-category">Economic Value</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">איזה Economic Value אתם מייצרים? <span class="faq-arrow">▼</span></div><div class="faq-a">About 20% sales growth, about 30% professionalism improvement, doubled employee retention.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What does this look like in numbers? <span class="faq-arrow">▼</span></div><div class="faq-a">An organization with $55M revenue can expect an addition of about $11M per year.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Why would a customer pay? <span class="faq-arrow">▼</span></div><div class="faq-a">Because they receive tens of millions in value for an investment of tens of thousands. Clear and immediate ROI.</div></div>
+  </div>
+
+  <!-- Business Model -->
+  <div class="faq-section">
+    <div class="faq-category">Business Model</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How much does the product cost? <span class="faq-arrow">▼</span></div><div class="faq-a">About $12,500 per year per organization. Annual SaaS subscription model.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How many customers are expected in year one? <span class="faq-arrow">▼</span></div><div class="faq-a">About 10 paying customers. Average ARR $10,000–$12,500 per customer.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How long does sales and implementation take? <span class="faq-arrow">▼</span></div><div class="faq-a">Sales: 3–4 months. Implementation: 3–6 months.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What is the Go to Market strategy? <span class="faq-arrow">▼</span></div><div class="faq-a">Strategic partnerships + automated digital sales through SaaS. Fast access to large organizations.</div></div>
+  </div>
+
+  <!-- Market & Scale -->
+  <div class="faq-section">
+    <div class="faq-category">Market & Scale</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What is the market size? <span class="faq-arrow">▼</span></div><div class="faq-a">About $300 billion. About 300,000 relevant organizations averaging 1,000 employees.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What is the market penetration rate? <span class="faq-arrow">▼</span></div><div class="faq-a">3% → 10% → 25% → 40% with revenue potential of billions of dollars.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Is there a market for robots? <span class="faq-arrow">▼</span></div><div class="faq-a">Yes — a massive market. Brain can serve as the brain for humanoid robots accompanying retirees, semi-care patients, and children.</div></div>
+  </div>
+
+  <!-- יתרון תחרותי -->
+  <div class="faq-section">
+    <div class="faq-category">Competitive Advantage & Risks</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What is the competitive advantage? <span class="faq-arrow">▼</span></div><div class="faq-a">Deep analysis of 40 industries, 20 roles, 10 needs. Organizational knowledge and human persuasion accumulated over years.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Why won't competitors copy this? <span class="faq-arrow">▼</span></div><div class="faq-a">Deep knowledge of thousands of organizations and human behavior is required. A 2–3 year lead advantage.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What is the main risk? <span class="faq-arrow">▼</span></div><div class="faq-a">Organizational adoption rate. We address this with fast ROI proof from the first week.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How do you build a data advantage? <span class="faq-arrow">▼</span></div><div class="faq-a">Accumulating analyses from organizations — each customer strengthens the model and creates a Data Moat that is hard to replicate.</div></div>
+  </div>
+
+  <!-- Investor Summary -->
+  <div class="faq-section">
+    <div class="faq-category">Investor Summary</div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Why will Brain win? <span class="faq-arrow">▼</span></div><div class="faq-a">Large market, strong product, experienced team. A unique combination of analysis, persuasion, and follow-up that no competitor has.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What's the investor story? <span class="faq-arrow">▼</span></div><div class="faq-a">Double return: organizational performance improvement + investment in future technology. Brain is the management infrastructure of 2030.</div></div>
+
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What's the vision? <span class="faq-arrow">▼</span></div><div class="faq-a">A company for developing organizational brains — Brain 1, Brain 2, Brain 3. The AI layer that sits above every organization in the world.</div></div>
+  </div>
+
+</div>
+
+  <div style="height:60px"></div>
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">About</a><a href="process.html">Process</a>
+      <a href="uses.html">Use Cases</a><a href="roi.html">ROI</a>
+      <a href="smb.html">SMB</a><a href="pricing.html">Pricing</a>
+      <a href="demo.html">Demo</a><a href="articles.html">Articles</a><a href="jobs.html">Careers</a>
+    </div>
+    <div class="footer-copy">© 2025 All rights reserved · Brain Co-Manager · brain2spark.ai</div>
+  </footer>
+</div>
+<script src="shared.js"></script>
+<script>renderNav('investors','en');</script>
+<script>
+function toggle(el) {
+  const ans = el.nextElementSibling;
+  el.classList.toggle('open');
+  ans.classList.toggle('open');
+}
+</script>
+</body>
+</html>
