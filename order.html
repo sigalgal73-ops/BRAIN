@@ -132,8 +132,8 @@
                 <label for="pkg4">2,500 ₪ – ריטיינר חודשי - 8 שעות לחודש - בהתחייבות 12 חודשים</label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg5" value="שעות סדנא – 8,500₪">
-                <label for="pkg5">8,500 ₪ – שעות סדנא</label>
+                <input type="radio" name="package" id="pkg5" value="שעתיים סדנא – 8,500₪">
+                <label for="pkg5">8,500 ₪ – שעתיים סדנא</label>
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@
           ✓ הטופס נשלח בהצלחה! ניצור איתכם קשר בהקדם לאישור ההזמנה.
         </div>
 
-        <ul class="form-note" id="formNotes">
+        <ul class="form-note">
           <li>* בסיום מילוי הטופס נחזור אליכם לבדיקת הפרטים ואופן התשלום</li>
           <li>* מילוי טופס זה מאשר את ההסכמה לשירות לפי התנאים שנקבעו</li>
         </ul>
@@ -199,7 +199,6 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
 
   this.style.display = 'none';
   document.getElementById('successMsg').style.display = 'block';
-  const notes = document.getElementById('formNotes'); if(notes) notes.style.display = 'none';
 });
 </script>
 </body>
