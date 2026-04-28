@@ -157,7 +157,7 @@
           ✓ Form submitted successfully! We'll get back to you shortly to confirm your order.
         </div>
 
-        <ul class="form-note">
+        <ul class="form-note" id="formNotes">
           <li>* After submitting, we'll contact you to verify details and arrange payment</li>
           <li>* Submitting this form confirms agreement to the service terms</li>
         </ul>
@@ -199,6 +199,7 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
 
   this.style.display = 'none';
   document.getElementById('successMsg').style.display = 'block';
+  const notes = document.getElementById('formNotes'); if(notes) notes.style.display = 'none';
 });
 </script>
 </body>
