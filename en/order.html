@@ -63,7 +63,7 @@
   <div class="page-hero">
     <div class="page-tag">ORDER</div>
     <h1 class="page-title">Order – <em>Brain Co-Manager</em></h1>
-    <p class="page-sub">תומך ניהולי קו-מנג'ר — מלאו את הטופס ונחזור אליכם לאישור</p>
+    <p class="page-sub">AI Management Support — Fill in the form and we'll get back to you to confirm</p>
   </div>
 
   <div class="sec reveal">
@@ -71,23 +71,23 @@
       <div class="card" style="padding:40px">
 
         <form id="orderForm">
-          <!-- שורה 1: Company Name / ח.פ / Address -->
+          
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Company Name <span>*</span></label>
               <input type="text" class="form-input" name="company" placeholder="Company name" required>
             </div>
             <div class="form-group">
-              <label class="form-label">ח.פ. <span>*</span></label>
-              <input type="text" class="form-input" name="tax-id" placeholder="מספר ח.פ." required>
+              <label class="form-label">Tax ID / Registration No. <span>*</span></label>
+              <input type="text" class="form-input" name="tax-id" placeholder="Tax ID" required>
             </div>
           </div>
           <div class="form-group" style="margin-bottom:16px">
             <label class="form-label">Address <span>*</span></label>
-            <input type="text" class="form-input" name="address" placeholder="Address החברה" required>
+            <input type="text" class="form-input" name="address" placeholder="Company address" required>
           </div>
 
-          <!-- שורה 2: איש קשר / Role -->
+          
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Contact Name <span>*</span></label>
@@ -99,46 +99,46 @@
             </div>
           </div>
 
-          <!-- שורה 3: Phone / איEmail -->
+          
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Phone <span>*</span></label>
-              <input type="tel" class="form-input" name="phone" placeholder="מספר Phone" required>
+              <input type="tel" class="form-input" name="phone" placeholder="Phone number" required>
             </div>
             <div class="form-group">
-              <label class="form-label">איEmail <span>*</span></label>
-              <input type="email" class="form-input" name="email" placeholder="Address איEmail" required>
+              <label class="form-label">Email <span>*</span></label>
+              <input type="email" class="form-input" name="email" placeholder="Email address" required>
             </div>
           </div>
 
-          <!-- בחירת חבילה -->
+          
           <div class="form-group" style="margin-bottom:20px">
             <label class="form-label">Select Package (excl. VAT) <span>*</span></label>
             <div class="radio-group" style="margin-top:8px">
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg1" value="Starter – 15,000₪ – 3 סרטונים, מצגת אחת, 4 שעות ייעוץ" required>
-                <label for="pkg1">15,000 ₪ – 3 סרטונים - מצגת אחת - 4 שעות ייעוץ <strong style="color:var(--sky)">(Starter)</strong></label>
+                <input type="radio" name="package" id="pkg1" value="Starter – $4,000 – 3 videos, 1 presentation, 4 consulting hours" required>
+                <label for="pkg1">$4,000 – 3 videos · 1 presentation · 4 consulting hours <strong style="color:var(--sky)">(Starter)</strong></label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg2" value="Growth – 30,000₪ – 6 סרטונים, 2 מצגות, 8 שעות ייעוץ">
-                <label for="pkg2">30,000 ₪ – 6 סרטונים - 2 מצגות - 8 שעות ייעוץ <strong style="color:var(--sky)">(Growth)</strong></label>
+                <input type="radio" name="package" id="pkg2" value="Growth – $8,200 – 6 videos, 2 presentations, 8 consulting hours">
+                <label for="pkg2">$8,200 – 6 videos · 2 presentations · 8 consulting hours <strong style="color:var(--sky)">(Growth)</strong></label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg3" value="Premium – 45,000₪ – 9 סרטונים, 3 מצגות, 12 שעות ייעוץ">
-                <label for="pkg3">45,000 ₪ – 9 סרטונים - 3 מצגות - 12 שעות ייעוץ <strong style="color:var(--sky)">(Premium)</strong></label>
+                <input type="radio" name="package" id="pkg3" value="Premium – $12,300 – 9 videos, 3 presentations, 12 consulting hours">
+                <label for="pkg3">$12,300 – 9 videos · 3 presentations · 12 consulting hours <strong style="color:var(--sky)">(Premium)</strong></label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg4" value="ריטיינר חודשי – 2,500₪ – 8 שעות לחודש, בהתחייבות 12 חודשים">
-                <label for="pkg4">2,500 ₪ – ריטיינר חודשי - 8 שעות לחודש - בהתחייבות 12 חודשים</label>
+                <input type="radio" name="package" id="pkg4" value="Monthly Retainer – $680/month – 8 hours/month, 12-month commitment">
+                <label for="pkg4">$680/month – Monthly retainer · 8 hours/month · 12-month commitment</label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg5" value="שעות סדנא – 8,500₪">
-                <label for="pkg5">8,500 ₪ – שעות סדנא</label>
+                <input type="radio" name="package" id="pkg5" value="Workshop Hours – $2,300">
+                <label for="pkg5">$2,300 – Workshop hours</label>
               </div>
             </div>
           </div>
 
-          <!-- תאריכים -->
+          
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Start Date <span>*</span></label>
@@ -150,16 +150,16 @@
             </div>
           </div>
 
-          <button type="submit" class="btn-submit">שליחה ←</button>
+          <button type="submit" class="btn-submit">Submit Order →</button>
         </form>
 
         <div class="success-msg" id="successMsg">
-          ✓ הטופס נשלח בהצלחה! ניצור איתכם קשר בהקדם לאישור ההזמנה.
+          ✓ Form submitted successfully! We'll get back to you shortly to confirm your order.
         </div>
 
         <ul class="form-note">
-          <li>* בסיום מילוי הטופס נחזור אליכם לבדיקת הפרטים ואופן התשלום</li>
-          <li>* מילוי טופס זה מאשר את ההסכמה לשירות לפי התנאים שנקבעו</li>
+          <li>* After submitting, we'll contact you to verify details and arrange payment</li>
+          <li>* Submitting this form confirms agreement to the service terms</li>
         </ul>
       </div>
     </div>
@@ -188,13 +188,13 @@
 document.getElementById('orderForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const pkg = document.querySelector('input[name="package"]:checked');
-  if (!pkg) { alert('נא לבחור חבילה'); return; }
+  if (!pkg) { alert('Please select a package'); return; }
 
   fetch('/', {
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     body: new URLSearchParams(new FormData(this)).toString()
-      .replace(/^/, 'form-name=brain-order&')
+      .replace(/^/, 'form-name=brain-order-en&')
   }).catch(() => {});
 
   this.style.display = 'none';
