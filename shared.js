@@ -18,6 +18,7 @@ function renderNav(activePage) {
     { id: 'pricing',  label: 'מחירים',    href: 'pricing.html' },
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
+    { id: 'success',  label: 'סיפורי הצלחה', href: 'success-stories.html' },
     { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
   ];
   const desktopLinks = pages.map(p => {
