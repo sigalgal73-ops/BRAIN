@@ -1,25 +1,17 @@
-// Brain Co-Manager shared.js v1
+// Brain Co-Manager shared.js EN v1
 // ── SHARED NAV ──
 function renderNav(activePage) {
   const pages = [
-    { id: 'about',    label: 'אודותינו',  href: 'about.html' },
-    { id: 'process',  label: 'התהליך',    href: 'process.html' },
-    { id: 'uses',     label: 'שימושים',   href: 'uses.html' },
+    { id: 'about',    label: 'About',  href: 'about.html' },
+    { id: 'process',  label: 'Process',    href: 'process.html' },
+    { id: 'uses',     label: 'Use Cases',   href: 'uses.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
-    { id: 'investors', label: 'משקיעים', href: 'investors-engine.html', submenu: [
-      { label: 'מנוע בתוך מנוע', href: 'investors-engine.html' },
-      { label: 'הוכחת שווי Brain', href: 'investors-value.html' },
-      { label: 'Go to Market', href: 'investors-gtm.html' },
-      { label: 'מתחרים', href: 'investors-competition.html' },
-      { label: 'קרנות VC', href: 'investors-vc.html' },
-      { label: 'שאלות תשובות', href: 'investors-faq.html' },
-    ]},
-    { id: 'pricing',  label: 'מחירים',    href: 'pricing.html' },
+    { id: 'municipalities', label: 'Municipalities', href: 'municipalities.html' },
+    { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
-    { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
-    { id: 'success',  label: 'סיפורי הצלחה', href: 'success-stories.html' },
-    { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
+    { id: 'articles', label: 'Articles',    href: 'articles.html' },
+    { id: 'jobs',     label: 'Jobs',    href: 'jobs.html' },
   ];
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
@@ -32,20 +24,20 @@ function renderNav(activePage) {
   const mobileLinks = pages.map(p => {
     if (p.submenu) {
       const sub = p.submenu.map(s => `<a href="${s.href}" class="nav-sub-mobile">${s.label}</a>`).join('');
-      return `<a href="#" class="nav-mobile-parent${p.id===activePage?' active':''}" onclick="toggleMobileSub(this);return false;">${p.label} <span style="font-size:10px">▼</span></a><div class="nav-mobile-sub" style="display:none">${sub}</div>`;
+      return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>${sub}`;
     }
     return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
   }).join('');
 
   document.getElementById('nav-placeholder').innerHTML = `
-    <nav>
-      <a href="index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
-      <div class="nav-links">${desktopLinks}</div>
+    <nav style="direction:ltr;">
+      <a href="../index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
+      <div class="nav-links" style="direction:ltr;">${desktopLinks}</div>
       <div class="nav-left">
         <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="24" height="17" alt="IL" style="border-radius:2px;display:block;"></button>
         <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="24" height="17" alt="US" style="border-radius:2px;display:block;"></button>
         <a href="https://www.youtube.com/@Brain.co.manager" class="nav-icon" title="YouTube" target="_blank">▶</a>
-        <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
+        <button class="nav-mobile-btn" id="nav-hamburger" aria-label="Menu">☰</button>
       </div>
     </nav>
     <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
@@ -55,13 +47,6 @@ function renderNav(activePage) {
     m.classList.toggle('open');
     this.textContent = m.classList.contains('open') ? '✕' : '☰';
   };
-}
-
-function toggleMobileSub(el) {
-  const sub = el.nextElementSibling;
-  const isOpen = sub.style.display === 'block';
-  sub.style.display = isOpen ? 'none' : 'block';
-  el.querySelector('span').textContent = isOpen ? '▼' : '▲';
 }
 
 // ── PARTICLES ──
@@ -425,14 +410,11 @@ function initBot() {
 
 // ── LANGUAGE SWITCH ──
 function setLang(lang) {
-  const path = window.location.pathname;
-  const page = path.split('/').pop() || 'index.html';
-  const isEn = path.includes('/en/');
-  if (lang === 'en' && !isEn) {
-    window.location.href = '/en/' + page;
-  } else if (lang === 'he' && isEn) {
-    window.location.href = '/' + page;
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  if (lang === 'he') {
+    window.location.href = '../' + page;
   }
+  // lang === 'en' — already here, do nothing
 }
 
 // ── INIT ──
