@@ -289,7 +289,7 @@
 <div class="join-wrap">
 
   <!-- Header -->
-  <div class="join-header reveal">
+  <div class="join-header reveal" id="joinHeader">
     <div class="join-tag"><div class="join-tag-dot"></div>הרשמה · Brain Community</div>
     <h1 class="join-title">מוכנים לשדרג את<br>הדרך בה אתם <em>עובדים?</em></h1>
     <div class="join-divider"></div>
@@ -450,6 +450,7 @@
 
   function showSuccess() {
     document.getElementById('joinCard').style.display = 'none';
+    document.getElementById('joinHeader').style.display = 'none';
     document.getElementById('successScreen').classList.add('show');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
