@@ -19,6 +19,7 @@ function renderNav(activePage) {
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
+    { id: 'join',     label: '🔗 הצטרפו', href: 'join.html', cta: true },
   ];
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
