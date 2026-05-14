@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="facebook-domain-verification" content="gzjgv9eghct29v046qzstfzum02ncz" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Brain | Brain Co-Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .join-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 80px 20px 60px;
+    }
+
+    .join-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .join-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(0,212,170,0.45);
+      border-radius: 20px;
+      background: rgba(0,212,170,0.1);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: .1em;
+    }
+
+    .join-tag-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 10px var(--teal);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .join-title {
+      font-size: clamp(28px, 7vw, 42px);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -.02em;
+    }
+
+    .join-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--bright), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .join-sub {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .join-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--bright));
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+
+    .join-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .join-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 15%; right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(45,156,255,.35), transparent);
+    }
+
+    .field { margin-bottom: 18px; }
+
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--bright);
+      margin-bottom: 7px;
+      opacity: .85;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      background: rgba(2,13,26,0.8);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 15px;
+      font-family: 'Heebo', sans-serif;
+      color: var(--white);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--bright);
+      box-shadow: 0 0 0 3px rgba(45,156,255,0.12);
+    }
+
+    .field input::placeholder { color: var(--muted); font-weight: 300; }
+
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232d9cff' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .field select option { background: #041628; color: #fff; }
+
+    .interest-group { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .interest-btn {
+      flex: 1;
+      min-width: 100px;
+      padding: 11px 10px;
+      background: rgba(2,13,26,0.8);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      font-family: 'Heebo', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .2s;
+      text-align: center;
+    }
+
+    .interest-btn.active {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: rgba(0,212,170,0.08);
+      box-shadow: 0 0 14px rgba(0,212,170,0.1);
+    }
+
+    .join-submit {
+      width: 100%;
+      padding: 15px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--bright));
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(45,156,255,0.3);
+    }
+
+    .join-submit:hover {
+      opacity: .92;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(45,156,255,0.4);
+    }
+
+    .join-submit:active { transform: translateY(0); }
+    .join-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    .join-privacy {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    .join-error {
+      display: none;
+      background: rgba(255,80,80,0.1);
+      border: 1px solid rgba(255,80,80,0.3);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #ff8080;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .join-error.show { display: block; }
+
+    .success-screen {
+      display: none;
+      text-align: center;
+      animation: fadeUp .5s ease;
+    }
+
+    .success-screen.show { display: block; }
+
+    .success-icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(0,212,170,0.1);
+      border: 2px solid var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 32px;
+    }
+
+    .success-title {
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 14px;
+      letter-spacing: -.02em;
+    }
+
+    .success-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--bright), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .success-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 600px) {
+      .join-wrap { padding: 72px 16px 50px; }
+      .join-card { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+
+<div class="join-wrap">
+
+  <!-- Header -->
+  <div class="join-header reveal" id="joinHeader">
+    <div class="join-tag"><div class="join-tag-dot"></div>JOIN · Brain Community</div>
+    <h1 class="join-title">Ready to upgrade<br>the way you <em>work?</em></h1>
+    <div class="join-divider"></div>
+    <p class="join-sub">Fill in your details and we'll match you with content<br>tailored exactly to your field</p>
+  </div>
+
+  <!-- Form card -->
+  <div class="join-card reveal" id="joinCard">
+
+    <div class="field">
+      <label>Full Name</label>
+      <input type="text" id="fullName" placeholder="John Smith" autocomplete="name">
+    </div>
+
+    <div class="field">
+      <label>Company / Organization</label>
+      <input type="text" id="company" placeholder="Organization name">
+    </div>
+
+    <div class="field">
+      <label>Industry</label>
+      <select id="industry">
+        <option value="" disabled selected>Select industry</option>
+        <option>Retail & Sales</option>
+        <option>Banking & Finance</option>
+        <option>Customer Service</option>
+        <option>Logistics & Shipping</option>
+        <option>Healthcare</option>
+        <option>Education & Training</option>
+        <option>Real Estate</option>
+        <option>Technology</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Branch</label>
+      <input type="text" id="branch" placeholder="Branch name / region">
+    </div>
+
+    <div class="field">
+      <label>Department / Role</label>
+      <input type="text" id="role" placeholder="e.g. Sales Manager, Floor Staff">
+    </div>
+
+    <div class="field">
+      <label>Mobile Number</label>
+      <input type="tel" id="phone" placeholder="+1 (555) 000-0000" inputmode="numeric">
+    </div>
+
+    <div class="field">
+      <label>What content interests you?</label>
+      <div class="interest-group">
+        <button class="interest-btn" data-value="work" onclick="selectInterest(this)">💼 Work</button>
+        <button class="interest-btn" data-value="life" onclick="selectInterest(this)">⚡ Life & Energy</button>
+        <button class="interest-btn" data-value="both" onclick="selectInterest(this)">🔥 Both</button>
+      </div>
+    </div>
+
+    <button class="join-submit" id="joinSubmit" onclick="submitJoin()">
+      I want to join
+    </button>
+
+    <div class="join-privacy">🔒 Your details are kept with us only and are not shared with third parties</div>
+    <div class="join-error" id="joinError">Please fill in all fields before submitting</div>
+  </div>
+
+  <!-- Success -->
+  <div class="success-screen" id="successScreen">
+    <div class="join-card">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Well done!<br><em>You're in</em></div>
+      <p class="success-text">
+        We've received your details.<br>
+        You'll soon start receiving content tailored exactly to your field, twice a week, straight to your phone.<br><br>
+        <strong style="color:var(--bright);">Welcome to BRAIN 🧠</strong>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="process.html">Process</a>
+    <a href="uses.html">Use Cases</a>
+    <a href="roi.html">ROI</a>
+    <a href="smb.html">SMB</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="demo.html">Demo</a>
+    <a href="articles.html">Articles</a>
+    <a href="jobs.html">Careers</a>
+  </div>
+  <div class="footer-copy">© All rights reserved · Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">Website design <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
+</footer>
+
+<script src="shared.js"></script>
+<script>renderNav('join','en');</script>
+
+<script>
+  let selectedInterest = '';
+
+  function selectInterest(btn) {
+    document.querySelectorAll('.interest-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedInterest = btn.dataset.value;
+  }
+
+  function validateForm() {
+    const required = ['fullName','company','industry','branch','role','phone'];
+    for (const id of required) {
+      if (!document.getElementById(id).value.trim()) return false;
+    }
+    return !!selectedInterest;
+  }
+
+  async function submitJoin() {
+    const err = document.getElementById('joinError');
+    err.classList.remove('show');
+
+    if (!validateForm()) {
+      err.classList.add('show');
+      return;
+    }
+
+    const btn = document.getElementById('joinSubmit');
+    btn.disabled = true;
+    btn.innerHTML = 'Sending... <span class="spinner"></span>';
+
+    const data = {
+      fullName:   document.getElementById('fullName').value.trim(),
+      company:    document.getElementById('company').value.trim(),
+      industry:   document.getElementById('industry').value,
+      branch:     document.getElementById('branch').value.trim(),
+      role:       document.getElementById('role').value.trim(),
+      phone:      document.getElementById('phone').value.trim(),
+      interest:   selectedInterest,
+      timestamp:  new Date().toLocaleString('en-US')
+    };
+
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNRDwZtCJ3uHScofDWb8BW0pHVou24hotKqueukN6lTFugap55p8ecttcyqqVPvGFE/exec';
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    } catch(e) {
+      console.log('Form error:', e);
+    }
+
+    showSuccess();
+  }
+
+  function showSuccess() {
+    document.getElementById('joinCard').style.display = 'none';
+    document.getElementById('joinHeader').style.display = 'none';
+    document.getElementById('successScreen').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
