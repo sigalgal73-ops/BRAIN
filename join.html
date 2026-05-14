@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="facebook-domain-verification" content="gzjgv9eghct29v046qzstfzum02ncz" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join Brain | Brain Co-Manager</title>
+  <title>Brain Co-Manager | הצטרפו למהפכה</title>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
@@ -16,6 +16,7 @@
       padding: 80px 20px 60px;
     }
 
+    /* Header */
     .join-header {
       text-align: center;
       margin-bottom: 36px;
@@ -75,6 +76,7 @@
       border-radius: 2px;
     }
 
+    /* Card */
     .join-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -92,6 +94,7 @@
       background: linear-gradient(90deg, transparent, rgba(45,156,255,.35), transparent);
     }
 
+    /* Fields */
     .field { margin-bottom: 18px; }
 
     .field label {
@@ -132,13 +135,14 @@
     .field select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232d9cff' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 14px center;
-      padding-right: 36px;
+      background-position: left 14px center;
+      padding-left: 36px;
       cursor: pointer;
     }
 
     .field select option { background: #041628; color: #fff; }
 
+    /* Interest buttons */
     .interest-group { display: flex; gap: 10px; flex-wrap: wrap; }
 
     .interest-btn {
@@ -164,6 +168,7 @@
       box-shadow: 0 0 14px rgba(0,212,170,0.1);
     }
 
+    /* Submit */
     .join-submit {
       width: 100%;
       padding: 15px;
@@ -178,6 +183,7 @@
       cursor: pointer;
       transition: opacity .2s, transform .15s, box-shadow .2s;
       box-shadow: 0 4px 20px rgba(45,156,255,0.3);
+      letter-spacing: .3px;
     }
 
     .join-submit:hover {
@@ -211,6 +217,7 @@
 
     .join-error.show { display: block; }
 
+    /* Success */
     .success-screen {
       display: none;
       text-align: center;
@@ -255,6 +262,7 @@
       margin: 0 auto;
     }
 
+    /* Spinner */
     .spinner {
       display: inline-block;
       width: 18px; height: 18px;
@@ -263,7 +271,7 @@
       border-radius: 50%;
       animation: spin .7s linear infinite;
       vertical-align: middle;
-      margin-right: 8px;
+      margin-left: 8px;
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -282,82 +290,82 @@
 
   <!-- Header -->
   <div class="join-header reveal" id="joinHeader">
-    <div class="join-tag"><div class="join-tag-dot"></div>JOIN · Brain Community</div>
-    <h1 class="join-title">Ready to upgrade<br>the way you <em>work?</em></h1>
+    <div class="join-tag"><div class="join-tag-dot"></div>הרשמה · Brain Community</div>
+    <h1 class="join-title">מוכנים לשדרג את<br>הדרך בה אתם <em>עובדים?</em></h1>
     <div class="join-divider"></div>
-    <p class="join-sub">Fill in your details and we'll match you with content<br>tailored exactly to your field</p>
+    <p class="join-sub">מלאו את הפרטים ונתאים לכם תוכן<br>שמדויק בדיוק לתחום שלכם</p>
   </div>
 
   <!-- Form card -->
   <div class="join-card reveal" id="joinCard">
 
     <div class="field">
-      <label>Full Name</label>
-      <input type="text" id="fullName" placeholder="John Smith" autocomplete="name">
+      <label>שם מלא</label>
+      <input type="text" id="fullName" placeholder="ישראל ישראלי" autocomplete="name">
     </div>
 
     <div class="field">
-      <label>Company / Organization</label>
-      <input type="text" id="company" placeholder="Organization name">
+      <label>חברה / ארגון</label>
+      <input type="text" id="company" placeholder="שם הארגון">
     </div>
 
     <div class="field">
-      <label>Industry</label>
+      <label>ענף</label>
       <select id="industry">
-        <option value="" disabled selected>Select industry</option>
-        <option>Retail & Sales</option>
-        <option>Banking & Finance</option>
-        <option>Customer Service</option>
-        <option>Logistics & Shipping</option>
-        <option>Healthcare</option>
-        <option>Education & Training</option>
-        <option>Real Estate</option>
-        <option>Technology</option>
-        <option>Other</option>
+        <option value="" disabled selected>בחרו ענף</option>
+        <option>קמעונאות ומכירות</option>
+        <option>בנקאות ופיננסים</option>
+        <option>שירות לקוחות</option>
+        <option>לוגיסטיקה ושילוח</option>
+        <option>בריאות ורפואה</option>
+        <option>חינוך והדרכה</option>
+        <option>נדל"ן</option>
+        <option>טכנולוגיה</option>
+        <option>אחר</option>
       </select>
     </div>
 
     <div class="field">
-      <label>Branch</label>
-      <input type="text" id="branch" placeholder="Branch name / region">
+      <label>סניף</label>
+      <input type="text" id="branch" placeholder="שם הסניף / אזור">
     </div>
 
     <div class="field">
-      <label>Department / Role</label>
-      <input type="text" id="role" placeholder="e.g. Sales Manager, Floor Staff">
+      <label>מחלקה / תפקיד</label>
+      <input type="text" id="role" placeholder="לדוגמה: מנהל מכירות, עובד שטח">
     </div>
 
     <div class="field">
-      <label>Mobile Number</label>
-      <input type="tel" id="phone" placeholder="+1 (555) 000-0000" inputmode="numeric">
+      <label>מספר נייד</label>
+      <input type="tel" id="phone" placeholder="05X-XXXXXXX" inputmode="numeric">
     </div>
 
     <div class="field">
-      <label>What content interests you?</label>
+      <label>איזה תוכן מעניין אותך?</label>
       <div class="interest-group">
-        <button class="interest-btn" data-value="work" onclick="selectInterest(this)">💼 Work</button>
-        <button class="interest-btn" data-value="life" onclick="selectInterest(this)">⚡ Life & Energy</button>
-        <button class="interest-btn" data-value="both" onclick="selectInterest(this)">🔥 Both</button>
+        <button class="interest-btn" data-value="work" onclick="selectInterest(this)">💼 עבודה</button>
+        <button class="interest-btn" data-value="life" onclick="selectInterest(this)">⚡ חיים ואנרגיה</button>
+        <button class="interest-btn" data-value="both" onclick="selectInterest(this)">🔥 גם וגם</button>
       </div>
     </div>
 
     <button class="join-submit" id="joinSubmit" onclick="submitJoin()">
-      I want to join
+      אני רוצה להצטרף
     </button>
 
-    <div class="join-privacy">🔒 Your details are kept with us only and are not shared with third parties</div>
-    <div class="join-error" id="joinError">Please fill in all fields before submitting</div>
+    <div class="join-privacy">🔒 הפרטים שלך נשמרים אצלנו בלבד ולא מועברים לגורמים חיצוניים</div>
+    <div class="join-error" id="joinError">נא למלא את כל השדות לפני שליחה</div>
   </div>
 
   <!-- Success -->
   <div class="success-screen" id="successScreen">
     <div class="join-card">
       <div class="success-icon">✓</div>
-      <div class="success-title">Well done!<br><em>You're in</em></div>
+      <div class="success-title">כל הכבוד!<br><em>אתם בפנים</em></div>
       <p class="success-text">
-        We've received your details.<br>
-        You'll soon start receiving content tailored exactly to your field, twice a week, straight to your phone.<br><br>
-        <strong style="color:var(--bright);">Welcome to BRAIN 🧠</strong>
+        קיבלנו את הפרטים שלכם.<br>
+        בקרוב תתחילו לקבל תוכן שמדויק בדיוק לתחום שלכם, פעמיים בשבוע, ישר לנייד.<br><br>
+        <strong style="color:var(--bright);">ברוכים המצטרפים ל-BRAIN 🧠</strong>
       </p>
     </div>
   </div>
@@ -367,21 +375,21 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-links">
-    <a href="about.html">About</a>
-    <a href="process.html">Process</a>
-    <a href="uses.html">Use Cases</a>
+    <a href="about.html">אודותינו</a>
+    <a href="process.html">התהליך</a>
+    <a href="uses.html">שימושים</a>
     <a href="roi.html">ROI</a>
     <a href="smb.html">SMB</a>
-    <a href="pricing.html">Pricing</a>
+    <a href="pricing.html">מחירים</a>
     <a href="demo.html">Demo</a>
-    <a href="articles.html">Articles</a>
-    <a href="jobs.html">Careers</a>
+    <a href="articles.html">מאמרים</a>
+    <a href="jobs.html">דרושים</a>
   </div>
-  <div class="footer-copy">© All rights reserved · Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">Website design <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
+  <div class="footer-copy">© כל הזכויות שמורות לערן שחר | Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">עיצוב אתר <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
 </footer>
 
 <script src="shared.js"></script>
-<script>renderNav('join','en');</script>
+<script>renderNav('join');</script>
 
 <script>
   let selectedInterest = '';
@@ -411,7 +419,7 @@
 
     const btn = document.getElementById('joinSubmit');
     btn.disabled = true;
-    btn.innerHTML = 'Sending... <span class="spinner"></span>';
+    btn.innerHTML = 'שולח... <span class="spinner"></span>';
 
     const data = {
       fullName:   document.getElementById('fullName').value.trim(),
@@ -421,9 +429,10 @@
       role:       document.getElementById('role').value.trim(),
       phone:      document.getElementById('phone').value.trim(),
       interest:   selectedInterest,
-      timestamp:  new Date().toLocaleString('en-US')
+      timestamp:  new Date().toLocaleString('he-IL')
     };
 
+    // Google Sheets via Apps Script
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNRDwZtCJ3uHScofDWb8BW0pHVou24hotKqueukN6lTFugap55p8ecttcyqqVPvGFE/exec';
     try {
       await fetch(SCRIPT_URL, {
@@ -446,6 +455,13 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
+
+<!-- Netlify hidden form for detection -->
+<form name="brain-join" netlify netlify-honeypot="bot-field" hidden>
+  <input name="fullName"> <input name="company"> <input name="industry">
+  <input name="branch"> <input name="role"> <input name="phone">
+  <input name="interest"> <input name="timestamp"> <input name="bot-field">
+</form>
 
 </body>
 </html>
