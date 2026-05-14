@@ -291,7 +291,7 @@
   <!-- Header -->
   <div class="join-header reveal">
     <div class="join-tag"><div class="join-tag-dot"></div>הרשמה · Brain Community</div>
-    <h1 class="join-title">מוכנים לשדרג את<br>הדרך שאתם <em>עובדים?</em></h1>
+    <h1 class="join-title">מוכנים לשדרג את<br>הדרך בה אתם <em>עובדים?</em></h1>
     <div class="join-divider"></div>
     <p class="join-sub">מלאו את הפרטים ונתאים לכם תוכן<br>שמדויק בדיוק לתחום שלכם</p>
   </div>
@@ -422,7 +422,6 @@
     btn.innerHTML = 'שולח... <span class="spinner"></span>';
 
     const data = {
-      'form-name': 'brain-join',
       fullName:   document.getElementById('fullName').value.trim(),
       company:    document.getElementById('company').value.trim(),
       industry:   document.getElementById('industry').value,
@@ -433,12 +432,14 @@
       timestamp:  new Date().toLocaleString('he-IL')
     };
 
-    // Netlify Forms submission
+    // Google Sheets via Apps Script
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNRDwZtCJ3uHScofDWb8BW0pHVou24hotKqueukN6lTFugap55p8ecttcyqqVPvGFE/exec';
     try {
-      await fetch('/', {
+      await fetch(SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data).toString()
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
       });
     } catch(e) {
       console.log('Form error:', e);
