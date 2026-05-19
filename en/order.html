@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Order | Brain Co-Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="../shared.css">
 <style>
 .order-form{max-width:720px;margin:0 auto;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
@@ -72,15 +72,15 @@
       <div class="card" style="padding:40px">
 
         <form id="orderForm">
-          <!-- שורה 1: שם חברה / ח.פ / כתובת -->
+          
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Company Name <span>*</span></label>
               <input type="text" class="form-input" name="company" placeholder="Company name" required>
             </div>
             <div class="form-group">
-              <label class="form-label">Tax ID <span>*</span></label>
-              <input type="text" class="form-input" name="tax-id" placeholder="Tax ID number" required>
+              <label class="form-label">Tax ID / Registration No. <span>*</span></label>
+              <input type="text" class="form-input" name="tax-id" placeholder="Tax ID" required>
             </div>
           </div>
           <div class="form-group" style="margin-bottom:16px">
@@ -88,7 +88,7 @@
             <input type="text" class="form-input" name="address" placeholder="Company address" required>
           </div>
 
-          <!-- שורה 2: איש קשר / תפקיד -->
+          
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Contact Name <span>*</span></label>
@@ -96,11 +96,11 @@
             </div>
             <div class="form-group">
               <label class="form-label">Role <span>*</span></label>
-              <input type="text" class="form-input" name="role" placeholder="Job title" required>
+              <input type="text" class="form-input" name="role" placeholder="Role" required>
             </div>
           </div>
 
-          <!-- שורה 3: טלפון / אימייל -->
+          
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Phone <span>*</span></label>
@@ -112,34 +112,34 @@
             </div>
           </div>
 
-          <!-- בחירת חבילה -->
+          
           <div class="form-group" style="margin-bottom:20px">
             <label class="form-label">Select Package (excl. VAT) <span>*</span></label>
             <div class="radio-group" style="margin-top:8px">
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg1" value="Starter – 15,000₪ – 3 סרטונים, מצגת אחת, 4 שעות ייעוץ" required>
-                <label for="pkg1">15,000 ₪ – 3 videos · 1 presentation · 4 consulting hours <strong style="color:var(--sky)">(Starter)</strong></label>
+                <input type="radio" name="package" id="pkg1" value="Starter – $4,000 – 3 videos, 1 presentation, 4 consulting hours" required>
+                <label for="pkg1">$4,000 – 3 videos · 1 presentation · 4 consulting hours <strong style="color:var(--sky)">(Starter)</strong></label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg2" value="Growth – 30,000₪ – 6 סרטונים, 2 מצגות, 8 שעות ייעוץ">
-                <label for="pkg2">30,000 ₪ – 6 videos · 2 presentations · 8 consulting hours <strong style="color:var(--sky)">(Growth)</strong></label>
+                <input type="radio" name="package" id="pkg2" value="Growth – $8,200 – 6 videos, 2 presentations, 8 consulting hours">
+                <label for="pkg2">$8,200 – 6 videos · 2 presentations · 8 consulting hours <strong style="color:var(--sky)">(Growth)</strong></label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg3" value="Premium – 45,000₪ – 9 סרטונים, 3 מצגות, 12 שעות ייעוץ">
-                <label for="pkg3">45,000 ₪ – 9 videos · 3 presentations · 12 consulting hours <strong style="color:var(--sky)">(Premium)</strong></label>
+                <input type="radio" name="package" id="pkg3" value="Premium – $12,300 – 9 videos, 3 presentations, 12 consulting hours">
+                <label for="pkg3">$12,300 – 9 videos · 3 presentations · 12 consulting hours <strong style="color:var(--sky)">(Premium)</strong></label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg4" value="ריטיינר חודשי – 2,500₪ – 8 שעות לחודש, בהתחייבות 12 חודשים">
-                <label for="pkg4">2,500 ₪ – Monthly retainer · 8 hrs/month · 12-month commitment</label>
+                <input type="radio" name="package" id="pkg4" value="Monthly Retainer – $680/month – 8 hours/month, 12-month commitment">
+                <label for="pkg4">$680/month – Monthly retainer · 8 hours/month · 12-month commitment</label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg5" value="שעתיים סדנא – 8,500₪">
-                <label for="pkg5">8,500 ₪ – 2-hour workshop</label>
+                <input type="radio" name="package" id="pkg5" value="2-Hour Workshop – $2,300">
+                <label for="pkg5">$2,300 – 2-hour workshop session</label>
               </div>
             </div>
           </div>
 
-          <!-- תאריכים -->
+          
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Start Date <span>*</span></label>
@@ -151,55 +151,45 @@
             </div>
           </div>
 
-          <button type="submit" class="btn-submit">Submit →</button>
+          <button type="submit" class="btn-submit">Submit Order →</button>
         </form>
 
         <div class="success-msg" id="successMsg">
-          ✓ Form submitted successfully! We'll contact you shortly to confirm your order.
+          ✓ Form submitted successfully! We'll get back to you shortly to confirm your order.
         </div>
 
-
+        <ul class="form-note" id="formNotes">
+          <li>* After submitting, we'll contact you to verify details and arrange payment</li>
+          <li>* Submitting this form confirms agreement to the service terms</li>
+        </ul>
       </div>
     </div>
   </div>
 
   <div style="height:60px"></div>
-  <footer>
-    <div class="footer-links">
-      <a href="about.html">אודותינו</a>
-      <a href="process.html">התהליך</a>
-      <a href="uses.html">שימושים</a>
-      <a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a>
-      <a href="pricing.html">מחירים</a>
-      <a href="demo.html">Demo</a>
-      <a href="articles.html">מאמרים</a>
-      <a href="jobs.html">דרושים</a>
-    </div>
-    <div class="footer-copy">© כל הזכויות שמורות לערן שחר | Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">עיצוב אתר <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
-  </footer>
+  <div id="footer-placeholder"></div>
 </div>
 
-<script src="shared.js"></script>
-<script>renderNav('order');</script>
+<script src="../shared.js"></script>
+<script>renderNav('order','en');</script>
 <script>
 document.getElementById('orderForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const pkg = document.querySelector('input[name="package"]:checked');
   if (!pkg) { alert('Please select a package'); return; }
 
-  const formData = new FormData(this);
-  formData.append('form-name', 'brain-order-en');
-
   fetch('/', {
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: new URLSearchParams(formData).toString()
+    body: new URLSearchParams(new FormData(this)).toString()
+      .replace(/^/, 'form-name=brain-order-en&')
   }).catch(() => {});
 
   this.style.display = 'none';
   document.getElementById('successMsg').style.display = 'block';
+  const notes = document.getElementById('formNotes'); if(notes) notes.style.display = 'none';
 });
 </script>
+<script>renderFooter();</script>
 </body>
 </html>
