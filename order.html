@@ -164,20 +164,7 @@
   </div>
 
   <div style="height:60px"></div>
-  <footer>
-    <div class="footer-links">
-      <a href="about.html">אודותינו</a>
-      <a href="process.html">התהליך</a>
-      <a href="uses.html">שימושים</a>
-      <a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a>
-      <a href="pricing.html">מחירים</a>
-      <a href="demo.html">Demo</a>
-      <a href="articles.html">מאמרים</a>
-      <a href="jobs.html">דרושים</a>
-    </div>
-    <div class="footer-copy">© כל הזכויות שמורות לערן שחר | Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">עיצוב אתר <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
-  </footer>
+  <div id="footer-placeholder"></div>
 </div>
 
 <script src="shared.js"></script>
@@ -201,5 +188,6 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
   document.getElementById('successMsg').style.display = 'block';
 });
 </script>
+<script>renderFooter();</script>
 </body>
 </html>
