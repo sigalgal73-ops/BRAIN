@@ -20,6 +20,7 @@ function renderNav(activePage, lang) {
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'Articles',   href: 'articles.html' },
     { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
+    { id: 'order',    label: '🛒 Order',    href: 'order.html', cta: true },
   ] : [
     { id: 'about',    label: 'אודותינו',  href: 'about.html' },
     { id: 'process',  label: 'התהליך',    href: 'process.html' },
@@ -38,6 +39,7 @@ function renderNav(activePage, lang) {
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
+    { id: 'order',    label: '🛒 הזמנה',   href: 'order.html', cta: true },
   ];
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
