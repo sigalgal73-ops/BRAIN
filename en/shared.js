@@ -56,7 +56,7 @@ function renderNav(activePage, lang) {
     if (p.submenu) {
       return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>`;
     }
-    return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
+    return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}" ${p.cta?'style="display:inline-block;width:auto;align-self:flex-end;margin:6px 16px;"':''}>${p.label}</a>`;
   }).join('');
 
   document.getElementById('nav-placeholder').innerHTML = `
@@ -83,16 +83,6 @@ function renderNav(activePage, lang) {
     const m = document.getElementById('nav-mobile-menu');
     m.classList.toggle('open');
     this.textContent = m.classList.contains('open') ? '✕' : '☰';
-    if (m.classList.contains('open')) {
-      m.style.maxHeight = 'calc(100vh - 60px)';
-      m.style.overflowY = 'scroll';
-      m.style.webkitOverflowScrolling = 'touch';
-      m.style.zIndex = '9999';
-      m.style.position = 'relative';
-    } else {
-      m.style.maxHeight = '';
-      m.style.overflowY = '';
-    }
   };
 }
 
