@@ -40,7 +40,7 @@ function renderNav(activePage, lang) {
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
-    { id: 'podcast',  label: 'מה מפספסים', href: 'podcast.html' },
+    { id: 'podcast',  label: 'מה שפספסתם', href: 'podcast.html' },
     { id: 'team',     label: 'החברים שלנו', href: 'team.html' },
     { id: 'join',     label: 'הצטרפו', href: 'join.html', cta: true },
   ];
@@ -56,8 +56,7 @@ function renderNav(activePage, lang) {
     if (p.submenu) {
       return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>`;
     }
-    if (p.cta) return `<a href="${p.href}" class="nav-demo${p.id===activePage?' active':''}" style="display:inline-block;width:auto;align-self:${isEn?'flex-start':'flex-end'};margin:6px 16px;">${p.label}</a>`;
-    return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>`;
+    return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
   }).join('');
 
   document.getElementById('nav-placeholder').innerHTML = `
