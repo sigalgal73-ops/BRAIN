@@ -3,24 +3,25 @@
 function renderNav(activePage, lang) {
   const isEn = lang === 'en';
   const pages = isEn ? [
-    { id: 'about',    label: 'About',      href: 'about.html' },
-    { id: 'process',  label: 'Process',    href: 'process.html' },
-    { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
-    { id: 'roi',      label: 'ROI',        href: 'roi.html' },
-    { id: 'smb',      label: 'SMB',        href: 'smb.html' },
-    { id: 'investors', label: 'Investors', href: 'investors.html', submenu: [
+    { id: 'about',    label: 'About',    href: 'about.html' },
+    { id: 'process',  label: 'Process',  href: 'process.html' },
+    { id: 'uses',     label: 'Use Cases',href: 'uses.html' },
+    { id: 'roi',      label: 'ROI',      href: 'roi.html' },
+    { id: 'smb',      label: 'SMB',      href: 'smb.html' },
+    { id: 'investors',label: 'Investors',href: 'investors.html', submenu: [
       { label: 'Engine Within Engine', href: 'investors-engine.html' },
-      { label: 'Brain Value Proof', href: 'investors-value.html' },
-      { label: 'Go to Market', href: 'investors-gtm.html' },
-      { label: 'Competition', href: 'investors-competition.html' },
-      { label: 'VC Funds', href: 'investors-vc.html' },
-      { label: 'FAQ', href: 'investors-faq.html' },
+      { label: 'Brain Value Proof',    href: 'investors-value.html' },
+      { label: 'Go to Market',         href: 'investors-gtm.html' },
+      { label: 'Competition',          href: 'investors-competition.html' },
+      { label: 'VC Funds',             href: 'investors-vc.html' },
+      { label: 'FAQ',                  href: 'investors-faq.html' },
     ]},
-    { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
-    { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
-    { id: 'articles', label: 'Articles',   href: 'articles.html' },
-    { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
-    { id: 'order',    label: '🛒 Order',    href: 'order.html', cta: true },
+    { id: 'pricing',  label: 'Pricing',  href: 'pricing.html' },
+    { id: 'demo',     label: 'Demo',     href: 'demo.html', cta: true },
+    { id: 'articles', label: 'Articles', href: 'articles.html' },
+    { id: 'jobs',     label: 'Careers',  href: 'jobs.html' },
+    { id: 'team',     label: 'Our Network', href: 'team.html' },
+    { id: 'join',     label: '🔗 Join',  href: 'join.html', cta: true },
   ] : [
     { id: 'about',    label: 'אודותינו',  href: 'about.html' },
     { id: 'process',  label: 'התהליך',    href: 'process.html' },
@@ -39,7 +40,8 @@ function renderNav(activePage, lang) {
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
-    { id: 'order',    label: '🛒 הזמנה',   href: 'order.html', cta: true },
+    { id: 'team',     label: 'החברים שלנו', href: 'team.html' },
+    { id: 'join',     label: '🔗 הצטרפו', href: 'join.html', cta: true },
   ];
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
@@ -75,56 +77,6 @@ function renderNav(activePage, lang) {
     m.classList.toggle('open');
     this.textContent = m.classList.contains('open') ? '✕' : '☰';
   };
-}
-
-// ── AUTO-INJECT SOCIAL ICONS INTO EXISTING FOOTER ──
-(function() {
-  const SOCIAL_HTML = `<div class="footer-social-row" style="display:flex;justify-content:center;gap:18px;margin-bottom:16px;">
-    <a href="https://www.linkedin.com/in/%D7%A2%D7%A8%D7%9F-%D7%A9%D7%97%D7%A8-b83b9140b/" style="color:#7ec8ff;transition:color .2s;display:flex;align-items:center;" title="LinkedIn" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
-    <a href="https://www.instagram.com/brain2spark.ai" style="color:#7ec8ff;transition:color .2s;display:flex;align-items:center;" title="Instagram" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
-    <a href="https://www.facebook.com/share/1CXjkEi8X2/" style="color:#7ec8ff;transition:color .2s;display:flex;align-items:center;" title="Facebook" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
-    <a href="https://www.tiktok.com/@brain2spark.ai" style="color:#7ec8ff;transition:color .2s;display:flex;align-items:center;" title="TikTok" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/></svg></a>
-    <a href="https://www.youtube.com/@Brain.co.manager" style="color:#7ec8ff;transition:color .2s;display:flex;align-items:center;" title="YouTube" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg></a>
-  </div>`;
-  document.addEventListener('DOMContentLoaded', function() {
-    const footer = document.querySelector('footer');
-    if (footer && !footer.querySelector('.footer-social-row')) {
-      footer.insertAdjacentHTML('afterbegin', SOCIAL_HTML);
-    }
-  });
-})();
-
-// ── SHARED FOOTER ──
-function renderFooter() {
-  const el = document.getElementById('footer-placeholder');
-  if (!el) return;
-  if (!document.getElementById('footer-social-style')) {
-    const s = document.createElement('style');
-    s.id = 'footer-social-style';
-    s.textContent = '.footer-social-row{display:flex;justify-content:center;gap:18px;margin-bottom:16px;} .footer-social{color:var(--muted);transition:color .2s;display:flex;align-items:center;} .footer-social:hover{color:var(--bright);}';
-    document.head.appendChild(s);
-  }
-  el.outerHTML = `<footer>
-    <div class="footer-social-row">
-      <a href="https://www.linkedin.com/in/%D7%A2%D7%A8%D7%9F-%D7%A9%D7%97%D7%A8-b83b9140b/" class="footer-social" title="LinkedIn" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
-      <a href="https://www.instagram.com/brain2spark.ai" class="footer-social" title="Instagram" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
-      <a href="https://www.facebook.com/share/1CXjkEi8X2/" class="footer-social" title="Facebook" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
-      <a href="https://www.tiktok.com/@brain2spark.ai" class="footer-social" title="TikTok" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/></svg></a>
-      <a href="https://www.youtube.com/@Brain.co.manager" class="footer-social" title="YouTube" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg></a>
-    </div>
-    <div class="footer-links">
-      <a href="about.html">אודותינו</a>
-      <a href="process.html">התהליך</a>
-      <a href="uses.html">שימושים</a>
-      <a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a>
-      <a href="pricing.html">מחירים</a>
-      <a href="demo.html">Demo</a>
-      <a href="articles.html">מאמרים</a>
-      <a href="jobs.html">דרושים</a>
-    </div>
-    <div class="footer-copy">© כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai</div>
-  </footer>`;
 }
 
 // ── PARTICLES ──
