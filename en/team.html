@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Network | Brain Co-Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+<style>
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.team-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+}
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(45,156,255,.35), transparent);
+}
+.team-card:hover {
+  border-color: rgba(45,156,255,.3);
+  transform: translateY(-4px);
+}
+.team-photo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  margin: 0 auto 20px;
+  display: block;
+  border: 3px solid rgba(45,156,255,0.3);
+  box-shadow: 0 0 24px rgba(45,156,255,0.2);
+}
+.team-name {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.team-role {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: .1em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.team-divider {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--bright));
+  margin: 0 auto 18px;
+  border-radius: 2px;
+}
+.team-bio {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  text-align: left;
+}
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+}
+.team-tag {
+  padding: 4px 12px;
+  background: rgba(45,156,255,0.08);
+  border: 1px solid rgba(45,156,255,0.2);
+  border-radius: 20px;
+  font-size: 11px;
+  color: var(--sky);
+  font-weight: 600;
+}
+@media(max-width:900px) {
+  .team-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+
+  <div class="page-hero">
+    <div class="page-tag">OUR NETWORK</div>
+    <h1 class="page-title">Our <em>Network</em></h1>
+    <p class="page-sub">Senior professionals who believe in Brain and collaborate in their own way</p>
+  </div>
+
+  <div class="sec reveal">
+    <div class="team-grid">
+
+      <!-- Dror Shaked -->
+      <div class="team-card">
+        <img src="../team-dror.jpeg" alt="Dror Shaked" class="team-photo">
+        <div class="team-name">Dror Shaked</div>
+        <div class="team-role">BizDev · Strategy · M&A</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          One of the most recognized BizDev and strategy professionals in Israeli high-tech. A Wix veteran from its earliest days, leading business development and M&A through the company's massive growth phase. Named by Geektime among Israel's top BizDev figures in 2014. Known as a "connector" — bridging entrepreneurs, investors, and strategic partnerships across the ecosystem.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Wix</span>
+          <span class="team-tag">BizDev</span>
+          <span class="team-tag">M&A</span>
+          <span class="team-tag">Ecosystem</span>
+        </div>
+      </div>
+
+      <!-- Tal Sander -->
+      <div class="team-card">
+        <img src="../team-tal.jpeg" alt="Tal Sander" class="team-photo">
+        <div class="team-name">Tal Sander</div>
+        <div class="team-role">Global Operations · Scale · M&A</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          Led Keter Group's transformation from an Israeli manufacturer into a global powerhouse with $400M+ in sales, operations in 40+ countries and dozens of factories worldwide. Drove international acquisitions including Allibert (France) and EOS (Denmark), and later facilitated the billion-dollar sale to BC Partners private equity.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Keter Group</span>
+          <span class="team-tag">Global Scale</span>
+          <span class="team-tag">Operations</span>
+          <span class="team-tag">M&A</span>
+        </div>
+      </div>
+
+      <!-- Pazit Elhalal -->
+      <div class="team-card">
+        <img src="../team-pazit.jpeg" alt="Pazit Elhalal" class="team-photo">
+        <div class="team-name">Pazit Elhalal</div>
+        <div class="team-role">Executive Search · Board Advisory</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          Leads PRG Executive Search — a boutique firm specializing in identifying CEOs, CFOs and board members for Israel's largest organizations. Active in executive search since the late 1980s, trusted by major financial institutions, public companies and conglomerates. Selected by Bank Hapoalim to lead the search for its new CEO.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Executive Search</span>
+          <span class="team-tag">Board Advisory</span>
+          <span class="team-tag">Leadership</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="height:60px"></div>
+  <div id="footer-placeholder"></div>
+</div>
+<script src="../shared.js"></script>
+<script>renderNav('team','en');</script>
+<script>renderFooter();</script>
+</body>
+</html>
