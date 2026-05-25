@@ -56,7 +56,8 @@ function renderNav(activePage, lang) {
     if (p.submenu) {
       return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>`;
     }
-    return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}" ${p.cta?`style="display:inline-block;width:auto;align-self:${isEn?'flex-start':'flex-end'};margin:6px 16px;"`:''}>${p.label}</a>`;
+    if (p.cta) return `<a href="${p.href}" class="nav-demo${p.id===activePage?' active':''}" style="display:inline-block;width:auto;align-self:${isEn?'flex-start':'flex-end'};margin:6px 16px;">${p.label}</a>`;
+    return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>`;
   }).join('');
 
   document.getElementById('nav-placeholder').innerHTML = `
