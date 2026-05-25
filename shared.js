@@ -73,6 +73,14 @@ function renderNav(activePage, lang) {
     </nav>
     <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
 
+  // Compact nav
+  if (!document.getElementById('nav-compact-style')) {
+    const s = document.createElement('style');
+    s.id = 'nav-compact-style';
+    s.textContent = '.nav-link{font-size:12px!important;letter-spacing:0!important;padding:0 1px!important;} .sep{margin:0 1px!important;font-size:10px!important;opacity:.25;} .nav-links{gap:0!important;flex-wrap:nowrap!important;}';
+    document.head.appendChild(s);
+  }
+
   document.getElementById('nav-hamburger').onclick = function() {
     const m = document.getElementById('nav-mobile-menu');
     m.classList.toggle('open');
