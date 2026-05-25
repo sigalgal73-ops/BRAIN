@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>החברים שלנו | Brain Co-Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.team-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+}
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(45,156,255,.35), transparent);
+}
+.team-card:hover {
+  border-color: rgba(45,156,255,.3);
+  transform: translateY(-4px);
+}
+.team-photo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  margin: 0 auto 20px;
+  display: block;
+  border: 3px solid rgba(45,156,255,0.3);
+  box-shadow: 0 0 24px rgba(45,156,255,0.2);
+}
+.team-name {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.team-role {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: .1em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.team-divider {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--bright));
+  margin: 0 auto 18px;
+  border-radius: 2px;
+}
+.team-bio {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  text-align: right;
+}
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+}
+.team-tag {
+  padding: 4px 12px;
+  background: rgba(45,156,255,0.08);
+  border: 1px solid rgba(45,156,255,0.2);
+  border-radius: 20px;
+  font-size: 11px;
+  color: var(--sky);
+  font-weight: 600;
+}
+@media(max-width:900px) {
+  .team-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+
+  <div class="page-hero">
+    <div class="page-tag">OUR NETWORK</div>
+    <h1 class="page-title">החברים <em>שלנו</em></h1>
+    <p class="page-sub">אנשי מקצוע בכירים שמאמינים ב-Brain ומשתפים פעולה בדרכם</p>
+  </div>
+
+  <div class="sec reveal">
+    <div class="team-grid">
+
+      <!-- דרור שקד -->
+      <div class="team-card">
+        <img src="team-dror.jpeg" alt="דרור שקד" class="team-photo">
+        <div class="team-name">דרור שקד</div>
+        <div class="team-role">BizDev · Strategy · M&A</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          אחד מאנשי הפיתוח העסקי והאסטרטגיה הבולטים בהייטק הישראלי. ותיק Wix מהימים הראשונים, שם הוביל פיתוח עסקי ומיזוגים ורכישות בתקופת הצמיחה הגדולה. נכנס לרשימת אנשי ה-BizDev הבולטים בישראל של Geektime כבר ב-2014. מזוהה כ"איש חיבורים" — מחבר יזמים, משקיעים ושותפויות אסטרטגיות.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Wix</span>
+          <span class="team-tag">BizDev</span>
+          <span class="team-tag">M&A</span>
+          <span class="team-tag">Ecosystem</span>
+        </div>
+      </div>
+
+      <!-- טל סנדר -->
+      <div class="team-card">
+        <img src="team-tal.jpeg" alt="טל סנדר" class="team-photo">
+        <div class="team-name">טל סנדר</div>
+        <div class="team-role">Global Operations · Scale · M&A</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          הוביל את Keter Group להפוך מחברה ישראלית תעשייתית לחברת ענק גלובלית עם מעל 400 מיליון דולר מכירות, פעילות ב-40+ מדינות ועשרות מפעלים. הוביל רכישות בינלאומיות כולל Allibert הצרפתית ו-EOS הדנית, ולאחר מכן סייע בעסקת המכירה לקרן BC Partners בעסקת מיליארדי דולרים.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Keter Group</span>
+          <span class="team-tag">Global Scale</span>
+          <span class="team-tag">Operations</span>
+          <span class="team-tag">M&A</span>
+        </div>
+      </div>
+
+      <!-- פזית אלחלל -->
+      <div class="team-card">
+        <img src="team-pazit.jpeg" alt="פזית אלחלל" class="team-photo">
+        <div class="team-name">פזית אלחלל</div>
+        <div class="team-role">Executive Search · Board Advisory</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          מובילה את PRG Executive Search — חברת בוטיק לאיתור מנכ"לים, סמנכ"לים ודירקטורים לחברות הגדולות במשק. פועלת בתחום מאז שנות ה-80 ומזוהה עם גיוס הנהלות ודירקטוריונים לגופים פיננסיים, חברות ציבוריות ותאגידים בכירים. בנק הפועלים בחר בה לתהליך איתור מנכ"ל חדש לבנק.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Executive Search</span>
+          <span class="team-tag">Board Advisory</span>
+          <span class="team-tag">Leadership</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="height:60px"></div>
+  <div id="footer-placeholder"></div>
+</div>
+<script src="shared.js"></script>
+<script>renderNav('team');</script>
+<script>renderFooter();</script>
+</body>
+</html>
