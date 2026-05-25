@@ -54,8 +54,7 @@ function renderNav(activePage, lang) {
   }).join('');
   const mobileLinks = pages.map(p => {
     if (p.submenu) {
-      const sub = p.submenu.map(s => `<a href="${s.href}" style="display:block;padding:10px 20px 10px 32px;font-size:13px;color:var(--muted);border-bottom:1px solid rgba(45,156,255,0.08);">${s.label}</a>`).join('');
-      return `<div><div onclick="var n=this.nextElementSibling;var a=this.querySelector('.arr');var open=n.style.display==='block';n.style.display=open?'none':'block';a.textContent=open?'▾':'▴';" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid rgba(45,156,255,0.1);"><span style="color:var(--white);font-weight:600;">${p.label}</span><span class="arr" style="color:var(--teal);font-size:11px;">▾</span></div><div style="display:none;background:rgba(0,0,0,0.2);">${sub}</div></div>`;
+      return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>`;
     }
     return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
   }).join('');
@@ -84,6 +83,16 @@ function renderNav(activePage, lang) {
     const m = document.getElementById('nav-mobile-menu');
     m.classList.toggle('open');
     this.textContent = m.classList.contains('open') ? '✕' : '☰';
+    if (m.classList.contains('open')) {
+      m.style.maxHeight = 'calc(100vh - 60px)';
+      m.style.overflowY = 'scroll';
+      m.style.webkitOverflowScrolling = 'touch';
+      m.style.zIndex = '9999';
+      m.style.position = 'relative';
+    } else {
+      m.style.maxHeight = '';
+      m.style.overflowY = '';
+    }
   };
 }
 
