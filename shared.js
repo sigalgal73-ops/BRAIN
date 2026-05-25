@@ -73,14 +73,6 @@ function renderNav(activePage, lang) {
     </nav>
     <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
 
-  // Compact nav
-  if (!document.getElementById('nav-compact-style')) {
-    const s = document.createElement('style');
-    s.id = 'nav-compact-style';
-    s.textContent = '.nav-link{font-size:12px!important;letter-spacing:0!important;padding:0 1px!important;} .sep{margin:0 1px!important;font-size:10px!important;opacity:.25;} .nav-links{gap:0!important;flex-wrap:nowrap!important;}';
-    document.head.appendChild(s);
-  }
-
   document.getElementById('nav-hamburger').onclick = function() {
     const m = document.getElementById('nav-mobile-menu');
     m.classList.toggle('open');
@@ -452,8 +444,14 @@ function setLang(lang) {
   const path = window.location.pathname;
   const page = path.split('/').pop() || 'index.html';
   const isEn = path.includes('/en/');
+  // Pages that exist only in Hebrew (no English version)
+  const hebrewOnly = ['podcast.html'];
   if (lang === 'en' && !isEn) {
-    window.location.href = '/en/' + page;
+    if (hebrewOnly.includes(page)) {
+      window.location.href = '/en/index.html';
+    } else {
+      window.location.href = '/en/' + page;
+    }
   } else if (lang === 'he' && isEn) {
     window.location.href = '/' + page;
   }
