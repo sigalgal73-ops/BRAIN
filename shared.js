@@ -21,7 +21,7 @@ function renderNav(activePage, lang) {
     { id: 'articles', label: 'Articles', href: 'articles.html' },
     { id: 'jobs',     label: 'Careers',  href: 'jobs.html' },
     { id: 'team',     label: 'Our Network', href: 'team.html' },
-    { id: 'join',     label: '🔗 Join',  href: 'join.html', cta: true },
+    { id: 'join',     label: 'Join',  href: 'join.html', cta: true },
   ] : [
     { id: 'about',    label: 'אודותינו',  href: 'about.html' },
     { id: 'process',  label: 'התהליך',    href: 'process.html' },
@@ -40,9 +40,9 @@ function renderNav(activePage, lang) {
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
-    { id: 'podcast',  label: '🎙️ מה מפספסים', href: 'podcast.html' },
+    { id: 'podcast',  label: 'מה מפספסים', href: 'podcast.html' },
     { id: 'team',     label: 'החברים שלנו', href: 'team.html' },
-    { id: 'join',     label: '🔗 הצטרפו', href: 'join.html', cta: true },
+    { id: 'join',     label: 'הצטרפו', href: 'join.html', cta: true },
   ];
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
