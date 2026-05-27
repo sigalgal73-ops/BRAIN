@@ -92,9 +92,8 @@ function renderNav(activePage, lang) {
   document.addEventListener('DOMContentLoaded', function() {
     const footer = document.querySelector('footer');
     if (footer && !footer.querySelector('.footer-legal-row')) {
-      // Add legal links if missing
       const copy = footer.querySelector('.footer-copy');
-      const legalHtml = '<div class="footer-legal-row" style="text-align:center;margin-bottom:10px;"><a href="/privacy.html" style="color:var(--muted);font-size:12px;text-decoration:none;margin:0 10px;opacity:0.7;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">מדיניות פרטיות</a><a href="/terms.html" style="color:var(--muted);font-size:12px;text-decoration:none;margin:0 10px;opacity:0.7;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">תקנון שימוש</a></div>';
+      const legalHtml = '<div class="footer-legal-row" style="text-align:center;margin-bottom:10px;"><a href="/privacy.html" style="color:var(--muted);font-size:12px;text-decoration:none;margin:0 10px;opacity:0.7;">מדיניות פרטיות</a><a href="/terms.html" style="color:var(--muted);font-size:12px;text-decoration:none;margin:0 10px;opacity:0.7;">תקנון שימוש</a></div>';
       if (copy) copy.insertAdjacentHTML('beforebegin', legalHtml);
       else footer.insertAdjacentHTML('beforeend', legalHtml);
     }
