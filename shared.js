@@ -126,7 +126,7 @@ function renderFooter() {
       <a href="articles.html">מאמרים</a>
       <a href="jobs.html">דרושים</a>
     </div>
-    <div style="text-align:center;margin:12px 0 8px;"><a href="privacy.html" style="color:var(--muted);font-size:12px;text-decoration:none;margin:0 12px;">מדיניות פרטיות</a><a href="terms.html" style="color:var(--muted);font-size:12px;text-decoration:none;margin:0 12px;">תקנון שימוש</a></div>
+    <div style="width:100%;text-align:center;margin:10px 0 6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);"><a href="privacy.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">מדיניות פרטיות</a><a href="terms.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">תקנון שימוש</a></div>
     <div class="footer-copy" style="text-align:center;">© כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai<br><span style="font-size:11px;opacity:0.6;">עיצוב אתר <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
   </footer>`;
 }
