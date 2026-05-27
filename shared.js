@@ -100,6 +100,17 @@ function renderNav(activePage, lang) {
     <a href="https://www.youtube.com/@Brain.co.manager" style="color:#7ec8ff;transition:color .2s;display:flex;align-items:center;" title="YouTube" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg></a>
   </div>`);
     }
+    // Inject legal links before footer-copy if not already present
+    const footer2 = document.querySelector('footer');
+    if (footer2 && !footer2.querySelector('.footer-legal-links')) {
+      const copy = footer2.querySelector('.footer-copy');
+      const legal = document.createElement('div');
+      legal.className = 'footer-legal-links';
+      legal.style.cssText = 'width:100%;text-align:center;margin:10px 0 6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);';
+      legal.innerHTML = '<a href="/privacy.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">מדיניות פרטיות</a><a href="/terms.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">תקנון שימוש</a>';
+      if (copy) copy.parentNode.insertBefore(legal, copy);
+      else footer2.appendChild(legal);
+    }
   });
 })();
 
@@ -126,7 +137,10 @@ function renderFooter() {
       <a href="articles.html">מאמרים</a>
       <a href="jobs.html">דרושים</a>
     </div>
-    <div style="width:100%;text-align:center;margin:10px 0 6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);"><a href="privacy.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">מדיניות פרטיות</a><a href="terms.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">תקנון שימוש</a></div>
+    <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
+      <a href="privacy.html">מדיניות פרטיות</a>
+      <a href="terms.html">תקנון שימוש</a>
+    </div>
     <div class="footer-copy" style="text-align:center;">© כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai<br><span style="font-size:11px;opacity:0.6;">עיצוב אתר <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
   </footer>`;
 }
