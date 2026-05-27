@@ -91,12 +91,6 @@ function renderNav(activePage, lang) {
 (function() {
   document.addEventListener('DOMContentLoaded', function() {
     const footer = document.querySelector('footer');
-    if (footer && !footer.querySelector('.footer-legal-row')) {
-      const copy = footer.querySelector('.footer-copy');
-      const legalHtml = '<div class="footer-legal-row" style="text-align:center;margin-bottom:10px;"><a href="/privacy.html" style="color:var(--muted);font-size:12px;text-decoration:none;margin:0 10px;opacity:0.7;">מדיניות פרטיות</a><a href="/terms.html" style="color:var(--muted);font-size:12px;text-decoration:none;margin:0 10px;opacity:0.7;">תקנון שימוש</a></div>';
-      if (copy) copy.insertAdjacentHTML('beforebegin', legalHtml);
-      else footer.insertAdjacentHTML('beforeend', legalHtml);
-    }
     if (footer && !footer.querySelector('.footer-social-row')) {
       footer.insertAdjacentHTML('afterbegin', `<div class="footer-social-row" style="display:flex;justify-content:center;gap:18px;margin-bottom:16px;">
     <a href="https://www.linkedin.com/in/%D7%A2%D7%A8%D7%9F-%D7%A9%D7%97%D7%A8-b83b9140b/" style="color:#7ec8ff;transition:color .2s;display:flex;align-items:center;" title="LinkedIn" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
@@ -136,6 +130,7 @@ function renderFooter() {
       <a href="privacy.html">מדיניות פרטיות</a>
       <a href="terms.html">תקנון שימוש</a>
     </div>
+    <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;text-align:center;"><a href="privacy.html">מדיניות פרטיות</a><a href="terms.html">תקנון שימוש</a></div>
     <div class="footer-copy" style="text-align:center;">© כל הזכויות שמורות לערן שחר | Brain Co-Manager · brain2spark.ai<br><span style="font-size:11px;opacity:0.6;">עיצוב אתר <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
   </footer>`;
 }
