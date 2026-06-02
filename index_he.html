@@ -528,6 +528,7 @@ nav{
   <div class="col-text">
     <div class="ct-main">
     <div class="badge"><div class="bdot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
+    <img src="robot_new.png" class="mob-robot-top" alt="Brain AI">
     <h1 class="h1">
       <span class="brand">Brain</span>
       <span class="co">Co-Manager</span>
@@ -878,22 +879,24 @@ setInterval(()=>{
 },2400);
 
 /* ── STATS STRIP COUNTERS ── */
-function animCount(el){
-  if(el._counted)return; el._counted=true;
-  var t=parseFloat(el.getAttribute('data-target'));
-  var s=0,steps=55,dur=1800;
-  var iv=setInterval(function(){
-    s++; var v=t*(s/steps);
-    el.textContent=Math.floor(v);
-    if(s>=steps){el.textContent=t;clearInterval(iv);}
-  },dur/steps);
-}
-function runAll(){document.querySelectorAll('.ss-count').forEach(animCount);}
-/* multiple triggers to guarantee execution */
-if(document.readyState==='complete'){setTimeout(runAll,300);}
-else{window.addEventListener('load',function(){setTimeout(runAll,300);});}
-setTimeout(runAll,800);
-setTimeout(runAll,2000);
+(function(){
+  function go(){
+    var els=document.querySelectorAll('.ss-count');
+    if(!els.length){setTimeout(go,200);return;}
+    els.forEach(function(el){
+      if(el._done)return; el._done=true;
+      var target=parseInt(el.getAttribute('data-target'),10);
+      var steps=50, dur=1600, s=0;
+      var iv=setInterval(function(){
+        s++; el.textContent=Math.round(target*(s/steps));
+        if(s>=steps){el.textContent=target;clearInterval(iv);}
+      }, Math.round(dur/steps));
+    });
+  }
+  setTimeout(go,500);
+  setTimeout(go,1500);
+  window.addEventListener('load',function(){setTimeout(go,200);});
+})();
 
 /* ── PROGRESS BAR ── */
 setTimeout(()=>{const f=document.getElementById('hbFill');if(f)f.style.width='80%'},400);
