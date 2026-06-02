@@ -901,26 +901,26 @@ setInterval(()=>{
   dt.style.transform=`translateY(-${wi*1.05}em)`;
 },2400);
 
-// card data swap every 3s
-setInterval(()=>{
-  ci=(ci+1)%cardSets.length;
-  const d=cardSets[ci];
-  fadeEls.forEach(e=>{if(e)e.style.opacity='0'});
-  setTimeout(()=>{
-    if(bktagEl)bktagEl.textContent=d.tag;
-    if(bkvalEl)bkvalEl.textContent=d.val;
-    if(bksufEl)bksufEl.textContent=d.suf;
-    if(bklabelEl)bklabelEl.innerHTML=d.label.replace('\n','<br>');
-    if(bkfillEl)bkfillEl.style.width=d.w+'%';
-    d.m.forEach((m,i)=>{
-      if(mEls[i][0])mEls[i][0].textContent=m.t;
-      if(mEls[i][1])mEls[i][1].textContent=m.v;
-      if(mEls[i][2])mEls[i][2].textContent=m.s;
-      if(mEls[i][3])mEls[i][3].style.width=m.w+'%';
-    });
-    fadeEls.forEach(e=>{if(e)e.style.opacity='1'});
-  },350);
-},3000);
+// card data swap every 3s — INSIDE initCards so it has access to vars
+  setInterval(()=>{
+    ci=(ci+1)%cardSets.length;
+    const d=cardSets[ci];
+    fadeEls.forEach(e=>{if(e)e.style.opacity='0'});
+    setTimeout(()=>{
+      if(bktagEl)bktagEl.textContent=d.tag;
+      if(bkvalEl)bkvalEl.textContent=d.val;
+      if(bksufEl)bksufEl.textContent=d.suf;
+      if(bklabelEl)bklabelEl.innerHTML=d.label.replace('\n','<br>');
+      if(bkfillEl)bkfillEl.style.width=d.w+'%';
+      d.m.forEach((m,i)=>{
+        if(mEls[i][0])mEls[i][0].textContent=m.t;
+        if(mEls[i][1])mEls[i][1].textContent=m.v;
+        if(mEls[i][2])mEls[i][2].textContent=m.s;
+        if(mEls[i][3])mEls[i][3].style.width=m.w+'%';
+      });
+      fadeEls.forEach(e=>{if(e)e.style.opacity='1'});
+    },350);
+  },3000);
 } // end initCards
 initCards();
 
