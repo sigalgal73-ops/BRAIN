@@ -878,23 +878,22 @@ setInterval(()=>{
 },2400);
 
 /* ── STATS STRIP COUNTERS ── */
-function runStatsCounters() {
-  document.querySelectorAll('.ss-count').forEach(function(el) {
-    if (el.dataset.counted) return;
-    el.dataset.counted = '1';
-    var target = parseFloat(el.dataset.target);
-    var steps = 60, dur = 2000, s = 0;
-    var t = setInterval(function() {
-      s++;
-      var v = target * (s / steps);
-      el.textContent = (target % 1 === 0) ? Math.floor(v) : v.toFixed(1);
-      if (s >= steps) { el.textContent = target; clearInterval(t); }
-    }, dur / steps);
-  });
+function animCount(el){
+  if(el._counted)return; el._counted=true;
+  var t=parseFloat(el.getAttribute('data-target'));
+  var s=0,steps=55,dur=1800;
+  var iv=setInterval(function(){
+    s++; var v=t*(s/steps);
+    el.textContent=Math.floor(v);
+    if(s>=steps){el.textContent=t;clearInterval(iv);}
+  },dur/steps);
 }
-/* run on load + fallback */
-window.addEventListener('load', function() { setTimeout(runStatsCounters, 400); });
-setTimeout(runStatsCounters, 1200);
+function runAll(){document.querySelectorAll('.ss-count').forEach(animCount);}
+/* multiple triggers to guarantee execution */
+if(document.readyState==='complete'){setTimeout(runAll,300);}
+else{window.addEventListener('load',function(){setTimeout(runAll,300);});}
+setTimeout(runAll,800);
+setTimeout(runAll,2000);
 
 /* ── PROGRESS BAR ── */
 setTimeout(()=>{const f=document.getElementById('hbFill');if(f)f.style.width='80%'},400);
