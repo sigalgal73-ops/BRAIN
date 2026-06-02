@@ -591,13 +591,57 @@ nav{
 
   <!-- COL 3 — LIVE DATA -->
   <div class="col-data">
-    <div class="data-ticker-card">
-      <div class="dtc-header">
-        <div class="dtc-title">פוטנציאל ביצועים · BRAIN</div>
-        <div class="dtc-live"><div class="dtc-dot"></div>LIVE</div>
-      </div>
-      <div class="dtc-stream" id="dtcStream"></div>
+
+    <!-- BIG KPI -->
+    <div class="big-kpi">
+      <div class="bk-tag" id="bktag">פוטנציאל · הגדלת מכירות</div>
+      <div class="bk-val"><span id="bkval">↑30</span><span class="bk-suf" id="bksuf">%</span></div>
+      <div class="bk-label" id="bklabel">הגדלת סל מכירה ממוצע<br>על ידי הכשרה ממוקדת</div>
+      <div class="bk-bar"><div class="bk-fill" id="bkfill" style="width:75%"></div></div>
+      <div class="bk-live"><div class="bk-ld"></div><span class="bk-lt">LIVE</span></div>
     </div>
+
+    <!-- MINI GRID 2x2 -->
+    <div class="mini-grid">
+      <div class="mini">
+        <div class="m-tag" id="m1t">UPSELL</div>
+        <div class="m-val" id="m1v">↑30%</div>
+        <div class="m-sub" id="m1s">סל מכירה</div>
+        <div class="m-bar"><div class="m-fill" id="m1f" style="width:75%"></div></div>
+      </div>
+      <div class="mini">
+        <div class="m-tag" id="m2t">CROSS-SELL</div>
+        <div class="m-val" id="m2v">↑22%</div>
+        <div class="m-sub" id="m2s">מוצרים נוספים</div>
+        <div class="m-bar"><div class="m-fill" id="m2f" style="width:65%"></div></div>
+      </div>
+      <div class="mini">
+        <div class="m-tag" id="m3t">CONVERSION</div>
+        <div class="m-val" id="m3v">↑15%</div>
+        <div class="m-sub" id="m3s">המרות</div>
+        <div class="m-bar"><div class="m-fill" id="m3f" style="width:58%"></div></div>
+      </div>
+      <div class="mini">
+        <div class="m-tag" id="m4t">REPEAT</div>
+        <div class="m-val" id="m4v">↑40%</div>
+        <div class="m-sub" id="m4s">חזרת לקוח</div>
+        <div class="m-bar"><div class="m-fill" id="m4f" style="width:80%"></div></div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY FEED -->
+    <div class="feed-card">
+      <div class="fc-head">
+        <div class="fc-title">BRAIN · ACTIVITY</div>
+        <div class="fc-live"><div class="fc-dot"></div>LIVE</div>
+      </div>
+      <div class="feed" id="feed">
+        <div class="fi"><div class="fd t"></div>מסר מוטיבציה נשלח ל-8 עובדים<div class="ft">עכשיו</div></div>
+        <div class="fi"><div class="fd b"></div>פולו-אפ אוטומטי — רון לא השלים יעד<div class="ft">2 דק׳</div></div>
+        <div class="fi"><div class="fd p"></div>Brain זיהה ירידה בביצועי משמרת ב׳<div class="ft">5 דק׳</div></div>
+      </div>
+    </div>
+
   </div>
 
 </section>
@@ -733,14 +777,14 @@ const potentialItems = [
   {tag:'הגדלת הכנסות',   label:'מ-4.5M ל-5.5M שנתי',        val:'↑20%',   type:'up',   w:85},
   {tag:'הגדלת הכנסות',   label:'לכיוון של מיליון שנתי',      val:'↑22%',   type:'up',   w:90},
   {tag:'סל קנייה',        label:'מ-1.6 פריטים ל-2.8',         val:'↑75%',   type:'up',   w:88},
-  {tag:'סל קנייה',        label:'פריט 1 נוסף ולקיון +1.5',    val:'+1.5',   type:'up',   w:75},
+  {tag:'סל קנייה',        label:'פריט 1 נוסף ולקוח +1.5',    val:'+1.5',   type:'up',   w:75},
   {tag:'יחס המרה',        label:'מ-20% ל-10% נטישה',          val:'↑10%',   type:'up',   w:70},
   {tag:'שימור עובדים',    label:'מ-12 חודשים ל-24',           val:'×2',     type:'up',   w:80},
   {tag:'גיוס עובדים',     label:'פי 2 קורות חיים רלוונטיים',  val:'×2',     type:'up',   w:75},
   {tag:'גיוס עובדים',     label:'אחוז סגירה עולה מעל 30%',    val:'↑30%',   type:'up',   w:78},
   {tag:'הקטנת עומסים',   label:'פירוק משימות ואוטומציה',      val:'↓30%',   type:'down', w:65},
   {tag:'הפחתת עלויות',   label:'פרוצסים אוטומטיים',           val:'↓10%',   type:'down', w:55},
-  {tag:'חסכון בכוח אדם', label:'כ-15 מעליות דרגי ביניים',    val:'↓15%',   type:'down', w:60},
+  {tag:'חיסכון בכוח אדם', label:'חיסכון כ-15% מעליות דרגים',    val:'↓15%',   type:'down', w:60},
   {tag:'לו"ז + תקציב',   label:'שיפור עמידה במדדים',          val:'↑15%',   type:'up',   w:70},
   {tag:'מדידה',           label:'שיפור פי 10 — 600 מיקרו KPI', val:'×10',   type:'up',   w:95},
   {tag:'מדידה',           label:'מ-4 ל-600 מיקרו למידות',     val:'×150',   type:'up',   w:100},
@@ -748,7 +792,7 @@ const potentialItems = [
   {tag:'ONBOARD',         label:'הגברת גיוס עובדים חדשים',    val:'↑30%',   type:'up',   w:78},
   {tag:'RETENTION',       label:'שימור עובדים שנתיים+',        val:'↑100%',  type:'up',   w:90},
   {tag:'AUTOMATION',      label:'פעולות שוטפות אוטומטיות',    val:'×3',     type:'up',   w:80},
-  {tag:'WELCOME',         label:'אוטן דרכים + נהל welcome',    val:'↑20%',   type:'up',   w:72},
+  {tag:'WELCOME',         label:'אוטמטציית דרכים + welcome',    val:'↑20%',   type:'up',   w:72},
   {tag:'PIPELINE',        label:'צנרת מכירות מוגדלת',          val:'×3',     type:'up',   w:82},
 ];
 
@@ -814,7 +858,7 @@ setInterval(()=>{
   }
 },1400);
 
-/* ── WORD SWAP — only headline, no card sync needed ── */
+/* ── WORD SWAP + CARD SYNC ── */
 const words=['הצוות','הביצועים','הנתונים','הצמיחה','המכירות','הרווחיות','ההצלחה'];
 const data=[
   {bk:{tag:'פוטנציאל · הגדלת מכירות',val:'↑30',suf:'%',label:'הגדלת סל מכירה ממוצע\nעל ידי הכשרה ממוקדת',w:75},
@@ -834,11 +878,65 @@ const data=[
 ];
 
 const dt=document.getElementById('dt');
+const bktagEl=document.getElementById('bktag');
+const bkvalEl=document.getElementById('bkval');
+const bksufEl=document.getElementById('bksuf');
+const bklabelEl=document.getElementById('bklabel');
+const bkfillEl=document.getElementById('bkfill');
+const mEls=[
+  [document.getElementById('m1t'),document.getElementById('m1v'),document.getElementById('m1s'),document.getElementById('m1f')],
+  [document.getElementById('m2t'),document.getElementById('m2v'),document.getElementById('m2s'),document.getElementById('m2f')],
+  [document.getElementById('m3t'),document.getElementById('m3v'),document.getElementById('m3s'),document.getElementById('m3f')],
+  [document.getElementById('m4t'),document.getElementById('m4v'),document.getElementById('m4s'),document.getElementById('m4f')],
+];
+const fadeEls=[bktagEl,bkvalEl,bksufEl,bklabelEl,...document.querySelectorAll('.m-tag,.m-val,.m-sub')];
+fadeEls.forEach(e=>{if(e)e.style.transition='opacity .3s ease'});
 let wi=0;
 setInterval(()=>{
   wi=(wi+1)%words.length;
   dt.style.transform=`translateY(-${wi*1.05}em)`;
+  fadeEls.forEach(e=>{if(e)e.style.opacity='0'});
+  setTimeout(()=>{
+    const d=data[wi];
+    if(bktagEl)bktagEl.textContent=d.bk.tag;
+    if(bkvalEl)bkvalEl.textContent=d.bk.val;
+    if(bksufEl)bksufEl.textContent=d.bk.suf;
+    if(bklabelEl)bklabelEl.innerHTML=d.bk.label.replace('\n','<br>');
+    if(bkfillEl)bkfillEl.style.width=d.bk.w+'%';
+    d.m.forEach((m,i)=>{
+      if(mEls[i][0])mEls[i][0].textContent=m.t;
+      if(mEls[i][1])mEls[i][1].textContent=m.v;
+      if(mEls[i][2])mEls[i][2].textContent=m.s;
+      if(mEls[i][3])mEls[i][3].style.width=m.w+'%';
+    });
+    fadeEls.forEach(e=>{if(e)e.style.opacity='1'});
+  },300);
 },2400);
+
+/* ── ACTIVITY FEED ── */
+const feedEl=document.getElementById('feed');
+const feedItems=[
+  {c:'t',txt:'מסר מוטיבציה נשלח ל-8 עובדים',t:'עכשיו'},
+  {c:'b',txt:'פולו-אפ אוטומטי — רון לא השלים יעד',t:'2 דק׳'},
+  {c:'p',txt:'Brain זיהה ירידה בביצועי משמרת ב׳',t:'5 דק׳'},
+  {c:'t',txt:'3 המלצות ניהוליות ממתינות לאישור',t:'8:12'},
+  {c:'b',txt:'סרטון הדרכה נשלח לצוות מכירות',t:'8:00'},
+  {c:'p',txt:'מנהל קיבל דוח ביצועים שבועי',t:'7:45'},
+  {c:'t',txt:'עובד חדש — תוכנית onboarding הופעלה',t:'7:30'},
+  {c:'b',txt:'KPI חודשי הושג — צוות מכירות ✓',t:'אתמול'},
+];
+if(feedEl){
+  let fi=0;
+  setInterval(()=>{
+    fi=(fi+1)%feedItems.length;
+    const d=feedItems[fi];
+    const el=document.createElement('div');
+    el.className='fi';
+    el.innerHTML=`<div class="fd ${d.c}"></div>${d.txt}<div class="ft">${d.t}</div>`;
+    feedEl.insertBefore(el,feedEl.firstChild);
+    if(feedEl.children.length>3)feedEl.removeChild(feedEl.lastChild);
+  },2800);
+}
 
 /* ── STATS STRIP COUNTERS ── */
 (function(){
