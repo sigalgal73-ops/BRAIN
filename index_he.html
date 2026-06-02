@@ -416,13 +416,17 @@ nav{
 .cp{padding:5px 15px;border:1px solid rgba(255,255,255,.18);border-radius:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:.05em;transition:all .2s;cursor:default}
 .cp:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.06)}
 
-.mob-robot-top{display:none !important}
+.mob-robot-wrap{display:none;position:relative;width:100%;justify-content:center;align-items:center;margin:16px 0}
+.mob-rglow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:85%;height:85%;background:radial-gradient(ellipse,rgba(45,156,255,.25) 0%,transparent 70%);animation:rgp 4s ease-in-out infinite;pointer-events:none}
+.mob-rscan{position:absolute;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(0,212,170,.7),transparent);animation:rs 3.2s linear infinite;pointer-events:none;z-index:5}
+.mob-robot-top{display:block;width:100%;max-width:280px;height:auto;object-fit:contain;filter:drop-shadow(0 0 30px rgba(45,156,255,.4));animation:float 5s ease-in-out infinite;position:relative;z-index:2;margin:0 auto}
 /* ════════════════════════
    MOBILE
 ════════════════════════ */
 @media(max-width:960px){
   nav{padding:0 20px}.nav-links{display:none}
-  .mob-robot-top{display:block !important;width:72vw;max-width:260px;height:auto;margin:8px auto 14px;filter:drop-shadow(0 0 24px rgba(45,156,255,.4))}
+  .mob-robot-wrap{display:flex !important}
+  .mob-robot-top{width:72vw !important;max-width:260px !important}
 
   .hero{
     height:auto;min-height:100svh;
@@ -530,7 +534,6 @@ nav{
   <div class="col-text">
     <div class="ct-main">
     <div class="badge"><div class="bdot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
-    <img src="robot_new.png" class="mob-robot-top" alt="Brain AI">
     <h1 class="h1">
       <span class="brand">Brain</span>
       <span class="co">Co-Manager</span>
@@ -548,6 +551,12 @@ nav{
       </div>
     </h1>
     <div class="subtitle">תומך ניהולי מבוסס AI</div>
+    <!-- mobile robot with glow -->
+    <div class="mob-robot-wrap">
+      <div class="mob-rglow"></div>
+      <div class="mob-rscan"></div>
+      <img src="robot_new.png" class="mob-robot-top" alt="Brain AI">
+    </div>
     <p class="desc">לא רק ידע — <strong>שינוי התנהגות בפועל.</strong><br>Brain מלווה את הארגון יום-יום, שולח מסרים חכמים, עושה פולו-אפ ומודד תוצאות.</p>
     <div class="btns">
       <a href="#" class="btn btn-p">צפו בדמו ▶</a>
