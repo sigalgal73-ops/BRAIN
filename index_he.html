@@ -857,76 +857,75 @@ const data=[
    m:[{t:'OUTPUT',v:'↑40%',s:'תפוקה',w:88},{t:'ERRORS',v:'↓25%',s:'שגיאות',w:55},{t:'REPORTS',v:'24/7',s:'דיווח',w:100},{t:'INSIGHT',v:'∞',s:'תובנות',w:100}]},
 ];
 
-/* ── WORD SWAP + DATA CYCLE ── */
+/* ── WORD SWAP ── */
 const dt=document.getElementById('dt');
-
-// cycle through potentialItems for the cards — independent of word swap
-// init card cycling
-function initCards(){
-  const bktagEl=document.getElementById('bktag');
-  const bkvalEl=document.getElementById('bkval');
-  const bksufEl=document.getElementById('bksuf');
-  const bklabelEl=document.getElementById('bklabel');
-  const bkfillEl=document.getElementById('bkfill');
-  if(!bktagEl){console.warn('bktag not found, retrying...');setTimeout(initCards,500);return;}
-  const mIds=[['m1t','m1v','m1s','m1f'],['m2t','m2v','m2s','m2f'],['m3t','m3v','m3s','m3f'],['m4t','m4v','m4s','m4f']];
-  const mEls=mIds.map(ids=>ids.map(id=>document.getElementById(id)));
-
-// group potentialItems into sets of 4+header for mini cards
-const cardSets=[
-  {tag:'פוטנציאל · הגדלת מכירות',val:'↑30',suf:'%',label:'הגדלת סל מכירה ממוצע\nעל ידי הכשרה ממוקדת',w:75,
-   m:[{t:'UPSELL',v:'↑30%',s:'סל מכירה',w:75},{t:'CROSS-SELL',v:'↑22%',s:'מוצרים נוספים',w:65},{t:'CONVERSION',v:'↑15%',s:'המרות',w:58},{t:'REPEAT',v:'↑40%',s:'חזרת לקוח',w:80}]},
-  {tag:'פוטנציאל · שימור עובדים',val:'×2',suf:'',label:'מ-12 חודשים ל-24\nשימור עובדים מפתח',w:80,
-   m:[{t:'RETENTION',v:'↑100%',s:'שימור שנתיים+',w:90},{t:'ONBOARD',v:'↑30%',s:'גיוס חדשים',w:78},{t:'LOYALTY',v:'↑65%',s:'נאמנות',w:72},{t:'CULTURE',v:'↑50%',s:'תרבות',w:68}]},
-  {tag:'פוטנציאל · רווחיות',val:'↑25',suf:'%',label:'שיפור רווחיות ארגונית\nחיסכון בעלויות ניהול',w:70,
-   m:[{t:'MARGIN',v:'↑25%',s:'מרווח',w:70},{t:'COSTS',v:'↓12%',s:'עלויות',w:48},{t:'WASTE',v:'↓18%',s:'בזבוז',w:55},{t:'ROI',v:'90 יום',s:'ימי החזר',w:75}]},
-  {tag:'פוטנציאל · מדידה',val:'×150',suf:'',label:'מ-4 ל-600 מיקרו KPI\nשיפור פי 10 במדידה',w:95,
-   m:[{t:'KPI',v:'×10',s:'שיפור מדידה',w:95},{t:'METRICS',v:'600',s:'מיקרו למידות',w:100},{t:'AUTOMATION',v:'×3',s:'פעולות אוטו׳',w:80},{t:'PIPELINE',v:'×3',s:'צנרת מכירות',w:82}]},
-  {tag:'פוטנציאל · הקטנת עומסים',val:'↓30',suf:'%',label:'פירוק משימות ואוטומציה\nחיסכון בכוח אדם',w:65,
-   m:[{t:'WORKLOAD',v:'↓30%',s:'עומס',w:65},{t:'HR SAVE',v:'↓15%',s:'חיסכון בכוח אדם',w:60},{t:'COSTS',v:'↓10%',s:'עלויות',w:55},{t:'ERRORS',v:'↓25%',s:'שגיאות',w:42}]},
-  {tag:'פוטנציאל · גיוס עובדים',val:'×2',suf:'',label:'פי 2 קורות חיים\nסגירה עולה מעל 30%',w:78,
-   m:[{t:'LEADS',v:'×2',s:'קורות חיים',w:75},{t:'CLOSE',v:'↑30%',s:'אחוז סגירה',w:78},{t:'SPEED',v:'×3',s:'מהירות גיוס',w:80},{t:'QUALITY',v:'↑40%',s:'איכות',w:88}]},
-  {tag:'פוטנציאל · הגדלת הכנסות',val:'↑20',suf:'%',label:'מ-4.5M ל-5.5M שנתי\nלכיוון מיליון נוסף',w:85,
-   m:[{t:'REVENUE',v:'↑20%',s:'הכנסות',w:85},{t:'MARKET',v:'↑15%',s:'נתח שוק',w:58},{t:'UPSELL',v:'↑30%',s:'מכירה+',w:75},{t:'CLIENTS',v:'↑40%',s:'לקוחות',w:90}]},
-];
-
-const fadeEls=[bktagEl,bkvalEl,bksufEl,bklabelEl,...document.querySelectorAll('.m-tag,.m-val,.m-sub')];
-fadeEls.forEach(e=>{if(e)e.style.transition='opacity .35s ease'});
-
-let wi=0, ci=0;
-
-// word swap every 2.4s
-setInterval(()=>{
+let wi=0;
+setInterval(function(){
   wi=(wi+1)%words.length;
-  dt.style.transform=`translateY(-${wi*1.05}em)`;
+  dt.style.transform='translateY(-'+(wi*1.05)+'em)';
 },2400);
 
-// card data swap every 3s — INSIDE initCards so it has access to vars
-  setInterval(()=>{
-    ci=(ci+1)%cardSets.length;
-    const d=cardSets[ci];
-    fadeEls.forEach(e=>{if(e)e.style.opacity='0'});
-    setTimeout(()=>{
-      if(bktagEl)bktagEl.textContent=d.tag;
-      if(bkvalEl)bkvalEl.textContent=d.val;
-      if(bksufEl)bksufEl.textContent=d.suf;
-      if(bklabelEl)bklabelEl.innerHTML=d.label.replace('\n','<br>');
-      if(bkfillEl)bkfillEl.style.width=d.w+'%';
-      d.m.forEach((m,i)=>{
-        if(mEls[i][0])mEls[i][0].textContent=m.t;
-        if(mEls[i][1])mEls[i][1].textContent=m.v;
-        if(mEls[i][2])mEls[i][2].textContent=m.s;
-        if(mEls[i][3])mEls[i][3].style.width=m.w+'%';
-      });
-      fadeEls.forEach(e=>{if(e)e.style.opacity='1'});
-    },350);
-  },3000);
-} // end initCards
-initCards();
+/* ── CARD DATA CYCLING ── */
+var cardSets=[
+  {tag:'פוטנציאל · הגדלת מכירות',val:'↑30%',label:'הגדלת סל מכירה',m:[['UPSELL','↑30%','סל מכירה',75],['CROSS-SELL','↑22%','מוצרים נוספים',65],['CONVERSION','↑15%','המרות',58],['REPEAT','↑40%','חזרת לקוח',80]]},
+  {tag:'פוטנציאל · שימור עובדים',val:'×2',label:'מ-12 חודשים ל-24',m:[['RETENTION','↑100%','שימור שנתיים+',90],['ONBOARD','↑30%','גיוס חדשים',78],['LOYALTY','↑65%','נאמנות',72],['CULTURE','↑50%','תרבות',68]]},
+  {tag:'פוטנציאל · רווחיות',val:'↑25%',label:'שיפור רווחיות',m:[['MARGIN','↑25%','מרווח',70],['COSTS','↓12%','עלויות',48],['WASTE','↓18%','בזבוז',55],['ROI','90 יום','ימי החזר',75]]},
+  {tag:'פוטנציאל · מדידה',val:'×150',label:'מ-4 ל-600 מיקרו KPI',m:[['KPI','×10','שיפור מדידה',95],['METRICS','600','מיקרו למידות',100],['AUTOMATION','×3','פעולות אוטו',80],['PIPELINE','×3','צנרת מכירות',82]]},
+  {tag:'פוטנציאל · הקטנת עומסים',val:'↓30%',label:'פירוק ואוטומציה',m:[['WORKLOAD','↓30%','עומס',65],['HR SAVE','↓15%','חיסכון',60],['COSTS','↓10%','עלויות',55],['ERRORS','↓25%','שגיאות',42]]},
+  {tag:'פוטנציאל · גיוס עובדים',val:'×2',label:'פי 2 קורות חיים',m:[['LEADS','×2','קורות חיים',75],['CLOSE','↑30%','אחוז סגירה',78],['SPEED','×3','מהירות גיוס',80],['QUALITY','↑40%','איכות',88]]},
+  {tag:'פוטנציאל · הגדלת הכנסות',val:'↑20%',label:'מ-4.5M ל-5.5M שנתי',m:[['REVENUE','↑20%','הכנסות',85],['MARKET','↑15%','נתח שוק',58],['UPSELL','↑30%','מכירה+',75],['CLIENTS','↑40%','לקוחות',90]]}
+];
+var ci=0;
+
+function updateCards(){
+  var d=cardSets[ci];
+  var bktag=document.getElementById('bktag');
+  var bkval=document.getElementById('bkval');
+  var bklabel=document.getElementById('bklabel');
+  var bkfill=document.getElementById('bkfill');
+  var tags=['m1t','m2t','m3t','m4t'];
+  var vals=['m1v','m2v','m3v','m4v'];
+  var subs=['m1s','m2s','m3s','m4s'];
+  var fills=['m1f','m2f','m3f','m4f'];
+  
+  // fade out
+  var allEls=[bktag,bkval,bklabel];
+  tags.concat(vals).concat(subs).forEach(function(id){allEls.push(document.getElementById(id));});
+  allEls.forEach(function(el){if(el)el.style.opacity='0';});
+  
+  setTimeout(function(){
+    if(bktag)bktag.textContent=d.tag;
+    if(bkval)bkval.textContent=d.val;
+    if(bklabel)bklabel.textContent=d.label;
+    if(bkfill)bkfill.style.width=(d.m[0][3])+'%';
+    d.m.forEach(function(m,i){
+      var t=document.getElementById(tags[i]);
+      var v=document.getElementById(vals[i]);
+      var s=document.getElementById(subs[i]);
+      var f=document.getElementById(fills[i]);
+      if(t)t.textContent=m[0];
+      if(v)v.textContent=m[1];
+      if(s)s.textContent=m[2];
+      if(f)f.style.width=m[3]+'%';
+    });
+    allEls.forEach(function(el){if(el)el.style.opacity='1';});
+  },300);
+  
+  ci=(ci+1)%cardSets.length;
+}
+
+// add transitions
+setTimeout(function(){
+  ['bktag','bkval','bklabel','m1t','m1v','m1s','m2t','m2v','m2s','m3t','m3v','m3s','m4t','m4v','m4s'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.style.transition='opacity 0.3s ease';
+  });
+  setInterval(updateCards, 3000);
+}, 1000);
 
 /* ── ACTIVITY FEED ── */
-const feedEl=document.getElementById('feed');
-const feedItems=[
+var feedEl=document.getElementById('feed');
+var feedItems=[
   {c:'t',txt:'מסר מוטיבציה נשלח ל-8 עובדים',t:'עכשיו'},
   {c:'b',txt:'פולו-אפ אוטומטי — רון לא השלים יעד',t:'2 דק׳'},
   {c:'p',txt:'Brain זיהה ירידה בביצועי משמרת ב׳',t:'5 דק׳'},
@@ -937,18 +936,19 @@ const feedItems=[
   {c:'b',txt:'KPI חודשי הושג — צוות מכירות ✓',t:'אתמול'},
 ];
 if(feedEl){
-  let fi=0;
-  setInterval(()=>{
+  var fi=0;
+  setInterval(function(){
     fi=(fi+1)%feedItems.length;
-    const d=feedItems[fi];
-    const el=document.createElement('div');
+    var d=feedItems[fi];
+    var el=document.createElement('div');
     el.className='fi';
-    el.innerHTML=`<div class="fd ${d.c}"></div>${d.txt}<div class="ft">${d.t}</div>`;
+    el.innerHTML='<div class="fd '+d.c+'"></div>'+d.txt+'<div class="ft">'+d.t+'</div>';
     feedEl.insertBefore(el,feedEl.firstChild);
     if(feedEl.children.length>3)feedEl.removeChild(feedEl.lastChild);
   },2800);
 }
 
+/* ── STATS COUNTERS ── */
 /* ── STATS STRIP COUNTERS ── */
 (function(){
   function go(){
