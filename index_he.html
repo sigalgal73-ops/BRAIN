@@ -878,8 +878,10 @@ setInterval(()=>{
 },2400);
 
 /* ── STATS STRIP COUNTERS ── */
-setTimeout(function() {
+function runStatsCounters() {
   document.querySelectorAll('.ss-count').forEach(function(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
     var target = parseFloat(el.dataset.target);
     var steps = 60, dur = 2000, s = 0;
     var t = setInterval(function() {
@@ -889,7 +891,10 @@ setTimeout(function() {
       if (s >= steps) { el.textContent = target; clearInterval(t); }
     }, dur / steps);
   });
-}, 600);
+}
+/* run on load + fallback */
+window.addEventListener('load', function() { setTimeout(runStatsCounters, 400); });
+setTimeout(runStatsCounters, 1200);
 
 /* ── PROGRESS BAR ── */
 setTimeout(()=>{const f=document.getElementById('hbFill');if(f)f.style.width='80%'},400);
