@@ -1,6 +1,10 @@
 // Brain Co-Manager shared.js v1
 // ── SHARED NAV ──
 function renderNav(activePage, lang) {
+  if (!lang) {
+    const path = window.location.pathname;
+    lang = (path.includes('/en/') || path.includes('index_en')) ? 'en' : 'he';
+  }
   const isEn = lang === 'en';
   const pages = isEn ? [
     { id: 'about',    label: 'About',    href: 'about.html' },
