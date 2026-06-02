@@ -107,7 +107,7 @@ nav{
 .h1{font-weight:900;line-height:1.02;letter-spacing:-.03em;margin-bottom:8px}
 .h1 .brand{display:block;font-size:clamp(44px,5vw,74px);color:var(--white)}
 .h1 .co{display:block;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:clamp(32px,3.8vw,58px);margin-bottom:4px}
-.h1 .dyn{display:flex;align-items:baseline;gap:10px;font-size:clamp(22px,2.8vw,42px)}
+.h1 .dyn{display:flex;align-items:baseline;gap:10px;font-size:clamp(22px,2.8vw,42px);direction:ltr;justify-content:flex-start}
 .ds{color:rgba(255,255,255,.4);font-weight:300}
 .dw{display:inline-block;height:1.05em;overflow:hidden;vertical-align:bottom}
 .dt{display:flex;flex-direction:column;transition:transform .65s cubic-bezier(.76,0,.24,1)}
@@ -475,6 +475,7 @@ nav{
   /* centering */
   .col-text .badge{align-self:center !important}
   .col-text .h1{text-align:center !important;direction:ltr !important}
+  .col-text .h1 .dyn{justify-content:center !important;direction:ltr !important}
   .col-text .subtitle{text-align:center !important}
   .col-text .desc{text-align:center !important;margin:0 auto 18px !important;max-width:90% !important}
   .col-text .btns{justify-content:center !important}
