@@ -122,7 +122,6 @@ nav{
 .robot-wrap{
   position:relative;width:100%;height:100%;
   display:flex;align-items:flex-start;justify-content:center;
-  padding-top:8px;
 }
 .robot-glow{
   position:absolute;top:50%;left:50%;
@@ -553,23 +552,30 @@ nav{
   <!-- COL 1 — TEXT -->
   <div class="col-text">
     <div class="badge"><div class="bdot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
-    <img src="robot.png" class="col-robot-mob" alt="">
-    <h1 class="h1">
-      <span class="brand">Brain</span>
-      <span class="co">Co-Manager</span>
-      <div class="dyn">
-        <span class="ds">מנהל את</span>
-        <span class="dw"><span class="dt" id="dt">
-          <span>הצוות</span>
-          <span>הביצועים</span>
-          <span>הנתונים</span>
-          <span>הצמיחה</span>
-          <span>המכירות</span>
-          <span>הרווחיות</span>
-          <span>ההצלחה</span>
-        </span></span>
+
+    <!-- MOBILE TOP ROW: heading + robot -->
+    <div class="mob-hero-top">
+      <div class="mob-heading">
+        <h1 class="h1">
+          <span class="brand">Brain</span>
+          <span class="co">Co-Manager</span>
+          <div class="dyn">
+            <span class="ds">מנהל את</span>
+            <span class="dw"><span class="dt" id="dt">
+              <span>הצוות</span>
+              <span>הביצועים</span>
+              <span>הנתונים</span>
+              <span>הצמיחה</span>
+              <span>המכירות</span>
+              <span>הרווחיות</span>
+              <span>ההצלחה</span>
+            </span></span>
+          </div>
+        </h1>
       </div>
-    </h1>
+      <img src="robot.png" class="col-robot-mob" alt="Brain AI">
+    </div><!-- /mob-hero-top -->
+
     <div class="subtitle">תומך ניהולי מבוסס AI</div>
     <p class="desc">לא רק ידע — <strong>שינוי התנהגות בפועל.</strong><br>Brain מלווה את הארגון יום-יום, שולח מסרים חכמים, עושה פולו-אפ ומודד תוצאות.</p>
     <div class="btns">
