@@ -442,28 +442,17 @@ nav{
     justify-content:flex-start !important;
   }
 
-  /* hero heading row — Brain/Co-Manager + robot side by side */
-  .hero-heading-row{
-    display:flex !important;
-    align-items:center !important;
-    justify-content:space-between !important;
-    gap:12px !important;
-    margin-bottom:12px !important;
-  }
-  .hero-heading-left{flex:1}
-  .hero-heading-robot{
-    width:130px !important;
-    flex-shrink:0 !important;
-    position:relative !important;
-  }
-  .hero-heading-robot img{
-    width:130px !important;
+  /* mobile robot next to heading */
+  .robot-mobile{
+    display:block !important;
+    width:120px !important;
     height:auto !important;
     object-fit:contain !important;
     filter:drop-shadow(0 0 20px rgba(45,156,255,.35)) !important;
     animation:float 5s ease-in-out infinite !important;
-    display:block !important;
-    margin-top:-10px !important;
+    float:left !important;
+    margin:0 0 8px 12px !important;
+    shape-outside:border-box !important;
   }
 
   /* hide the full col-robot on mobile */
@@ -504,10 +493,8 @@ nav{
 }
 
 
-/* desktop — hero-heading-row is invisible wrapper */
-.hero-heading-row{display:contents}
-.hero-heading-left{display:contents}
-.hero-heading-robot{display:none}
+/* mobile robot — hidden on desktop */
+.robot-mobile{display:none}
 
 /* ── clients strip ── */
 .clients{position:relative;z-index:2;padding:18px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;background:rgba(4,20,40,.3)}
@@ -548,13 +535,10 @@ nav{
 
   <!-- COL 1 — TEXT -->
   <div class="col-text">
-    <!-- MOBILE: heading row with robot -->
-    <div class="hero-heading-row">
-      <div class="hero-heading-left">
-        <div class="badge"><div class="bdot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
-        <h1 class="h1">
-          <span class="brand">Brain</span>
-          <span class="co">Co-Manager</span>
+    <div class="badge"><div class="bdot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
+    <h1 class="h1">
+      <span class="brand">Brain</span>
+      <span class="co">Co-Manager</span>
       <div class="dyn">
         <span class="ds">מנהל את</span>
         <span class="dw"><span class="dt" id="dt">
