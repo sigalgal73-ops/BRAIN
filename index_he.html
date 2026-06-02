@@ -456,6 +456,13 @@ nav{
   .col-text .subtitle{text-align:center !important;width:100% !important}
   .col-text .desc{text-align:center !important;max-width:92% !important;margin-right:auto !important;margin-left:auto !important}
   .col-text .btns{justify-content:center !important;width:100% !important}
+  .hero .h1{text-align:center !important;direction:ltr !important}
+  .hero .h1 .brand{text-align:center !important;display:block !important}
+  .hero .h1 .co{text-align:center !important;display:block !important}
+  .hero .h1 .dyn{justify-content:center !important;direction:rtl !important}
+  .hero .subtitle{text-align:center !important;display:block !important;width:100% !important}
+  .hero .desc{text-align:center !important}
+  .hero .badge{margin-right:auto !important;margin-left:auto !important}
   .col-text .hero-bottom{text-align:right !important}
   .col-text .hero-bottom *{text-align:right !important}
   .col-text .hb-checks{align-items:flex-start !important}
@@ -543,8 +550,8 @@ nav{
     </div>
     <p class="desc">לא רק ידע — <strong>שינוי התנהגות בפועל.</strong><br>Brain מלווה את הארגון יום-יום, שולח מסרים חכמים, עושה פולו-אפ ומודד תוצאות.</p>
     <div class="btns">
-      <a href="#" class="btn btn-p">צפו בדמו ▶</a>
-      <a href="#" class="btn btn-g">איך זה עובד ▼</a>
+      <a href="demo.html" class="btn btn-p">צפו בדמו ▶</a>
+      <a href="process.html" class="btn btn-g">איך זה עובד ▼</a>
     </div>
 
 
@@ -584,58 +591,15 @@ nav{
 
   <!-- COL 3 — LIVE DATA -->
   <div class="col-data">
-
-    <!-- BIG KPI -->
-    <div class="big-kpi">
-      <div class="bk-tag" id="bktag">SALES GROWTH</div>
-      <div class="bk-val"><span id="bkval">+27</span><span class="bk-suf" id="bksuf">%</span></div>
-      <div class="bk-label" id="bklabel">צמיחה ממוצעת<br>לקוחות Brain</div>
-      <div class="bk-bar"><div class="bk-fill" id="bkfill" style="width:27%"></div></div>
-      <div class="bk-live"><div class="bk-ld"></div><span class="bk-lt">LIVE</span></div>
+    <div class="data-ticker-card">
+      <div class="dtc-header">
+        <div class="dtc-title">פוטנציאל ביצועים · BRAIN</div>
+        <div class="dtc-live"><div class="dtc-dot"></div>LIVE</div>
+      </div>
+      <div class="dtc-stream" id="dtcStream"></div>
     </div>
-
-    <!-- MINI GRID 2×2 -->
-    <div class="mini-grid">
-      <div class="mini">
-        <div class="m-tag" id="m1t">UPSELL</div>
-        <div class="m-val" id="m1v">↑30%</div>
-        <div class="m-sub" id="m1s">סל מכירה</div>
-        <div class="m-bar"><div class="m-fill" id="m1f" style="width:94%"></div></div>
-      </div>
-      <div class="mini">
-        <div class="m-tag" id="m2t">CROSS-SELL</div>
-        <div class="m-val" id="m2v">↑22%</div>
-        <div class="m-sub" id="m2s">מוצרים נוספים</div>
-        <div class="m-bar"><div class="m-fill" id="m2f" style="width:85%"></div></div>
-      </div>
-      <div class="mini">
-        <div class="m-tag" id="m3t">CONVERSION</div>
-        <div class="m-val" id="m3v">↑15%</div>
-        <div class="m-sub" id="m3s">המרות</div>
-        <div class="m-bar"><div class="m-fill" id="m3f" style="width:60%"></div></div>
-      </div>
-      <div class="mini">
-        <div class="m-tag" id="m4t">REPEAT</div>
-        <div class="m-val" id="m4v">↑40%</div>
-        <div class="m-sub" id="m4s">חזרת לקוח</div>
-        <div class="m-bar"><div class="m-fill" id="m4f" style="width:75%"></div></div>
-      </div>
-    </div>
-
-    <!-- ACTIVITY FEED -->
-    <div class="feed-card">
-      <div class="fc-head">
-        <div class="fc-title">BRAIN · ACTIVITY</div>
-        <div class="fc-live"><div class="fc-dot"></div>LIVE</div>
-      </div>
-      <div class="feed" id="feed">
-        <div class="fi"><div class="fd t"></div>מסר מוטיבציה נשלח ל-8 עובדים<div class="ft">עכשיו</div></div>
-        <div class="fi"><div class="fd b"></div>פולו-אפ אוטומטי — רון לא השלים יעד<div class="ft">2 דק׳</div></div>
-        <div class="fi"><div class="fd p"></div>Brain זיהה ירידה בביצועי משמרת ב׳<div class="ft">5 דק׳</div></div>
-      </div>
-    </div>
-
   </div>
+
 </section>
 
 <!-- TICKER -->
