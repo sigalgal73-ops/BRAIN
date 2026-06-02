@@ -440,13 +440,39 @@ nav{
     padding:72px 20px 28px !important;
     gap:0 !important;align-items:start !important;
   }
-  .col-text{order:1 !important;height:auto !important;padding:16px 0 0 !important;
-    display:flex !important;flex-direction:column !important;justify-content:flex-start !important;
-    grid-template-columns:unset !important}
+  .col-text{
+    order:1 !important;height:auto !important;
+    padding:16px 0 0 !important;
+    display:flex !important;flex-direction:column !important;
+    justify-content:flex-start !important;
+    grid-template-columns:unset !important;
+    text-align:center !important;
+    align-items:center !important;
+  }
+  .col-text *{text-align:center !important}
+  .col-text .badge{align-self:center !important;margin-bottom:12px !important}
+  .col-text .h1{text-align:center !important;width:100% !important}
+  .col-text .h1 .dyn{justify-content:center !important}
+  .col-text .subtitle{text-align:center !important;width:100% !important}
+  .col-text .desc{text-align:center !important;max-width:92% !important;margin-right:auto !important;margin-left:auto !important}
+  .col-text .btns{justify-content:center !important;width:100% !important}
+  .col-text .hero-bottom{text-align:right !important}
+  .col-text .hero-bottom *{text-align:right !important}
+  .col-text .hb-checks{align-items:flex-start !important}
   .ct-main{display:contents !important}
   .ct-robot{display:none !important}
   .hero-bottom{grid-column:unset !important;grid-row:unset !important}
   .col-robot{display:none !important}
+  .ct-robot{display:none !important}
+  /* mobile robot */
+  .mob-robot-wrap{display:flex !important;justify-content:center !important;align-items:center !important;margin:14px 0 !important}
+  .mob-robot-top{width:72vw !important;max-width:260px !important;display:block !important}
+  /* centering */
+  .col-text .badge{align-self:center !important}
+  .col-text .h1{text-align:center !important}
+  .col-text .subtitle{text-align:center !important}
+  .col-text .desc{text-align:center !important;margin:0 auto 18px !important;max-width:90% !important}
+  .col-text .btns{justify-content:center !important}
   .col-data{order:3 !important;height:auto !important;padding:16px 0 20px !important}
   .data-ticker-card{max-height:260px !important}
   .h1 .brand{font-size:clamp(32px,8vw,48px) !important}
