@@ -914,14 +914,12 @@ function updateCards(){
   ci=(ci+1)%cardSets.length;
 }
 
-// add transitions
-setTimeout(function(){
-  ['bktag','bkval','bklabel','m1t','m1v','m1s','m2t','m2v','m2s','m3t','m3v','m3s','m4t','m4v','m4s'].forEach(function(id){
-    var el=document.getElementById(id);
-    if(el)el.style.transition='opacity 0.3s ease';
-  });
-  setInterval(updateCards, 3000);
-}, 1000);
+// start immediately + interval
+['bktag','bkval','bklabel','m1t','m1v','m1s','m2t','m2v','m2s','m3t','m3v','m3s','m4t','m4v','m4s'].forEach(function(id){
+  var el=document.getElementById(id);
+  if(el)el.style.transition='opacity 0.3s ease';
+});
+setInterval(updateCards, 3000);
 
 /* ── ACTIVITY FEED ── */
 var feedEl=document.getElementById('feed');
