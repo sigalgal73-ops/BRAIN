@@ -577,7 +577,8 @@ function setLang(lang) {
       window.location.href = '/en/' + page;
     }
   } else if (lang === 'he' && isEn) {
-    window.location.href = '/' + page;
+    const hePage = page === 'index.html' ? 'index_he.html' : page;
+    window.location.href = '/' + hePage;
   }
 }
 
