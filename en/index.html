@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="../shared.css">
 <style>
 
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#020d1a;--card:#071828;
@@ -49,7 +48,7 @@ nav{
   position:relative;z-index:1;
   height:100vh;min-height:720px;
   display:grid;
-  grid-template-columns:26% 36% 38%;
+  grid-template-columns:26% 74%;
   padding:64px 48px 32px;
   gap:20px;
   overflow:hidden;
@@ -80,8 +79,9 @@ nav{
   animation:fadeUp .9s ease both;
   order:3;
 }
-.ct-main{display:contents}
-.ct-robot{display:none}
+.ct-main{grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:center}
+.ct-robot{grid-column:2;grid-row:1 / 3;display:flex;align-items:flex-start;justify-content:center}
+.ct-robot img{width:115%;height:100%;max-height:92vh;object-fit:contain;object-position:top center;filter:drop-shadow(0 0 50px rgba(45,156,255,.4));animation:float 5s ease-in-out infinite;margin-right:-8%}
 .hero-bottom{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:28px;padding:32px 16px 8px;border-top:1px solid rgba(45,156,255,.2)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
@@ -473,7 +473,7 @@ nav{
   .mob-robot-top{width:72vw !important;max-width:260px !important;display:block !important}
   /* centering */
   .col-text .badge{align-self:center !important}
-  .col-text .h1{text-align:center !important}
+  .col-text .h1{text-align:center !important;direction:ltr !important}
   .col-text .subtitle{text-align:center !important}
   .col-text .desc{text-align:center !important;margin:0 auto 18px !important;max-width:90% !important}
   .col-text .btns{justify-content:center !important}
@@ -509,18 +509,6 @@ nav{
 .cta-title{font-size:clamp(22px,3vw,38px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.2}
 .cta-sub{font-size:15px;color:var(--muted);margin-bottom:34px;line-height:1.7}
 .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-
-.features-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto}
-.feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:all .3s;position:relative;overflow:hidden;text-align:center}
-.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.35),transparent)}
-.feat:hover{border-color:rgba(45,156,255,.28);transform:translateY(-4px)}
-.feat-icon{font-size:30px;margin-bottom:14px}
-.feat-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px}
-.feat-desc{font-size:14px;color:var(--muted);line-height:1.7}
-.clients{position:relative;z-index:2;padding:18px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;background:rgba(4,20,40,.3)}
-.clients-label{font-size:11px;color:var(--white);letter-spacing:.1em;font-weight:700;opacity:.7;white-space:nowrap}
-.client-pill{padding:5px 16px;border:1px solid rgba(255,255,255,.2);border-radius:14px;font-size:12px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.05em;transition:all .2s;cursor:default}
-.client-pill:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.06)}
 </style>
 </head>
 <body>
@@ -626,7 +614,7 @@ nav{
       </div>
       <div class="feed" id="feed">
         <div class="fi"><div class="fd t"></div>Motivation message sent to 8 employees<div class="ft">עכשיו</div></div>
-        <div class="fi"><div class="fd b"></div>Auto follow-up - Ron did not complete goal<div class="ft">2 דק׳</div></div>
+        <div class="fi"><div class="fd b"></div>Auto follow-up — Ron didn't complete goal<div class="ft">2 דק׳</div></div>
         <div class="fi"><div class="fd p"></div>Brain זיהה ירידה בביצועי משמרת ב׳<div class="ft">5 דק׳</div></div>
       </div>
     </div>
@@ -680,13 +668,20 @@ nav{
     </div>
   </div>
 </div>
+<script>
+!function(){var e=document.querySelectorAll(".ss-count");e.forEach(function(el){var t=+el.getAttribute("data-target"),s=0,n=50;var iv=setInterval(function(){s++;el.textContent=Math.round(t*s/n);if(s>=n){el.textContent=t;clearInterval(iv);}},32);});}();
+</script>
 
 <div class="clients">
   <div class="clients-label">Chosen by managers in leading industries ·</div>
-  <div class="client-pill">🛍 Retail</div><div class="client-pill">🚚 Logistics</div>
-  <div class="client-pill">🏥 Healthcare</div><div class="client-pill">🎓 Education</div>
-  <div class="client-pill">🏦 Banking</div><div class="client-pill">🏭 Industry</div>
-  <div class="client-pill">💻 Hi-Tech</div><div class="client-pill">🏛️ Government</div>
+  <div class="client-pill">🛍 Retail</div>
+  <div class="client-pill">🚚 Logistics</div>
+  <div class="client-pill">🏥 Healthcare</div>
+  <div class="client-pill">🎓 Education</div>
+  <div class="client-pill">🏦 Banking</div>
+  <div class="client-pill">🏭 Industry</div>
+  <div class="client-pill">💻 Hi-Tech</div>
+  <div class="client-pill">🏛️ Government</div>
 </div>
 
 <div style="position:relative;z-index:1;padding:52px 60px 40px;" class="reveal">
@@ -694,13 +689,13 @@ nav{
     <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:10px">HOW IT WORKS</div>
     <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;color:var(--white);">Not just knowledge – <em style="font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">real behavior change</em></h2>
   </div>
-  <div class="features-grid">
-    <div class="feat"><div class="feat-icon">🧠</div><div class="feat-title">Behavior Analysis</div><div class="feat-desc">Analyzes patterns and identifies exactly where the gaps are.</div></div>
-    <div class="feat"><div class="feat-icon">⚡</div><div class="feat-title">Smart Messages</div><div class="feat-desc">Sends targeted messages and training videos at exactly the right time.</div></div>
-    <div class="feat"><div class="feat-icon">🔄</div><div class="feat-title">Automated Follow-Up</div><div class="feat-desc">Tracks execution, sends reminders, and measures behavioral change.</div></div>
-    <div class="feat"><div class="feat-icon">📊</div><div class="feat-title">Live Dashboard</div><div class="feat-desc">Managers see what's happening in real time — not just in reports.</div></div>
-    <div class="feat"><div class="feat-icon">🎯</div><div class="feat-title">Personalization</div><div class="feat-desc">Every campaign is tailored to the organization's specific challenge.</div></div>
-    <div class="feat"><div class="feat-icon">🚀</div><div class="feat-title">Fast Implementation</div><div class="feat-desc">No IT needed. Brain starts working within days, results within weeks.</div></div>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;text-align:center"><div style="font-size:30px;margin-bottom:14px">🧠</div><div style="font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px">Behavior Analysis</div><div style="font-size:14px;color:var(--muted);line-height:1.7">Analyzes patterns and identifies exactly where the gaps are.</div></div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;text-align:center"><div style="font-size:30px;margin-bottom:14px">⚡</div><div style="font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px">Smart Messages</div><div style="font-size:14px;color:var(--muted);line-height:1.7">Sends targeted messages and training videos at exactly the right time.</div></div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;text-align:center"><div style="font-size:30px;margin-bottom:14px">🔄</div><div style="font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px">Automated Follow-Up</div><div style="font-size:14px;color:var(--muted);line-height:1.7">Tracks execution, sends reminders, and measures behavioral change.</div></div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;text-align:center"><div style="font-size:30px;margin-bottom:14px">📊</div><div style="font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px">Live Dashboard</div><div style="font-size:14px;color:var(--muted);line-height:1.7">Managers see what's happening in real time — not just reports.</div></div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;text-align:center"><div style="font-size:30px;margin-bottom:14px">🎯</div><div style="font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px">Personalization</div><div style="font-size:14px;color:var(--muted);line-height:1.7">Every campaign tailored to the organization's specific challenge.</div></div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;text-align:center"><div style="font-size:30px;margin-bottom:14px">🚀</div><div style="font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px">Fast Implementation</div><div style="font-size:14px;color:var(--muted);line-height:1.7">No IT needed. Results within weeks.</div></div>
   </div>
   <div style="text-align:center;margin-top:28px"><a href="process.html" class="btn btn-g">See the Full Process →</a></div>
 </div>
@@ -718,79 +713,9 @@ nav{
 </div>
 
 <div id="footer-placeholder"></div>
+
 <script src="../shared.js"></script>
 <script>renderNav('home','en');</script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>renderFooter();</script>
-
-<script>
-!function(){var e=document.querySelectorAll(".ss-count");e.forEach(function(el){var t=+el.getAttribute("data-target"),s=0,n=50;var iv=setInterval(function(){s++;el.textContent=Math.round(t*s/n);if(s>=n){el.textContent=t;clearInterval(iv);}},32);});}();
-</script>
-
-<div class="clients">
-  <div class="clients-label">נבחר ע"י מנהלים בענפים מובילים ·</div>
-  <div class="client-pill">🛍 קמעונאות</div>
-  <div class="client-pill">🚚 לוגיסטיקה</div>
-  <div class="client-pill">🏥 בריאות</div>
-  <div class="client-pill">🎓 חינוך</div>
-  <div class="client-pill">🏦 בנקאות</div>
-  <div class="client-pill">🏭 תעשייה</div>
-  <div class="client-pill">💻 הייטק</div>
-  <div class="client-pill">🏛️ ממשל</div>
-</div>
-
-<!-- GROWTH DIAGRAM -->
-<div style="position:relative;z-index:1;padding:48px 60px 20px;text-align:center;" class="reveal">
-  <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:12px">HOW BRAIN DRIVES GROWTH</div>
-  <div style="max-width:520px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(45,156,255,0.15);border-radius:20px;padding:24px;overflow:hidden;">
-    <img src="brain-growth-diagram.jpeg" alt="How Brain Drives 20-25% Organizational Growth"
-      style="width:100%;max-width:460px;height:auto;display:block;margin:0 auto;border-radius:12px;">
-  </div>
-</div>
-
-<!-- FEATURES -->
-<div style="position:relative;z-index:1;padding:52px 60px 40px;" class="reveal">
-  <div style="text-align:center;margin-bottom:36px">
-    <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:10px">HOW IT WORKS</div>
-    <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;color:var(--white);letter-spacing:-.02em">לא רק ידע – <em style="font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">שינוי התנהגות</em></h2>
-  </div>
-  <div class="features-grid">
-    <div class="feat"><div class="feat-icon">🧠</div><div class="feat-title">ניתוח התנהגות</div><div class="feat-desc">מנתח דפוסי עובדים ומנהלים ומזהה בדיוק היכן נמצאים הפערים.</div></div>
-    <div class="feat"><div class="feat-icon">⚡</div><div class="feat-title">מסרים חכמים</div><div class="feat-desc">שליחת מסרים ממוקדים, סרטוני הדרכה קצרים ומשימות – בזמן הנכון.</div></div>
-    <div class="feat"><div class="feat-icon">🔄</div><div class="feat-title">פולו-אפ אוטומטי</div><div class="feat-desc">עוקב אחרי ביצוע, שולח תזכורות ומודד שינוי התנהגות לאורך זמן.</div></div>
-    <div class="feat"><div class="feat-icon">📊</div><div class="feat-title">דשבורד ניהולי</div><div class="feat-desc">מנהלים רואים בזמן אמת מה קורה בשטח – לא רק בדוחות.</div></div>
-    <div class="feat"><div class="feat-icon">🎯</div><div class="feat-title">התאמה אישית</div><div class="feat-desc">כל קמפיין מותאם לאתגר הספציפי של הארגון.</div></div>
-    <div class="feat"><div class="feat-icon">🚀</div><div class="feat-title">הטמעה מהירה</div><div class="feat-desc">אין צורך ב-IT.<br>Brain מתחיל לעבוד תוך ימים ורואים תוצאות תוך שבועות.</div></div>
-  </div>
-  <div style="text-align:center;margin-top:28px">
-    <a href="process.html" class="btn btn-ghost">לכל התהליך ←</a>
-  </div>
-</div>
-
-<!-- CEO CONTROL PANEL DIAGRAM -->
-<div style="position:relative;z-index:1;padding:30px 60px 20px;text-align:center;" class="reveal">
-  <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:12px">CEO CONTROL PANEL</div>
-  <div style="max-width:520px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(45,156,255,0.15);border-radius:20px;padding:24px;overflow:hidden;">
-    <img src="ceo-control-panel.jpeg" alt="לוח הפעלה למנכ'ל - 9 כפתורי פעולה לניהול הארגון"
-      style="width:100%;max-width:460px;height:auto;display:block;margin:0 auto;border-radius:12px;">
-  </div>
-</div>
-
-<!-- CTA -->
-<div style="position:relative;z-index:1;padding:36px 60px 60px;" class="reveal">
-  <div class="cta-box">
-    <h2 class="cta-title">מוכנים לראות את Brain<br>בפעולה בארגון שלכם?</h2>
-    <p class="cta-sub">ללא התחייבות · תוצאות מיידיות</p>
-    <div class="cta-btns">
-      <a href="demo.html" class="btn btn-primary">צפו בדמו עכשיו ▶</a>
-      <a href="about.html" class="btn btn-ghost">עוד עלינו</a>
-    </div>
-  </div>
-</div>
-
-<div id="footer-placeholder"></div>
-
-<script src="shared.js"></script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>renderFooter();</script>
 
@@ -895,7 +820,7 @@ var feedItems=[
   {c:'t',txt:'3 management recommendations pending',t:'8:12'},
   {c:'b',txt:'Training video sent to sales team',t:'8:00'},
   {c:'p',txt:'Manager received weekly performance report',t:'7:45'},
-  {c:'t',txt:'New employee - onboarding plan activated',t:'7:30'},
+  {c:'t',txt:'New employee - onboarding activated',t:'7:30'},
   {c:'b',txt:'Monthly KPI achieved - sales team ✓',t:'yesterday'},
 ];
 if(feedEl){
