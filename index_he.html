@@ -861,16 +861,16 @@ const data=[
 const dt=document.getElementById('dt');
 
 // cycle through potentialItems for the cards — independent of word swap
-// init after DOM ready
-const bktagEl=document.getElementById('bktag');
-const bkvalEl=document.getElementById('bkval');
-const bksufEl=document.getElementById('bksuf');
-const bklabelEl=document.getElementById('bklabel');
-const bkfillEl=document.getElementById('bkfill');
-const mIds=[['m1t','m1v','m1s','m1f'],['m2t','m2v','m2s','m2f'],['m3t','m3v','m3s','m3f'],['m4t','m4v','m4s','m4f']];
-const mEls=mIds.map(ids=>ids.map(id=>document.getElementById(id)));
-// log to debug
-console.log('bktag found:', !!bktagEl, 'm1t found:', !!document.getElementById('m1t'));
+// init card cycling
+function initCards(){
+  const bktagEl=document.getElementById('bktag');
+  const bkvalEl=document.getElementById('bkval');
+  const bksufEl=document.getElementById('bksuf');
+  const bklabelEl=document.getElementById('bklabel');
+  const bkfillEl=document.getElementById('bkfill');
+  if(!bktagEl){console.warn('bktag not found, retrying...');setTimeout(initCards,500);return;}
+  const mIds=[['m1t','m1v','m1s','m1f'],['m2t','m2v','m2s','m2f'],['m3t','m3v','m3s','m3f'],['m4t','m4v','m4s','m4f']];
+  const mEls=mIds.map(ids=>ids.map(id=>document.getElementById(id)));
 
 // group potentialItems into sets of 4+header for mini cards
 const cardSets=[
@@ -901,8 +901,7 @@ setInterval(()=>{
   dt.style.transform=`translateY(-${wi*1.05}em)`;
 },2400);
 
-// card data swap every 3s — start after 500ms
-setTimeout(()=>{
+// card data swap every 3s
 setInterval(()=>{
   ci=(ci+1)%cardSets.length;
   const d=cardSets[ci];
@@ -922,7 +921,8 @@ setInterval(()=>{
     fadeEls.forEach(e=>{if(e)e.style.opacity='1'});
   },350);
 },3000);
-},500); // end setTimeout
+} // end initCards
+initCards();
 
 /* ── ACTIVITY FEED ── */
 const feedEl=document.getElementById('feed');
