@@ -861,6 +861,7 @@ const data=[
 const dt=document.getElementById('dt');
 
 // cycle through potentialItems for the cards — independent of word swap
+// init after DOM ready
 const bktagEl=document.getElementById('bktag');
 const bkvalEl=document.getElementById('bkval');
 const bksufEl=document.getElementById('bksuf');
@@ -868,29 +869,24 @@ const bklabelEl=document.getElementById('bklabel');
 const bkfillEl=document.getElementById('bkfill');
 const mIds=[['m1t','m1v','m1s','m1f'],['m2t','m2v','m2s','m2f'],['m3t','m3v','m3s','m3f'],['m4t','m4v','m4s','m4f']];
 const mEls=mIds.map(ids=>ids.map(id=>document.getElementById(id)));
+// log to debug
+console.log('bktag found:', !!bktagEl, 'm1t found:', !!document.getElementById('m1t'));
 
 // group potentialItems into sets of 4+header for mini cards
 const cardSets=[
-  {tag:'פוטנציאל · הגדלת מכירות',val:'↑30',suf:'%',label:'הגדלת סל מכירה ממוצע
-על ידי הכשרה ממוקדת',w:75,
+  {tag:'פוטנציאל · הגדלת מכירות',val:'↑30',suf:'%',label:'הגדלת סל מכירה ממוצע\nעל ידי הכשרה ממוקדת',w:75,
    m:[{t:'UPSELL',v:'↑30%',s:'סל מכירה',w:75},{t:'CROSS-SELL',v:'↑22%',s:'מוצרים נוספים',w:65},{t:'CONVERSION',v:'↑15%',s:'המרות',w:58},{t:'REPEAT',v:'↑40%',s:'חזרת לקוח',w:80}]},
-  {tag:'פוטנציאל · שימור עובדים',val:'×2',suf:'',label:'מ-12 חודשים ל-24
-שימור עובדים מפתח',w:80,
+  {tag:'פוטנציאל · שימור עובדים',val:'×2',suf:'',label:'מ-12 חודשים ל-24\nשימור עובדים מפתח',w:80,
    m:[{t:'RETENTION',v:'↑100%',s:'שימור שנתיים+',w:90},{t:'ONBOARD',v:'↑30%',s:'גיוס חדשים',w:78},{t:'LOYALTY',v:'↑65%',s:'נאמנות',w:72},{t:'CULTURE',v:'↑50%',s:'תרבות',w:68}]},
-  {tag:'פוטנציאל · רווחיות',val:'↑25',suf:'%',label:'שיפור רווחיות ארגונית
-חיסכון בעלויות ניהול',w:70,
+  {tag:'פוטנציאל · רווחיות',val:'↑25',suf:'%',label:'שיפור רווחיות ארגונית\nחיסכון בעלויות ניהול',w:70,
    m:[{t:'MARGIN',v:'↑25%',s:'מרווח',w:70},{t:'COSTS',v:'↓12%',s:'עלויות',w:48},{t:'WASTE',v:'↓18%',s:'בזבוז',w:55},{t:'ROI',v:'90 יום',s:'ימי החזר',w:75}]},
-  {tag:'פוטנציאל · מדידה',val:'×150',suf:'',label:'מ-4 ל-600 מיקרו KPI
-שיפור פי 10 במדידה',w:95,
+  {tag:'פוטנציאל · מדידה',val:'×150',suf:'',label:'מ-4 ל-600 מיקרו KPI\nשיפור פי 10 במדידה',w:95,
    m:[{t:'KPI',v:'×10',s:'שיפור מדידה',w:95},{t:'METRICS',v:'600',s:'מיקרו למידות',w:100},{t:'AUTOMATION',v:'×3',s:'פעולות אוטו׳',w:80},{t:'PIPELINE',v:'×3',s:'צנרת מכירות',w:82}]},
-  {tag:'פוטנציאל · הקטנת עומסים',val:'↓30',suf:'%',label:'פירוק משימות ואוטומציה
-חיסכון בכוח אדם',w:65,
+  {tag:'פוטנציאל · הקטנת עומסים',val:'↓30',suf:'%',label:'פירוק משימות ואוטומציה\nחיסכון בכוח אדם',w:65,
    m:[{t:'WORKLOAD',v:'↓30%',s:'עומס',w:65},{t:'HR SAVE',v:'↓15%',s:'חיסכון בכוח אדם',w:60},{t:'COSTS',v:'↓10%',s:'עלויות',w:55},{t:'ERRORS',v:'↓25%',s:'שגיאות',w:42}]},
-  {tag:'פוטנציאל · גיוס עובדים',val:'×2',suf:'',label:'פי 2 קורות חיים
-סגירה עולה מעל 30%',w:78,
+  {tag:'פוטנציאל · גיוס עובדים',val:'×2',suf:'',label:'פי 2 קורות חיים\nסגירה עולה מעל 30%',w:78,
    m:[{t:'LEADS',v:'×2',s:'קורות חיים',w:75},{t:'CLOSE',v:'↑30%',s:'אחוז סגירה',w:78},{t:'SPEED',v:'×3',s:'מהירות גיוס',w:80},{t:'QUALITY',v:'↑40%',s:'איכות',w:88}]},
-  {tag:'פוטנציאל · הגדלת הכנסות',val:'↑20',suf:'%',label:'מ-4.5M ל-5.5M שנתי
-לכיוון מיליון נוסף',w:85,
+  {tag:'פוטנציאל · הגדלת הכנסות',val:'↑20',suf:'%',label:'מ-4.5M ל-5.5M שנתי\nלכיוון מיליון נוסף',w:85,
    m:[{t:'REVENUE',v:'↑20%',s:'הכנסות',w:85},{t:'MARKET',v:'↑15%',s:'נתח שוק',w:58},{t:'UPSELL',v:'↑30%',s:'מכירה+',w:75},{t:'CLIENTS',v:'↑40%',s:'לקוחות',w:90}]},
 ];
 
@@ -905,7 +901,8 @@ setInterval(()=>{
   dt.style.transform=`translateY(-${wi*1.05}em)`;
 },2400);
 
-// card data swap every 3s — independent
+// card data swap every 3s — start after 500ms
+setTimeout(()=>{
 setInterval(()=>{
   ci=(ci+1)%cardSets.length;
   const d=cardSets[ci];
@@ -925,6 +922,7 @@ setInterval(()=>{
     fadeEls.forEach(e=>{if(e)e.style.opacity='1'});
   },350);
 },3000);
+},500); // end setTimeout
 
 /* ── ACTIVITY FEED ── */
 const feedEl=document.getElementById('feed');
