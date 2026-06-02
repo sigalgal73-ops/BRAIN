@@ -423,34 +423,77 @@ nav{
     gap:0;
   }
 
-  /* order: text → robot → data */
-  .col-text{order:1;padding:20px 0 0;justify-content:flex-start}
-  .col-data{order:2;padding:12px 0 0}
-  .col-robot{order:3;min-height:260px;max-height:320px}
+  /* MOBILE — robot next to Brain/Co-Manager heading */
+  .hero{
+    grid-template-columns:1fr !important;
+    height:auto !important;
+    min-height:100svh !important;
+    padding:72px 20px 28px !important;
+    gap:0 !important;
+  }
 
-  /* robot smaller on mobile */
-  .robot-img{max-height:280px}
+  /* col-text: split into two sub-rows:
+     row 1 = badge + heading + robot side by side
+     row 2 = subtitle, desc, btns, checks, progress */
+  .col-text{
+    order:1 !important;
+    height:auto !important;
+    padding:16px 0 0 !important;
+    justify-content:flex-start !important;
+  }
 
-  /* text */
-  .h1 .brand{font-size:clamp(36px,9vw,52px)}
-  .h1 .co{font-size:clamp(26px,7vw,40px)}
-  .h1 .dyn{font-size:clamp(20px,5.5vw,32px)}
-  .subtitle{font-size:15px}
-  .desc{font-size:13px;margin-bottom:20px}
-  .btns .btn{padding:11px 18px;font-size:.82rem}
-  .stats-row{gap:20px;margin-top:16px;padding-top:16px}
-  .st-n{font-size:22px}
+  /* hero heading row — Brain/Co-Manager + robot side by side */
+  .hero-heading-row{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:12px !important;
+    margin-bottom:12px !important;
+  }
+  .hero-heading-left{flex:1}
+  .hero-heading-robot{
+    width:130px !important;
+    flex-shrink:0 !important;
+    position:relative !important;
+  }
+  .hero-heading-robot img{
+    width:130px !important;
+    height:auto !important;
+    object-fit:contain !important;
+    filter:drop-shadow(0 0 20px rgba(45,156,255,.35)) !important;
+    animation:float 5s ease-in-out infinite !important;
+    display:block !important;
+    margin-top:-10px !important;
+  }
+
+  /* hide the full col-robot on mobile */
+  .col-robot{display:none !important}
+
+  /* data panel below text */
+  .col-data{order:2 !important;padding:12px 0 0 !important}
+
+  /* text sizing */
+  .badge{font-size:9px !important;padding:5px 12px !important;margin-bottom:16px !important}
+  .h1 .brand{font-size:clamp(32px,8vw,48px) !important}
+  .h1 .co{font-size:clamp(22px,6vw,36px) !important}
+  .h1 .dyn{font-size:clamp(18px,5vw,28px) !important}
+  .subtitle{font-size:14px !important;margin-bottom:10px !important}
+  .desc{font-size:13px !important;margin-bottom:18px !important}
+  .btns{gap:10px !important}
+  .btns a{padding:11px 18px !important;font-size:.82rem !important}
+
+  /* hero-bottom stacked */
+  .hero-bottom{grid-template-columns:1fr !important;gap:12px !important;margin-top:12px !important;padding-top:14px !important}
+  .hb-chk{font-size:12px !important}
 
   /* data panel */
-  .bk-val{font-size:2.6rem}
-  .mini-grid{grid-template-columns:repeat(4,1fr)}
-  .m-val{font-size:1.1rem}
-  .m-tag{font-size:.48rem}
-  .feed-card{display:none} /* hide on small screens */
+  .data-ticker-card{max-height:280px}
+  .bk-val{font-size:2.2rem}
+  .mini-grid{grid-template-columns:repeat(2,1fr)}
+  .m-val{font-size:1.2rem}
+  .feed-card{display:none}
 
   .clients{padding:12px 16px;gap:8px}
-  .hero-bottom{grid-template-columns:1fr;gap:14px;margin-top:14px;padding-top:14px}
-  .hb-chk{font-size:11px}
 }
 
 @media(max-width:540px){
@@ -460,6 +503,11 @@ nav{
   .h1 .dyn{font-size:20px}
 }
 
+
+/* desktop — hide mobile-only heading row elements */
+.hero-heading-row{display:block} /* overridden in mobile */
+.hero-heading-left{display:contents}
+.hero-heading-robot{display:none}
 
 /* ── clients strip ── */
 .clients{position:relative;z-index:2;padding:18px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;background:rgba(4,20,40,.3)}
@@ -500,10 +548,13 @@ nav{
 
   <!-- COL 1 — TEXT -->
   <div class="col-text">
-    <div class="badge"><div class="bdot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
-    <h1 class="h1">
-      <span class="brand">Brain</span>
-      <span class="co">Co-Manager</span>
+    <!-- MOBILE: heading row with robot -->
+    <div class="hero-heading-row">
+      <div class="hero-heading-left">
+        <div class="badge"><div class="bdot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
+        <h1 class="h1">
+          <span class="brand">Brain</span>
+          <span class="co">Co-Manager</span>
       <div class="dyn">
         <span class="ds">מנהל את</span>
         <span class="dw"><span class="dt" id="dt">
@@ -838,10 +889,42 @@ const data=[
 ];
 
 const dt=document.getElementById('dt');
+const bktagEl=document.getElementById('bktag');
+const bkvalEl=document.getElementById('bkval');
+const bksufEl=document.getElementById('bksuf');
+const bklabelEl=document.getElementById('bklabel');
+const bkfillEl=document.getElementById('bkfill');
+const mEls=[
+  [document.getElementById('m1t'),document.getElementById('m1v'),document.getElementById('m1s'),document.getElementById('m1f')],
+  [document.getElementById('m2t'),document.getElementById('m2v'),document.getElementById('m2s'),document.getElementById('m2f')],
+  [document.getElementById('m3t'),document.getElementById('m3v'),document.getElementById('m3s'),document.getElementById('m3f')],
+  [document.getElementById('m4t'),document.getElementById('m4v'),document.getElementById('m4s'),document.getElementById('m4f')],
+];
+const fadeTargets=[bktagEl,bkvalEl,bksufEl,bklabelEl,
+  ...document.querySelectorAll('.m-tag,.m-val,.m-sub')];
+fadeTargets.forEach(e=>{if(e)e.style.transition='opacity .3s ease'});
+
 let wi=0;
 setInterval(()=>{
   wi=(wi+1)%words.length;
   dt.style.transform=`translateY(-${wi*1.05}em)`;
+  // sync cards
+  fadeTargets.forEach(e=>{if(e)e.style.opacity='0'});
+  setTimeout(()=>{
+    const d=data[wi];
+    if(bktagEl)bktagEl.textContent=d.bk.tag;
+    if(bkvalEl)bkvalEl.textContent=d.bk.val;
+    if(bksufEl)bksufEl.textContent=d.bk.suf;
+    if(bklabelEl)bklabelEl.innerHTML=d.bk.label.replace('\n','<br>');
+    if(bkfillEl)bkfillEl.style.width=d.bk.w+'%';
+    d.m.forEach((m,i)=>{
+      if(mEls[i][0])mEls[i][0].textContent=m.t;
+      if(mEls[i][1])mEls[i][1].textContent=m.v;
+      if(mEls[i][2])mEls[i][2].textContent=m.s;
+      if(mEls[i][3])mEls[i][3].style.width=m.w+'%';
+    });
+    fadeTargets.forEach(e=>{if(e)e.style.opacity='1'});
+  },300);
 },2400);
 
 /* ── STATS STRIP COUNTERS ── */
