@@ -61,7 +61,7 @@ function renderNav(activePage, lang) {
 
   document.getElementById('nav-placeholder').innerHTML = `
     <nav>
-      <a href="index.html" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
+      <a href="${isEn ? 'index.html' : 'index_he.html'}" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
       <div class="nav-links">${desktopLinks}</div>
       <div class="nav-left">
         <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="24" height="17" alt="IL" style="border-radius:2px;display:block;"></button>
@@ -191,65 +191,6 @@ function initNavScroll() {
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
     if(nav) nav.style.background = window.scrollY>40 ? 'rgba(2,13,26,0.98)' : 'rgba(2,13,26,0.92)';
-  });
-}
-
-// ── DIAGRAM LIGHTBOX ──
-// לחיצה על דיאגרמה פותחת אותה במסך מלא. מזהה אוטומטית לפי שמות הקבצים.
-function initLightbox() {
-  const DIAGRAMS = [
-    'brain-growth-diagram','ceo-control-panel','process-do-it-all',
-    'manager-conversation','agreement-process','topics-mindmap',
-    'process-bank','resistance-diagram','knowledge-box',
-    'product-components','account-manager','upsell-table',
-    'statement-bank','escalation-process','brain-analysis','brain-architecture'
-  ];
-
-  function isDiagram(img) {
-    const src = (img.getAttribute('src') || '').toLowerCase();
-    return DIAGRAMS.some(name => src.includes(name));
-  }
-
-  let overlay = document.getElementById('lightbox-overlay');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.id = 'lightbox-overlay';
-    overlay.style.cssText = 'display:none;position:fixed;inset:0;z-index:9999;background:rgba(2,13,26,0.94);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:32px;cursor:zoom-out;';
-    overlay.innerHTML = `
-      <button id="lightbox-close" aria-label="סגירה" style="position:absolute;top:20px;left:20px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s;">✕</button>
-      <img id="lightbox-img" src="" alt="" style="max-width:95%;max-height:92vh;border-radius:12px;box-shadow:0 0 60px rgba(45,156,255,0.25);cursor:default;object-fit:contain;">
-      <div id="lightbox-hint" style="position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:12px;color:rgba(255,255,255,0.5);font-family:Heebo,sans-serif;">לחצו ✕ או מחוץ לתמונה לסגירה</div>`;
-    document.body.appendChild(overlay);
-
-    const lbImg0 = overlay.querySelector('#lightbox-img');
-    const closeBtn = overlay.querySelector('#lightbox-close');
-    closeBtn.onmouseover = () => { closeBtn.style.background='rgba(255,255,255,0.16)'; };
-    closeBtn.onmouseout = () => { closeBtn.style.background='rgba(255,255,255,0.08)'; };
-
-    function closeLightbox() {
-      overlay.style.display = 'none';
-      document.body.style.overflow = '';
-      lbImg0.src = '';
-    }
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
-    closeBtn.addEventListener('click', closeLightbox);
-    lbImg0.addEventListener('click', e => e.stopPropagation());
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.style.display === 'flex') closeLightbox(); });
-  }
-
-  const lbImg = overlay.querySelector('#lightbox-img');
-
-  document.querySelectorAll('img').forEach(img => {
-    if (!isDiagram(img) || img.dataset.lightboxReady) return;
-    img.dataset.lightboxReady = '1';
-    img.style.cursor = 'zoom-in';
-    img.title = 'לחצו להגדלה';
-    img.addEventListener('click', () => {
-      lbImg.src = img.currentSrc || img.src;
-      lbImg.alt = img.alt || '';
-      overlay.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    });
   });
 }
 
@@ -571,7 +512,7 @@ function setLang(lang) {
   // Pages that exist only in Hebrew (no English version)
   const hebrewOnly = ['podcast.html'];
   if (lang === 'en' && !isEn) {
-    if (hebrewOnly.includes(page)) {
+    if (hebrewOnly.includes(page) || page === 'index_he.html') {
       window.location.href = '/en/index.html';
     } else {
       window.location.href = '/en/' + page;
@@ -601,3 +542,61 @@ document.addEventListener('DOMContentLoaded', () => {
   initBot();
   initLightbox();
 });
+
+// ── DIAGRAM LIGHTBOX ──
+function initLightbox() {
+  const DIAGRAMS = [
+    'brain-growth-diagram','ceo-control-panel','process-do-it-all',
+    'manager-conversation','agreement-process','topics-mindmap',
+    'process-bank','resistance-diagram','knowledge-box',
+    'product-components','account-manager','upsell-table',
+    'statement-bank','escalation-process','brain-analysis','brain-architecture'
+  ];
+
+  function isDiagram(img) {
+    const src = (img.getAttribute('src') || '').toLowerCase();
+    return DIAGRAMS.some(name => src.includes(name));
+  }
+
+  let overlay = document.getElementById('lightbox-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'lightbox-overlay';
+    overlay.style.cssText = 'display:none;position:fixed;inset:0;z-index:9999;background:rgba(2,13,26,0.94);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:32px;cursor:zoom-out;';
+    overlay.innerHTML = `
+      <button id="lightbox-close" aria-label="סגירה" style="position:absolute;top:20px;left:20px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s;">✕</button>
+      <img id="lightbox-img" src="" alt="" style="max-width:95%;max-height:92vh;border-radius:12px;box-shadow:0 0 60px rgba(45,156,255,0.25);cursor:default;object-fit:contain;">
+      <div id="lightbox-hint" style="position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:12px;color:rgba(255,255,255,0.5);font-family:Heebo,sans-serif;">לחצו ✕ או מחוץ לתמונה לסגירה</div>`;
+    document.body.appendChild(overlay);
+
+    const lbImg0 = overlay.querySelector('#lightbox-img');
+    const closeBtn = overlay.querySelector('#lightbox-close');
+    closeBtn.onmouseover = () => { closeBtn.style.background='rgba(255,255,255,0.16)'; };
+    closeBtn.onmouseout = () => { closeBtn.style.background='rgba(255,255,255,0.08)'; };
+
+    function closeLightbox() {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+      lbImg0.src = '';
+    }
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
+    closeBtn.addEventListener('click', closeLightbox);
+    lbImg0.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.style.display === 'flex') closeLightbox(); });
+  }
+
+  const lbImg = overlay.querySelector('#lightbox-img');
+
+  document.querySelectorAll('img').forEach(img => {
+    if (!isDiagram(img) || img.dataset.lightboxReady) return;
+    img.dataset.lightboxReady = '1';
+    img.style.cursor = 'zoom-in';
+    img.title = 'לחצו להגדלה';
+    img.addEventListener('click', () => {
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt || '';
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+}
