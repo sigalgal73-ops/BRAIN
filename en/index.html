@@ -5,82 +5,515 @@
 <meta name="facebook-domain-verification" content="gzjgv9eghct29v046qzstfzum02ncz" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brain Co-Manager | AI Management Support</title>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared.css">
 <style>
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#020d1a;--card:#071828;
+  --border:rgba(45,156,255,.13);
+  --accent:#1a6fc4;--bright:#2d9cff;--sky:#7ec8ff;
+  --teal:#00d4aa;--white:#f0f6ff;--muted:#6b8aaa;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;right:0;left:0;z-index:300;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(2,13,26,.88);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo img{height:34px;object-fit:contain}
+.nav-logo-fallback{font-family:'Space Mono',monospace;font-size:.85rem;font-weight:700;color:var(--white);letter-spacing:.08em;display:none}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);font-size:.8rem;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-btns{display:flex;gap:10px}
+.btn{padding:10px 22px;border-radius:22px;font-family:'Heebo',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;border:none;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .2s}
+.btn-p{background:linear-gradient(135deg,var(--accent),var(--bright));color:#fff;box-shadow:0 0 24px rgba(45,156,255,.3)}
+.btn-p:hover{box-shadow:0 0 40px rgba(45,156,255,.5);transform:translateY(-1px)}
+.btn-g{background:transparent;color:var(--sky);border:1.5px solid rgba(126,200,255,.28)}
+.btn-g:hover{border-color:var(--sky);background:rgba(126,200,255,.07)}
+
+/* ════════════════════════
+   HERO — 3 COLUMN
+════════════════════════ */
 .hero{
-  position:relative;z-index:1;min-height:100vh;
-  display:grid;grid-template-columns:1fr 1fr;
-  align-items:center;padding:0 60px;padding-top:64px;overflow:hidden;
+  position:relative;z-index:1;
+  height:100vh;min-height:720px;
+  display:grid;
+  grid-template-columns:26% 74%;
+  padding:64px 48px 32px;
+  gap:20px;
+  overflow:hidden;
   direction:ltr;
 }
-.hero-robot{display:flex;justify-content:center;align-items:center;order:2;}
-.hero-text{padding:40px 0;animation:fadeUp .9s ease both;order:1;direction:ltr;text-align:left;}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;padding:6px 16px;margin-bottom:26px;
-  border:1px solid rgba(0,212,170,0.45);border-radius:20px;
-  background:rgba(0,212,170,0.1);font-size:11px;font-weight:700;
+
+/* bg grid */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(45,156,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(45,156,255,.035) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:gp 8s ease-in-out infinite;pointer-events:none;
+}
+@keyframes gp{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* scan */
+.scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.3),rgba(0,212,170,.3),transparent);animation:sd 7s linear infinite;z-index:2;pointer-events:none}
+@keyframes sd{0%{top:-2px;opacity:0}5%{opacity:1}95%{opacity:.6}100%{top:100%;opacity:0}}
+
+/* ── COL 1 — TEXT ── */
+.col-text{
+  direction:ltr;text-align:left;
+  display:grid;
+  grid-template-columns:1fr 48%;
+  grid-template-rows:auto auto;
+  column-gap:16px;
+  position:relative;z-index:3;
+  padding:20px 0;
+  animation:fadeUp .9s ease both;
+  order:2;
+  align-items:start;
+}
+.ct-main{grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:center}
+.ct-robot{grid-column:2;grid-row:1 / 3;display:flex;align-items:flex-start;justify-content:center}
+.ct-robot img{width:115%;height:100%;max-height:92vh;object-fit:contain;object-position:top center;filter:drop-shadow(0 0 50px rgba(45,156,255,.4));animation:float 5s ease-in-out infinite;margin-right:-8%}
+.hero-bottom{grid-column:1 / 3;grid-row:2;display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:28px;padding:32px 16px 8px;border-top:1px solid rgba(45,156,255,.2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;margin-bottom:24px;
+  border:1px solid rgba(0,212,170,.4);border-radius:20px;
+  background:rgba(0,212,170,.08);
+  font-family:'Space Mono',monospace;font-size:10px;font-weight:700;
   color:var(--teal);letter-spacing:.1em;
+  align-self:flex-start;
 }
-.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);animation:pulse 2s ease-in-out infinite;}
-.hero-title{font-size:clamp(48px,5.5vw,80px);font-weight:900;line-height:1.04;letter-spacing:-.03em;margin-bottom:10px;}
-.hero-title em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-subtitle{font-size:clamp(20px,2.4vw,30px);font-weight:700;color:var(--sky);margin-bottom:22px;}
-.hero-desc{font-size:17px;color:var(--muted);line-height:1.8;margin-bottom:40px;max-width:480px;}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:50px;}
-.hero-stats{display:flex;gap:38px;padding-top:36px;border-top:1px solid rgba(45,156,255,.25);}
-.stat-n{font-size:34px;font-weight:900;color:var(--white);letter-spacing:-.02em;}
-.stat-n span{color:var(--teal);}
-.stat-l{font-size:11px;color:var(--muted);letter-spacing:.08em;margin-top:3px;}
-.hero-robot{position:relative;display:flex;justify-content:center;align-items:center;animation:float 5s ease-in-out infinite;}
-.robot-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;height:80%;background:radial-gradient(ellipse,rgba(45,156,255,0.32) 0%,transparent 70%);animation:glow-pulse 4s ease-in-out infinite;pointer-events:none;}
-@keyframes glow-pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
-.scan{position:absolute;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(0,212,170,0.7),transparent);animation:scan 3.5s linear infinite;pointer-events:none;z-index:5;}
-@keyframes scan{from{top:6%;}to{top:94%;}}
-.mc{position:absolute;z-index:10;background:rgba(4,20,40,0.88);backdrop-filter:blur(10px);border:1px solid rgba(45,156,255,0.22);border-radius:13px;padding:11px 15px;box-shadow:0 8px 24px rgba(0,0,0,0.4);animation:cardFloat 5s ease-in-out infinite;}
-.mc:nth-child(3){animation-delay:-2s;}.mc:nth-child(4){animation-delay:-3.5s;}
-@keyframes cardFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
-.mc-t{font-size:9px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:3px;}
-.mc-v{font-size:18px;font-weight:900;color:var(--white);}
-.mc-s{font-size:9px;color:var(--muted);margin-top:2px;}
-.mc-b{height:2.5px;background:rgba(45,156,255,0.15);border-radius:2px;margin-top:6px;overflow:hidden;}
-.mc-f{height:100%;background:linear-gradient(90deg,var(--accent),var(--teal));}
-.mc1{top:18%;right:2%;}.mc2{top:46%;right:2%;}.mc3{top:74%;right:2%;}
-.clients{position:relative;z-index:1;padding:28px 60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;background:rgba(4,20,40,0.3);}
-.clients-label{font-size:12px;color:var(--white);letter-spacing:.1em;font-weight:700;white-space:nowrap;opacity:0.75;}
-.client-pill{padding:7px 20px;border:1px solid rgba(255,255,255,0.35);border-radius:16px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:.06em;transition:all .2s;}
-.client-pill:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,0.08);}
-.features-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto;}
-.feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:all .3s;position:relative;overflow:hidden;text-align:center;}
-.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.35),transparent);}
-.feat:hover{border-color:rgba(45,156,255,.28);transform:translateY(-4px);}
-.feat-icon{font-size:30px;margin-bottom:14px;}
-.feat-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px;}
-.feat-desc{font-size:14px;color:var(--muted);line-height:1.7;}
-.robot-img{width:min(34vw,380px);height:auto;object-fit:contain;display:block;filter:drop-shadow(0 0 30px rgba(45,156,255,0.3));}
-.cta-box{max-width:700px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:26px;padding:56px 44px;text-align:center;position:relative;overflow:hidden;}
-.cta-box::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,var(--teal),var(--bright),transparent);}
-.cta-title{font-size:clamp(22px,3vw,38px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.2;}
-.cta-sub{font-size:15px;color:var(--muted);margin-bottom:34px;line-height:1.7;}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-@media(max-width:900px){
-  .hero{display:flex !important;flex-direction:column !important;align-items:center !important;text-align:center !important;padding:72px 18px 28px !important;min-height:auto !important;gap:10px !important;}
-  .hero-badge{order:1 !important;display:inline-flex !important;justify-content:center !important;gap:6px !important;font-size:9px !important;padding:5px 12px !important;margin:0 auto !important;}
-  .hero-robot{order:2 !important;width:100% !important;display:flex !important;justify-content:center !important;align-items:center !important;padding:0 !important;position:relative !important;margin:0 !important;}
-  .robot-img{width:84vw !important;max-width:320px !important;height:auto !important;display:block !important;}
-  .hero-text{order:3 !important;width:100% !important;padding:0 !important;text-align:center !important;display:contents !important;}
-  .hero-title{order:3 !important;font-size:34px !important;line-height:1.02 !important;margin-bottom:6px !important;text-align:center !important;}
-  .hero-subtitle{order:3 !important;font-size:18px !important;margin-bottom:10px !important;text-align:center !important;}
-  .hero-desc{order:4 !important;font-size:15px !important;max-width:92% !important;margin:0 auto 14px !important;text-align:center !important;}
-  .hero-actions{order:5 !important;display:flex !important;gap:10px !important;flex-wrap:nowrap !important;justify-content:center !important;width:100% !important;margin-bottom:6px !important;}
-  .hero-actions .btn{flex:1 !important;min-height:54px !important;font-size:15px !important;padding:14px 18px !important;border-radius:24px !important;}
-  .hero-stats,.mc,.robot-glow,.scan{display:none !important;}
-  .bot-fab{transform:scale(0.82) !important;transform-origin:bottom left !important;bottom:14px !important;left:10px !important;}
-  .clients{padding:12px 16px !important;gap:8px !important;}
-  .clients-label{width:100% !important;text-align:center !important;}
-  .features-grid{grid-template-columns:1fr !important;}
-  .cta-box{padding:26px 16px !important;}
+.bdot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:blip 1.8s infinite}
+@keyframes blip{0%,100%{opacity:1}50%{opacity:.2}}
+
+.h1{font-weight:900;line-height:1.02;letter-spacing:-.03em;margin-bottom:8px}
+.h1 .brand{display:block;font-size:clamp(44px,5vw,74px);color:var(--white)}
+.h1 .co{display:block;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:clamp(32px,3.8vw,58px);margin-bottom:4px}
+.h1 .dyn{display:flex;align-items:baseline;gap:10px;font-size:clamp(22px,2.8vw,42px)}
+.ds{color:rgba(255,255,255,.4);font-weight:300}
+.dw{display:inline-block;height:1.05em;overflow:hidden;vertical-align:bottom}
+.dt{display:flex;flex-direction:column;transition:transform .65s cubic-bezier(.76,0,.24,1)}
+.dt span{display:block;height:1.05em;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap;font-weight:900}
+
+.subtitle{font-size:clamp(15px,1.8vw,20px);font-weight:700;color:var(--sky);margin-bottom:14px}
+.desc{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:28px;max-width:400px}
+.desc strong{color:var(--white);font-weight:600}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+
+.stats-row{display:none}
+.st-n{font-size:clamp(22px,2.5vw,30px);font-weight:900;color:var(--white);letter-spacing:-.02em}
+.st-n em{font-style:normal;color:var(--teal);font-size:.72em}
+.st-l{font-size:9px;color:var(--muted);letter-spacing:.07em;margin-top:2px;text-transform:uppercase}
+
+/* ── COL 2 — ROBOT (tall, full height) ── */
+.col-robot{
+  position:relative;z-index:3;
+  display:flex;align-items:center;justify-content:center;
+  animation:fadeUp .9s .15s ease both;
+  order:3;
 }
+.robot-wrap{
+  position:relative;width:100%;height:100%;
+  display:flex;align-items:flex-start;justify-content:center;
+}
+.robot-glow{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:100%;height:85%;
+  background:radial-gradient(ellipse,rgba(45,156,255,.22) 0%,transparent 70%);
+  animation:rgp 4s ease-in-out infinite;pointer-events:none;
+}
+@keyframes rgp{0%,100%{opacity:.6}50%{opacity:1}}
+.robot-scan{
+  position:absolute;left:5%;right:5%;height:1.5px;
+  background:linear-gradient(90deg,transparent,rgba(0,212,170,.65),transparent);
+  animation:rs 3.2s linear infinite;pointer-events:none;z-index:5;
+}
+@keyframes rs{from{top:5%}to{top:95%}}
+.robot-img{
+  width:100%;max-height:96%;
+  object-fit:contain;object-position:top center;
+  position:relative;z-index:2;
+  filter:drop-shadow(0 0 44px rgba(45,156,255,.4));
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* ── COL 3 — LIVE DATA PANEL ── */
+.col-data{
+  display:flex;flex-direction:column;gap:12px;
+  position:relative;z-index:3;
+  padding:20px 0;
+  animation:fadeUp .9s .3s ease both;
+  order:1;
+}
+
+/* BIG KPI — the hero of the panel */
+.big-kpi{
+  background:rgba(7,24,40,.7);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px 22px;
+  position:relative;overflow:hidden;
+  flex-shrink:0;
+}
+.big-kpi::before{content:'';position:absolute;top:0;right:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--teal))}
+.bk-tag{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--teal);letter-spacing:.12em;margin-bottom:10px;text-transform:uppercase}
+.bk-val{
+  font-size:clamp(3rem,4.5vw,5rem);font-weight:900;letter-spacing:-.05em;line-height:1;
+  background:linear-gradient(135deg,var(--white),rgba(255,255,255,.55));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  transition:all .4s ease;
+}
+.bk-suf{
+  font-size:clamp(1.5rem,2.5vw,2.5rem);
+  background:linear-gradient(135deg,var(--bright),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.bk-label{font-size:.78rem;color:var(--muted);margin-top:8px;line-height:1.4;min-height:36px;transition:all .4s ease}
+.bk-bar{height:3px;background:rgba(45,156,255,.1);border-radius:2px;margin-top:14px;overflow:hidden}
+.bk-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--teal));transition:width 1.2s ease}
+.bk-live{display:flex;align-items:center;gap:6px;margin-top:10px}
+.bk-ld{width:5px;height:5px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal);animation:blip 1.6s infinite}
+.bk-lt{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--teal);letter-spacing:.08em}
+
+/* MINI STATS — 2 per row */
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-shrink:0}
+.mini{
+  background:rgba(7,24,40,.7);border:1px solid var(--border);
+  border-radius:12px;padding:14px 16px;
+  transition:border-color .3s;cursor:default;
+  position:relative;overflow:hidden;
+}
+.mini:hover{border-color:rgba(45,156,255,.3)}
+.mini::after{content:'';position:absolute;bottom:0;right:0;left:0;height:1.5px;background:linear-gradient(90deg,transparent,var(--teal),transparent);opacity:0;transition:opacity .3s}
+.mini:hover::after{opacity:1}
+.m-tag{font-family:'Space Mono',monospace;font-size:.54rem;color:var(--teal);letter-spacing:.1em;margin-bottom:5px;transition:all .3s;text-transform:uppercase}
+.m-val{font-size:clamp(1.3rem,2vw,1.8rem);font-weight:900;letter-spacing:-.03em;color:var(--white);transition:all .4s ease}
+.m-sub{font-size:.65rem;color:var(--muted);margin-top:2px;transition:all .3s}
+.m-bar{height:2px;background:rgba(45,156,255,.1);border-radius:1px;margin-top:7px;overflow:hidden}
+.m-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--teal));transition:width 1.2s ease}
+
+/* ACTIVITY FEED */
+.feed-card{
+  background:rgba(7,24,40,.7);border:1px solid var(--border);
+  border-radius:12px;padding:14px 16px;
+  flex:1;min-height:0;overflow:hidden;
+}
+.feed-card::before{content:'';display:block;background:linear-gradient(90deg,transparent,rgba(45,156,255,.2),transparent);height:1px;margin:-14px -16px 12px}
+.fc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.fc-title{font-family:'Space Mono',monospace;font-size:.56rem;color:var(--muted);letter-spacing:.12em}
+.fc-live{display:flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:.56rem;color:var(--teal)}
+.fc-dot{width:4px;height:4px;border-radius:50%;background:var(--teal);box-shadow:0 0 5px var(--teal);animation:blip 1.4s infinite}
+.feed{display:flex;flex-direction:column;gap:5px}
+.fi{
+  display:flex;align-items:center;gap:7px;
+  padding:5px 9px;border-radius:6px;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.04);
+  font-size:.7rem;color:var(--muted);
+  animation:fIn .35s ease both;
+}
+@keyframes fIn{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
+.fd{width:4px;height:4px;border-radius:50%;flex-shrink:0}
+.fd.t{background:var(--teal)}.fd.b{background:var(--bright)}.fd.p{background:#a78bfa}
+.ft{margin-right:auto;font-family:'Space Mono',monospace;font-size:.58rem;color:rgba(107,138,170,.55)}
+
+/* ── HERO BOTTOM — OPT 3+4 ── */
+.hero-bottom{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px;margin-top:24px;
+  padding-top:22px;border-top:1px solid rgba(45,156,255,.2);
+}
+.hb-checks{display:flex;flex-direction:column;gap:20px;justify-content:center}
+.hb-chk{
+  display:flex;align-items:center;gap:14px;
+  font-size:16px;font-weight:600;color:rgba(255,255,255,.88);
+  line-height:1.5;
+}
+.hb-icon{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  background:rgba(0,212,170,.15);border:1.5px solid rgba(0,212,170,.45);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;color:var(--teal);font-weight:700;
+}
+.hb-progress{display:flex;flex-direction:column;justify-content:center}
+.hb-pb-label{font-size:15px;color:var(--muted);margin-bottom:18px;direction:ltr;line-height:1.6}
+.hb-pb-label strong{color:var(--white);font-size:16px}
+.hb-track{height:7px;background:rgba(45,156,255,.1);border-radius:4px;overflow:hidden;margin-bottom:16px;box-shadow:inset 0 0 0 1px rgba(45,156,255,.08)}
+.hb-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--teal));width:0;transition:width 1.8s ease;box-shadow:0 0 8px rgba(0,212,170,.3)}
+.hb-steps{display:flex;justify-content:space-between;gap:4px}
+.hb-step{font-family:'Space Mono',monospace;font-size:10px;color:rgba(107,138,170,.5);letter-spacing:.06em;text-align:center}
+.hb-step.done{color:var(--teal);font-weight:700;font-size:11px}
+
+/* ── DATA TICKER CARD ── */
+.data-ticker-card{
+  height:100%;
+  background:rgba(7,24,40,.7);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.dtc-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  flex-shrink:0;
+}
+.dtc-title{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.14em}
+.dtc-live{display:flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:.56rem;color:var(--teal)}
+.dtc-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal);animation:blip 1.4s infinite}
+
+.dtc-stream{
+  flex:1;overflow:hidden;
+  display:flex;flex-direction:column;
+  padding:10px 12px;
+  gap:6px;
+  position:relative;
+}
+/* fade top/bottom edges */
+.dtc-stream::before{
+  content:'';position:absolute;top:0;right:0;left:0;height:32px;
+  background:linear-gradient(to bottom,rgba(7,24,40,.9),transparent);
+  z-index:2;pointer-events:none;
+}
+.dtc-stream::after{
+  content:'';position:absolute;bottom:0;right:0;left:0;height:32px;
+  background:linear-gradient(to top,rgba(7,24,40,.9),transparent);
+  z-index:2;pointer-events:none;
+}
+
+.dtc-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 12px;
+  border-radius:8px;
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.04);
+  flex-shrink:0;
+  animation:dtcIn .4s ease both;
+  transition:border-color .3s;
+}
+.dtc-item:hover{border-color:rgba(45,156,255,.25)}
+@keyframes dtcIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+.dtc-item.highlight{
+  background:rgba(0,212,170,.06);
+  border-color:rgba(0,212,170,.2);
+}
+.dtc-left{}
+.dtc-tag{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.dtc-label{font-size:.72rem;color:rgba(255,255,255,.65);font-weight:500}
+.dtc-right{text-align:left}
+.dtc-val{
+  font-family:'Space Mono',monospace;
+  font-size:1rem;font-weight:700;
+  background:linear-gradient(135deg,var(--bright),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  white-space:nowrap;
+}
+.dtc-val.up{background:linear-gradient(135deg,var(--teal),#5eead4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.dtc-val.down{background:linear-gradient(135deg,#f87171,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.dtc-bar{height:2px;background:rgba(45,156,255,.1);border-radius:1px;margin-top:4px;overflow:hidden;width:60px}
+.dtc-bar-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--accent),var(--teal))}
+
+/* ── TICKER ── */
+.ticker{position:relative;z-index:2;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:11px 0;background:rgba(255,255,255,.01)}
+.ticker-inner{display:flex;width:max-content;animation:tick 26s linear infinite}
+.ti{display:flex;align-items:center;gap:7px;padding:0 30px;font-family:'Heebo',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.06em;color:rgba(107,138,170,.65);white-space:nowrap;border-left:1px solid rgba(255,255,255,.05)}
+.ti.hi{color:var(--teal)}
+.tidot{width:3px;height:3px;border-radius:50%;background:var(--teal);flex-shrink:0}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── STATS STRIP ── */
+.stats-strip{
+  position:relative;z-index:2;
+  background:linear-gradient(135deg,rgba(10,37,64,.9),rgba(7,24,40,.95));
+  border-top:1px solid rgba(45,156,255,.18);
+  border-bottom:1px solid rgba(45,156,255,.18);
+  overflow:hidden;
+}
+/* top glow line */
+.stats-strip::before{
+  content:'';position:absolute;top:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--teal),var(--bright),var(--teal),transparent);
+  opacity:.6;
+}
+/* bottom glow line */
+.stats-strip::after{
+  content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),var(--bright),var(--accent),transparent);
+  opacity:.4;
+}
+.ss-inner{
+  max-width:700px;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+  padding:36px 48px;
+  gap:0;
+}
+.ss-item{
+  flex:1;text-align:center;
+  padding:0 32px;
+  position:relative;
+}
+.ss-divider{
+  width:1px;height:48px;
+  background:linear-gradient(180deg,transparent,rgba(45,156,255,.25),transparent);
+  flex-shrink:0;
+}
+.ss-num{
+  display:flex;align-items:baseline;justify-content:center;
+  gap:2px;line-height:1;margin-bottom:8px;
+}
+.ss-count{
+  font-family:'Heebo',sans-serif;
+  font-size:clamp(2.4rem,4vw,3.8rem);
+  font-weight:900;
+  letter-spacing:-.05em;
+  background:linear-gradient(135deg,var(--white),rgba(240,246,255,.7));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.ss-suf{
+  font-size:clamp(1.2rem,2vw,2rem);
+  font-weight:900;
+  background:linear-gradient(135deg,var(--bright),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.ss-label{
+  font-family:'Heebo',sans-serif;
+  font-size:.72rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);
+}
+
+@media(max-width:600px){
+  .ss-inner{padding:28px 20px;gap:0}
+  .ss-item{padding:0 16px}
+  .ss-count{font-size:2rem}
+  .ss-suf{font-size:1rem}
+  .ss-label{font-size:.6rem}
+  .ss-divider{height:36px}
+}
+
+/* ── CLIENTS ── */
+.clients{position:relative;z-index:1;padding:18px 48px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;background:rgba(4,20,40,.3)}
+.cl{font-size:11px;color:var(--muted);letter-spacing:.08em;font-weight:700;opacity:.7;white-space:nowrap}
+.cp{padding:5px 15px;border:1px solid rgba(255,255,255,.18);border-radius:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:.05em;transition:all .2s;cursor:default}
+.cp:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.06)}
+
+.mob-robot-wrap{display:none;position:relative;width:100%;justify-content:center;align-items:center;margin:16px 0}
+.mob-rglow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:85%;height:85%;background:radial-gradient(ellipse,rgba(45,156,255,.25) 0%,transparent 70%);animation:rgp 4s ease-in-out infinite;pointer-events:none}
+.mob-rscan{position:absolute;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(0,212,170,.7),transparent);animation:rs 3.2s linear infinite;pointer-events:none;z-index:5}
+.mob-robot-top{display:block;width:100%;max-width:280px;height:auto;object-fit:contain;filter:drop-shadow(0 0 30px rgba(45,156,255,.4));animation:float 5s ease-in-out infinite;position:relative;z-index:2;margin:0 auto}
+/* ════════════════════════
+   MOBILE
+════════════════════════ */
+
+
+@media(max-width:540px){
+  .mini-grid{grid-template-columns:repeat(2,1fr)}
+  .h1 .brand{font-size:32px}
+  .h1 .co{font-size:24px}
+  .h1 .dyn{font-size:20px}
+}
+
+@media(max-width:960px){
+  nav{padding:0 20px !important}.nav-links{display:none !important}
+  .hero{
+    height:auto !important;min-height:100svh !important;
+    grid-template-columns:1fr !important;
+    padding:72px 20px 28px !important;
+    gap:0 !important;align-items:start !important;
+  }
+  .col-text{
+    order:1 !important;height:auto !important;
+    padding:16px 0 0 !important;
+    display:flex !important;flex-direction:column !important;
+    justify-content:flex-start !important;
+    grid-template-columns:unset !important;
+    text-align:center !important;
+    align-items:center !important;
+  }
+  .col-text *{text-align:center !important}
+  .col-text .badge{align-self:center !important;margin-bottom:12px !important}
+  .col-text .h1{text-align:center !important;width:100% !important}
+  .col-text .h1 .dyn{justify-content:center !important}
+  .col-text .subtitle{text-align:center !important;width:100% !important}
+  .col-text .desc{text-align:center !important;max-width:92% !important;margin-right:auto !important;margin-left:auto !important}
+  .col-text .btns{justify-content:center !important;width:100% !important}
+  .hero .h1{text-align:center !important;direction:ltr !important}
+  .hero .h1 .brand{text-align:center !important;display:block !important}
+  .hero .h1 .co{text-align:center !important;display:block !important}
+  .hero .h1 .dyn{justify-content:center !important;direction:ltr !important}
+  .hero .subtitle{text-align:center !important;display:block !important;width:100% !important}
+  .hero .desc{text-align:center !important}
+  .hero .badge{margin-right:auto !important;margin-left:auto !important}
+  .col-text .hero-bottom{text-align:left !important}
+  .col-text .hero-bottom *{text-align:left !important}
+  .col-text .hb-checks{align-items:flex-start !important}
+  .ct-main{display:contents !important}
+  .ct-robot{display:none !important}
+  .hero-bottom{grid-column:unset !important;grid-row:unset !important}
+  .col-robot{display:none !important}
+  .ct-robot{display:none !important}
+  /* mobile robot */
+  .mob-robot-wrap{display:flex !important;justify-content:center !important;align-items:center !important;margin:14px 0 !important}
+  .mob-robot-top{width:72vw !important;max-width:260px !important;display:block !important}
+  /* centering */
+  .col-text .badge{align-self:center !important}
+  .col-text .h1{text-align:center !important}
+  .col-text .subtitle{text-align:center !important}
+  .col-text .desc{text-align:center !important;margin:0 auto 18px !important;max-width:90% !important}
+  .col-text .btns{justify-content:center !important}
+  .col-data{order:3 !important;height:auto !important;padding:16px 0 20px !important}
+  .data-ticker-card{max-height:260px !important}
+  .h1 .brand{font-size:clamp(32px,8vw,48px) !important}
+  .h1 .co{font-size:clamp(22px,6vw,36px) !important}
+  .h1 .dyn{font-size:clamp(18px,5vw,28px) !important}
+  .subtitle{font-size:14px !important}
+  .desc{font-size:13px !important;margin-bottom:18px !important}
+  .badge{font-size:9px !important;padding:5px 12px !important;margin-bottom:14px !important}
+  .hero-bottom{grid-template-columns:1fr !important;gap:12px !important;margin-top:12px !important}
+  .ss-inner{padding:24px 16px !important}
+  .clients{padding:12px 16px !important;gap:8px !important}
+  .clients-label{width:100% !important;text-align:center !important}
+  .features-grid{grid-template-columns:1fr !important}
+  .cta-box{padding:26px 16px !important}
+}
+
+.clients{position:relative;z-index:2;padding:18px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;background:rgba(4,20,40,.3)}
+.clients-label{font-size:11px;color:var(--white);letter-spacing:.1em;font-weight:700;opacity:.7;white-space:nowrap}
+.client-pill{padding:5px 16px;border:1px solid rgba(255,255,255,.2);border-radius:14px;font-size:12px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.05em;transition:all .2s;cursor:default}
+.client-pill:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.06)}
+.features-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:all .3s;position:relative;overflow:hidden;text-align:center}
+.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.35),transparent)}
+.feat:hover{border-color:rgba(45,156,255,.28);transform:translateY(-4px)}
+.feat-icon{font-size:30px;margin-bottom:14px}
+.feat-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px}
+.feat-desc{font-size:14px;color:var(--muted);line-height:1.7}
+.cta-box{max-width:700px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:26px;padding:56px 44px;text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,var(--teal),var(--bright),transparent)}
+.cta-title{font-size:clamp(22px,3vw,38px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.2}
+.cta-sub{font-size:15px;color:var(--muted);margin-bottom:34px;line-height:1.7}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
 </style>
 </head>
 <body>
@@ -88,32 +521,172 @@
 <div id="nav-placeholder"></div>
 
 <section class="hero">
-  <div class="hero-robot">
-    <div class="robot-glow"></div>
-    <div class="scan"></div>
-    <div class="mc mc1"><div class="mc-t">SALES</div><div class="mc-v">+27%</div><div class="mc-s">Steimatzky</div><div class="mc-b"><div class="mc-f" style="width:72%"></div></div></div>
-    <div class="mc mc2"><div class="mc-t">PERFORMANCE</div><div class="mc-v">+35%</div><div class="mc-s">YSB Tech</div><div class="mc-b"><div class="mc-f" style="width:85%"></div></div></div>
-    <div class="mc mc3"><div class="mc-t">GROWTH</div><div class="mc-v">+20%</div><div class="mc-s">Deloitte</div><div class="mc-b"><div class="mc-f" style="width:60%"></div></div></div>
-    <img src="../robot_navy.png" alt="Brain AI Robot" style="width:min(34vw,400px);height:auto;object-fit:contain;filter:drop-shadow(0 0 40px rgba(45,156,255,0.25));animation:float 5s ease-in-out infinite;margin-top:-80px;" class="robot-img">
+  <div class="scan"></div>
+
+  <!-- COL 1 — TEXT -->
+  <div class="col-text">
+    <div class="ct-main">
+    <div class="badge"><div class="bdot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
+    <h1 class="h1">
+      <span class="brand">Brain</span>
+      <span class="co">Co-Manager</span>
+      <div class="dyn">
+        <span class="ds">manages</span>
+        <span class="dw"><span class="dt" id="dt">
+          <span>your Team</span>
+          <span>Performance</span>
+          <span>your Data</span>
+          <span>your Growth</span>
+          <span>your Sales</span>
+          <span>Profitability</span>
+          <span>your Success</span>
+        </span></span>
+      </div>
+    </h1>
+    <div class="subtitle">AI-Powered Management Partner</div>
+    <!-- mobile robot with glow -->
+    <div class="mob-robot-wrap">
+      <div class="mob-rglow"></div>
+      <div class="mob-rscan"></div>
+      <img src="../robot_new.png" class="mob-robot-top" alt="Brain AI">
+    </div>
+    <p class="desc">Not just knowledge — <strong>real behavior change.</strong><br>Brain accompanies your organization daily, sends smart messages, follows up, and measures results.</p>
+    <div class="btns">
+      <a href="demo.html" class="btn btn-p">Watch Demo ▶</a>
+      <a href="process.html" class="btn btn-g">How It Works ▼</a>
+    </div>
+
+
+    </div><!-- /ct-main -->
+    <div class="ct-robot">
+      <img src="../robot_nobg.png" alt="Brain AI Robot">
+    </div>
+    <!-- spans both columns -->
+    <div class="hero-bottom">
+      <div class="hb-checks">
+        <div class="hb-chk"><div class="hb-icon">✓</div>An organizational brain that learns and improves daily</div>
+        <div class="hb-chk"><div class="hb-icon">✓</div>Automatic follow-up — without reminding anyone</div>
+        <div class="hb-chk"><div class="hb-icon">✓</div>Real-time management dashboard — not just reports</div>
+      </div>
+      <div class="hb-progress">
+        <div class="hb-pb-label">While you're reading this — <strong>Brain is already analyzing</strong></div>
+        <div class="hb-track"><div class="hb-fill" id="hbFill"></div></div>
+        <div class="hb-steps">
+          <div class="hb-step done">ONBOARD</div>
+          <div class="hb-step done">CONNECT</div>
+          <div class="hb-step done">LEARN</div>
+          <div class="hb-step done">TRAIN</div>
+          <div class="hb-step">LAUNCH</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="hero-text">
-    <div class="hero-badge"><div class="badge-dot"></div>AI MANAGEMENT LAYER · ACTIVE</div>
-    <h1 class="hero-title">Brain<br><em>Co-Manager</em></h1>
-    <div class="hero-subtitle">AI-Powered Management Support</div>
-    <p class="hero-desc">Not just knowledge – real behavior change.<br>Brain accompanies your organization daily, sends smart messages, follows up, and measures results.</p>
-    <div class="hero-actions">
-      <a href="demo.html" class="btn btn-primary">Watch Demo ▶</a>
-      <a href="process.html" class="btn btn-ghost">How It Works ▼</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-n">8<span>K+</span></div><div class="stat-l">ORGANIZATIONS</div></div>
-      <div><div class="stat-n">40<span>+</span></div><div class="stat-l">INDUSTRIES</div></div>
-      <div><div class="stat-n">27<span>%</span></div><div class="stat-l">AVG GROWTH</div></div>
+  <!-- COL 2 — ROBOT -->
+  <div class="col-robot">
+    <div class="robot-wrap">
+      <div class="robot-glow"></div>
+      <div class="robot-scan"></div>
+      <img src="../robot_nobg.png" alt="Brain AI Robot" class="robot-img" onerror="this.style.opacity='.15'">
     </div>
   </div>
+
+  <!-- COL 3 — LIVE DATA -->
+  <div class="col-data">
+
+    <!-- BIG KPI -->
+    <div class="big-kpi">
+      <div class="bk-tag" id="bktag">פוטנציאל · הגדלת מכירות</div>
+      <div class="bk-val"><span id="bkval">↑30</span><span class="bk-suf" id="bksuf">%</span></div>
+      <div class="bk-label" id="bklabel">הגדלת סל מכירה ממוצע<br>על ידי הכשרה ממוקדת</div>
+      <div class="bk-bar"><div class="bk-fill" id="bkfill" style="width:75%"></div></div>
+      <div class="bk-live"><div class="bk-ld"></div><span class="bk-lt">LIVE</span></div>
+    </div>
+
+    <!-- MINI GRID 2x2 -->
+    <div class="mini-grid">
+      <div class="mini"><div class="m-tag" id="m1t">UPSELL</div><div class="m-val" id="m1v">↑30%</div><div class="m-sub" id="m1s">סל מכירה</div><div class="m-bar"><div class="m-fill" id="m1f" style="width:75%"></div></div></div>
+      <div class="mini"><div class="m-tag" id="m2t">CROSS-SELL</div><div class="m-val" id="m2v">↑22%</div><div class="m-sub" id="m2s">מוצרים נוספים</div><div class="m-bar"><div class="m-fill" id="m2f" style="width:65%"></div></div></div>
+      <div class="mini"><div class="m-tag" id="m3t">CONVERSION</div><div class="m-val" id="m3v">↑15%</div><div class="m-sub" id="m3s">המרות</div><div class="m-bar"><div class="m-fill" id="m3f" style="width:58%"></div></div></div>
+      <div class="mini"><div class="m-tag" id="m4t">REPEAT</div><div class="m-val" id="m4v">↑40%</div><div class="m-sub" id="m4s">חזרת לקוח</div><div class="m-bar"><div class="m-fill" id="m4f" style="width:80%"></div></div></div>
+    </div>
+
+    <!-- ACTIVITY FEED -->
+    <div class="feed-card">
+      <div class="fc-head">
+        <div class="fc-title">BRAIN · ACTIVITY</div>
+        <div class="fc-live"><div class="fc-dot"></div>LIVE</div>
+      </div>
+      <div class="feed" id="feed">
+        <div class="fi"><div class="fd t"></div>Motivation message sent to 8 employees<div class="ft">עכשיו</div></div>
+        <div class="fi"><div class="fd b"></div>Auto follow-up — Ron didn't complete his goal<div class="ft">2 דק׳</div></div>
+        <div class="fi"><div class="fd p"></div>Brain detected performance drop in shift B<div class="ft">5 דק׳</div></div>
+      </div>
+    </div>
+
+  </div>
+
 </section>
 
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-inner">
+  <div class="ti hi"><div class="tidot"></div>AI Management · Next Gen</div>
+  <div class="ti"><div class="tidot"></div>Learns · Manages · Reports</div>
+  <div class="ti hi"><div class="tidot"></div>brain2spark.ai</div>
+  <div class="ti"><div class="tidot"></div>40% Time Saved</div>
+  <div class="ti hi"><div class="tidot"></div>ROI in 90 Days</div>
+  <div class="ti"><div class="tidot"></div>Real Behavior Change</div>
+  <div class="ti hi"><div class="tidot"></div>Automatic Follow-Up</div>
+  <div class="ti"><div class="tidot"></div>Retail · Service · Logistics</div>
+  <div class="ti hi"><div class="tidot"></div>AI Management · Next Gen</div>
+  <div class="ti"><div class="tidot"></div>Learns · Manages · Reports</div>
+  <div class="ti hi"><div class="tidot"></div>brain2spark.ai</div>
+  <div class="ti"><div class="tidot"></div>40% Time Saved</div>
+  <div class="ti hi"><div class="tidot"></div>ROI in 90 Days</div>
+  <div class="ti"><div class="tidot"></div>Real Behavior Change</div>
+  <div class="ti hi"><div class="tidot"></div>Automatic Follow-Up</div>
+  <div class="ti"><div class="tidot"></div>Retail · Service · Logistics</div>
+</div></div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip" id="statsStrip">
+  <div class="ss-inner">
+    <div class="ss-item">
+      <div class="ss-num">
+        <span class="ss-count" data-target="8" data-suffix="K+">0</span><span class="ss-suf">K+</span>
+      </div>
+      <div class="ss-label">ORGANIZATIONS</div>
+    </div>
+    <div class="ss-divider"></div>
+    <div class="ss-item">
+      <div class="ss-num">
+        <span class="ss-count" data-target="40" data-suffix="+">0</span><span class="ss-suf">+</span>
+      </div>
+      <div class="ss-label">INDUSTRIES</div>
+    </div>
+    <div class="ss-divider"></div>
+    <div class="ss-item">
+      <div class="ss-num">
+        <span class="ss-count" data-target="27" data-suffix="%">0</span><span class="ss-suf">%</span>
+      </div>
+      <div class="ss-label">AVG GROWTH</div>
+    </div>
+  </div>
+</div>
+
+<div class="clients">
+  <div class="clients-label">Chosen by managers in leading industries ·</div>
+  <div class="client-pill">🛍 Retail</div>
+  <div class="client-pill">🚚 Logistics</div>
+  <div class="client-pill">🏥 Healthcare</div>
+  <div class="client-pill">🎓 Education</div>
+  <div class="client-pill">🏦 Banking</div>
+  <div class="client-pill">🏭 Industry</div>
+  <div class="client-pill">💻 Hi-Tech</div>
+  <div class="client-pill">🏛️ Government</div>
+</div>
+
+<!-- HOW IT WORKS -->
 <div style="position:relative;z-index:1;padding:52px 60px 40px;" class="reveal">
   <div style="text-align:center;margin-bottom:36px">
     <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:10px">HOW IT WORKS</div>
@@ -135,7 +708,7 @@
 <div style="position:relative;z-index:1;padding:36px 60px 60px;" class="reveal">
   <div class="cta-box">
     <h2 class="cta-title">Ready to see Brain<br>in action at your organization?</h2>
-    <p class="cta-sub">15-minute demo · No commitment · Immediate insights</p>
+    <p class="cta-sub">No commitment · Immediate results</p>
     <div class="cta-btns">
       <a href="demo.html" class="btn btn-primary">Watch the Demo ▶</a>
       <a href="about.html" class="btn btn-ghost">Learn More About Us</a>
@@ -149,5 +722,221 @@
 <script>renderNav('home','en');</script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>renderFooter();</script>
+
+<script>
+!function(){var e=document.querySelectorAll(".ss-count");e.forEach(function(el){var t=+el.getAttribute("data-target"),s=0,n=50;var iv=setInterval(function(){s++;el.textContent=Math.round(t*s/n);if(s>=n){el.textContent=t;clearInterval(iv);}},32);});}();
+</script>
+
+<div class="clients">
+  <div class="clients-label">נבחר ע"י מנהלים בענפים מובילים ·</div>
+  <div class="client-pill">🛍 קמעונאות</div>
+  <div class="client-pill">🚚 לוגיסטיקה</div>
+  <div class="client-pill">🏥 בריאות</div>
+  <div class="client-pill">🎓 חינוך</div>
+  <div class="client-pill">🏦 בנקאות</div>
+  <div class="client-pill">🏭 תעשייה</div>
+  <div class="client-pill">💻 הייטק</div>
+  <div class="client-pill">🏛️ ממשל</div>
+</div>
+
+<!-- GROWTH DIAGRAM -->
+<div style="position:relative;z-index:1;padding:48px 60px 20px;text-align:center;" class="reveal">
+  <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:12px">HOW BRAIN DRIVES GROWTH</div>
+  <div style="max-width:520px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(45,156,255,0.15);border-radius:20px;padding:24px;overflow:hidden;">
+    <img src="brain-growth-diagram.jpeg" alt="How Brain Drives 20-25% Organizational Growth"
+      style="width:100%;max-width:460px;height:auto;display:block;margin:0 auto;border-radius:12px;">
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div style="position:relative;z-index:1;padding:52px 60px 40px;" class="reveal">
+  <div style="text-align:center;margin-bottom:36px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:10px">HOW IT WORKS</div>
+    <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;color:var(--white);letter-spacing:-.02em">לא רק ידע – <em style="font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">שינוי התנהגות</em></h2>
+  </div>
+  <div class="features-grid">
+    <div class="feat"><div class="feat-icon">🧠</div><div class="feat-title">ניתוח התנהגות</div><div class="feat-desc">מנתח דפוסי עובדים ומנהלים ומזהה בדיוק היכן נמצאים הפערים.</div></div>
+    <div class="feat"><div class="feat-icon">⚡</div><div class="feat-title">מסרים חכמים</div><div class="feat-desc">שליחת מסרים ממוקדים, סרטוני הדרכה קצרים ומשימות – בזמן הנכון.</div></div>
+    <div class="feat"><div class="feat-icon">🔄</div><div class="feat-title">פולו-אפ אוטומטי</div><div class="feat-desc">עוקב אחרי ביצוע, שולח תזכורות ומודד שינוי התנהגות לאורך זמן.</div></div>
+    <div class="feat"><div class="feat-icon">📊</div><div class="feat-title">דשבורד ניהולי</div><div class="feat-desc">מנהלים רואים בזמן אמת מה קורה בשטח – לא רק בדוחות.</div></div>
+    <div class="feat"><div class="feat-icon">🎯</div><div class="feat-title">התאמה אישית</div><div class="feat-desc">כל קמפיין מותאם לאתגר הספציפי של הארגון.</div></div>
+    <div class="feat"><div class="feat-icon">🚀</div><div class="feat-title">הטמעה מהירה</div><div class="feat-desc">אין צורך ב-IT.<br>Brain מתחיל לעבוד תוך ימים ורואים תוצאות תוך שבועות.</div></div>
+  </div>
+  <div style="text-align:center;margin-top:28px">
+    <a href="process.html" class="btn btn-ghost">לכל התהליך ←</a>
+  </div>
+</div>
+
+<!-- CEO CONTROL PANEL DIAGRAM -->
+<div style="position:relative;z-index:1;padding:30px 60px 20px;text-align:center;" class="reveal">
+  <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:12px">CEO CONTROL PANEL</div>
+  <div style="max-width:520px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(45,156,255,0.15);border-radius:20px;padding:24px;overflow:hidden;">
+    <img src="ceo-control-panel.jpeg" alt="לוח הפעלה למנכ'ל - 9 כפתורי פעולה לניהול הארגון"
+      style="width:100%;max-width:460px;height:auto;display:block;margin:0 auto;border-radius:12px;">
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="position:relative;z-index:1;padding:36px 60px 60px;" class="reveal">
+  <div class="cta-box">
+    <h2 class="cta-title">מוכנים לראות את Brain<br>בפעולה בארגון שלכם?</h2>
+    <p class="cta-sub">ללא התחייבות · תוצאות מיידיות</p>
+    <div class="cta-btns">
+      <a href="demo.html" class="btn btn-primary">צפו בדמו עכשיו ▶</a>
+      <a href="about.html" class="btn btn-ghost">עוד עלינו</a>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="shared.js"></script>
+<script>renderNav('home');</script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>renderFooter();</script>
+
+<script>
+/* ── STARS ── */
+const bg=document.getElementById('bg');
+const bx=bg.getContext('2d');let stars=[];
+function initS(){bg.width=window.innerWidth;bg.height=window.innerHeight;stars=[];for(let i=0;i<150;i++)stars.push({x:Math.random()*bg.width,y:Math.random()*bg.height,r:Math.random()*.8+.1,o:Math.random()*.5+.1,s:(Math.random()*.3+.05)*(Math.random()>.5?1:-1)})}
+function drawS(){bx.clearRect(0,0,bg.width,bg.height);stars.forEach(s=>{s.o+=s.s*.008;if(s.o>.6||s.o<.05)s.s*=-1;bx.beginPath();bx.arc(s.x,s.y,s.r,0,Math.PI*2);bx.fillStyle=`rgba(255,255,255,${s.o})`;bx.fill()});requestAnimationFrame(drawS)}
+window.addEventListener('resize',initS);initS();drawS();
+
+/* ── POTENTIAL DATA ITEMS — continuous ticker ── */
+/* ── WORD SWAP + CARD SYNC ── */
+var words=['your Team','Performance','your Data','your Growth','your Sales','Profitability','your Success'];
+const data=[
+  {bk:{tag:'Sales Potential',val:'↑30',suf:'%',label:'הגדלת סל מכירה ממוצע\nעל ידי הכשרה ממוקדת',w:75},
+   m:[{t:'UPSELL',v:'↑30%',s:'Basket Size',w:75},{t:'CROSS-SELL',v:'↑22%',s:'Add-ons',w:65},{t:'CONVERSION',v:'↑15%',s:'Conversions',w:58},{t:'REPEAT',v:'↑40%',s:'Repeat Customer',w:80}]},
+  {bk:{tag:'פוטנציאל · מוטיבציה',val:'↑85',suf:'%',label:'שיפור מוטיבציית צוות\nבאמצעות פידבק חכם',w:85},
+   m:[{t:'ENGAGEMENT',v:'↑85%',s:'מעורבות',w:85},{t:'DRIVE',v:'↑60%',s:'דחף',w:70},{t:'GOALS',v:'↑92%',s:'עמידה ביעדים',w:92},{t:'PRIDE',v:'↑70%',s:'גאווה בעבודה',w:72}]},
+  {bk:{tag:'Profitability Potential',val:'↑25',suf:'%',label:'שיפור רווחיות ארגונית\nחיסכון בעלויות ניהול',w:70},
+   m:[{t:'MARGIN',v:'↑25%',s:'Margin',w:70},{t:'WASTE',v:'↓18%',s:'Waste',w:55},{t:'COSTS',v:'↓12%',s:'Costs',w:48},{t:'ROI',v:'90 יום',s:'Payback Days',w:75}]},
+  {bk:{tag:'פוטנציאל · צמיחה',val:'↑22',suf:'%',label:'צמיחה ארגונית כוללת\nתוך 90 יום ראשונים',w:72},
+   m:[{t:'REVENUE',v:'↑18%',s:'Revenue',w:65},{t:'MARKET',v:'↑15%',s:'Market Share',w:58},{t:'PIPELINE',v:'×3',s:'צנרת',w:80},{t:'CLIENTS',v:'↑40%',s:'Clients',w:90}]},
+  {bk:{tag:'פוטנציאל · הצלחה',val:'↑95',suf:'%',label:'שיפור ביצועי הצוות\nמהיום הראשון',w:90},
+   m:[{t:'PERFORMANCE',v:'↑35%',s:'ביצועים',w:85},{t:'KPI',v:'↑28%',s:'יעדים',w:75},{t:'SPEED',v:'×2',s:'מהירות',w:80},{t:'QUALITY',v:'↑40%',s:'Quality',w:88}]},
+  {bk:{tag:'פוטנציאל · שימור צוות',val:'↑30',suf:'%',label:'שימור עובדים מפתח\nהפחתת תחלופה',w:78},
+   m:[{t:'RETENTION',v:'↑30%',s:'שימור',w:78},{t:'LOYALTY',v:'↑65%',s:'Loyalty',w:72},{t:'ONBOARD',v:'×3',s:'קליטה',w:80},{t:'CULTURE',v:'↑50%',s:'Culture',w:68}]},
+  {bk:{tag:'פוטנציאל · ביצועים',val:'↑40',suf:'%',label:'שיפור ביצועים מדידים\nבכל רמות הארגון',w:88},
+   m:[{t:'OUTPUT',v:'↑40%',s:'תפוקה',w:88},{t:'ERRORS',v:'↓25%',s:'Errors',w:55},{t:'REPORTS',v:'24/7',s:'דיווח',w:100},{t:'INSIGHT',v:'∞',s:'תובנות',w:100}]},
+];
+
+/* ── WORD SWAP ── */
+const dt=document.getElementById('dt');
+let wi=0;
+setInterval(function(){
+  wi=(wi+1)%words.length;
+  dt.style.transform='translateY(-'+(wi*1.05)+'em)';
+},2400);
+
+/* ── CARD DATA CYCLING ── */
+var cardSets=[
+  {tag:'Sales Potential',val:'↑30%',label:'Increase basket size',m:[['UPSELL','↑30%','Basket Size',75],['CROSS-SELL','↑22%','Add-ons',65],['CONVERSION','↑15%','Conversions',58],['REPEAT','↑40%','Repeat Customer',80]]},
+  {tag:'Retention Potential',val:'×2',label:'From 12 to 24 months',m:[['RETENTION','↑100%','2yr+ Retention',90],['ONBOARD','↑30%','New Hires',78],['LOYALTY','↑65%','Loyalty',72],['CULTURE','↑50%','Culture',68]]},
+  {tag:'Profitability Potential',val:'↑25%',label:'Improve profitability',m:[['MARGIN','↑25%','Margin',70],['COSTS','↓12%','Costs',48],['WASTE','↓18%','Waste',55],['ROI','90 יום','Payback Days',75]]},
+  {tag:'Measurement Potential',val:'×150',label:'From 4 to 600 micro KPIs',m:[['KPI','×10','Measurement',95],['METRICS','600','Micro KPIs',100],['AUTOMATION','×3','Auto Actions',80],['PIPELINE','×3','Sales Pipeline',82]]},
+  {tag:'Load Reduction',val:'↓30%',label:'Task automation',m:[['WORKLOAD','↓30%','Workload',65],['HR SAVE','↓15%','Savings',60],['COSTS','↓10%','Costs',55],['ERRORS','↓25%','Errors',42]]},
+  {tag:'Recruitment Potential',val:'×2',label:'2x relevant CVs',m:[['LEADS','×2','CVs',75],['CLOSE','↑30%','Close Rate',78],['SPEED','×3','Hire Speed',80],['QUALITY','↑40%','Quality',88]]},
+  {tag:'Revenue Potential',val:'↑20%',label:'From 4.5M to 5.5M annually',m:[['REVENUE','↑20%','Revenue',85],['MARKET','↑15%','Market Share',58],['UPSELL','↑30%','Upsell',75],['CLIENTS','↑40%','Clients',90]]}
+];
+var ci=0;
+
+function updateCards(){
+  var d=cardSets[ci];
+  var bktag=document.getElementById('bktag');
+  var bkval=document.getElementById('bkval');
+  var bklabel=document.getElementById('bklabel');
+  var bkfill=document.getElementById('bkfill');
+  var tags=['m1t','m2t','m3t','m4t'];
+  var vals=['m1v','m2v','m3v','m4v'];
+  var subs=['m1s','m2s','m3s','m4s'];
+  var fills=['m1f','m2f','m3f','m4f'];
+  
+  // fade out
+  var allEls=[bktag,bkval,bklabel];
+  tags.concat(vals).concat(subs).forEach(function(id){allEls.push(document.getElementById(id));});
+  allEls.forEach(function(el){if(el)el.style.opacity='0';});
+  
+  setTimeout(function(){
+    if(bktag)bktag.textContent=d.tag;
+    if(bkval)bkval.textContent=d.val;
+    if(bklabel)bklabel.textContent=d.label;
+    if(bkfill)bkfill.style.width=(d.m[0][3])+'%';
+    d.m.forEach(function(m,i){
+      var t=document.getElementById(tags[i]);
+      var v=document.getElementById(vals[i]);
+      var s=document.getElementById(subs[i]);
+      var f=document.getElementById(fills[i]);
+      if(t)t.textContent=m[0];
+      if(v)v.textContent=m[1];
+      if(s)s.textContent=m[2];
+      if(f)f.style.width=m[3]+'%';
+    });
+    allEls.forEach(function(el){if(el)el.style.opacity='1';});
+  },300);
+  
+  ci=(ci+1)%cardSets.length;
+}
+
+// start immediately + interval
+['bktag','bkval','bklabel','m1t','m1v','m1s','m2t','m2v','m2s','m3t','m3v','m3s','m4t','m4v','m4s'].forEach(function(id){
+  var el=document.getElementById(id);
+  if(el)el.style.transition='opacity 0.3s ease';
+});
+setInterval(updateCards, 3000);
+
+/* ── ACTIVITY FEED ── */
+var feedEl=document.getElementById('feed');
+var feedItems=[
+  {c:'t',txt:'Motivation message sent to 8 employees',t:'עכשיו'},
+  {c:'b',txt:'Auto follow-up — Ron didn\'t complete goal',t:'2 דק׳'},
+  {c:'p',txt:'Brain זיהה ירידה בביצועי משמרת ב׳',t:'5 דק׳'},
+  {c:'t',txt:'3 management recommendations pending approval',t:'8:12'},
+  {c:'b',txt:'Training video sent to sales team',t:'8:00'},
+  {c:'p',txt:'Manager received weekly performance report',t:'7:45'},
+  {c:'t',txt:'New employee — onboarding plan activated',t:'7:30'},
+  {c:'b',txt:'Monthly KPI achieved — sales team ✓',t:'אתמול'},
+];
+if(feedEl){
+  var fi=0;
+  setInterval(function(){
+    fi=(fi+1)%feedItems.length;
+    var d=feedItems[fi];
+    var el=document.createElement('div');
+    el.className='fi';
+    el.innerHTML='<div class="fd '+d.c+'"></div>'+d.txt+'<div class="ft">'+d.t+'</div>';
+    feedEl.insertBefore(el,feedEl.firstChild);
+    if(feedEl.children.length>3)feedEl.removeChild(feedEl.lastChild);
+  },2800);
+}
+
+/* ── STATS COUNTERS ── */
+/* ── STATS STRIP COUNTERS ── */
+(function(){
+  function go(){
+    var els=document.querySelectorAll('.ss-count');
+    if(!els.length){setTimeout(go,200);return;}
+    els.forEach(function(el){
+      if(el._done)return; el._done=true;
+      var target=parseInt(el.getAttribute('data-target'),10);
+      var steps=50, dur=1600, s=0;
+      var iv=setInterval(function(){
+        s++; el.textContent=Math.round(target*(s/steps));
+        if(s>=steps){el.textContent=target;clearInterval(iv);}
+      }, Math.round(dur/steps));
+    });
+  }
+  setTimeout(go,500);
+  setTimeout(go,1500);
+  window.addEventListener('load',function(){setTimeout(go,200);});
+})();
+
+/* ── PROGRESS BAR ── */
+setTimeout(()=>{const f=document.getElementById('hbFill');if(f)f.style.width='80%'},400);
+
+
+</script>
 </body>
 </html>
