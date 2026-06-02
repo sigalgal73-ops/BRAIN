@@ -593,19 +593,19 @@ nav{
 
     <!-- BIG KPI -->
     <div class="big-kpi">
-      <div class="bk-tag" id="bktag">פוטנציאל · הגדלת מכירות</div>
+      <div class="bk-tag" id="bktag">Sales Potential</div>
       <div class="bk-val"><span id="bkval">↑30</span><span class="bk-suf" id="bksuf">%</span></div>
-      <div class="bk-label" id="bklabel">הגדלת סל מכירה ממוצע<br>על ידי הכשרה ממוקדת</div>
+      <div class="bk-label" id="bklabel">Increase basket size<br>through focused training</div>
       <div class="bk-bar"><div class="bk-fill" id="bkfill" style="width:75%"></div></div>
       <div class="bk-live"><div class="bk-ld"></div><span class="bk-lt">LIVE</span></div>
     </div>
 
     <!-- MINI GRID 2x2 -->
     <div class="mini-grid">
-      <div class="mini"><div class="m-tag" id="m1t">UPSELL</div><div class="m-val" id="m1v">↑30%</div><div class="m-sub" id="m1s">סל מכירה</div><div class="m-bar"><div class="m-fill" id="m1f" style="width:75%"></div></div></div>
-      <div class="mini"><div class="m-tag" id="m2t">CROSS-SELL</div><div class="m-val" id="m2v">↑22%</div><div class="m-sub" id="m2s">מוצרים נוספים</div><div class="m-bar"><div class="m-fill" id="m2f" style="width:65%"></div></div></div>
-      <div class="mini"><div class="m-tag" id="m3t">CONVERSION</div><div class="m-val" id="m3v">↑15%</div><div class="m-sub" id="m3s">המרות</div><div class="m-bar"><div class="m-fill" id="m3f" style="width:58%"></div></div></div>
-      <div class="mini"><div class="m-tag" id="m4t">REPEAT</div><div class="m-val" id="m4v">↑40%</div><div class="m-sub" id="m4s">חזרת לקוח</div><div class="m-bar"><div class="m-fill" id="m4f" style="width:80%"></div></div></div>
+      <div class="mini"><div class="m-tag" id="m1t">UPSELL</div><div class="m-val" id="m1v">↑30%</div><div class="m-sub" id="m1s">Basket Size</div><div class="m-bar"><div class="m-fill" id="m1f" style="width:75%"></div></div></div>
+      <div class="mini"><div class="m-tag" id="m2t">CROSS-SELL</div><div class="m-val" id="m2v">↑22%</div><div class="m-sub" id="m2s">Add-ons</div><div class="m-bar"><div class="m-fill" id="m2f" style="width:65%"></div></div></div>
+      <div class="mini"><div class="m-tag" id="m3t">CONVERSION</div><div class="m-val" id="m3v">↑15%</div><div class="m-sub" id="m3s">Conversions</div><div class="m-bar"><div class="m-fill" id="m3f" style="width:58%"></div></div></div>
+      <div class="mini"><div class="m-tag" id="m4t">REPEAT</div><div class="m-val" id="m4v">↑40%</div><div class="m-sub" id="m4s">Repeat Customer</div><div class="m-bar"><div class="m-fill" id="m4f" style="width:80%"></div></div></div>
     </div>
 
     <!-- ACTIVITY FEED -->
@@ -615,9 +615,9 @@ nav{
         <div class="fc-live"><div class="fc-dot"></div>LIVE</div>
       </div>
       <div class="feed" id="feed">
-        <div class="fi"><div class="fd t"></div>Motivation message sent to 8 employees<div class="ft">עכשיו</div></div>
-        <div class="fi"><div class="fd b"></div>Auto follow-up — Ron didn't complete goal<div class="ft">2 דק׳</div></div>
-        <div class="fi"><div class="fd p"></div>Brain זיהה ירידה בביצועי משמרת ב׳<div class="ft">5 דק׳</div></div>
+        <div class="fi"><div class="fd t"></div>Motivation message sent to 8 employees<div class="ft">now</div></div>
+        <div class="fi"><div class="fd b"></div>Auto follow-up — Ron did not complete goal<div class="ft">2 min</div></div>
+        <div class="fi"><div class="fd p"></div>Brain detected performance drop in shift B<div class="ft">5 min</div></div>
       </div>
     </div>
 
@@ -731,25 +731,23 @@ window.addEventListener('resize',initS);initS();drawS();
 
 /* ── POTENTIAL DATA ITEMS — continuous ticker ── */
 /* ── WORD SWAP + CARD SYNC ── */
-const words=['הצוות','הביצועים','הנתונים','הצמיחה','המכירות','הרווחיות','ההצלחה'];
+var words=['your Team','Performance','your Data','your Growth','your Sales','Profitability','your Success'];
 const data=[
-  {bk:{tag:'Sales Potential',val:'↑30',suf:'%',label:'הגדלת סל מכירה ממוצע\nעל ידי הכשרה ממוקדת',w:75},
-   m:[{t:'מכירה נוספת',v:'↑30%',s:'Basket Size',w:75},{t:'מוצרים נוספים',v:'↑22%',s:'Add-ons',w:65},{t:'המרות',v:'↑15%',s:'Conversions',w:58},{t:'חזרת לקוח',v:'↑40%',s:'Repeat Customer',w:80}]},
-  {bk:{tag:'פוטנציאל · מוטיבציה',val:'↑85',suf:'%',label:'שיפור מוטיבציית צוות\nבאמצעות פידבק חכם',w:85},
-   m:[{t:'ENGAGEMENT',v:'↑85%',s:'מעורבות',w:85},{t:'DRIVE',v:'↑60%',s:'דחף',w:70},{t:'GOALS',v:'↑92%',s:'עמידה ביעדים',w:92},{t:'PRIDE',v:'↑70%',s:'גאווה בעבודה',w:72}]},
-  {bk:{tag:'Profitability Potential',val:'↑25',suf:'%',label:'שיפור רווחיות ארגונית\nחיסכון בעלויות ניהול',w:70},
-   m:[{t:'מרווח',v:'↑25%',s:'Margin',w:70},{t:'בזבוז',v:'↓18%',s:'Waste',w:55},{t:'עלויות',v:'↓12%',s:'Costs',w:48},{t:'החזר השקעה',v:'90 Days',s:'Payback Days',w:75}]},
-  {bk:{tag:'פוטנציאל · צמיחה',val:'↑22',suf:'%',label:'צמיחה ארגונית כוללת\nתוך 90 יום ראשונים',w:72},
-   m:[{t:'הכנסות',v:'↑18%',s:'Revenue',w:65},{t:'שוק',v:'↑15%',s:'נתח שוק',w:58},{t:'צנרת',v:'×3',s:'צנרת',w:80},{t:'לקוחות',v:'↑40%',s:'Clients',w:90}]},
-  {bk:{tag:'פוטנציאל · הצלחה',val:'↑95',suf:'%',label:'שיפור ביצועי הצוות\nמהיום הראשון',w:90},
-   m:[{t:'PERFORMANCE',v:'↑35%',s:'ביצועים',w:85},{t:'מדדי ביצוע',v:'↑28%',s:'יעדים',w:75},{t:'מהירות',v:'×2',s:'Speed',w:80},{t:'איכות',v:'↑40%',s:'Quality',w:88}]},
-  {bk:{tag:'פוטנציאל · שימור צוות',val:'↑30',suf:'%',label:'שימור עובדים מפתח\nהפחתת תחלופה',w:78},
-   m:[{t:'שימור',v:'↑30%',s:'שימור',w:78},{t:'נאמנות',v:'↑65%',s:'Loyalty',w:72},{t:'קליטה',v:'×3',s:'קליטה',w:80},{t:'תרבות',v:'↑50%',s:'Culture',w:68}]},
-  {bk:{tag:'פוטנציאל · ביצועים',val:'↑40',suf:'%',label:'שיפור ביצועים מדידים\nבכל רמות הארגון',w:88},
-   m:[{t:'OUTPUT',v:'↑40%',s:'תפוקה',w:88},{t:'שגיאות',v:'↓25%',s:'Errors',w:55},{t:'REPORTS',v:'24/7',s:'דיווח',w:100},{t:'INSIGHT',v:'∞',s:'תובנות',w:100}]},
-];
-
-/* ── WORD SWAP ── */
+  {bk:{tag:'Sales Potential',val:'↑30',suf:'%',label:'Increase basket size<br>through focused training',w:75},
+   m:[{t:'UPSELL',v:'↑30%',s:'Basket Size',w:75},{t:'CROSS-SELL',v:'↑22%',s:'Add-ons',w:65},{t:'CONVERSION',v:'↑15%',s:'Conversions',w:58},{t:'REPEAT',v:'↑40%',s:'Repeat Customer',w:80}]},
+  {bk:{tag:'Motivation Potential',val:'↑85',suf:'%',label:'Boost team motivation<br>through smart feedback',w:85},
+   m:[{t:'ENGAGEMENT',v:'↑85%',s:'Engagement',w:85},{t:'DRIVE',v:'↑60%',s:'Drive',w:70},{t:'GOALS',v:'↑92%',s:'Goal Achievement',w:92},{t:'PRIDE',v:'↑70%',s:'Work Pride',w:72}]},
+  {bk:{tag:'Profitability Potential',val:'↑25',suf:'%',label:'Improve org profitability<br>cut management costs',w:70},
+   m:[{t:'MARGIN',v:'↑25%',s:'Margin',w:70},{t:'WASTE',v:'↓18%',s:'Waste',w:55},{t:'COSTS',v:'↓12%',s:'Costs',w:48},{t:'ROI',v:'90 Days',s:'Payback Days',w:75}]},
+  {bk:{tag:'Growth Potential',val:'↑22',suf:'%',label:'Full org growth<br>in the first 90 days',w:72},
+   m:[{t:'REVENUE',v:'↑18%',s:'Revenue',w:65},{t:'MARKET',v:'↑15%',s:'Market Share',w:58},{t:'PIPELINE',v:'×3',s:'Pipeline',w:80},{t:'CLIENTS',v:'↑40%',s:'Clients',w:90}]},
+  {bk:{tag:'Success Potential',val:'↑95',suf:'%',label:'Improve team performance<br>from day one',w:90},
+   m:[{t:'PERFORMANCE',v:'↑35%',s:'Performance',w:85},{t:'KPI',v:'↑28%',s:'Goals',w:75},{t:'SPEED',v:'×2',s:'Speed',w:80},{t:'QUALITY',v:'↑40%',s:'Quality',w:88}]},
+  {bk:{tag:'Team Retention',val:'↑30',suf:'%',label:'Retain key employees<br>reduce turnover',w:78},
+   m:[{t:'RETENTION',v:'↑30%',s:'Retention',w:78},{t:'LOYALTY',v:'↑65%',s:'Loyalty',w:72},{t:'ONBOARD',v:'×3',s:'Onboarding',w:80},{t:'CULTURE',v:'↑50%',s:'Culture',w:68}]},
+  {bk:{tag:'Revenue Potential',val:'↑20',suf:'%',label:'Grow revenue from day one',w:85},
+   m:[{t:'REVENUE',v:'↑20%',s:'Revenue',w:85},{t:'MARKET',v:'↑15%',s:'Market Share',w:58},{t:'UPSELL',v:'↑30%',s:'Upsell',w:75},{t:'CLIENTS',v:'↑40%',s:'Clients',w:90}]},
+];/* ── WORD SWAP ── */
 const dt=document.getElementById('dt');
 let wi=0;
 setInterval(function(){
@@ -759,13 +757,13 @@ setInterval(function(){
 
 /* ── CARD DATA CYCLING ── */
 var cardSets=[
-  {tag:'Sales Potential',val:'↑30%',label:'Increase basket size',m:[['UPSELL','↑30%','סל מכירה',75],['CROSS-SELL','↑22%','מוצרים נוספים',65],['CONVERSION','↑15%','המרות',58],['REPEAT','↑40%','חזרת לקוח',80]]},
-  {tag:'Retention Potential',val:'×2',label:'From 12 to 24 months',m:[['RETENTION','↑100%','שימור שנתיים+',90],['ONBOARD','↑30%','גיוס חדשים',78],['LOYALTY','↑65%','נאמנות',72],['CULTURE','↑50%','תרבות',68]]},
-  {tag:'Profitability Potential',val:'↑25%',label:'Improve profitability',m:[['MARGIN','↑25%','מרווח',70],['COSTS','↓12%','עלויות',48],['WASTE','↓18%','בזבוז',55],['ROI','90 יום','ימי החזר',75]]},
-  {tag:'Measurement Potential',val:'×150',label:'From 4 to 600 micro KPIs',m:[['KPI','×10','שיפור מדידה',95],['METRICS','600','מיקרו למידות',100],['AUTOMATION','×3','פעולות אוטו',80],['PIPELINE','×3','צנרת מכירות',82]]},
-  {tag:'Load Reduction',val:'↓30%',label:'Task automation',m:[['WORKLOAD','↓30%','עומס',65],['HR SAVE','↓15%','חיסכון',60],['COSTS','↓10%','עלויות',55],['ERRORS','↓25%','שגיאות',42]]},
-  {tag:'Recruitment Potential',val:'×2',label:'2x relevant CVs',m:[['LEADS','×2','קורות חיים',75],['CLOSE','↑30%','אחוז סגירה',78],['SPEED','×3','מהירות גיוס',80],['QUALITY','↑40%','איכות',88]]},
-  {tag:'Revenue Potential',val:'↑20%',label:'From 4.5M to 5.5M annually',m:[['REVENUE','↑20%','הכנסות',85],['MARKET','↑15%','נתח שוק',58],['UPSELL','↑30%','מכירה+',75],['CLIENTS','↑40%','לקוחות',90]]}
+  {tag:'Sales Potential',val:'↑30%',label:'Increase basket size',m:[['UPSELL','↑30%','Basket Size',75],['CROSS-SELL','↑22%','Add-ons',65],['CONVERSION','↑15%','Conversions',58],['REPEAT','↑40%','Repeat Customer',80]]},
+  {tag:'Retention Potential',val:'×2',label:'From 12 to 24 months',m:[['RETENTION','↑100%','2yr+ Retention',90],['ONBOARD','↑30%','New Hires',78],['LOYALTY','↑65%','Loyalty',72],['CULTURE','↑50%','Culture',68]]},
+  {tag:'Profitability Potential',val:'↑25%',label:'Improve profitability',m:[['MARGIN','↑25%','Margin',70],['COSTS','↓12%','Costs',48],['WASTE','↓18%','Waste',55],['ROI','90 Days','Payback Days',75]]},
+  {tag:'Measurement Potential',val:'×150',label:'From 4 to 600 micro KPIs',m:[['KPI','×10','Measurement',95],['METRICS','600','Micro KPIs',100],['AUTOMATION','×3','Auto Actions',80],['PIPELINE','×3','Sales Pipeline',82]]},
+  {tag:'Load Reduction',val:'↓30%',label:'Task automation',m:[['WORKLOAD','↓30%','Workload',65],['HR SAVE','↓15%','Savings',60],['COSTS','↓10%','Costs',55],['ERRORS','↓25%','Errors',42]]},
+  {tag:'Recruitment Potential',val:'×2',label:'2x relevant CVs',m:[['LEADS','×2','CVs',75],['CLOSE','↑30%','Close Rate',78],['SPEED','×3','Hire Speed',80],['QUALITY','↑40%','Quality',88]]},
+  {tag:'Revenue Potential',val:'↑20%',label:'From 4.5M to 5.5M annually',m:[['REVENUE','↑20%','Revenue',85],['MARKET','↑15%','Market Share',58],['UPSELL','↑30%','Upsell+',75],['CLIENTS','↑40%','Clients',90]]}
 ];
 var ci=0;
 
@@ -817,8 +815,8 @@ setInterval(updateCards, 3000);
 var feedEl=document.getElementById('feed');
 var feedItems=[
   {c:'t',txt:'Motivation message sent to 8 employees',t:'now'},
-  {c:'b',txt:'Auto follow-up - Ron did not complete goal',t:'2 דק׳'},
-  {c:'p',txt:'Brain activity update',t:'5 דק׳'},
+  {c:'b',txt:'Auto follow-up - Ron did not complete goal',t:'2 min'},
+  {c:'p',txt:'Brain activity update',t:'5 min'},
   {c:'t',txt:'3 management recommendations pending',t:'8:12'},
   {c:'b',txt:'Training video sent to sales team',t:'8:00'},
   {c:'p',txt:'Manager received weekly performance report',t:'7:45'},
