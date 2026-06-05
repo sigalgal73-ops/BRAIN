@@ -57,7 +57,7 @@
 <form name="brain-order" netlify netlify-honeypot="bot-field" hidden>
   <input name="company"><input name="tax-id"><input name="address">
   <input name="contact"><input name="role"><input name="phone"><input name="email">
-  <input name="package"><input name="start-date"><input name="end-date">
+  <input name="package"><input name="billing"><input name="quantity">
 </form>
 
 <div class="page">
@@ -112,43 +112,66 @@
             </div>
           </div>
 
+          <!-- Toggle שנתי/חודשי -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;justify-content:flex-end">
+            <span style="font-size:13px;color:var(--muted)" id="o-lbl-m">חיוב חודשי</span>
+            <div style="position:relative;width:46px;height:24px;background:var(--teal);border-radius:100px;cursor:pointer;flex-shrink:0" id="o-tog" onclick="toggleOrder()">
+              <span style="position:absolute;top:3px;right:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .3s;display:block" id="o-knob"></span>
+            </div>
+            <span style="font-size:13px;font-weight:700;color:var(--white)" id="o-lbl-a">חיוב שנתי</span>
+            <span style="font-size:11px;color:var(--teal);border:1px solid rgba(0,212,170,.35);padding:2px 8px;border-radius:100px">חסכו עד 20%</span>
+          </div>
+
           <!-- בחירת חבילה -->
           <div class="form-group" style="margin-bottom:20px">
             <label class="form-label">בחירת חבילה (לא כולל מע"מ) <span>*</span></label>
+            <input type="hidden" name="billing" id="billing-type" value="שנתי">
             <div class="radio-group" style="margin-top:8px">
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg1" value="Starter – 15,000₪ – 3 סרטונים, מצגת אחת, 4 שעות ייעוץ" required>
-                <label for="pkg1">15,000 ₪ – 3 סרטונים - מצגת אחת - 4 שעות ייעוץ <strong style="color:var(--sky)">(Starter)</strong></label>
+                <input type="radio" name="package" id="pkg1" value="Starter" required>
+                <label for="pkg1">
+                  <strong style="color:var(--white)">Starter</strong> — עד 5 משתמשים &nbsp;
+                  <span id="pkg1-price" style="color:var(--teal);font-weight:700">390 ₪ למשתמש/חודש</span>
+                </label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg2" value="Growth – 30,000₪ – 6 סרטונים, 2 מצגות, 8 שעות ייעוץ">
-                <label for="pkg2">30,000 ₪ – 6 סרטונים - 2 מצגות - 8 שעות ייעוץ <strong style="color:var(--sky)">(Growth)</strong></label>
+                <input type="radio" name="package" id="pkg2" value="Business">
+                <label for="pkg2">
+                  <strong style="color:var(--white)">Business</strong> — עד 20 משתמשים/סניפים &nbsp;
+                  <span id="pkg2-price" style="color:var(--teal);font-weight:700">9,000 ₪/חודש</span>
+                  <span id="pkg2-unit" style="color:var(--muted);font-size:12px"> | 450 ₪ למשתמש</span>
+                </label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg3" value="Premium – 45,000₪ – 9 סרטונים, 3 מצגות, 12 שעות ייעוץ">
-                <label for="pkg3">45,000 ₪ – 9 סרטונים - 3 מצגות - 12 שעות ייעוץ <strong style="color:var(--sky)">(Premium)</strong></label>
+                <input type="radio" name="package" id="pkg3" value="Pro">
+                <label for="pkg3">
+                  <strong style="color:var(--white)">Pro</strong> — עד 50 משתמשים/סניפים &nbsp;
+                  <span id="pkg3-price" style="color:var(--teal);font-weight:700">20,000 ₪/חודש</span>
+                  <span id="pkg3-unit" style="color:var(--muted);font-size:12px"> | 400 ₪ למשתמש/סניף</span>
+                </label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg4" value="ריטיינר חודשי – 2,500₪ – 8 שעות לחודש, בהתחייבות 12 חודשים">
-                <label for="pkg4">2,500 ₪ – ריטיינר חודשי - 8 שעות לחודש - בהתחייבות 12 חודשים</label>
+                <input type="radio" name="package" id="pkg4" value="Elite">
+                <label for="pkg4">
+                  <strong style="color:var(--white)">Elite</strong> — עד 100 משתמשים/סניפים &nbsp;
+                  <span id="pkg4-price" style="color:var(--teal);font-weight:700">36,000 ₪/חודש</span>
+                  <span id="pkg4-unit" style="color:var(--muted);font-size:12px"> | 360 ₪ למשתמש/סניף</span>
+                </label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg5" value="שעתיים סדנא – 8,500₪">
-                <label for="pkg5">8,500 ₪ – שעתיים סדנא</label>
+                <input type="radio" name="package" id="pkg5" value="Enterprise">
+                <label for="pkg5">
+                  <strong style="color:var(--white)">Enterprise</strong> — מעל 100 משתמשים/סניפים &nbsp;
+                  <span style="color:var(--muted);font-size:12px">| הצעת מחיר אישית</span>
+                </label>
               </div>
             </div>
           </div>
 
-          <!-- תאריכים -->
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">תאריך התחלה <span>*</span></label>
-              <input type="date" class="form-input" name="start-date" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">תאריך סיום <span>*</span></label>
-              <input type="date" class="form-input" name="end-date" required>
-            </div>
+          <!-- כמות משתמשים/סניפים -->
+          <div class="form-group" style="margin-bottom:20px">
+            <label class="form-label">כמות משתמשים / סניפים <span>*</span></label>
+            <input type="number" class="form-input" name="quantity" placeholder="מספר משתמשים או סניפים" min="1" required>
           </div>
 
           <button type="submit" class="btn-submit">שליחה ←</button>
@@ -170,23 +193,42 @@
 <script src="shared.js"></script>
 <script>renderNav('order');</script>
 <script>
-document.getElementById('orderForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const pkg = document.querySelector('input[name="package"]:checked');
-  if (!pkg) { alert('נא לבחור חבילה'); return; }
-
-  const formData = new FormData(this);
-  formData.append('form-name', 'brain-order');
-
-  fetch('/', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: new URLSearchParams(formData).toString()
-  }).catch(() => {});
-
-  this.style.display = 'none';
-  document.getElementById('successMsg').style.display = 'block';
-});
+  var orderMode = 'annual';
+  var op = {
+    pkg1:{ a:'390 ₪ למשתמש/חודש', m:'490 ₪ למשתמש/חודש', au:'', mu:'' },
+    pkg2:{ a:'9,000 ₪/חודש', m:'11,250 ₪/חודש', au:' | 450 ₪ למשתמש', mu:' | 563 ₪ למשתמש' },
+    pkg3:{ a:'20,000 ₪/חודש', m:'25,000 ₪/חודש', au:' | 400 ₪ למשתמש/סניף', mu:' | 500 ₪ למשתמש/סניף' },
+    pkg4:{ a:'36,000 ₪/חודש', m:'45,000 ₪/חודש', au:' | 360 ₪ למשתמש/סניף', mu:' | 450 ₪ למשתמש/סניף' }
+  };
+  function toggleOrder() {
+    orderMode = orderMode==='annual' ? 'monthly' : 'annual';
+    var a = orderMode==='annual';
+    document.getElementById('o-tog').style.background = a ? 'var(--teal)' : '#1e3550';
+    document.getElementById('o-knob').style.transform = a ? '' : 'translateX(-22px)';
+    document.getElementById('o-lbl-a').style.cssText = a ? 'font-size:13px;font-weight:700;color:var(--white)' : 'font-size:13px;color:var(--muted)';
+    document.getElementById('o-lbl-m').style.cssText = !a ? 'font-size:13px;font-weight:700;color:var(--white)' : 'font-size:13px;color:var(--muted)';
+    document.getElementById('billing-type').value = a ? 'שנתי' : 'חודשי';
+    ['pkg1','pkg2','pkg3','pkg4'].forEach(function(k){
+      var pe = document.getElementById(k+'-price');
+      if(pe) pe.textContent = a ? op[k].a : op[k].m;
+      var ue = document.getElementById(k+'-unit');
+      if(ue) ue.textContent = a ? op[k].au : op[k].mu;
+    });
+  }
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const pkg = document.querySelector('input[name="package"]:checked');
+    if (!pkg) { alert('נא לבחור חבילה'); return; }
+    const formData = new FormData(this);
+    formData.append('form-name', 'brain-order');
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(formData).toString()
+    }).catch(() => {});
+    this.style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  });
 </script>
 <script>renderFooter();</script>
 </body>
