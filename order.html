@@ -114,12 +114,12 @@
 
           <!-- Toggle שנתי/חודשי -->
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;justify-content:flex-end">
+            <span style="font-size:11px;color:var(--teal);border:1px solid rgba(0,212,170,.35);padding:2px 8px;border-radius:100px">חסכו עד 20%</span>
             <span style="font-size:13px;color:var(--muted)" id="o-lbl-m">חיוב חודשי</span>
             <div style="position:relative;width:46px;height:24px;background:var(--teal);border-radius:100px;cursor:pointer;flex-shrink:0" id="o-tog" onclick="toggleOrder()">
-              <span style="position:absolute;top:3px;right:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .3s;display:block" id="o-knob"></span>
+              <span style="position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .3s;display:block" id="o-knob"></span>
             </div>
             <span style="font-size:13px;font-weight:700;color:var(--white)" id="o-lbl-a">חיוב שנתי</span>
-            <span style="font-size:11px;color:var(--teal);border:1px solid rgba(0,212,170,.35);padding:2px 8px;border-radius:100px">חסכו עד 20%</span>
           </div>
 
           <!-- בחירת חבילה -->
@@ -204,7 +204,7 @@
     orderMode = orderMode==='annual' ? 'monthly' : 'annual';
     var a = orderMode==='annual';
     document.getElementById('o-tog').style.background = a ? 'var(--teal)' : '#1e3550';
-    document.getElementById('o-knob').style.transform = a ? '' : 'translateX(-22px)';
+    document.getElementById('o-knob').style.transform = a ? '' : 'translateX(22px)';
     document.getElementById('o-lbl-a').style.cssText = a ? 'font-size:13px;font-weight:700;color:var(--white)' : 'font-size:13px;color:var(--muted)';
     document.getElementById('o-lbl-m').style.cssText = !a ? 'font-size:13px;font-weight:700;color:var(--white)' : 'font-size:13px;color:var(--muted)';
     document.getElementById('billing-type').value = a ? 'שנתי' : 'חודשי';
