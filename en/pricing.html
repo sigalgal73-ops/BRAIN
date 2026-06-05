@@ -162,6 +162,33 @@
   .psave2 { font-size:9px; color:var(--teal); font-weight:600; margin-top:4px; }
   @media(max-width:1000px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
   @media(max-width:560px) { .pricing-grid{grid-template-columns:1fr;} .ent-row{flex-direction:column;} }
+
+  /* LTR override */
+  html, body, .page, .sec, .card, .p-card, .p-list, .p-sec-lbl,
+  .pblock, .prow1, .prow2, .prow3, .billing-wrap, .ent-row,
+  .ent-left, .ent-chips, .order-form, .form-row, .form-group,
+  .radio-group, .radio-item {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+  .page-hero, .page-tag, .page-title, .page-sub,
+  .promo-line, .sec-title, .cta-box, .cta-title, .cta-sub,
+  .footer-copy, .footer-links { 
+    direction: ltr !important; 
+    text-align: center !important; 
+  }
+  .p-name, .p-size, .p-tagline, .p-setup, .pamt, .pnis2,
+  .pdesc, .punit, .pprice-period, .psave2, .pop-tag,
+  .ent-label, .ent-name, .ent-sub, .ent-price,
+  .form-label, .btn-submit { 
+    direction: ltr !important; 
+    text-align: left !important; 
+  }
+  .pop-tag {
+    right: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
 </style>
 </head>
 <body>
