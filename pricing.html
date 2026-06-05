@@ -139,7 +139,7 @@
   .pamt { font-size:36px; font-weight:900; line-height:1; color:var(--bright); }
   .p-card.popular .pamt { color:var(--teal); }
   .pnis2 { font-size:14px; font-weight:700; color:var(--muted); }
-  .pdesc { font-size:11px; color:var(--muted); font-weight:300; }
+  .pdesc { font-size:10px; color:var(--muted); font-weight:300; white-space:nowrap; }
   .prow2 { font-size:12px; color:var(--text,#c8daea); font-weight:400; margin-bottom:4px; }
   .prow3 { font-size:11px; color:var(--muted); font-weight:300; }
   .prow3 b { color:var(--bright); font-weight:700; }
@@ -147,12 +147,12 @@
   .psave-tag { font-size:9px; color:var(--teal); font-weight:600; margin-top:4px; }
 
   .pblock { margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid var(--border); }
-  .prow1 { display:flex; align-items:baseline; gap:6px; margin-bottom:5px; }
-  .pamt { font-size:34px; font-weight:900; line-height:1; color:var(--bright); }
+  .prow1 { display:flex; align-items:baseline; gap:4px; margin-bottom:5px; flex-wrap:nowrap; }
+  .pamt { font-size:30px; font-weight:900; line-height:1; color:var(--bright); white-space:nowrap; }
   .p-card.popular .pamt { color:var(--teal); }
-  .pnis2 { font-size:15px; font-weight:700; color:var(--muted); }
-  .pdesc { font-size:11px; color:var(--muted); font-weight:300; }
-  .punit { font-size:10px; color:var(--muted); font-weight:300; border-right:1px solid var(--border); padding-right:6px; margin-right:2px; white-space:nowrap; }
+  .pnis2 { font-size:13px; font-weight:700; color:var(--muted); white-space:nowrap; }
+  .pdesc { font-size:10px; color:var(--muted); font-weight:300; white-space:nowrap; }
+  .punit { font-size:9.5px; color:var(--muted); font-weight:300; border-right:1px solid var(--border); padding-right:5px; margin-right:1px; white-space:nowrap; }
   .punit b { color:var(--bright); font-weight:700; }
   .p-card.popular .punit b { color:var(--teal); }
   .prow2 { font-size:11px; color:var(--text,#c8daea); font-weight:400; margin-bottom:4px; }
@@ -190,7 +190,7 @@
       <!-- STARTER -->
       <div class="p-card">
         <div class="p-name">Starter</div>
-        <div class="p-size">עד 5 עובדים / סניפים</div>
+        <div class="p-size">עד 5 משתמשים / סניפים</div>
         <div class="p-tagline">התחלה חכמה וממוקדת — בדיקת התאמה מהירה של המערכת.</div>
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 5,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
@@ -198,7 +198,7 @@
           <div class="prow1">
             <span class="pamt" id="s-amt">390</span><span class="pnis2">₪</span>
             <span class="pdesc">לחודש</span>
-            <span class="punit"><b>390 ₪</b> למשתמש</span>
+            <span class="punit" id="s-unit"><b>390 ₪</b> למשתמש</span>
           </div>
           <div class="prow2">עד 5 משתמשים במערכת</div>
           <div class="prow3" id="s-ex">כל משתמש נוסף: <b>200 ₪/חודש</b></div>
@@ -207,7 +207,7 @@
         <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
         <div class="p-sec-lbl">מה כלול</div>
         <ul class="p-list">
-          <li>עובד/סניף אחד + עד 4 נוספים</li>
+          <li>משתמש/סניף אחד + עד 4 נוספים</li>
           <li>2 אווטארים AI לבחירה</li>
           <li>26 סרטוני מיקרו-למידה / חודש</li>
           <li>תמיכה באימייל</li>
@@ -216,7 +216,7 @@
         </ul>
         <div class="p-sec-lbl">למי זה מתאים</div>
         <ul class="p-list">
-          <li>עסקים קטנים עד 5 עובדים</li>
+          <li>עסקים קטנים עד 5 משתמשים</li>
           <li>פיילוט ראשוני במערכת</li>
           <li>עצמאים ומנהלים בודדים</li>
         </ul>
@@ -226,7 +226,7 @@
       <div class="p-card popular">
         <div class="pop-tag">הכי פופולרי</div>
         <div class="p-name">Business</div>
-        <div class="p-size">עד 20 עובדים / סניפים</div>
+        <div class="p-size">עד 20 משתמשים / סניפים</div>
         <div class="p-tagline">החבילה שעסקים בוחרים — עומק, גמישות וניהול אמיתי.</div>
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 8,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
@@ -236,14 +236,14 @@
             <span class="pdesc">לחודש</span>
             <span class="punit" id="b-unit"><b>450 ₪</b> למשתמש</span>
           </div>
-          <div class="prow2">עד 20 עובדים/סניפים במערכת</div>
-          <div class="prow3" id="b-ex">כל עובד/סניף נוסף: <b>360 ₪/חודש</b></div>
+          <div class="prow2">עד 20 משתמשים/סניפים במערכת</div>
+          <div class="prow3" id="b-ex">כל משתמש/סניף נוסף: <b>360 ₪/חודש</b></div>
           <div class="psave2" id="b-save">חסכון 17% לעומת חיוב חודשי</div>
         </div>
         <a href="order.html" class="btn btn-primary" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
         <div class="p-sec-lbl">מה כלול</div>
         <ul class="p-list">
-          <li>עד 20 <b>עובדים / סניפים</b> במערכת</li>
+          <li>עד 20 <b>משתמשים / סניפים</b> במערכת</li>
           <li>4 אווטארים AI לבחירה</li>
           <li>60 סרטוני מיקרו-למידה / חודש</li>
           <li>תמיכה: אימייל + צ'אט</li>
@@ -269,18 +269,18 @@
           <div class="prow1">
             <span class="pamt" id="p-amt">12,500</span><span class="pnis2">₪</span>
             <span class="pdesc">לחודש</span>
-            <span class="punit" id="p-unit"><b>400 ₪</b> לסניף/עובד</span>
+            <span class="punit" id="p-unit"><b>400 ₪</b> לסניף/משתמש</span>
           </div>
-          <div class="prow2">עד 50 עובדים/סניפים במערכת</div>
-          <div class="prow3" id="p-ex">כל סניף/עובד נוסף: <b>320 ₪/חודש</b></div>
+          <div class="prow2">עד 50 משתמשים/סניפים במערכת</div>
+          <div class="prow3" id="p-ex">כל סניף/משתמש נוסף: <b>320 ₪/חודש</b></div>
           <div class="psave2" id="p-save">חסכון 19% לעומת חיוב חודשי</div>
         </div>
         <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
         <div class="p-sec-lbl">מה כלול</div>
         <ul class="p-list">
-          <li>עד 50 <b>סניפים</b> במערכת</li>
-          <li>כל סניף כולל <b>עד 5 עובדים</b></li>
-          <li>עובד נוסף מעבר ל-5: <b>30 ₪/חודש</b></li>
+          <li>עד 50 משתמשים/סניפים במערכת</li>
+          <li>כל סניף כולל <b>עד 5 משתמשים</b></li>
+          <li>משתמש נוסף מעבר ל-5: <b>30 ₪/חודש</b></li>
           <li>6 אווטארים AI לבחירה</li>
           <li>120 סרטוני מיקרו-למידה / חודש</li>
           <li>דוח חודשי ניהולי</li>
@@ -306,18 +306,18 @@
           <div class="prow1">
             <span class="pamt" id="e-amt">36,000</span><span class="pnis2">₪</span>
             <span class="pdesc">לחודש</span>
-            <span class="punit" id="e-unit"><b>360 ₪</b> לסניף/עובד</span>
+            <span class="punit" id="e-unit"><b>360 ₪</b> לסניף/משתמש</span>
           </div>
-          <div class="prow2">עד 100 עובדים/סניפים במערכת</div>
-          <div class="prow3" id="e-ex">כל סניף/עובד נוסף: <b>288 ₪/חודש</b></div>
+          <div class="prow2">עד 100 משתמשים/סניפים במערכת</div>
+          <div class="prow3" id="e-ex">כל סניף/משתמש נוסף: <b>288 ₪/חודש</b></div>
           <div class="psave2" id="e-save">חסכון 18% לעומת חיוב חודשי</div>
         </div>
         <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
         <div class="p-sec-lbl">מה כלול</div>
         <ul class="p-list">
-          <li>עד 100 <b>סניפים</b> במערכת</li>
-          <li>כל סניף כולל <b>עד 5 עובדים</b></li>
-          <li>עובד נוסף מעבר ל-5: <b>30 ₪/חודש</b></li>
+          <li>עד 100 משתמשים/סניפים במערכת</li>
+          <li>כל סניף כולל <b>עד 5 משתמשים</b></li>
+          <li>משתמש נוסף מעבר ל-5: <b>30 ₪/חודש</b></li>
           <li>8 אווטארים AI לבחירה</li>
           <li>200 סרטוני מיקרו-למידה / חודש</li>
           <li>דוח חודשי + מנהל לקוח ייעודי</li>
@@ -341,7 +341,7 @@
         <div class="ent-name">Enterprise</div>
         <div class="ent-sub">לארגונים גדולים, רשתות בינלאומיות וחברות עם דרישות מיוחדות — הצעה מותאמת אישית לפי היקף, מבנה וצרכי הארגון.</div>
         <div class="ent-chips">
-          <div class="ent-chip">100+ סניפים / עובדים</div>
+          <div class="ent-chip">100+ סניפים / משתמשים</div>
           <div class="ent-chip">אווטארים מותאמים</div>
           <div class="ent-chip">אינטגרציות מותאמות</div>
           <div class="ent-chip">SLA מלא</div>
@@ -368,8 +368,8 @@
           <li>המחירים אינם כוללים מע"מ</li>
           <li>חיוב שנתי מראש | מנוי חודשי ניתן לביטול בכל עת ללא קנס</li>
           <li>דמי הקמה כוללים הטמעה, הגדרות ראשוניות והדרכת צוות</li>
-          <li>Starter: 390 ₪/חודש לעובד/סניף ראשון + 120 ₪ לכל עובד/סניף נוסף (שנתי) | 490 ₪ + 150 ₪ (חודשי)</li>
-          <li>Business: חבילה ל-20 עובדים/סניפים — 3,000 ₪/חודש (שנתי) | 3,600 ₪ (חודשי) | עובד נוסף: 150 ₪</li>
+          <li>Starter: 390 ₪/חודש למשתמש/סניף ראשון + 120 ₪ לכל משתמש/סניף נוסף (שנתי) | 490 ₪ + 150 ₪ (חודשי)</li>
+          <li>Business: חבילה ל-20 משתמשים/סניפים — 3,000 ₪/חודש (שנתי) | 3,600 ₪ (חודשי) | משתמש נוסף: 150 ₪</li>
           <li>Pro: חבילה ל-50 סניפים — 12,500 ₪/חודש (שנתי) | 15,500 ₪ (חודשי) | סניף נוסף: 30 ₪</li>
           <li>Elite: חבילה ל-100 סניפים — 36,000 ₪/חודש (שנתי) | 44,000 ₪ (חודשי) | סניף נוסף: 30 ₪</li>
         </ul>
@@ -415,9 +415,9 @@
   var mode='annual';
   var d={
     s:{aa:'390',ma:'490',ad:'למשתמש / לחודש | שנתי',md:'למשתמש / לחודש | חודשי',aex:'כל משתמש נוסף: <b>200 ₪/חודש</b>',mex:'כל משתמש נוסף: <b>200 ₪/חודש</b>',as:'חסכון 20% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 20%'},
-    b:{aa:'3,000',ma:'3,600',ad:'ל-20 עובדים/סניפים / לחודש | שנתי',md:'ל-20 עובדים/סניפים / לחודש | חודשי',aex:'כל עובד/סניף נוסף: <b>150 ₪/חודש</b>',mex:'כל עובד/סניף נוסף: <b>180 ₪/חודש</b>',as:'חסכון 17% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 17%'},
-    p:{aa:'12,500',ma:'15,500',ad:'ל-50 סניפים/עובדים / לחודש | שנתי',md:'ל-50 סניפים/עובדים / לחודש | חודשי',aex:'כל סניף/עובד נוסף: <b>120 ₪/חודש</b>',mex:'כל סניף/עובד נוסף: <b>120 ₪/חודש</b>',as:'חסכון 19% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 19%'},
-    e:{aa:'36,000',ma:'44,000',ad:'ל-100 סניפים/עובדים / לחודש | שנתי',md:'ל-100 סניפים/עובדים / לחודש | חודשי',aex:'כל סניף/עובד נוסף: <b>100 ₪/חודש</b>',mex:'כל סניף/עובד נוסף: <b>100 ₪/חודש</b>',as:'חסכון 18% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 18%'}
+    b:{aa:'3,000',ma:'3,600',ad:'ל-20 משתמשים/סניפים / לחודש | שנתי',md:'ל-20 משתמשים/סניפים / לחודש | חודשי',aex:'כל משתמש/סניף נוסף: <b>150 ₪/חודש</b>',mex:'כל משתמש/סניף נוסף: <b>180 ₪/חודש</b>',as:'חסכון 17% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 17%'},
+    p:{aa:'12,500',ma:'15,500',ad:'ל-50 סניפים/משתמשים / לחודש | שנתי',md:'ל-50 סניפים/משתמשים / לחודש | חודשי',aex:'כל סניף/משתמש נוסף: <b>120 ₪/חודש</b>',mex:'כל סניף/משתמש נוסף: <b>120 ₪/חודש</b>',as:'חסכון 19% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 19%'},
+    e:{aa:'36,000',ma:'44,000',ad:'ל-100 סניפים/משתמשים / לחודש | שנתי',md:'ל-100 סניפים/משתמשים / לחודש | חודשי',aex:'כל סניף/משתמש נוסף: <b>100 ₪/חודש</b>',mex:'כל סניף/משתמש נוסף: <b>100 ₪/חודש</b>',as:'חסכון 18% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 18%'}
   };
   function toggleB(){
     mode=mode==='annual'?'monthly':'annual';
