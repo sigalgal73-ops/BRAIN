@@ -5,196 +5,431 @@
 <meta name="facebook-domain-verification" content="gzjgv9eghct29v046qzstfzum02ncz" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing | Brain Co-Manager</title>
+<meta name="description" content="Brain Co-Manager pricing plans — tailored to every organization size.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://brain2spark.ai/en/pricing.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brain2spark.ai/pricing.html">
+<meta property="og:title" content="Plans & Pricing | Brain Co-Manager">
+<meta property="og:description" content="Flexible pricing plans for every organization size.">
+<meta property="og:image" content="https://brain2spark.ai/og-image.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#020d1a">
+<link rel="alternate" hreflang="he" href="https://brain2spark.ai/en/pricing.html">
+<link rel="alternate" hreflang="en" href="https://brain2spark.ai/en/pricing.html">
+<link rel="alternate" hreflang="x-default" href="https://brain2spark.ai/en/pricing.html">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="../shared.css">
+<style>
+  /* toggle */
+  .billing-wrap {
+    display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px;
+  }
+  .billing-lbl { font-size:14px;font-weight:500;color:var(--muted);transition:color .2s; }
+  .billing-lbl.active { color:var(--white); }
+  .tog {
+    position:relative;width:50px;height:26px;
+    background:var(--border);border-radius:100px;cursor:pointer;transition:background .3s;flex-shrink:0;
+  }
+  .tog.on { background:var(--teal); }
+  .tog::after {
+    content:'';position:absolute;top:3px;left:3px;
+    width:20px;height:20px;background:#fff;border-radius:50%;
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .tog.on::after { transform:translateX(24px); }
+  .save-pill {
+    font-size:11px;font-weight:700;color:var(--teal);
+    border:1px solid rgba(0,212,170,.35);padding:3px 10px;border-radius:100px;
+  }
+  .promo-line {
+    text-align:center;font-size:13px;color:var(--teal);
+    font-weight:500;margin-bottom:28px;
+  }
+
+  /* grid — 4 cols + enterprise row */
+  .pricing-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    max-width:1200px;
+    margin:0 auto 20px;
+    align-items:start;
+  }
+
+  /* cards */
+  .p-card {
+    display:flex;flex-direction:column;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:26px 20px 22px;
+    position:relative;
+    transition:transform .25s,border-color .25s;
+  }
+  .p-card:hover { transform:translateY(-5px); border-color:rgba(0,212,170,.3); }
+
+  .p-card.popular {
+    border-color:var(--teal);
+    background:rgba(0,212,170,.05);
+    transform:translateY(-8px);
+  }
+  .p-card.popular:hover { transform:translateY(-13px); }
+
+  .pop-tag {
+    position:absolute;top:-13px;right:50%;transform:translateX(50%);
+    background:var(--teal);color:var(--navy);
+    font-size:10px;font-weight:800;padding:3px 13px;
+    border-radius:100px;white-space:nowrap;letter-spacing:.5px;
+  }
+
+  .p-name { font-size:22px;font-weight:900;color:var(--white);margin-bottom:2px; }
+  .p-size { font-size:11px;color:var(--muted);margin-bottom:8px; }
+  .p-tagline { font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:14px;min-height:48px;font-weight:300; }
+  .p-divider { height:1px;background:var(--border);margin-bottom:14px; }
+
+  .p-setup { font-size:10px;color:var(--muted);margin-bottom:6px; }
+  .p-setup b { color:var(--teal); }
+
+  .p-price-row { display:flex;align-items:flex-end;gap:3px;margin-bottom:2px; }
+  .p-num { font-size:42px;font-weight:900;line-height:1;color:var(--bright); }
+  .p-card.popular .p-num { color:var(--teal); }
+  .p-nis { font-size:16px;font-weight:700;color:var(--muted);margin-bottom:6px; }
+  .p-period { font-size:10px;color:var(--muted);margin-bottom:2px; }
+  .p-alt { font-size:10px;color:var(--muted);margin-bottom:16px;font-weight:300; }
+
+  .p-sec-lbl {
+    font-size:10px;font-weight:700;color:var(--sky);
+    letter-spacing:.07em;margin-bottom:7px;text-transform:uppercase;
+  }
+  .p-list { list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:14px;padding:0; }
+  .p-list li { display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--text,#c8daea);line-height:1.4; }
+  .p-list li::before { content:'';width:4px;height:4px;border-radius:50%;background:var(--teal);margin-top:5px;flex-shrink:0; }
+  .p-list li.dim { color:var(--muted);font-size:11px; }
+  .p-list li.dim::before { background:var(--border); }
+
+  /* enterprise row */
+  .ent-row {
+    max-width:1200px;
+    margin:0 auto;
+    background:var(--card);
+    border:1px solid rgba(0,212,170,.2);
+    border-radius:18px;
+    padding:28px 36px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .ent-row:hover { border-color:rgba(0,212,170,.4); }
+  .ent-left { flex:1; }
+  .ent-label { font-size:10px;font-weight:700;color:var(--teal);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px; }
+  .ent-name { font-size:26px;font-weight:900;color:var(--white);margin-bottom:6px; }
+  .ent-sub { font-size:13px;color:var(--muted);line-height:1.6;font-weight:300;max-width:460px;margin-bottom:14px; }
+  .ent-chips { display:flex;flex-wrap:wrap;gap:7px; }
+  .ent-chip { border:1px solid var(--border);border-radius:6px;padding:4px 11px;font-size:11px;color:var(--muted);font-weight:400; }
+  .ent-right { text-align:center;flex-shrink:0; }
+  .ent-price { font-size:18px;font-weight:900;color:var(--teal);margin-bottom:14px; }
+
+
+  /* price block v2 */
+  .pblock { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .prow1 { display:flex; align-items:baseline; gap:4px; margin-bottom:5px; flex-wrap:wrap; }
+  .pamt { font-size:36px; font-weight:900; line-height:1; color:var(--bright); }
+  .p-card.popular .pamt { color:var(--teal); }
+  .pnis2 { font-size:14px; font-weight:700; color:var(--muted); }
+  .pdesc { font-size:10px; color:var(--muted); font-weight:300; white-space:nowrap; }
+  .prow2 { font-size:12px; color:var(--text,#c8daea); font-weight:400; margin-bottom:4px; }
+  .prow3 { font-size:11px; color:var(--muted); font-weight:300; }
+  .prow3 b { color:var(--bright); font-weight:700; }
+  .p-card.popular .prow3 b { color:var(--teal); }
+  .psave-tag { font-size:9px; color:var(--teal); font-weight:600; margin-top:4px; }
+
+  .pblock { margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid var(--border); }
+  .prow1 { display:flex; align-items:baseline; gap:4px; margin-bottom:5px; flex-wrap:nowrap; }
+  .pamt { font-size:30px; font-weight:900; line-height:1; color:var(--bright); white-space:nowrap; }
+  .p-card.popular .pamt { color:var(--teal); }
+  .pnis2 { font-size:13px; font-weight:700; color:var(--muted); white-space:nowrap; }
+  .pdesc { font-size:10px; color:var(--muted); font-weight:300; white-space:nowrap; }
+  .punit { font-size:9.5px; color:var(--muted); font-weight:300; border-right:1px solid var(--border); padding-right:5px; margin-right:1px; white-space:nowrap; }
+  .punit b { color:var(--bright); font-weight:700; }
+  .p-card.popular .punit b { color:var(--teal); }
+  .prow2 { font-size:11px; color:var(--text,#c8daea); font-weight:400; margin-bottom:4px; }
+  .prow3 { font-size:11px; color:var(--muted); font-weight:300; margin-bottom:2px; }
+  .prow3 b { color:var(--bright); font-weight:700; }
+  .p-card.popular .prow3 b { color:var(--teal); }
+  .psave2 { font-size:9px; color:var(--teal); font-weight:600; margin-top:4px; }
+  @media(max-width:1000px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px) { .pricing-grid{grid-template-columns:1fr;} .ent-row{flex-direction:column;} }
+</style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div id="nav-placeholder"></div>
 <div class="page">
+
   <div class="page-hero">
     <div class="page-tag">PRICING</div>
     <h1 class="page-title">Pricing – <em>Brain Co-Manager</em></h1>
-    <p class="page-sub">AI Management Support – Choose the plan that fits your organization</p>
+    <p class="page-sub">AI Management Support — Choose the plan that fits your organization</p>
   </div>
 
-<div class="sec reveal">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:0 auto;align-items:stretch">
+  <div class="sec reveal">
 
-    <!-- Starter -->
-    <div class="card">
-      <div style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:4px">Starter</div>
-      <div style="font-size:36px;font-weight:900;color:var(--bright);margin:14px 0 2px">$4,000</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">excl. VAT</div>
-      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px">Perfect for a smart start, focused pilot, and quick fit assessment.</div>
+    <div class="billing-wrap">
+      <span class="billing-lbl" id="lbl-m">Monthly billing</span>
+      <div class="tog on" id="tog" onclick="toggleB()"></div>
+      <span class="billing-lbl active" id="lbl-a">Annual billing</span>
+      <span class="save-pill" id="save-pill">Save up to 20%</span>
+    </div>
+    <div class="promo-line">✦ Launch offer: Free onboarding for our first customers</div>
 
-      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">What's included:</div>
-      <ul class="dot-list" style="margin-bottom:16px">
-        <li>3 short videos</li>
-        <li>1 presentation</li>
-        <li>4 consulting hours</li>
-        <li>Initial message framework</li>
-        <li>1 revision round</li>
-      </ul>
+    <div class="pricing-grid">
 
-      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">Best for:</div>
-      <ul class="dot-list" style="margin-bottom:16px">
-        <li>Pilot programs</li>
-        <li>Short campaigns</li>
-        <li>Initial organizational launch</li>
-      </ul>
+      <!-- STARTER -->
+      <div class="p-card">
+        <div class="p-name">Starter</div>
+        <div class="p-size">Up to 5 users</div>
+        <div class="p-tagline">Smart, focused start<br>Quick system fit assessment</div>
+        <div class="p-divider"></div>
+        <div class="p-setup">Onboarding: ₪5,000 &nbsp;<b>Free at launch</b></div>
+        <div class="pblock">
+          <div class="prow1">
+            <span class="pamt" id="s-amt">390</span><span class="pnis2">₪</span>
+            <span class="pdesc">per month</span>
+            <span class="punit" id="s-unit"><b>₪390</b> per user</span>
+          </div>
+          <div class="prow3" id="s-ex">Extra user: <b>₪280/month</b></div>
+          <div class="psave2" id="s-save">Save 20% vs monthly billing</div>
+        </div>
+        <a href="../order_en.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">Get Started →</a>
+        <div class="p-sec-lbl">What's included</div>
+        <ul class="p-list">
+          <li>Up to 5 users</li>
+          <li>2 AI avatars</li>
+          <li>26 micro-learning videos/month</li>
+          
+          <li class="dim">Extra avatar: ₪45</li>
+          <li class="dim">Extra video: ₪30</li>
+        </ul>
+        <div class="p-sec-lbl">Best for</div>
+        <ul class="p-list">
+          <li>Small businesses up to 5 users</li>
+          <li>Initial system pilot</li>
+          <li>Freelancers & solo managers</li>
+        </ul>
+      </div>
 
-      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">Example:</div>
-      <ul class="dot-list" style="margin-bottom:22px;flex:1">
-        <li>Opening video</li>
-        <li>Management video</li>
-        <li>Employee video</li>
-        <li>Process explanation presentation</li>
-      </ul>
+      <!-- BUSINESS — popular -->
+      <div class="p-card">
+        <div class="p-name">Business</div>
+        <div class="p-size">Up to 20 users / branches</div>
+        <div class="p-tagline">Smart management for your team — AI that works for you every day</div>
+        <div class="p-divider"></div>
+        <div class="p-setup">Onboarding: ₪8,000 &nbsp;<b>Free at launch</b></div>
+        <div class="pblock">
+          <div class="prow1">
+            <span class="pamt" id="b-amt">3,000</span><span class="pnis2">₪</span>
+            <span class="pdesc">per month</span>
+            <span class="punit" id="b-unit"><b>₪450</b> per user</span>
+          </div>
+          <div class="prow2">Up to 20 users/branches in the system</div>
+          <div class="prow3" id="b-ex">Extra user/branch: <b>₪360/month</b></div>
+          <div class="psave2" id="b-save">חסכון 17% לעומת חיוב חודשי</div>
+        </div>
+        <a href="../order_en.html" class="btn btn-primary" style="display:block;text-align:center;margin-bottom:18px">Get Started →</a>
+        <div class="p-sec-lbl">What's included</div>
+        <ul class="p-list">
+          <li>Up to 20 users / branches</li>
+          <li>4 AI avatars</li>
+          <li>30 micro-learning videos/month per branch</li>
+          <li>BRAIN representative support</li>
+          <li class="dim">Extra avatar: ₪35</li>
+          <li class="dim">Extra video: ₪25</li>
+        </ul>
+        <div class="p-sec-lbl">Best for</div>
+        <ul class="p-list">
+          <li>Growing businesses with a team</li>
+          <li>Managers wanting a daily AI tool</li>
+          <li>Companies seeking fast deployment</li>
+        </ul>
+      </div>
 
-      <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center">Order Now →</a>
+      <!-- PRO -->
+      <div class="p-card popular">
+        <div class="pop-tag">Most Popular</div>
+        <div class="p-name">Pro</div>
+        <div class="p-size">Up to 50 users / branches</div>
+        <div class="p-tagline">Real scale for your network — management, reports & full control</div>
+        <div class="p-divider"></div>
+        <div class="p-setup">Onboarding: ₪12,000 &nbsp;<b>Free at launch</b></div>
+        <div class="pblock">
+          <div class="prow1">
+            <span class="pamt" id="p-amt">12,500</span><span class="pnis2">₪</span>
+            <span class="pdesc">per month</span>
+            <span class="punit" id="p-unit"><b>400 ₪</b> לסניף/משתמש</span>
+          </div>
+          <div class="prow2">Up to 50 users/branches in the system</div>
+          <div class="prow3" id="p-ex">כל סניף/משתמש נוסף: <b>320 ₪/חודש</b></div>
+          <div class="psave2" id="p-save">חסכון 19% לעומת חיוב חודשי</div>
+        </div>
+        <a href="../order_en.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">Get Started →</a>
+        <div class="p-sec-lbl">What's included</div>
+        <ul class="p-list">
+          <li>Up to 50 users/branches in the system</li>
+          <li>6 AI avatars</li>
+          <li>30 micro-learning videos/month per branch</li>
+          <li>Monthly management reports</li>
+          <li>BRAIN team support</li>
+          <li class="dim">Extra avatar: ₪30</li>
+          <li class="dim">Extra video: ₪20</li>
+        </ul>
+        <div class="p-sec-lbl">Best for</div>
+        <ul class="p-list">
+          <li>Multi-branch networks</li>
+          <li>Mid-size companies with team leads</li>
+          <li>Organizations needing management reports</li>
+        </ul>
+      </div>
+
+      <!-- ELITE -->
+      <div class="p-card">
+        <div class="p-name">Elite</div>
+        <div class="p-size">Up to 100 users / branches</div>
+        <div class="p-tagline">לארגונים גדולים ורשתות זכיינות — כוח מלא וליווי אישי.</div>
+        <div class="p-divider"></div>
+        <div class="p-setup">Onboarding: ₪15,000 &nbsp;<b>Free at launch</b></div>
+        <div class="pblock">
+          <div class="prow1">
+            <span class="pamt" id="e-amt">36,000</span><span class="pnis2">₪</span>
+            <span class="pdesc">per month</span>
+            <span class="punit" id="e-unit"><b>360 ₪</b> לסניף/משתמש</span>
+          </div>
+          <div class="prow2">Up to 100 users/branches in the system</div>
+          <div class="prow3" id="e-ex">כל סניף/משתמש נוסף: <b>288 ₪/חודש</b></div>
+          <div class="psave2" id="e-save">חסכון 18% לעומת חיוב חודשי</div>
+        </div>
+        <a href="../order_en.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">Get Started →</a>
+        <div class="p-sec-lbl">What's included</div>
+        <ul class="p-list">
+          <li>Up to 100 users/branches in the system</li>
+          <li>8 AI avatars</li>
+          <li>30 micro-learning videos/month per branch</li>
+          <li>Monthly management reports</li>
+          <li>BRAIN team support</li>
+          <li class="dim">Extra avatar: ₪20</li>
+          <li class="dim">Extra video: ₪10</li>
+        </ul>
+        <div class="p-sec-lbl">Best for</div>
+        <ul class="p-list">
+          <li>Large franchise networks</li>
+          <li>Multi-branch groups</li>
+          <li>Organizations requiring SLA & personal support</li>
+        </ul>
+      </div>
+
     </div>
 
-    <!-- Growth -->
-    <div class="card" style="border-color:rgba(45,156,255,0.4);background:rgba(26,111,196,0.12);position:relative">
-      <div style="position:absolute;top:14px;right:14px;padding:3px 12px;background:var(--accent);border-radius:10px;font-size:10px;font-weight:700;color:#fff;letter-spacing:.06em">Most Popular</div>
-      <div style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:4px">Growth</div>
-      <div style="font-size:36px;font-weight:900;color:var(--bright);margin:14px 0 2px">$8,200</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">excl. VAT</div>
-      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px">A balanced package with more content, more depth, and more guidance.</div>
-
-      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">What's included:</div>
-      <ul class="dot-list" style="margin-bottom:16px">
-        <li>6 short videos</li>
-        <li>2 presentations</li>
-        <li>8 consulting hours</li>
-        <li>Structured campaign tailored to your needs</li>
-        <li>Message customization per audience</li>
-        <li>2 revision rounds</li>
-      </ul>
-
-      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">Best for:</div>
-      <ul class="dot-list" style="margin-bottom:16px">
-        <li>Broader implementation</li>
-        <li>Working with multiple teams</li>
-        <li>Organizations wanting content + managerial thinking</li>
-      </ul>
-
-      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">Example:</div>
-      <ul class="dot-list" style="margin-bottom:22px;flex:1">
-        <li>2 opening videos</li>
-        <li>2 management videos</li>
-        <li>2 employee videos</li>
-        <li>Executive presentation</li>
-        <li>Implementation presentation</li>
-      </ul>
-
-      <a href="order.html" class="btn btn-primary" style="display:block;text-align:center">Order Now →</a>
-    </div>
-
-    <!-- Premium -->
-    <div class="card">
-      <div style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:4px">Premium</div>
-      <div style="font-size:36px;font-weight:900;color:var(--bright);margin:14px 0 2px">$12,300</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">excl. VAT</div>
-      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px">Full package for a significant initiative with depth and broad impact.</div>
-
-      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">What's included:</div>
-      <ul class="dot-list" style="margin-bottom:16px">
-        <li>9 short videos</li>
-        <li>3 presentations</li>
-        <li>12 consulting hours</li>
-        <li>Full campaign build</li>
-        <li>Phased content by audience segments</li>
-        <li>Implementation & content refinement support</li>
-        <li>3 revision rounds</li>
-      </ul>
-
-      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">Best for:</div>
-      <ul class="dot-list" style="margin-bottom:16px">
-        <li>Organizations pursuing serious initiatives</li>
-        <li>Multi-phase campaigns</li>
-        <li>Leadership teams seeking deep impact</li>
-      </ul>
-
-      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">Example:</div>
-      <ul class="dot-list" style="margin-bottom:22px;flex:1">
-        <li>3 vision/opening videos</li>
-        <li>3 management videos</li>
-        <li>3 employee videos</li>
-        <li>Executive presentation</li>
-        <li>Implementation presentation</li>
-        <li>Measurement & next steps presentation</li>
-      </ul>
-
-      <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center">Order Now →</a>
+    <!-- ENTERPRISE ROW -->
+    <div class="ent-row">
+      <div class="ent-left">
+        <div class="ent-label">Enterprise</div>
+        <div class="ent-name">Enterprise</div>
+        <div class="ent-sub">For large organizations, international networks & companies with special requirements — a fully custom proposal tailored to your scale and needs.</div>
+        <div class="ent-chips">
+          <div class="ent-chip">100+ סניפים / משתמשים</div>
+          <div class="ent-chip">Custom avatars</div>
+          <div class="ent-chip">Custom integrations</div>
+          <div class="ent-chip">Full SLA</div>
+          <div class="ent-chip">Dedicated account manager</div>
+          <div class="ent-chip">Ongoing training & support</div>
+        </div>
+      </div>
+      <div class="ent-right">
+        <div class="ent-price">Custom pricing</div>
+        <a href="mailto:brain.co.manager@gmail.com" class="btn btn-primary" style="display:block;text-align:center;white-space:nowrap">Request a Quote →</a>
+      </div>
     </div>
 
   </div>
-</div>
-
-<!-- איך לבחור -->
-<div class="sec sec-alt reveal">
-  <div style="max-width:800px;margin:0 auto">
-    <div class="sec-title" style="text-align:center;margin-bottom:24px">How to Choose?</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-      <div style="padding:20px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:14px;text-align:center">
-        <div style="font-size:20px;font-weight:900;color:var(--white);margin-bottom:8px">Starter</div>
-        <div style="font-size:13px;color:var(--muted)">Fast, focused start</div>
-      </div>
-      <div style="padding:20px;background:rgba(45,156,255,0.1);border:1px solid rgba(45,156,255,0.3);border-radius:14px;text-align:center">
-        <div style="font-size:20px;font-weight:900;color:var(--white);margin-bottom:8px">Growth</div>
-        <div style="font-size:13px;color:var(--muted)">Broad, balanced initiative</div>
-      </div>
-      <div style="padding:20px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:14px;text-align:center">
-        <div style="font-size:20px;font-weight:900;color:var(--white);margin-bottom:8px">Premium</div>
-        <div style="font-size:13px;color:var(--muted)">Full initiative with depth & impact</div>
-      </div>
-    </div>
-
-    <!-- הערות -->
-    <div class="card" style="margin-top:24px">
-      <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:12px">Important Notes:</div>
-      <ul class="dot-list">
-        <li>Each package includes a defined scope of work</li>
-        <li>Additional work beyond scope will be priced separately</li>
-        <li>Video includes concept, message, and script (not production)</li>
-        <li>Presentation includes full content and structure</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- CTA -->
-<div class="sec reveal">
-  <div style="max-width:600px;margin:0 auto;text-align:center">
-    <div class="cta-box">
-      <h2 class="cta-title">Want to see Brain in action?</h2>
-      <p class="cta-sub" style="margin-bottom:28px">Watch a short demo and discover how Brain transforms organizations</p>
-      <div class="cta-btns">
-        <a href="demo.html" class="btn btn-primary">Watch Demo ▶</a>
+<!-- הערות -->  </div>
+<!-- הערות -->
+  <div class="sec sec-alt reveal">
+    <div style="max-width:700px;margin:0 auto">
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:12px">Important Notes:</div>
+        <ul class="dot-list">
+          <li>Prices exclude VAT</li>
+          <li>Annual billing is prepaid | Monthly billing can be cancelled anytime, no penalty</li>
+          <li>Onboarding includes setup, initial configuration & team training</li>
+          </ul>
+        <div style="text-align:right;margin-top:12px;font-size:11px;color:var(--muted);font-weight:300">Subject to change</div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- CTA -->
+  <div class="sec reveal">
+    <div style="max-width:600px;margin:0 auto;text-align:center">
+      <div class="cta-box">
+        <h2 class="cta-title">Want to see Brain in action?</h2>
+        <p class="cta-sub" style="margin-bottom:28px">Watch a short demo and discover how Brain transforms organizations</p>
+        <div class="cta-btns">
+          <a href="../demo.html" class="btn btn-primary">Watch Demo ▶</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div style="height:60px"></div>
   <footer>
     <div class="footer-links">
-      <a href="about.html">About</a>
-      <a href="process.html">Process</a>
-      <a href="uses.html">Use Cases</a>
-      <a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a>
+      <a href="../about.html">About</a>
+      <a href="../process.html">Process</a>
+      <a href="../uses.html">Use Cases</a>
+      <a href="../roi.html">ROI</a>
+      <a href="../smb.html">SMB</a>
       <a href="pricing.html">Pricing</a>
-      <a href="demo.html">Demo</a>
-      <a href="articles.html">Articles</a>
-      <a href="jobs.html">Careers</a>
+      <a href="../demo.html">Demo</a>
+      <a href="../articles.html">Articles</a>
+      <a href="../jobs.html">Careers</a>
     </div>
-    <div class="footer-copy">© All rights reserved · Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">Website design <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
+    <div class="footer-copy">© All rights reserved · Brain Co-Manager<br>
+      <span style="font-size:11px;opacity:0.6;">Website design <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span>
+    </div>
   </footer>
 </div>
-<script src="shared.js"></script>
-<script>renderNav('pricing','en');</script>
+
+<script src="../shared.js"></script>
+<script>
+  renderNav('pricing','en');
+  var mode='annual';
+  var d={
+    s:{aa:'390',ma:'490',au:'<b>₪390</b> per user',mu:'<b>490 ₪</b> למשתמש',aex:'Extra user: <b>₪280/month</b>',mex:'Extra user: <b>₪350/month</b>',as:'Save 20% vs monthly billing',ms:'Switch to annual & save up to 20%'},
+    b:{aa:'9,000',ma:'11,250',au:'<b>₪450</b> per user',mu:'<b>₪563</b> per user',aex:'Extra user/branch: <b>₪360/month</b>',mex:'Extra user/branch: <b>₪450/month</b>',as:'Save 20% vs monthly billing',ms:'Switch to annual & save up to 20%'},
+    p:{aa:'20,000',ma:'25,000',au:'<b>₪400</b> per user/branch',mu:'<b>₪500</b> per user/branch',aex:'Extra user/branch: <b>₪320/month</b>',mex:'Extra user/branch: <b>₪400/month</b>',as:'Save 20% vs monthly billing',ms:'Switch to annual & save up to 20%'},
+    e:{aa:'36,000',ma:'45,000',au:'<b>₪360</b> per user/branch',mu:'<b>₪450</b> per user/סניף',aex:'Extra user/branch: <b>₪288/month</b>',mex:'Extra user/branch: <b>₪360/month</b>',as:'Save 20% vs monthly billing',ms:'Switch to annual & save up to 20%'}
+  };
+  function toggleB(){
+    mode=mode==='annual'?'monthly':'annual';
+    var a=mode==='annual';
+    document.getElementById('tog').classList.toggle('on',a);
+    document.getElementById('lbl-a').classList.toggle('active',a);
+    document.getElementById('lbl-m').classList.toggle('active',!a);
+    var pill=document.getElementById('save-pill');
+    if(pill) pill.textContent=a?'Save up to 20%':'עברו לשנתי וחסכו';
+    ['s','b','p','e'].forEach(function(k){
+      var amt=document.getElementById(k+'-amt');
+      if(amt) amt.textContent=a?d[k].aa:d[k].ma;
+      var unit=document.getElementById(k+'-unit');
+      if(unit) unit.innerHTML=a?d[k].au:d[k].mu;
+      var ex=document.getElementById(k+'-ex');
+      if(ex) ex.innerHTML=a?d[k].aex:d[k].mex;
+      var sv=document.getElementById(k+'-save');
+      if(sv) sv.innerHTML=a?d[k].as:d[k].ms;
+    });
+  }
+</script>
 </body>
 </html>
