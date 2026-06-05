@@ -419,19 +419,21 @@
   };
   function toggleB(){
     mode=mode==='annual'?'monthly':'annual';
-    updatePricing();
-  }
-  function updatePricing(){
     var a=mode==='annual';
     document.getElementById('tog').classList.toggle('on',a);
     document.getElementById('lbl-a').classList.toggle('active',a);
     document.getElementById('lbl-m').classList.toggle('active',!a);
-    document.getElementById('save-pill').textContent=a?'חסכו עד 20%':'עברו לשנתי וחסכו';
+    var pill=document.getElementById('save-pill');
+    if(pill) pill.textContent=a?'חסכו עד 20%':'עברו לשנתי וחסכו';
     ['s','b','p','e'].forEach(function(k){
-      document.getElementById(k+'-amt').textContent=a?pd[k].aa:pd[k].ma;
-      document.getElementById(k+'-desc').textContent=a?d[k].ad:d[k].md;
-      document.getElementById(k+'-ex').innerHTML=a?pd[k].aex:pd[k].mex;
-      document.getElementById(k+'-save').innerHTML=a?pd[k].as:pd[k].ms;
+      var amt=document.getElementById(k+'-amt');
+      if(amt) amt.textContent=a?pd[k].aa:pd[k].ma;
+      var unit=document.getElementById(k+'-unit');
+      if(unit) unit.innerHTML=a?pd[k].au:pd[k].mu;
+      var ex=document.getElementById(k+'-ex');
+      if(ex) ex.innerHTML=a?pd[k].aex:pd[k].mex;
+      var sv=document.getElementById(k+'-save');
+      if(sv) sv.innerHTML=a?pd[k].as:pd[k].ms;
     });
   }
 </script>
