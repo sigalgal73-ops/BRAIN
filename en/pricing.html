@@ -24,7 +24,7 @@
 <style>
   /* toggle */
   .billing-wrap {
-    display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px;
+    display:flex;align-items:center;justify-content:flex-start;gap:12px;margin-bottom:10px;
   }
   .billing-lbl { font-size:14px;font-weight:500;color:var(--muted);transition:color .2s; }
   .billing-lbl.active { color:var(--white); }
@@ -78,7 +78,7 @@
   .p-card.popular:hover { transform:translateY(-13px); }
 
   .pop-tag {
-    position:absolute;top:-13px;right:50%;transform:translateX(50%);
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);
     background:var(--teal);color:var(--navy);
     font-size:10px;font-weight:800;padding:3px 13px;
     border-radius:100px;white-space:nowrap;letter-spacing:.5px;
