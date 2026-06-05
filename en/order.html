@@ -54,17 +54,17 @@
 <div id="nav-placeholder"></div>
 
 <!-- Netlify form detection -->
-<form name="brain-order-en" netlify netlify-honeypot="bot-field" hidden>
+<form name="brain-order" netlify netlify-honeypot="bot-field" hidden>
   <input name="company"><input name="tax-id"><input name="address">
   <input name="contact"><input name="role"><input name="phone"><input name="email">
-  <input name="package"><input name="start-date"><input name="end-date">
+  <input name="package"><input name="billing"><input name="quantity">
 </form>
 
 <div class="page">
   <div class="page-hero">
     <div class="page-tag">ORDER</div>
     <h1 class="page-title">Order – <em>Brain Co-Manager</em></h1>
-    <p class="page-sub">AI Management Support — Fill in the form and we'll get back to you to confirm</p>
+    <p class="page-sub">AI Management Support — Fill out the form and we'll get back to you shortly</p>
   </div>
 
   <div class="sec reveal">
@@ -72,15 +72,15 @@
       <div class="card" style="padding:40px">
 
         <form id="orderForm">
-          
+          <!-- שורה 1: שם חברה / ח.פ / כתובת -->
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Company Name <span>*</span></label>
               <input type="text" class="form-input" name="company" placeholder="Company name" required>
             </div>
             <div class="form-group">
-              <label class="form-label">Tax ID / Registration No. <span>*</span></label>
-              <input type="text" class="form-input" name="tax-id" placeholder="Tax ID" required>
+              <label class="form-label">Company ID <span>*</span></label>
+              <input type="text" class="form-input" name="tax-id" placeholder="Company ID number" required>
             </div>
           </div>
           <div class="form-group" style="margin-bottom:16px">
@@ -88,7 +88,7 @@
             <input type="text" class="form-input" name="address" placeholder="Company address" required>
           </div>
 
-          
+          <!-- שורה 2: איש קשר / תפקיד -->
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Contact Name <span>*</span></label>
@@ -100,7 +100,7 @@
             </div>
           </div>
 
-          
+          <!-- שורה 3: טלפון / אימייל -->
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Phone <span>*</span></label>
@@ -112,56 +112,76 @@
             </div>
           </div>
 
-          
+          <!-- Toggle שנתי/חודשי -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;justify-content:flex-end">
+            <span style="font-size:11px;color:var(--teal);border:1px solid rgba(0,212,170,.35);padding:2px 8px;border-radius:100px">Save up to 20%</span>
+            <span style="font-size:13px;color:var(--muted)" id="o-lbl-m">Monthly</span>
+            <div style="position:relative;width:46px;height:24px;background:var(--teal);border-radius:100px;cursor:pointer;flex-shrink:0" id="o-tog" onclick="toggleOrder()">
+              <span style="position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .3s;display:block" id="o-knob"></span>
+            </div>
+            <span style="font-size:13px;font-weight:700;color:var(--white)" id="o-lbl-a">Annual</span>
+          </div>
+
+          <!-- בחירת חבילה -->
           <div class="form-group" style="margin-bottom:20px">
-            <label class="form-label">Select Package (excl. VAT) <span>*</span></label>
+            <label class="form-label">Select a Plan (excl. VAT) <span>*</span></label>
+            <input type="hidden" name="billing" id="billing-type" value="שנתי">
             <div class="radio-group" style="margin-top:8px">
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg1" value="Starter – $4,000 – 3 videos, 1 presentation, 4 consulting hours" required>
-                <label for="pkg1">$4,000 – 3 videos · 1 presentation · 4 consulting hours <strong style="color:var(--sky)">(Starter)</strong></label>
+                <input type="radio" name="package" id="pkg1" value="Starter" required>
+                <label for="pkg1">
+                  <strong style="color:var(--white)">Starter</strong>&nbsp;
+                  <span id="pkg1-price" style="color:var(--teal);font-weight:700">₪390 per user/month</span>
+                </label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg2" value="Growth – $8,200 – 6 videos, 2 presentations, 8 consulting hours">
-                <label for="pkg2">$8,200 – 6 videos · 2 presentations · 8 consulting hours <strong style="color:var(--sky)">(Growth)</strong></label>
+                <input type="radio" name="package" id="pkg2" value="Business">
+                <label for="pkg2">
+                  <strong style="color:var(--white)">Business</strong> — up to 20 users/branches &nbsp;
+                  <span id="pkg2-price" style="color:var(--teal);font-weight:700">₪9,000/month</span>
+                  <span id="pkg2-unit" style="color:var(--muted);font-size:12px"> | ₪450 per user/branch</span>
+                </label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg3" value="Premium – $12,300 – 9 videos, 3 presentations, 12 consulting hours">
-                <label for="pkg3">$12,300 – 9 videos · 3 presentations · 12 consulting hours <strong style="color:var(--sky)">(Premium)</strong></label>
+                <input type="radio" name="package" id="pkg3" value="Pro">
+                <label for="pkg3">
+                  <strong style="color:var(--white)">Pro</strong> — up to 50 users/branches &nbsp;
+                  <span id="pkg3-price" style="color:var(--teal);font-weight:700">₪20,000/month</span>
+                  <span id="pkg3-unit" style="color:var(--muted);font-size:12px"> | ₪400 per user/branch</span>
+                </label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg4" value="Monthly Retainer – $680/month – 8 hours/month, 12-month commitment">
-                <label for="pkg4">$680/month – Monthly retainer · 8 hours/month · 12-month commitment</label>
+                <input type="radio" name="package" id="pkg4" value="Elite">
+                <label for="pkg4">
+                  <strong style="color:var(--white)">Elite</strong> — up to 100 users/branches &nbsp;
+                  <span id="pkg4-price" style="color:var(--teal);font-weight:700">₪36,000/month</span>
+                  <span id="pkg4-unit" style="color:var(--muted);font-size:12px"> | ₪360 per user/branch</span>
+                </label>
               </div>
               <div class="radio-item">
-                <input type="radio" name="package" id="pkg5" value="2-Hour Workshop – $2,300">
-                <label for="pkg5">$2,300 – 2-hour workshop session</label>
+                <input type="radio" name="package" id="pkg5" value="Enterprise">
+                <label for="pkg5">
+                  <strong style="color:var(--white)">Enterprise</strong> — 100+ users/branches &nbsp;
+                  <span style="color:var(--muted);font-size:12px">| Custom pricing</span>
+                </label>
               </div>
             </div>
           </div>
 
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Start Date <span>*</span></label>
-              <input type="date" class="form-input" name="start-date" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">End Date <span>*</span></label>
-              <input type="date" class="form-input" name="end-date" required>
-            </div>
+          <!-- כמות משתמשים/סניפים -->
+          <div class="form-group" style="margin-bottom:20px">
+            <label class="form-label">Number of Users / Branches <span>*</span></label>
+            <input type="number" class="form-input" name="quantity" placeholder="Number of users or branches" min="1" required>
           </div>
 
-          <button type="submit" class="btn-submit">Submit Order →</button>
+          <button type="submit" class="btn-submit">Submit →</button>
         </form>
 
         <div class="success-msg" id="successMsg">
           ✓ Form submitted successfully! We'll get back to you shortly to confirm your order.
         </div>
 
-        <ul class="form-note" id="formNotes">
-          <li>* After submitting, we'll contact you to verify details and arrange payment</li>
-          <li>* Submitting this form confirms agreement to the service terms</li>
-        </ul>
+
       </div>
     </div>
   </div>
@@ -173,22 +193,42 @@
 <script src="../shared.js"></script>
 <script>renderNav('order','en');</script>
 <script>
-document.getElementById('orderForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const pkg = document.querySelector('input[name="package"]:checked');
-  if (!pkg) { alert('Please select a package'); return; }
-
-  fetch('/', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: new URLSearchParams(new FormData(this)).toString()
-      .replace(/^/, 'form-name=brain-order-en&')
-  }).catch(() => {});
-
-  this.style.display = 'none';
-  document.getElementById('successMsg').style.display = 'block';
-  const notes = document.getElementById('formNotes'); if(notes) notes.style.display = 'none';
-});
+  var orderMode = 'annual';
+  var op = {
+    pkg1:{ a:'390 ₪ למשתמש/חודש', m:'490 ₪ למשתמש/חודש', au:'', mu:'' },
+    pkg2:{ a:'9,000 ₪/חודש', m:'11,250 ₪/חודש', au:' | 450 ₪ למשתמש/סניף', mu:' | 563 ₪ למשתמש/סניף' },
+    pkg3:{ a:'20,000 ₪/חודש', m:'25,000 ₪/חודש', au:' | 400 ₪ למשתמש/סניף', mu:' | 500 ₪ למשתמש/סניף' },
+    pkg4:{ a:'36,000 ₪/חודש', m:'45,000 ₪/חודש', au:' | 360 ₪ למשתמש/סניף', mu:' | 450 ₪ למשתמש/סניף' }
+  };
+  function toggleOrder() {
+    orderMode = orderMode==='annual' ? 'monthly' : 'annual';
+    var a = orderMode==='annual';
+    document.getElementById('o-tog').style.background = a ? 'var(--teal)' : '#1e3550';
+    document.getElementById('o-knob').style.transform = a ? '' : 'translateX(22px)';
+    document.getElementById('o-lbl-a').style.cssText = a ? 'font-size:13px;font-weight:700;color:var(--white)' : 'font-size:13px;color:var(--muted)';
+    document.getElementById('o-lbl-m').style.cssText = !a ? 'font-size:13px;font-weight:700;color:var(--white)' : 'font-size:13px;color:var(--muted)';
+    document.getElementById('billing-type').value = a ? 'Annual' : 'Monthly';
+    ['pkg1','pkg2','pkg3','pkg4'].forEach(function(k){
+      var pe = document.getElementById(k+'-price');
+      if(pe) pe.textContent = a ? op[k].a : op[k].m;
+      var ue = document.getElementById(k+'-unit');
+      if(ue) ue.textContent = a ? op[k].au : op[k].mu;
+    });
+  }
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const pkg = document.querySelector('input[name="package"]:checked');
+    if (!pkg) { alert('נא לבחור חבילה'); return; }
+    const formData = new FormData(this);
+    formData.append('form-name', 'brain-order');
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(formData).toString()
+    }).catch(() => {});
+    this.style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  });
 </script>
 <script>renderFooter();</script>
 </body>
