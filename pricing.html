@@ -5,346 +5,225 @@
 <meta name="facebook-domain-verification" content="gzjgv9eghct29v046qzstfzum02ncz" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מחירים | Brain Co-Manager</title>
-<meta name="description" content="תוכניות המחיר של Brain Co-Manager — מותאמות לכל גודל ארגון.">
+<!-- ═══ SEO METADATA ═══ -->
+<meta name="description" content="תוכניות המחיר של Brain Co-Manager — מותאמות לכל גודל ארגון. צרו קשר להצעה מותאמת.">
+<meta name="keywords" content="מחירים, תוכניות, Brain Co-Manager, מחיר חודשי, ארגונים">
+<meta name="author" content="Brain Co-Manager">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://brain2spark.ai/pricing.html">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://brain2spark.ai/pricing.html">
 <meta property="og:title" content="תוכניות ומחירים | Brain Co-Manager">
 <meta property="og:description" content="תוכניות מחיר גמישות לכל גודל ארגון.">
 <meta property="og:image" content="https://brain2spark.ai/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Brain Co-Manager">
 <meta property="og:locale" content="he_IL">
+
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://brain2spark.ai/pricing.html">
+<meta name="twitter:title" content="תוכניות ומחירים | Brain Co-Manager">
+<meta name="twitter:description" content="תוכניות מחיר גמישות לכל גודל ארגון.">
+<meta name="twitter:image" content="https://brain2spark.ai/og-image.png">
+
+<!-- Theme color (mobile browsers) -->
 <meta name="theme-color" content="#020d1a">
+
+<!-- Hebrew/English alternates -->
 <link rel="alternate" hreflang="he" href="https://brain2spark.ai/pricing.html">
 <link rel="alternate" hreflang="en" href="https://brain2spark.ai/en/pricing.html">
 <link rel="alternate" hreflang="x-default" href="https://brain2spark.ai/pricing.html">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Brain Co-Manager",
+  "url": "https://brain2spark.ai",
+  "logo": "https://brain2spark.ai/Brain2SPARK_LTD__1_.png",
+  "description": "תוכניות המחיר של Brain Co-Manager — מותאמות לכל גודל ארגון. צרו קשר להצעה מותאמת.",
+  "sameAs": []
+}
+</script>
+<!-- ═══ END SEO METADATA ═══ -->
+
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
-<style>
-  /* toggle */
-  .billing-wrap {
-    display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px;
-  }
-  .billing-lbl { font-size:14px;font-weight:500;color:var(--muted);transition:color .2s; }
-  .billing-lbl.active { color:var(--white); }
-  .tog {
-    position:relative;width:50px;height:26px;
-    background:var(--border);border-radius:100px;cursor:pointer;transition:background .3s;flex-shrink:0;
-  }
-  .tog.on { background:var(--teal); }
-  .tog::after {
-    content:'';position:absolute;top:3px;right:3px;
-    width:20px;height:20px;background:#fff;border-radius:50%;
-    transition:transform .3s cubic-bezier(.34,1.56,.64,1);
-  }
-  .tog.on::after { transform:translateX(-24px); }
-  .save-pill {
-    font-size:11px;font-weight:700;color:var(--teal);
-    border:1px solid rgba(0,212,170,.35);padding:3px 10px;border-radius:100px;
-  }
-  .promo-line {
-    text-align:center;font-size:13px;color:var(--teal);
-    font-weight:500;margin-bottom:28px;
-  }
-
-  /* grid — 4 cols + enterprise row */
-  .pricing-grid {
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    max-width:1200px;
-    margin:0 auto 20px;
-    align-items:start;
-  }
-
-  /* cards */
-  .p-card {
-    display:flex;flex-direction:column;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:26px 20px 22px;
-    position:relative;
-    transition:transform .25s,border-color .25s;
-  }
-  .p-card:hover { transform:translateY(-5px); border-color:rgba(0,212,170,.3); }
-
-  .p-card.popular {
-    border-color:var(--teal);
-    background:rgba(0,212,170,.05);
-    transform:translateY(-8px);
-  }
-  .p-card.popular:hover { transform:translateY(-13px); }
-
-  .pop-tag {
-    position:absolute;top:-13px;right:50%;transform:translateX(50%);
-    background:var(--teal);color:var(--navy);
-    font-size:10px;font-weight:800;padding:3px 13px;
-    border-radius:100px;white-space:nowrap;letter-spacing:.5px;
-  }
-
-  .p-name { font-size:22px;font-weight:900;color:var(--white);margin-bottom:2px; }
-  .p-size { font-size:11px;color:var(--muted);margin-bottom:8px; }
-  .p-tagline { font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:14px;min-height:48px;font-weight:300; }
-  .p-divider { height:1px;background:var(--border);margin-bottom:14px; }
-
-  .p-setup { font-size:10px;color:var(--muted);margin-bottom:6px; }
-  .p-setup b { color:var(--teal); }
-
-  .p-price-row { display:flex;align-items:flex-end;gap:3px;margin-bottom:2px; }
-  .p-num { font-size:42px;font-weight:900;line-height:1;color:var(--bright); }
-  .p-card.popular .p-num { color:var(--teal); }
-  .p-nis { font-size:16px;font-weight:700;color:var(--muted);margin-bottom:6px; }
-  .p-period { font-size:10px;color:var(--muted);margin-bottom:2px; }
-  .p-alt { font-size:10px;color:var(--muted);margin-bottom:16px;font-weight:300; }
-
-  .p-sec-lbl {
-    font-size:10px;font-weight:700;color:var(--sky);
-    letter-spacing:.07em;margin-bottom:7px;text-transform:uppercase;
-  }
-  .p-list { list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:14px;padding:0; }
-  .p-list li { display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--text,#c8daea);line-height:1.4; }
-  .p-list li::before { content:'';width:4px;height:4px;border-radius:50%;background:var(--teal);margin-top:5px;flex-shrink:0; }
-  .p-list li.dim { color:var(--muted);font-size:11px; }
-  .p-list li.dim::before { background:var(--border); }
-
-  /* enterprise row */
-  .ent-row {
-    max-width:1200px;
-    margin:0 auto;
-    background:var(--card);
-    border:1px solid rgba(0,212,170,.2);
-    border-radius:18px;
-    padding:28px 36px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:24px;
-  }
-  .ent-row:hover { border-color:rgba(0,212,170,.4); }
-  .ent-left { flex:1; }
-  .ent-label { font-size:10px;font-weight:700;color:var(--teal);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px; }
-  .ent-name { font-size:26px;font-weight:900;color:var(--white);margin-bottom:6px; }
-  .ent-sub { font-size:13px;color:var(--muted);line-height:1.6;font-weight:300;max-width:460px;margin-bottom:14px; }
-  .ent-chips { display:flex;flex-wrap:wrap;gap:7px; }
-  .ent-chip { border:1px solid var(--border);border-radius:6px;padding:4px 11px;font-size:11px;color:var(--muted);font-weight:400; }
-  .ent-right { text-align:center;flex-shrink:0; }
-  .ent-price { font-size:18px;font-weight:900;color:var(--teal);margin-bottom:14px; }
-
-  @media(max-width:1000px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
-  @media(max-width:560px) { .pricing-grid{grid-template-columns:1fr;} .ent-row{flex-direction:column;} }
-</style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div id="nav-placeholder"></div>
 <div class="page">
-
   <div class="page-hero">
     <div class="page-tag">PRICING</div>
     <h1 class="page-title">תמחור – <em>Brain Co-Manager</em></h1>
-    <p class="page-sub">תומך ניהולי AI — בחרו את החבילה שמתאימה לארגון שלכם</p>
+    <p class="page-sub">תומך ניהולי – בחרו את החבילה שמתאימה לארגון שלכם</p>
   </div>
 
-  <div class="sec reveal">
+<div class="sec reveal">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:0 auto;align-items:stretch">
 
-    <div class="billing-wrap">
-      <span class="billing-lbl" id="lbl-m">חיוב חודשי</span>
-      <div class="tog on" id="tog" onclick="toggleB()"></div>
-      <span class="billing-lbl active" id="lbl-a">חיוב שנתי</span>
-      <span class="save-pill">חסכו עד 20%</span>
-    </div>
-    <div class="promo-line">✦ מבצע השקה: דמי הקמה ללא עלות ללקוחות הראשונים</div>
+    <!-- Starter -->
+    <div class="card">
+      <div style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:4px">Starter</div>
+      <div style="font-size:36px;font-weight:900;color:var(--bright);margin:14px 0 2px">15,000</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">₪ לפני מע"מ</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px">מתאים להתחלה חכמה, פיילוט ממוקד ובדיקה מהירה של התאמה.</div>
 
-    <div class="pricing-grid">
+      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">מה כולל:</div>
+      <ul class="dot-list" style="margin-bottom:16px">
+        <li>3 סרטונים קצרים</li>
+        <li>מצגת אחת</li>
+        <li>4 שעות ייעוץ</li>
+        <li>בניית קו מסרים ראשוני</li>
+        <li>סבב תיקונים אחד</li>
+      </ul>
 
-      <!-- STARTER -->
-      <div class="p-card">
-        <div class="p-name">Starter</div>
-        <div class="p-size">עד 5 עובדים / סניפים</div>
-        <div class="p-tagline">התחלה חכמה וממוקדת — בדיקת התאמה מהירה של המערכת.</div>
-        <div class="p-divider"></div>
-        <div class="p-setup">דמי הקמה: 5,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
-        <div class="p-price-row">
-          <div class="p-num" data-a="390" data-m="490">390</div>
-          <div class="p-nis">₪</div>
-        </div>
-        <div class="p-period">לחודש — עובד/סניף ראשון | חיוב שנתי</div>
-        <div class="p-alt">כל עובד נוסף עד 5: 120 ₪/חודש | חודשי: 490 ₪ + 150 ₪/עובד נוסף</div>
-        <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
-        <div class="p-sec-lbl">מה כלול</div>
-        <ul class="p-list">
-          <li>עובד/סניף אחד + עד 4 נוספים</li>
-          <li>2 אווטארים AI לבחירה</li>
-          <li>26 סרטוני מיקרו-למידה / חודש</li>
-          <li>תמיכה באימייל</li>
-          <li class="dim">אווטאר נוסף: 15 ₪</li>
-          <li class="dim">סרטון נוסף: 25 ₪</li>
-        </ul>
-        <div class="p-sec-lbl">למי זה מתאים</div>
-        <ul class="p-list">
-          <li>עסקים קטנים עד 5 עובדים</li>
-          <li>פיילוט ראשוני במערכת</li>
-          <li>עצמאים ומנהלים בודדים</li>
-        </ul>
-      </div>
+      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">למי זה מתאים:</div>
+      <ul class="dot-list" style="margin-bottom:16px">
+        <li>פיילוט</li>
+        <li>קמפיין קצר</li>
+        <li>התחלה ראשונית בארגון</li>
+      </ul>
 
-      <!-- BUSINESS — popular -->
-      <div class="p-card popular">
-        <div class="pop-tag">הכי פופולרי</div>
-        <div class="p-name">Business</div>
-        <div class="p-size">עד 20 עובדים / סניפים</div>
-        <div class="p-tagline">החבילה שעסקים בוחרים — עומק, גמישות וניהול אמיתי.</div>
-        <div class="p-divider"></div>
-        <div class="p-setup">דמי הקמה: 8,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
-        <div class="p-price-row">
-          <div class="p-num" data-a="150" data-m="180">150</div>
-          <div class="p-nis">₪</div>
-        </div>
-        <div class="p-period">לחודש לחבילה (עד 20 עובדים) — חיוב שנתי</div>
-        <div class="p-alt">עובד/סניף נוסף מעבר ל-20: 150 ₪/חודש</div>
-        <a href="order.html" class="btn btn-primary" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
-        <div class="p-sec-lbl">מה כלול</div>
-        <ul class="p-list">
-          <li>עד 20 <b>עובדים / סניפים</b> במערכת</li>
-          <li>4 אווטארים AI לבחירה</li>
-          <li>60 סרטוני מיקרו-למידה / חודש</li>
-          <li>תמיכה: אימייל + צ'אט</li>
-          <li class="dim">אווטאר נוסף: 15 ₪</li>
-          <li class="dim">סרטון נוסף: 25 ₪</li>
-        </ul>
-        <div class="p-sec-lbl">למי זה מתאים</div>
-        <ul class="p-list">
-          <li>עסקים בצמיחה עם צוות</li>
-          <li>מנהלים שרוצים כלי AI יומיומי</li>
-          <li>חברות שמחפשות הטמעה מהירה</li>
-        </ul>
-      </div>
+      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">דוגמה:</div>
+      <ul class="dot-list" style="margin-bottom:22px;flex:1">
+        <li>סרטון פתיחה</li>
+        <li>סרטון מנהלים</li>
+        <li>סרטון עובדים</li>
+        <li>מצגת שמסבירה את התהליך</li>
+      </ul>
 
-      <!-- PRO -->
-      <div class="p-card">
-        <div class="p-name">Pro</div>
-        <div class="p-size">עד 50 סניפים</div>
-        <div class="p-tagline">לרשתות ועסקים מתרחבים — ניהול סניפים, דוחות וסקייל.</div>
-        <div class="p-divider"></div>
-        <div class="p-setup">דמי הקמה: 12,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
-        <div class="p-price-row">
-          <div class="p-num" data-a="250" data-m="310">250</div>
-          <div class="p-nis">₪</div>
-        </div>
-        <div class="p-period">לחודש לסניף — חיוב שנתי</div>
-        <div class="p-alt">סניף/עובד נוסף מעבר ל-50: 30 ₪/חודש</div>
-        <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
-        <div class="p-sec-lbl">מה כלול</div>
-        <ul class="p-list">
-          <li>עד 50 <b>סניפים</b> במערכת</li>
-          <li>כל סניף כולל <b>עד 5 עובדים</b></li>
-          <li>עובד נוסף מעבר ל-5: <b>30 ₪/חודש</b></li>
-          <li>6 אווטארים AI לבחירה</li>
-          <li>120 סרטוני מיקרו-למידה / חודש</li>
-          <li>דוח חודשי ניהולי</li>
-          <li>תמיכה: אימייל + צ'אט + שיחה</li>
-          <li class="dim">סרטון נוסף: 10 ₪</li>
-        </ul>
-        <div class="p-sec-lbl">למי זה מתאים</div>
-        <ul class="p-list">
-          <li>רשתות עם מספר סניפים</li>
-          <li>חברות בינוניות עם מנהלי ביניים</li>
-          <li>ארגונים שצריכים דוח ניהולי</li>
-        </ul>
-      </div>
-
-      <!-- ELITE -->
-      <div class="p-card">
-        <div class="p-name">Elite</div>
-        <div class="p-size">עד 100 סניפים</div>
-        <div class="p-tagline">לארגונים גדולים ורשתות זכיינות — כוח מלא וליווי אישי.</div>
-        <div class="p-divider"></div>
-        <div class="p-setup">דמי הקמה: 15,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
-        <div class="p-price-row">
-          <div class="p-num" data-a="360" data-m="440">360</div>
-          <div class="p-nis">₪</div>
-        </div>
-        <div class="p-period">לחודש לסניף — חיוב שנתי</div>
-        <div class="p-alt">סניף/עובד נוסף מעבר ל-100: 30 ₪/חודש</div>
-        <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
-        <div class="p-sec-lbl">מה כלול</div>
-        <ul class="p-list">
-          <li>עד 100 <b>סניפים</b> במערכת</li>
-          <li>כל סניף כולל <b>עד 5 עובדים</b></li>
-          <li>עובד נוסף מעבר ל-5: <b>30 ₪/חודש</b></li>
-          <li>8 אווטארים AI לבחירה</li>
-          <li>200 סרטוני מיקרו-למידה / חודש</li>
-          <li>דוח חודשי + מנהל לקוח ייעודי</li>
-          <li>תמיכה מלאה + SLA</li>
-          <li class="dim">סרטון נוסף: 10 ₪</li>
-        </ul>
-        <div class="p-sec-lbl">למי זה מתאים</div>
-        <ul class="p-list">
-          <li>רשתות זכיינות גדולות</li>
-          <li>קבוצות רב-סניפיות</li>
-          <li>ארגונים שדורשים SLA וליווי אישי</li>
-        </ul>
-      </div>
-
+      <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center">להזמנה ←</a>
     </div>
 
-    <!-- ENTERPRISE ROW -->
-    <div class="ent-row">
-      <div class="ent-left">
-        <div class="ent-label">Enterprise</div>
-        <div class="ent-name">Enterprise</div>
-        <div class="ent-sub">לארגונים גדולים, רשתות בינלאומיות וחברות עם דרישות מיוחדות — הצעה מותאמת אישית לפי היקף, מבנה וצרכי הארגון.</div>
-        <div class="ent-chips">
-          <div class="ent-chip">100+ סניפים / עובדים</div>
-          <div class="ent-chip">אווטארים מותאמים</div>
-          <div class="ent-chip">אינטגרציות מותאמות</div>
-          <div class="ent-chip">SLA מלא</div>
-          <div class="ent-chip">מנהל לקוח ייעודי</div>
-          <div class="ent-chip">הדרכה וליווי שוטף</div>
-        </div>
-      </div>
-      <div class="ent-right">
-        <div class="ent-price">בהתאמה אישית</div>
-        <a href="mailto:brain.co.manager@gmail.com" class="btn btn-primary" style="display:block;text-align:center;white-space:nowrap">בקשו הצעת מחיר ←</a>
-      </div>
+    <!-- Growth -->
+    <div class="card" style="border-color:rgba(45,156,255,0.4);background:rgba(26,111,196,0.12);position:relative">
+      <div style="position:absolute;top:14px;left:14px;padding:3px 12px;background:var(--accent);border-radius:10px;font-size:10px;font-weight:700;color:#fff;letter-spacing:.06em">הכי פופולרי</div>
+      <div style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:4px">Growth</div>
+      <div style="font-size:36px;font-weight:900;color:var(--bright);margin:14px 0 2px">30,000</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">₪ לפני מע"מ</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px">חבילה מאוזנת עם יותר תוכן, יותר עומק ויותר ליווי.</div>
+
+      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">מה כולל:</div>
+      <ul class="dot-list" style="margin-bottom:16px">
+        <li>6 סרטונים קצרים</li>
+        <li>2 מצגות</li>
+        <li>8 שעות ייעוץ</li>
+        <li>בניית קמפיין מסודר לפי צרכים</li>
+        <li>התאמת מסרים לקהלים שונים</li>
+        <li>2 סבבי תיקונים</li>
+      </ul>
+
+      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">למי זה מתאים:</div>
+      <ul class="dot-list" style="margin-bottom:16px">
+        <li>הטמעה רחבה יותר</li>
+        <li>עבודה עם כמה צוותים</li>
+        <li>ארגון שרוצה גם תוכן וגם חשיבה ניהולית</li>
+      </ul>
+
+      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">דוגמה:</div>
+      <ul class="dot-list" style="margin-bottom:22px;flex:1">
+        <li>2 סרטוני פתיחה</li>
+        <li>2 סרטוני מנהלים</li>
+        <li>2 סרטוני עובדים</li>
+        <li>מצגת הנהלה</li>
+        <li>מצגת הטמעה</li>
+      </ul>
+
+      <a href="order.html" class="btn btn-primary" style="display:block;text-align:center">להזמנה ←</a>
+    </div>
+
+    <!-- Premium -->
+    <div class="card">
+      <div style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:4px">Premium</div>
+      <div style="font-size:36px;font-weight:900;color:var(--bright);margin:14px 0 2px">45,000</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">₪ לפני מע"מ</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px">חבילה מלאה למהלך משמעותי עם עומק והשפעה רחבה.</div>
+
+      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">מה כולל:</div>
+      <ul class="dot-list" style="margin-bottom:16px">
+        <li>9 סרטונים קצרים</li>
+        <li>3 מצגות</li>
+        <li>12 שעות ייעוץ</li>
+        <li>בניית קמפיין מלא</li>
+        <li>חלוקה לשלבים ומסרים לפי קהלים</li>
+        <li>ליווי בהטמעה ובדיוק התוכן</li>
+        <li>3 סבבי תיקונים</li>
+      </ul>
+
+      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">למי זה מתאים:</div>
+      <ul class="dot-list" style="margin-bottom:16px">
+        <li>ארגונים שרוצים מהלך רציני</li>
+        <li>קמפיינים רב-שלביים</li>
+        <li>הנהלות שמחפשות אימפקט עמוק</li>
+      </ul>
+
+      <div style="font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em;margin-bottom:8px">דוגמה:</div>
+      <ul class="dot-list" style="margin-bottom:22px;flex:1">
+        <li>3 סרטוני חזון/פתיחה</li>
+        <li>3 סרטוני מנהלים</li>
+        <li>3 סרטוני עובדים</li>
+        <li>מצגת הנהלה</li>
+        <li>מצגת הטמעה</li>
+        <li>מצגת מדידה והמשך</li>
+      </ul>
+
+      <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center">להזמנה ←</a>
     </div>
 
   </div>
+</div>
 
-  <!-- הערות -->  </div>
+<!-- איך לבחור -->
+<div class="sec sec-alt reveal">
+  <div style="max-width:800px;margin:0 auto">
+    <div class="sec-title" style="text-align:center;margin-bottom:24px">איך לבחור?</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="padding:20px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:14px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:var(--white);margin-bottom:8px">Starter</div>
+        <div style="font-size:13px;color:var(--muted)">התחלה מהירה וממוקדת</div>
+      </div>
+      <div style="padding:20px;background:rgba(45,156,255,0.1);border:1px solid rgba(45,156,255,0.3);border-radius:14px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:var(--white);margin-bottom:8px">Growth</div>
+        <div style="font-size:13px;color:var(--muted)">מהלך רחב ומאוזן</div>
+      </div>
+      <div style="padding:20px;background:rgba(45,156,255,0.06);border:1px solid var(--border);border-radius:14px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:var(--white);margin-bottom:8px">Premium</div>
+        <div style="font-size:13px;color:var(--muted)">מהלך מלא עם עומק והשפעה</div>
+      </div>
+    </div>
 
-  <!-- הערות -->
-  <div class="sec sec-alt reveal">
-    <div style="max-width:700px;margin:0 auto">
-      <div class="card">
-        <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:12px">הערות חשובות:</div>
-        <ul class="dot-list">
-          <li>המחירים אינם כוללים מע"מ</li>
-          <li>חיוב שנתי מראש | מנוי חודשי ניתן לביטול בכל עת ללא קנס</li>
-          <li>דמי הקמה כוללים הטמעה, הגדרות ראשוניות והדרכת צוות</li>
-          <li>Starter: 390 ₪/חודש לעובד/סניף ראשון + 120 ₪ לכל עובד/סניף נוסף (שנתי) | 490 ₪ + 150 ₪ (חודשי)</li>
-          <li>Business: חבילה ל-20 עובדים/סניפים — 3,000 ₪/חודש (שנתי) | 3,600 ₪ (חודשי) | עובד נוסף: 150 ₪</li>
-          <li>Pro: חבילה ל-50 סניפים — 12,500 ₪/חודש (שנתי) | 15,500 ₪ (חודשי) | סניף נוסף: 30 ₪</li>
-          <li>Elite: חבילה ל-100 סניפים — 36,000 ₪/חודש (שנתי) | 44,000 ₪ (חודשי) | סניף נוסף: 30 ₪</li>
-        </ul>
+    <!-- הערות -->
+    <div class="card" style="margin-top:24px">
+      <div style="font-size:13px;font-weight:700;color:var(--sky);margin-bottom:12px">הערות חשובות:</div>
+      <ul class="dot-list">
+        <li>כל חבילה כוללת היקף עבודה מוגדר</li>
+        <li>תוספות מעבר להיקף יתומחרו בנפרד</li>
+        <li>סרטון כולל רעיון, מסר ותסריט (לא הפקה)</li>
+        <li>מצגת כוללת תוכן ומבנה מלא</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="sec reveal">
+  <div style="max-width:600px;margin:0 auto;text-align:center">
+    <div class="cta-box">
+      <h2 class="cta-title">רוצים לראות את Brain בפעולה?</h2>
+      <p class="cta-sub" style="margin-bottom:28px">צפו בדמו קצר וגלו איך Brain משנה ארגונים</p>
+      <div class="cta-btns">
+        <a href="demo.html" class="btn btn-primary">צפו בדמו ▶</a>
       </div>
     </div>
   </div>
-
-  <!-- CTA -->
-  <div class="sec reveal">
-    <div style="max-width:600px;margin:0 auto;text-align:center">
-      <div class="cta-box">
-        <h2 class="cta-title">רוצים לראות את Brain בפעולה?</h2>
-        <p class="cta-sub" style="margin-bottom:28px">צפו בדמו קצר וגלו איך Brain משנה ארגונים</p>
-        <div class="cta-btns">
-          <a href="demo.html" class="btn btn-primary">צפו בדמו ▶</a>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 
   <div style="height:60px"></div>
   <footer>
@@ -359,31 +238,10 @@
       <a href="articles.html">מאמרים</a>
       <a href="jobs.html">דרושים</a>
     </div>
-    <div class="footer-copy">© כל הזכויות שמורות לערן שחר | Brain Co-Manager<br>
-      <span style="font-size:11px;opacity:0.6;">עיצוב אתר <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span>
-    </div>
+    <div class="footer-copy">© כל הזכויות שמורות לערן שחר | Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">עיצוב אתר <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
   </footer>
 </div>
-
 <script src="shared.js"></script>
-<script>
-  renderNav('pricing');
-  let isA = true;
-  function toggleB() {
-    isA = !isA;
-    document.getElementById('tog').classList.toggle('on', isA);
-    document.getElementById('lbl-a').classList.toggle('active', isA);
-    document.getElementById('lbl-m').classList.toggle('active', !isA);
-    document.querySelectorAll('.p-num').forEach(el => {
-      el.textContent = isA ? el.dataset.a : el.dataset.m;
-    });
-    document.querySelectorAll('.p-period').forEach(el => {
-      if (!el.textContent.trim()) return;
-      el.textContent = isA
-        ? el.textContent.replace('חיוב חודשי','חיוב שנתי')
-        : el.textContent.replace('חיוב שנתי','חיוב חודשי');
-    });
-  }
-</script>
+<script>renderNav('pricing');</script>
 </body>
 </html>
