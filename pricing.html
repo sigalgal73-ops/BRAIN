@@ -139,7 +139,7 @@
   .pamt { font-size:36px; font-weight:900; line-height:1; color:var(--bright); }
   .p-card.popular .pamt { color:var(--teal); }
   .pnis2 { font-size:14px; font-weight:700; color:var(--muted); }
-  .pdesc { font-size:12px; color:var(--muted); font-weight:300; margin-bottom:0; }
+  .pdesc { font-size:11px; color:var(--muted); font-weight:300; }
   .prow2 { font-size:12px; color:var(--text,#c8daea); font-weight:400; margin-bottom:4px; }
   .prow3 { font-size:11px; color:var(--muted); font-weight:300; }
   .prow3 b { color:var(--bright); font-weight:700; }
@@ -151,12 +151,15 @@
   .pamt { font-size:38px; font-weight:900; line-height:1; color:var(--bright); }
   .p-card.popular .pamt { color:var(--teal); }
   .pnis2 { font-size:15px; font-weight:700; color:var(--muted); }
-  .pdesc { font-size:12px; color:var(--muted); font-weight:300; margin-bottom:0; }
-  .prow2 { font-size:12px; color:var(--text,#c8daea); font-weight:400; margin-bottom:4px; }
+  .pdesc { font-size:11px; color:var(--muted); font-weight:300; }
+  .punit { font-size:11px; color:var(--muted); font-weight:300; border-right:1px solid var(--border); padding-right:6px; margin-right:2px; }
+  .punit b { color:var(--bright); font-weight:700; }
+  .p-card.popular .punit b { color:var(--teal); }
+  .prow2 { font-size:11px; color:var(--text,#c8daea); font-weight:400; margin-bottom:4px; }
   .prow3 { font-size:11px; color:var(--muted); font-weight:300; margin-bottom:2px; }
   .prow3 b { color:var(--bright); font-weight:700; }
   .p-card.popular .prow3 b { color:var(--teal); }
-  .psave2 { font-size:9px; color:var(--teal); font-weight:600; }
+  .psave2 { font-size:9px; color:var(--teal); font-weight:600; margin-top:4px; }
   @media(max-width:1000px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
   @media(max-width:560px) { .pricing-grid{grid-template-columns:1fr;} .ent-row{flex-direction:column;} }
 </style>
@@ -192,8 +195,12 @@
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 5,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
         <div class="pblock">
-          <div class="prow1"><span class="pamt" id="s-amt">390</span><span class="pnis2">₪</span><span class="pdesc">לחודש</span></div>
-          <div class="prow2">עד 5 משתמשים</div>
+          <div class="prow1">
+            <span class="pamt" id="s-amt">390</span><span class="pnis2">₪</span>
+            <span class="pdesc">לחודש</span>
+            <span class="punit"><b>390 ₪</b> למשתמש</span>
+          </div>
+          <div class="prow2">עד 5 משתמשים במערכת</div>
           <div class="prow3" id="s-ex">כל משתמש נוסף: <b>200 ₪/חודש</b></div>
           <div class="psave2" id="s-save">חסכון 20% לעומת חיוב חודשי</div>
         </div>
@@ -224,9 +231,11 @@
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 8,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
         <div class="pblock">
-          <div class="prow1"><span class="pamt" id="b-amt">3,000</span><span class="pnis2">₪</span><span class="pdesc" id="b-desc">לחודש</span></div>
-          
-          <div class="prow2">עד 20 עובדים/סניפים במערכת</div>
+          <div class="prow1">
+            <span class="pamt" id="b-amt">3,000</span><span class="pnis2">₪</span>
+            <span class="pdesc">לחודש</span>
+            <span class="punit" id="b-unit"><b>150 ₪</b> למשתמש</span>
+          </div>
           <div class="prow2">עד 20 עובדים/סניפים במערכת</div>
           <div class="prow3" id="b-ex">כל עובד/סניף נוסף: <b>150 ₪/חודש</b></div>
           <div class="psave2" id="b-save">חסכון 17% לעומת חיוב חודשי</div>
@@ -257,9 +266,11 @@
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 12,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
         <div class="pblock">
-          <div class="prow1"><span class="pamt" id="p-amt">12,500</span><span class="pnis2">₪</span><span class="pdesc" id="p-desc">לחודש</span></div>
-          
-          <div class="prow2">עד 50 סניפים/עובדים במערכת</div>
+          <div class="prow1">
+            <span class="pamt" id="p-amt">12,500</span><span class="pnis2">₪</span>
+            <span class="pdesc">לחודש</span>
+            <span class="punit" id="p-unit"><b>250 ₪</b> לסניף/עובד</span>
+          </div>
           <div class="prow2">עד 50 עובדים/סניפים במערכת</div>
           <div class="prow3" id="p-ex">כל סניף/עובד נוסף: <b>120 ₪/חודש</b></div>
           <div class="psave2" id="p-save">חסכון 19% לעומת חיוב חודשי</div>
@@ -292,8 +303,11 @@
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 15,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
         <div class="pblock">
-          <div class="prow1"><span class="pamt" id="e-amt">36,000</span><span class="pnis2">₪</span><span class="pdesc" id="e-desc">לחודש</span></div>
-          
+          <div class="prow1">
+            <span class="pamt" id="e-amt">36,000</span><span class="pnis2">₪</span>
+            <span class="pdesc">לחודש</span>
+            <span class="punit" id="e-unit"><b>360 ₪</b> לסניף/עובד</span>
+          </div>
           <div class="prow2">עד 100 עובדים/סניפים במערכת</div>
           <div class="prow3" id="e-ex">כל סניף/עובד נוסף: <b>100 ₪/חודש</b></div>
           <div class="psave2" id="e-save">חסכון 18% לעומת חיוב חודשי</div>
@@ -400,10 +414,10 @@
   renderNav('pricing');
   var mode='annual';
   var d={
-    s:{aa:'390',ma:'490',ad:'לחודש',md:'למשתמש / לחודש',aex:'כל משתמש נוסף: <b>200 ₪/חודש</b>',mex:'כל משתמש נוסף: <b>200 ₪/חודש</b>',as:'חסכון 20% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 20%'},
-    b:{aa:'3,000',ma:'3,600',ad:'לחודש',md:'לחודש',aex:'כל עובד/סניף נוסף: <b>150 ₪/חודש</b>',mex:'כל עובד/סניף נוסף: <b>180 ₪/חודש</b>',as:'חסכון 17% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 17%'},
-    p:{aa:'12,500',ma:'15,500',ad:'לחודש',md:'לחודש',aex:'כל סניף/עובד נוסף: <b>120 ₪/חודש</b>',mex:'כל סניף/עובד נוסף: <b>120 ₪/חודש</b>',as:'חסכון 19% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 19%'},
-    e:{aa:'36,000',ma:'44,000',ad:'לחודש',md:'לחודש',aex:'כל סניף/עובד נוסף: <b>100 ₪/חודש</b>',mex:'כל סניף/עובד נוסף: <b>100 ₪/חודש</b>',as:'חסכון 18% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 18%'}
+    s:{aa:'390',ma:'490',ad:'למשתמש / לחודש | שנתי',md:'למשתמש / לחודש | חודשי',aex:'כל משתמש נוסף: <b>200 ₪/חודש</b>',mex:'כל משתמש נוסף: <b>200 ₪/חודש</b>',as:'חסכון 20% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 20%'},
+    b:{aa:'3,000',ma:'3,600',ad:'ל-20 עובדים/סניפים / לחודש | שנתי',md:'ל-20 עובדים/סניפים / לחודש | חודשי',aex:'כל עובד/סניף נוסף: <b>150 ₪/חודש</b>',mex:'כל עובד/סניף נוסף: <b>180 ₪/חודש</b>',as:'חסכון 17% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 17%'},
+    p:{aa:'12,500',ma:'15,500',ad:'ל-50 סניפים/עובדים / לחודש | שנתי',md:'ל-50 סניפים/עובדים / לחודש | חודשי',aex:'כל סניף/עובד נוסף: <b>120 ₪/חודש</b>',mex:'כל סניף/עובד נוסף: <b>120 ₪/חודש</b>',as:'חסכון 19% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 19%'},
+    e:{aa:'36,000',ma:'44,000',ad:'ל-100 סניפים/עובדים / לחודש | שנתי',md:'ל-100 סניפים/עובדים / לחודש | חודשי',aex:'כל סניף/עובד נוסף: <b>100 ₪/חודש</b>',mex:'כל סניף/עובד נוסף: <b>100 ₪/חודש</b>',as:'חסכון 18% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 18%'}
   };
   function toggleB(){
     mode=mode==='annual'?'monthly':'annual';
