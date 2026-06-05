@@ -145,6 +145,18 @@
   .prow3 b { color:var(--bright); font-weight:700; }
   .p-card.popular .prow3 b { color:var(--teal); }
   .psave-tag { font-size:9px; color:var(--teal); font-weight:600; margin-top:4px; }
+
+  .pblock { margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid var(--border); }
+  .prow1 { display:flex; align-items:baseline; gap:5px; margin-bottom:5px; flex-wrap:wrap; }
+  .pamt { font-size:38px; font-weight:900; line-height:1; color:var(--bright); }
+  .p-card.popular .pamt { color:var(--teal); }
+  .pnis2 { font-size:15px; font-weight:700; color:var(--muted); }
+  .pdesc { font-size:11px; color:var(--muted); font-weight:300; }
+  .prow2 { font-size:12px; color:var(--text,#c8daea); font-weight:400; margin-bottom:4px; }
+  .prow3 { font-size:11px; color:var(--muted); font-weight:300; margin-bottom:2px; }
+  .prow3 b { color:var(--bright); font-weight:700; }
+  .p-card.popular .prow3 b { color:var(--teal); }
+  .psave2 { font-size:9px; color:var(--teal); font-weight:600; }
   @media(max-width:1000px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
   @media(max-width:560px) { .pricing-grid{grid-template-columns:1fr;} .ent-row{flex-direction:column;} }
 </style>
@@ -179,12 +191,12 @@
         <div class="p-tagline">התחלה חכמה וממוקדת — בדיקת התאמה מהירה של המערכת.</div>
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 5,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
-        <div class="p-price-row">
-          <div class="p-num" data-a="390" data-m="490">390</div>
-          <div class="p-nis">₪</div>
+        <div class="pblock">
+          <div class="prow1"><span class="pamt" id="s-amt">390</span><span class="pnis2">₪</span><span class="pdesc" id="s-desc">למשתמש / לחודש | שנתי</span></div>
+          <div class="prow2">עד 5 משתמשים</div>
+          <div class="prow3" id="s-ex">כל משתמש נוסף: <b>200 ₪/חודש</b></div>
+          <div class="psave2" id="s-save">חסכון 20% לעומת חיוב חודשי</div>
         </div>
-        <div class="p-period">לחודש — עובד/סניף ראשון | חיוב שנתי</div>
-        <div class="p-alt">כל עובד נוסף עד 5: 120 ₪/חודש | חודשי: 490 ₪ + 150 ₪/עובד נוסף</div>
         <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
         <div class="p-sec-lbl">מה כלול</div>
         <ul class="p-list">
@@ -211,12 +223,12 @@
         <div class="p-tagline">החבילה שעסקים בוחרים — עומק, גמישות וניהול אמיתי.</div>
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 8,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
-        <div class="p-price-row">
-          <div class="p-num" data-a="150" data-m="180">150</div>
-          <div class="p-nis">₪</div>
+        <div class="pblock">
+          <div class="prow1"><span class="pamt" id="b-amt">3,000</span><span class="pnis2">₪</span><span class="pdesc" id="b-desc">ל-20 עובדים/סניפים / לחודש | שנתי</span></div>
+          <div class="prow2">עד 20 עובדים/סניפים</div>
+          <div class="prow3" id="b-ex">כל עובד/סניף נוסף: <b>150 ₪/חודש</b></div>
+          <div class="psave2" id="b-save">חסכון 17% לעומת חיוב חודשי</div>
         </div>
-        <div class="p-period">לחודש לחבילה (עד 20 עובדים) — חיוב שנתי</div>
-        <div class="p-alt">עובד/סניף נוסף מעבר ל-20: 150 ₪/חודש</div>
         <a href="order.html" class="btn btn-primary" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
         <div class="p-sec-lbl">מה כלול</div>
         <ul class="p-list">
@@ -242,12 +254,12 @@
         <div class="p-tagline">לרשתות ועסקים מתרחבים — ניהול סניפים, דוחות וסקייל.</div>
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 12,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
-        <div class="p-price-row">
-          <div class="p-num" data-a="250" data-m="310">250</div>
-          <div class="p-nis">₪</div>
+        <div class="pblock">
+          <div class="prow1"><span class="pamt" id="p-amt">12,500</span><span class="pnis2">₪</span><span class="pdesc" id="p-desc">ל-50 סניפים/עובדים / לחודש | שנתי</span></div>
+          <div class="prow2">עד 50 סניפים/עובדים</div>
+          <div class="prow3" id="p-ex">כל סניף/עובד נוסף: <b>120 ₪/חודש</b></div>
+          <div class="psave2" id="p-save">חסכון 19% לעומת חיוב חודשי</div>
         </div>
-        <div class="p-period">לחודש לסניף — חיוב שנתי</div>
-        <div class="p-alt">סניף/עובד נוסף מעבר ל-50: 120 ₪/חודש</div>
         <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
         <div class="p-sec-lbl">מה כלול</div>
         <ul class="p-list">
@@ -275,12 +287,12 @@
         <div class="p-tagline">לארגונים גדולים ורשתות זכיינות — כוח מלא וליווי אישי.</div>
         <div class="p-divider"></div>
         <div class="p-setup">דמי הקמה: 15,000 ₪ &nbsp;<b>חינם בהשקה</b></div>
-        <div class="p-price-row">
-          <div class="p-num" data-a="360" data-m="440">360</div>
-          <div class="p-nis">₪</div>
+        <div class="pblock">
+          <div class="prow1"><span class="pamt" id="e-amt">36,000</span><span class="pnis2">₪</span><span class="pdesc" id="e-desc">ל-100 סניפים/עובדים / לחודש | שנתי</span></div>
+          <div class="prow2">עד 100 סניפים/עובדים</div>
+          <div class="prow3" id="e-ex">כל סניף/עובד נוסף: <b>100 ₪/חודש</b></div>
+          <div class="psave2" id="e-save">חסכון 18% לעומת חיוב חודשי</div>
         </div>
-        <div class="p-period">לחודש לסניף — חיוב שנתי</div>
-        <div class="p-alt">סניף/עובד נוסף מעבר ל-100: 100 ₪/חודש</div>
         <a href="order.html" class="btn btn-ghost" style="display:block;text-align:center;margin-bottom:18px">התחילו עכשיו ←</a>
         <div class="p-sec-lbl">מה כלול</div>
         <ul class="p-list">
