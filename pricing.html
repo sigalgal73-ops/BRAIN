@@ -132,6 +132,19 @@
   .ent-right { text-align:center;flex-shrink:0; }
   .ent-price { font-size:18px;font-weight:900;color:var(--teal);margin-bottom:14px; }
 
+
+  /* price block v2 */
+  .pblock { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .prow1 { display:flex; align-items:baseline; gap:4px; margin-bottom:5px; flex-wrap:wrap; }
+  .pamt { font-size:36px; font-weight:900; line-height:1; color:var(--bright); }
+  .p-card.popular .pamt { color:var(--teal); }
+  .pnis2 { font-size:14px; font-weight:700; color:var(--muted); }
+  .pdesc { font-size:11px; color:var(--muted); font-weight:300; }
+  .prow2 { font-size:12px; color:var(--text,#c8daea); font-weight:400; margin-bottom:4px; }
+  .prow3 { font-size:11px; color:var(--muted); font-weight:300; }
+  .prow3 b { color:var(--bright); font-weight:700; }
+  .p-card.popular .prow3 b { color:var(--teal); }
+  .psave-tag { font-size:9px; color:var(--teal); font-weight:600; margin-top:4px; }
   @media(max-width:1000px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
   @media(max-width:560px) { .pricing-grid{grid-template-columns:1fr;} .ent-row{flex-direction:column;} }
 </style>
@@ -153,7 +166,7 @@
       <span class="billing-lbl" id="lbl-m">חיוב חודשי</span>
       <div class="tog on" id="tog" onclick="toggleB()"></div>
       <span class="billing-lbl active" id="lbl-a">חיוב שנתי</span>
-      <span class="save-pill">חסכו עד 20%</span>
+      <span class="save-pill" id="save-pill">חסכו עד 20%</span>
     </div>
     <div class="promo-line">✦ מבצע השקה: דמי הקמה ללא עלות ללקוחות הראשונים</div>
 
@@ -368,20 +381,28 @@
 <script src="shared.js"></script>
 <script>
   renderNav('pricing');
-  let isA = true;
-  function toggleB() {
-    isA = !isA;
-    document.getElementById('tog').classList.toggle('on', isA);
-    document.getElementById('lbl-a').classList.toggle('active', isA);
-    document.getElementById('lbl-m').classList.toggle('active', !isA);
-    document.querySelectorAll('.p-num').forEach(el => {
-      el.textContent = isA ? el.dataset.a : el.dataset.m;
-    });
-    document.querySelectorAll('.p-period').forEach(el => {
-      if (!el.textContent.trim()) return;
-      el.textContent = isA
-        ? el.textContent.replace('חיוב חודשי','חיוב שנתי')
-        : el.textContent.replace('חיוב שנתי','חיוב חודשי');
+  var mode='annual';
+  var d={
+    s:{aa:'390',ma:'490',ad:'למשתמש / לחודש | שנתי',md:'למשתמש / לחודש | חודשי',aex:'כל משתמש נוסף: <b>200 ₪/חודש</b>',mex:'כל משתמש נוסף: <b>200 ₪/חודש</b>',as:'חסכון 20% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 20%'},
+    b:{aa:'3,000',ma:'3,600',ad:'ל-20 עובדים/סניפים / לחודש | שנתי',md:'ל-20 עובדים/סניפים / לחודש | חודשי',aex:'כל עובד/סניף נוסף: <b>150 ₪/חודש</b>',mex:'כל עובד/סניף נוסף: <b>180 ₪/חודש</b>',as:'חסכון 17% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 17%'},
+    p:{aa:'12,500',ma:'15,500',ad:'ל-50 סניפים/עובדים / לחודש | שנתי',md:'ל-50 סניפים/עובדים / לחודש | חודשי',aex:'כל סניף/עובד נוסף: <b>120 ₪/חודש</b>',mex:'כל סניף/עובד נוסף: <b>120 ₪/חודש</b>',as:'חסכון 19% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 19%'},
+    e:{aa:'36,000',ma:'44,000',ad:'ל-100 סניפים/עובדים / לחודש | שנתי',md:'ל-100 סניפים/עובדים / לחודש | חודשי',aex:'כל סניף/עובד נוסף: <b>100 ₪/חודש</b>',mex:'כל סניף/עובד נוסף: <b>100 ₪/חודש</b>',as:'חסכון 18% לעומת חיוב חודשי',ms:'עברו לשנתי וחסכו 18%'}
+  };
+  function toggleB(){
+    mode=mode==='annual'?'monthly':'annual';
+    updatePricing();
+  }
+  function updatePricing(){
+    var a=mode==='annual';
+    document.getElementById('tog').classList.toggle('on',a);
+    document.getElementById('lbl-a').classList.toggle('active',a);
+    document.getElementById('lbl-m').classList.toggle('active',!a);
+    document.getElementById('save-pill').textContent=a?'חסכו עד 20%':'עברו לשנתי וחסכו';
+    ['s','b','p','e'].forEach(function(k){
+      document.getElementById(k+'-amt').textContent=a?d[k].aa:d[k].ma;
+      document.getElementById(k+'-desc').textContent=a?d[k].ad:d[k].md;
+      document.getElementById(k+'-ex').innerHTML=a?d[k].aex:d[k].mex;
+      document.getElementById(k+'-save').innerHTML=a?d[k].as:d[k].ms;
     });
   }
 </script>
