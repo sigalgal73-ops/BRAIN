@@ -6,7 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Use Cases | Brain Co-Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="../shared.css">
+<style>
+.cat-title{font-size:20px;font-weight:900;color:var(--white);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;direction:ltr;text-align:left}
+.cat-section{margin-bottom:48px}
+.use-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;direction:ltr}
+.use-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;transition:all .25s;direction:ltr;text-align:left}
+.use-card:hover{border-color:rgba(45,156,255,.3);transform:translateY(-3px)}
+.use-card-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:10px;display:flex;align-items:flex-start;gap:8px}
+.use-card-title .ico{flex-shrink:0;font-size:18px}
+.use-points{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.use-points li{font-size:12.5px;color:var(--muted);line-height:1.5;display:flex;align-items:flex-start;gap:7px;text-align:left}
+.use-points li::before{content:'·';color:var(--teal);font-weight:900;flex-shrink:0;margin-top:1px}
+.sec-title,.page-title,.page-sub,.page-tag{text-align:center}
+</style>
 </head>
 <body>
 <canvas id="bg"></canvas>
@@ -15,77 +28,313 @@
   <div class="page-hero">
     <div class="page-tag">USE CASES</div>
     <h1 class="page-title">Use Cases – <em>What Brain Does</em></h1>
-    <p class="page-sub">Main use cases of Brain in organizations and businesses</p>
+    <p class="page-sub">Brain is an AI-powered Co-Manager designed to move people, drive execution, and ensure that important things actually get done</p>
   </div>
 
 <div class="sec reveal">
-  <div class="grid-auto">
-    <div class="card">
-      <div style="font-size:26px;margin-bottom:12px">🎬</div>
-      <div class="card-title">Campaigner – Avatar Conversation with Employee</div>
-      <ul class="dot-list" style="margin-top:10px">
-        <li>Campaign for managers/employees – 900 short messages per year</li>
-        <li>Sends avatar video (real human!) + persuasion + follow-up</li>
-        <li>Our mentor creates a 1-on-1 human-like avatar as a mentor/coach</li>
-        <li>The mentor knows how to persuade – invite to try</li>
-        <li>The mentor handles objections and barriers</li>
-        <li>The mentor learns from employee responses</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div style="font-size:26px;margin-bottom:12px">👥</div>
-      <div class="card-title">Employee Retention by AI</div>
-      <ul class="dot-list" style="margin-top:10px">
-        <li>Retention isn't just salary – it's a daily experience</li>
-        <li>Detects energy drops in the team</li>
-        <li>Sends the manager a short management action message</li>
-        <li>Sends reminders and measures employee engagement</li>
-        <li>Creates daily managerial intervention</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div style="font-size:26px;margin-bottom:12px">🔄</div>
-      <div class="card-title">Anti-Burnout Idea Engine</div>
-      <ul class="dot-list" style="margin-top:10px">
-        <li>Daily renewal for managers and employees</li>
-        <li>Burnout doesn't happen in one day – Brain prevents it</li>
-        <li>Recurring burnout, relentless overload</li>
-        <li>The core problem is "no message" – Brain solves it</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div style="font-size:26px;margin-bottom:12px">📞</div>
-      <div class="card-title">Smart Follow-Upper</div>
-      <ul class="dot-list" style="margin-top:10px">
-        <li>Follow-up to ensure execution</li>
-        <li>Automated messages after meetings</li>
-        <li>Actual performance measurement</li>
-        <li>Improved conversion rates</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div style="font-size:26px;margin-bottom:12px">📊</div>
-      <div class="card-title">Proper Management & Organizational Situations</div>
-      <ul class="dot-list" style="margin-top:10px">
-        <li>Professional excellence in the AI era</li>
-        <li>Data and process-based management</li>
-        <li>Organizational culture with healthy work relations</li>
-        <li>Connecting vision to daily execution</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div style="font-size:26px;margin-bottom:12px">🚗</div>
-      <div class="card-title">Railway Company Project</div>
-      <ul class="dot-list" style="margin-top:10px">
-        <li>Establishing and operating urban and inter-city rail systems</li>
-        <li>Creating one connected, coordinated, unified transport network</li>
-        <li>Managing change at large organizational scale</li>
-      </ul>
+
+  <!-- 1. Management & Execution -->
+  <div class="cat-section">
+    <div class="cat-title">🎯 Management & Execution</div>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🔘</span>Do Everything Button</div>
+        <ul class="use-points">
+          <li>A single command to oversee everything you are responsible for</li>
+          <li>Monitors execution together with you and measures what matters</li>
+          <li>Communicates with relevant people on your behalf</li>
+          <li>Brings new ideas, blind spots, and best practices from the outside world</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🗣️</span>Conversational Leadership Partner</div>
+        <ul class="use-points">
+          <li>Talks with you during your commute or whenever needed</li>
+          <li>Reviews work and personal priorities</li>
+          <li>Ensures critical issues are handled</li>
+          <li>Helps solve problems and think through decisions</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">📋</span>Planning, Goals & Execution</div>
+        <ul class="use-points">
+          <li>Creates annual and multi-year plans</li>
+          <li>Builds commitment to plans and goals</li>
+          <li>Tracks execution progress daily</li>
+          <li>Measures implementation quality and goal achievement</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🏗️</span>Personal & Organizational Cockpit</div>
+        <ul class="use-points">
+          <li>Provides a menu of areas to control and improve</li>
+          <li>Combines personal and professional management</li>
+          <li>Presents everything through a control-tower interface</li>
+          <li>Tracks both outcome KPIs and execution KPIs</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">📞</span>Follow-Up at Scale</div>
+        <ul class="use-points">
+          <li>Manages follow-up across hundreds of initiatives</li>
+          <li>Supports organizations with thousands of employees</li>
+          <li>Tracks persuasion-to-execution journeys until completion</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">✅</span>Response & Accountability Engine</div>
+        <ul class="use-points">
+          <li>Increases response rates across WhatsApp and other channels</li>
+          <li>Explains the importance of responding and gains commitment</li>
+          <li>Follows up until responses are received</li>
+          <li>Measures response-rate improvement over time</li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
-  <div style="height:20px"></div>
+  <!-- 2. Change & Implementation -->
+  <div class="cat-section">
+    <div class="cat-title">🔄 Change Management & Implementation</div>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🚀</span>Change Management & Process Implementation</div>
+        <ul class="use-points">
+          <li>Drives adoption of important initiatives, values, and behaviors</li>
+          <li>Runs long-term implementation campaigns</li>
+          <li>Creates alignment around new processes</li>
+          <li>Measures both implementation and business outcomes</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">⚡</span>Organizational Activation</div>
+        <ul class="use-points">
+          <li>Increases urgency when organizations become complacent</li>
+          <li>Connects change initiatives to business logic and ROI</li>
+          <li>Demonstrates consequences of inaction through simulations</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🌍</span>Cultural Adaptation</div>
+        <ul class="use-points">
+          <li>Adapts communication style to different countries and cultures</li>
+          <li>Supports North America, Europe, Asia, and local market nuances</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">💡</span>Persuasion Engine</div>
+        <ul class="use-points">
+          <li>Persuades through logic and personal benefit (WIIFM)</li>
+          <li>Encourages discussion and alternative viewpoints</li>
+          <li>Escalates when necessary and tracks execution status</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🌱</span>Initiative & Leadership Development</div>
+        <ul class="use-points">
+          <li>Encourages ownership and accountability</li>
+          <li>Develops proactive leadership behaviors</li>
+          <li>Helps employees become leaders rather than followers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. People & Engagement -->
+  <div class="cat-section">
+    <div class="cat-title">👥 People, Engagement & Wellbeing</div>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🤝</span>Engagement & Connection</div>
+        <ul class="use-points">
+          <li>Improves organizational engagement</li>
+          <li>Strengthens connection to managers, mission, goals, innovation, and teamwork</li>
+          <li>Builds pride and belonging</li>
+          <li>Enhances the image of Finance, Operations, IT, HR, and Procurement</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🔋</span>Energy, Motivation & Drive</div>
+        <ul class="use-points">
+          <li>Increases organizational energy levels</li>
+          <li>Creates self-motivation frameworks</li>
+          <li>Helps people recover from setbacks</li>
+          <li>Supports resilience and emotional strength</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">💪</span>Resilience Development</div>
+        <ul class="use-points">
+          <li>Builds personal resilience capabilities</li>
+          <li>Provides coaching and measurement</li>
+          <li>Tracks measurable improvement over time</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🏃</span>Employee Retention & Recruitment</div>
+        <ul class="use-points">
+          <li>Supports retention initiatives</li>
+          <li>Improves team atmosphere and cohesion</li>
+          <li>Strengthens onboarding and recruitment processes</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">⚖️</span>Work-Life Balance & Wellness</div>
+        <ul class="use-points">
+          <li>Encourages healthy working hours and family support</li>
+          <li>Monitors stress levels and promotes healthy habits</li>
+          <li>Supports parenting, relationships, finances, and career planning</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🏆</span>Managerial Excellence</div>
+        <ul class="use-points">
+          <li>Teaches managers what to say and what not to say</li>
+          <li>Supports difficult conversations and feedback sessions</li>
+          <li>Improves ability to receive criticism constructively</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Learning & Knowledge -->
+  <div class="cat-section">
+    <div class="cat-title">📚 Learning, Training & Knowledge</div>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🎓</span>Learning & Training Platform</div>
+        <ul class="use-points">
+          <li>Uses human-like AI avatars</li>
+          <li>Creates training programs in seconds</li>
+          <li>Delivers and tracks learning automatically</li>
+          <li>Sends micro-learning content throughout the day</li>
+          <li>Supports video, text, image, and avatar-based communication</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🧠</span>Organizational Knowledge System</div>
+        <ul class="use-points">
+          <li>Creates industry-specific knowledge libraries</li>
+          <li>Preserves organizational know-how</li>
+          <li>Stores processes, checklists, and best practices</li>
+          <li>Learns which persuasion and implementation strategies work best</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Measurement & Analytics -->
+  <div class="cat-section">
+    <div class="cat-title">📊 Measurement, Analytics & Innovation</div>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">📈</span>Measurement & Organizational Insights</div>
+        <ul class="use-points">
+          <li>Measures factors most organizations never track</li>
+          <li>Employee engagement, trust, and psychological safety</li>
+          <li>Resilience, enthusiasm, and retention indicators</li>
+          <li>Execution activities that drive results</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🔍</span>Gap Analysis & Blind Spot Detection</div>
+        <ul class="use-points">
+          <li>Compares current performance to global best practices</li>
+          <li>Identifies missing opportunities and analyzes resistance</li>
+          <li>Recommends practical solutions</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🔧</span>Innovation Management</div>
+        <ul class="use-points">
+          <li>Provides innovation opportunity maps</li>
+          <li>Encourages continuous improvement daily</li>
+          <li>Identifies teams and individuals who are not innovating</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Sales & Service -->
+  <div class="cat-section">
+    <div class="cat-title">💼 Sales, Service & Customers</div>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">📊</span>Sales Performance Improvement</div>
+        <ul class="use-points">
+          <li>Strengthens sales culture and improves conversion and upsell rates</li>
+          <li>Improves product knowledge and reinforces target ownership</li>
+          <li>Supports lead generation and increases traffic</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🏆</span>B2B Sales Excellence</div>
+        <ul class="use-points">
+          <li>Improves sales energy and motivation</li>
+          <li>Strengthens relationships with decision makers</li>
+          <li>Supports category management and trend analysis</li>
+          <li>Optimizes territory and account prioritization</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">📦</span>Product Expertise</div>
+        <ul class="use-points">
+          <li>Builds product differentiation frameworks</li>
+          <li>Creates product benefits, FAQs, and sales arguments</li>
+          <li>Compares products against competitors and identifies growth opportunities</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">⭐</span>Service Excellence</div>
+        <ul class="use-points">
+          <li>Improves customer engagement and communication skills</li>
+          <li>Optimizes call quality and service processes</li>
+          <li>Provides customer-approach conversation frameworks</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">❤️</span>Customer Retention & Loyalty</div>
+        <ul class="use-points">
+          <li>Analyzes customer behavior and profiles</li>
+          <li>Strengthens ongoing customer relationships</li>
+          <li>Builds ambassador communities and advocacy programs</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">💰</span>Cost Reduction & Efficiency</div>
+        <ul class="use-points">
+          <li>Creates cost-saving initiatives</li>
+          <li>Tracks execution and results</li>
+          <li>Monitors measurable business impact</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Safety & Culture -->
+  <div class="cat-section">
+    <div class="cat-title">🛡️ Safety, Collaboration & Culture</div>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">⛑️</span>Safety Culture</div>
+        <ul class="use-points">
+          <li>Builds safety awareness and engagement</li>
+          <li>Improves hazard recognition and self-awareness</li>
+          <li>Supports safety champions and leaders</li>
+          <li>Connects safety behavior to real-life consequences</li>
+        </ul>
+      </div>
+      <div class="use-card">
+        <div class="use-card-title"><span class="ico">🤜</span>Cross-Department Collaboration</div>
+        <ul class="use-points">
+          <li>Improves cooperation between departments</li>
+          <li>Defines clear collaboration processes</li>
+          <li>Measures collaboration effectiveness</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ROI SIMULATION -->
@@ -95,9 +344,7 @@
     <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;color:var(--white);letter-spacing:-.02em">What Is Brain <em style="font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Worth to You?</em></h2>
     <p style="color:var(--muted);font-size:15px;margin-top:12px;max-width:560px;margin-inline:auto;line-height:1.7">Example: Mid-sized organization with $54M annual revenue</p>
   </div>
-
-  <!-- TOP STATS -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;max-width:900px;margin:0 auto 40px;direction:ltr">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;max-width:900px;margin:0 auto 40px;direction:ltr">
     <div class="card" style="text-align:center">
       <div style="font-size:11px;color:var(--muted);letter-spacing:.08em;font-weight:700;margin-bottom:8px">Revenue Before Brain</div>
       <div style="font-size:36px;font-weight:900;color:var(--white)">$54M</div>
@@ -115,71 +362,46 @@
     <div class="card" style="text-align:center">
       <div style="font-size:11px;color:var(--muted);letter-spacing:.08em;font-weight:700;margin-bottom:8px">Management Savings</div>
       <div style="font-size:36px;font-weight:900;color:var(--white)">$250K</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:4px">10–15% Reduction</div>
     </div>
     <div class="card" style="text-align:center;background:rgba(0,212,170,.06);border-color:rgba(0,212,170,.3)">
-      <div style="font-size:11px;color:var(--teal);letter-spacing:.08em;font-weight:700;margin-bottom:8px">Annual Brain Investment</div>
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.08em;font-weight:700;margin-bottom:8px">Annual Investment</div>
       <div style="font-size:36px;font-weight:900;color:var(--teal)">$40.5K</div>
     </div>
   </div>
-
-  <!-- ROI SCENARIOS -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:900px;margin:0 auto 32px;direction:ltr">
     <div class="card" style="text-align:center">
-      <div style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.08em;margin-bottom:12px">Conservative Scenario</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Operating Margin: 10%</div>
-      <div style="font-size:14px;color:var(--white);margin-bottom:6px">Additional Profit: <strong style="color:var(--bright)">$1.35M</strong></div>
-      <div style="font-size:14px;color:var(--white);margin-bottom:16px">Total Value Created: <strong style="color:var(--bright)">$1.6M</strong></div>
+      <div style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.08em;margin-bottom:12px">Conservative · 10%</div>
       <div style="font-size:42px;font-weight:900;color:var(--bright)">39X</div>
-      <div style="font-size:12px;color:var(--muted)">Return on Investment</div>
+      <div style="font-size:12px;color:var(--muted)">Total Value: $1.6M</div>
     </div>
     <div class="card" style="text-align:center;border-color:rgba(45,156,255,.35);background:rgba(45,156,255,.05)">
-      <div style="font-size:11px;color:var(--bright);font-weight:700;letter-spacing:.08em;margin-bottom:12px">Expected Scenario</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Operating Margin: 15%</div>
-      <div style="font-size:14px;color:var(--white);margin-bottom:6px">Additional Profit: <strong style="color:var(--bright)">$2.025M</strong></div>
-      <div style="font-size:14px;color:var(--white);margin-bottom:16px">Total Value Created: <strong style="color:var(--bright)">$2.275M</strong></div>
+      <div style="font-size:11px;color:var(--bright);font-weight:700;letter-spacing:.08em;margin-bottom:12px">Expected · 15%</div>
       <div style="font-size:42px;font-weight:900;color:var(--bright)">56X</div>
-      <div style="font-size:12px;color:var(--muted)">Return on Investment</div>
+      <div style="font-size:12px;color:var(--muted)">Total Value: $2.275M</div>
     </div>
     <div class="card" style="text-align:center;border-color:rgba(0,212,170,.35);background:rgba(0,212,170,.05)">
-      <div style="font-size:11px;color:var(--teal);font-weight:700;letter-spacing:.08em;margin-bottom:12px">High Performance Scenario</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Operating Margin: 20%</div>
-      <div style="font-size:14px;color:var(--white);margin-bottom:6px">Additional Profit: <strong style="color:var(--teal)">$2.7M</strong></div>
-      <div style="font-size:14px;color:var(--white);margin-bottom:16px">Total Value Created: <strong style="color:var(--teal)">$2.95M</strong></div>
+      <div style="font-size:11px;color:var(--teal);font-weight:700;letter-spacing:.08em;margin-bottom:12px">High Performance · 20%</div>
       <div style="font-size:42px;font-weight:900;color:var(--teal)">73X</div>
-      <div style="font-size:12px;color:var(--muted)">Return on Investment</div>
+      <div style="font-size:12px;color:var(--muted)">Total Value: $2.95M</div>
     </div>
   </div>
-
-  <!-- BOTTOM BAR -->
-  <div style="max-width:900px;margin:0 auto;background:linear-gradient(135deg,rgba(45,156,255,.1),rgba(0,212,170,.1));border:1px solid rgba(0,212,170,.3);border-radius:20px;padding:28px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;direction:ltr">
-    <div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Not included in the calculation (but happens in practice):</div>
-      <div style="font-size:13px;color:var(--white);line-height:1.8">Improved employee retention · Reduced recruitment costs · Faster implementation<br>Better compliance · Less operational waste · Better customer experience</div>
-    </div>
-    <div style="text-align:center;flex-shrink:0">
-      <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Estimated ROI Range</div>
-      <div style="font-size:48px;font-weight:900;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">39X–73X</div>
-    </div>
-  </div>
-
   <div style="text-align:center;margin-top:32px">
-    <a href="demo.html" class="btn btn-primary">Book a Demo – See Your Numbers →</a>
+    <a href="../demo.html" class="btn btn-primary">Book a Demo – See Your Numbers →</a>
   </div>
 </div>
 
   <div style="height:60px"></div>
   <footer>
     <div class="footer-links">
-      <a href="about.html">About</a><a href="process.html">Process</a>
-      <a href="uses.html">Use Cases</a><a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a><a href="pricing.html">Pricing</a>
-      <a href="demo.html">Demo</a><a href="articles.html">Articles</a><a href="jobs.html">Careers</a>
+      <a href="../about.html">About</a><a href="../process.html">Process</a>
+      <a href="uses.html">Use Cases</a><a href="../roi.html">ROI</a>
+      <a href="../smb.html">SMB</a><a href="pricing.html">Pricing</a>
+      <a href="../demo.html">Demo</a><a href="articles.html">Articles</a><a href="jobs.html">Careers</a>
     </div>
     <div class="footer-copy">© All rights reserved · Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">Website design <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
   </footer>
 </div>
-<script src="shared.js"></script>
+<script src="../shared.js"></script>
 <script>renderNav('uses','en');</script>
 </body>
 </html>
