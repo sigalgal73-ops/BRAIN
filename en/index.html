@@ -497,8 +497,8 @@ nav{
 
 .clients{position:relative;z-index:2;padding:18px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;background:rgba(4,20,40,.3)}
 .clients-label{font-size:11px;color:var(--white);letter-spacing:.1em;font-weight:700;opacity:.7;white-space:nowrap}
-.client-pill{padding:5px 16px;border:1px solid rgba(255,255,255,.2);border-radius:14px;font-size:12px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.05em;transition:all .2s;cursor:default}
-.client-pill:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.06)}
+.client-pill{padding:5px 16px;border:1px solid rgba(255,255,255,.2);border-radius:14px;font-size:12px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.05em;transition:all .2s;cursor:pointer;text-decoration:none;display:inline-block}
+.client-pill:hover{border-color:var(--bright);color:#fff;background:rgba(45,156,255,.12);transform:translateY(-2px)}
 .features-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto}
 .feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:all .3s;position:relative;overflow:hidden;text-align:center}
 .feat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.35),transparent)}
@@ -676,14 +676,14 @@ nav{
 
 <div class="clients">
   <div class="clients-label">Chosen by managers in leading industries ·</div>
-  <div class="client-pill">🛍 Retail</div>
-  <div class="client-pill">🚚 Logistics</div>
-  <div class="client-pill">🏥 Healthcare</div>
-  <div class="client-pill">🎓 Education</div>
-  <div class="client-pill">🏦 Banking</div>
-  <div class="client-pill">🏭 Industry</div>
-  <div class="client-pill">💻 Hi-Tech</div>
-  <div class="client-pill">🏛️ Government</div>
+  <a href="segments_en.html#retail"    class="client-pill">🛍 Retail</a>
+  <a href="segments_en.html#logistics" class="client-pill">🚚 Logistics</a>
+  <a href="segments_en.html#health"    class="client-pill">🏥 Healthcare</a>
+  <a href="segments_en.html#education" class="client-pill">🎓 Education</a>
+  <a href="segments_en.html#banking"   class="client-pill">🏦 Banking</a>
+  <a href="segments_en.html#industry"  class="client-pill">🏭 Industry</a>
+  <a href="segments_en.html#hitech"    class="client-pill">💻 Hi-Tech</a>
+  <a href="segments_en.html#gov"       class="client-pill">🏛️ Government</a>
 </div>
 
 <div style="position:relative;z-index:1;padding:52px 60px 40px;" class="reveal">
