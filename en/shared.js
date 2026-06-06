@@ -7,11 +7,6 @@ function renderNav(activePage, lang) {
   }
   const isEn = lang === 'en';
   const pages = isEn ? [
-    { id: 'about',    label: 'About',    href: 'about.html' },
-    { id: 'process',  label: 'Process',  href: 'process.html' },
-    { id: 'uses',     label: 'Use Cases',href: 'uses.html' },
-    { id: 'roi',      label: 'ROI',      href: 'roi.html' },
-    { id: 'smb',      label: 'SMB',      href: 'smb.html' },
     { id: 'investors',label: 'Investors',href: 'investors.html', submenu: [
       { label: 'Engine Within Engine', href: 'investors-engine.html' },
       { label: 'Brain Value Proof',    href: 'investors-value.html' },
@@ -20,18 +15,14 @@ function renderNav(activePage, lang) {
       { label: 'VC Funds',             href: 'investors-vc.html' },
       { label: 'FAQ',                  href: 'investors-faq.html' },
     ]},
-    { id: 'pricing',  label: 'Pricing',  href: 'pricing.html' },
     { id: 'demo',     label: 'Demo',     href: 'demo.html', cta: true },
+    { id: 'pricing',  label: 'Pricing',  href: 'pricing.html' },
+    { id: 'team',     label: 'Our Network', href: 'team.html' },
+    { id: 'podcast',  label: 'Podcast',  href: 'podcast.html' },
     { id: 'articles', label: 'Articles', href: 'articles.html' },
     { id: 'jobs',     label: 'Careers',  href: 'jobs.html' },
-    { id: 'team',     label: 'Our Network', href: 'team.html' },
-    { id: 'join',     label: 'Join',  href: 'join.html', cta: true },
+    { id: 'join',     label: 'Join',     href: 'join.html', cta: true },
   ] : [
-    { id: 'about',    label: 'אודותינו',  href: 'about.html' },
-    { id: 'process',  label: 'התהליך',    href: 'process.html' },
-    { id: 'uses',     label: 'שימושים',   href: 'uses.html' },
-    { id: 'roi',      label: 'ROI',        href: 'roi.html' },
-    { id: 'smb',      label: 'SMB',        href: 'smb.html' },
     { id: 'investors', label: 'משקיעים', href: 'investors.html', submenu: [
       { label: 'מנוע בתוך מנוע', href: 'investors-engine.html' },
       { label: 'הוכחת שווי Brain', href: 'investors-value.html' },
@@ -40,13 +31,13 @@ function renderNav(activePage, lang) {
       { label: 'קרנות VC', href: 'investors-vc.html' },
       { label: 'שאלות תשובות', href: 'investors-faq.html' },
     ]},
-    { id: 'pricing',  label: 'מחירים',    href: 'pricing.html' },
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
+    { id: 'pricing',  label: 'מחירים',    href: 'pricing.html' },
+    { id: 'team',     label: 'החברים שלנו', href: 'team.html' },
+    { id: 'podcast',  label: 'פודקאסט',   href: 'podcast.html' },
     { id: 'articles', label: 'מאמרים',    href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',    href: 'jobs.html' },
-    { id: 'podcast',  label: 'מה שפספסתם', href: 'podcast.html' },
-    { id: 'team',     label: 'החברים שלנו', href: 'team.html' },
-    { id: 'join',     label: 'הצטרפו', href: 'join.html', cta: true },
+    { id: 'join',     label: 'הצטרפו',    href: 'join.html', cta: true },
   ];
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
