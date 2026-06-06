@@ -8,6 +8,7 @@ function renderNav(activePage, lang) {
   const isEn = lang === 'en';
   const pages = isEn ? [
     { id: 'about',    label: 'About',      href: 'about.html' },
+    { id: 'what-is-brain', label: 'What is Brain?', href: 'what-is-brain.html' },
     { id: 'process',  label: 'Process',    href: 'process.html' },
     { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
@@ -29,6 +30,7 @@ function renderNav(activePage, lang) {
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
   ] : [
     { id: 'about',    label: 'אודותינו',    href: 'about.html' },
+    { id: 'what-is-brain', label: 'מה זה Brain?', href: 'what-is-brain.html' },
     { id: 'process',  label: 'התהליך',      href: 'process.html' },
     { id: 'uses',     label: 'שימושים',     href: 'uses.html' },
     { id: 'roi',      label: 'ROI',          href: 'roi.html' },
