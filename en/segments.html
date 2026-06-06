@@ -4,64 +4,48 @@
 <meta charset="UTF-8">
 <meta name="facebook-domain-verification" content="gzjgv9eghct29v046qzstfzum02ncz" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brain Co-Manager | Industries & Segments</title>
+<title>Brain Co-Manager | Target Segments</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#020d1a;--card:#071828;
-  --border:rgba(45,156,255,.13);
-  --accent:#1a6fc4;--bright:#2d9cff;--sky:#7ec8ff;
-  --teal:#00d4aa;--white:#f0f6ff;--muted:#6b8aaa;
-}
+:root{--navy:#020d1a;--card:#071828;--border:rgba(45,156,255,.13);--accent:#1a6fc4;--bright:#2d9cff;--sky:#7ec8ff;--teal:#00d4aa;--white:#f0f6ff;--muted:#6b8aaa;}
 html{scroll-behavior:smooth}
 body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-
 #bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4}
-
 .page-hero{position:relative;z-index:1;padding:120px 60px 60px;text-align:center}
 .page-hero-tag{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--teal);margin-bottom:16px}
 .page-hero h1{font-size:clamp(32px,5vw,58px);font-weight:900;color:var(--white);letter-spacing:-.02em;line-height:1.1;margin-bottom:20px}
 .page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.page-hero p{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:600px;margin:0 auto 36px;line-height:1.7}
-
+.page-hero p{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:620px;margin:0 auto 36px;line-height:1.7}
 .seg-nav{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:0 40px 48px}
 .seg-nav a{padding:7px 18px;border:1px solid rgba(255,255,255,.18);border-radius:20px;font-size:12px;font-weight:700;color:rgba(255,255,255,.65);text-decoration:none;letter-spacing:.04em;transition:all .2s}
 .seg-nav a:hover,.seg-nav a.active{border-color:var(--bright);color:var(--bright);background:rgba(45,156,255,.1)}
-
 .segments-wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 40px 80px;display:flex;flex-direction:column;gap:48px}
-
 .seg-card{background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:border-color .3s}
 .seg-card:hover{border-color:rgba(45,156,255,.3)}
 .seg-card::before{content:'';display:block;height:3px;background:linear-gradient(90deg,var(--bright),var(--teal))}
-
 .seg-header{padding:28px 32px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;user-select:none}
 .seg-icon{font-size:36px;flex-shrink:0}
 .seg-name{font-size:22px;font-weight:900;color:var(--white);letter-spacing:-.01em}
 .seg-sub{font-size:13px;color:var(--muted);margin-top:3px}
 .seg-toggle{margin-left:auto;color:var(--bright);font-size:20px;transition:transform .3s;flex-shrink:0}
 .seg-card.open .seg-toggle{transform:rotate(180deg)}
-
 .seg-body{display:none;padding:0 32px 28px}
 .seg-card.open .seg-body{display:block}
-
 .seg-points{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:4px}
 .seg-point{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;font-size:13.5px;color:var(--muted);line-height:1.5;transition:all .2s}
 .seg-point:hover{border-color:rgba(45,156,255,.2);color:var(--white);background:rgba(45,156,255,.05)}
 .seg-point::before{content:'✓';color:var(--teal);font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px}
-
 .seg-cta{margin-top:20px;padding-top:20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .seg-cta-text{font-size:13px;color:var(--muted)}
 .seg-cta a{padding:9px 22px;background:linear-gradient(135deg,var(--accent),var(--bright));border-radius:20px;color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:opacity .2s}
 .seg-cta a:hover{opacity:.85}
-
 .bottom-cta{position:relative;z-index:1;max-width:700px;margin:0 auto 80px;background:var(--card);border:1px solid var(--border);border-radius:26px;padding:48px 40px;text-align:center}
 .bottom-cta h2{font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-.01em}
 .bottom-cta p{color:var(--muted);font-size:15px;margin-bottom:28px;line-height:1.6}
 .btn-demo{padding:13px 32px;background:linear-gradient(135deg,var(--accent),var(--bright));border-radius:24px;color:#fff;font-size:15px;font-weight:700;text-decoration:none;transition:opacity .2s}
 .btn-demo:hover{opacity:.85}
-
 @media(max-width:768px){
   .page-hero{padding:100px 20px 40px}
   .segments-wrap{padding:0 16px 60px}
@@ -78,9 +62,9 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
 <div id="nav-placeholder"></div>
 
 <div class="page-hero reveal">
-  <div class="page-hero-tag">Industries & Segments</div>
-  <h1>Brain Works in Every <em>Industry</em></h1>
-  <p>Brain adapts to any organization.<br>Whether it's a retail chain, a hospital, a bank, a military unit, or any organization striving for growth.</p>
+  <div class="page-hero-tag">TARGET SEGMENTS</div>
+  <h1>Brain Works Across Every <em>Industry</em></h1>
+  <p>Every sector comes with its own challenges. Brain adapts to any organization.<br>Whether it's a retail chain, hospital, bank, military unit,<br>or any organization striving for growth.</p>
 </div>
 
 <div class="seg-nav">
@@ -98,13 +82,12 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
 
 <div class="segments-wrap">
 
-  <!-- RETAIL -->
   <div class="seg-card open" id="retail">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">🛍</div>
       <div class="seg-title-wrap">
         <div class="seg-name">Retail</div>
-        <div class="seg-sub">Retail chains, branches, field managers</div>
+        <div class="seg-sub">Chains, branches, field managers</div>
       </div>
       <div class="seg-toggle">▾</div>
     </div>
@@ -131,7 +114,6 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
   </div>
 
-  <!-- HEALTHCARE -->
   <div class="seg-card" id="health">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">🏥</div>
@@ -165,13 +147,12 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
   </div>
 
-  <!-- BANKING -->
   <div class="seg-card" id="banking">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">🏦</div>
       <div class="seg-title-wrap">
         <div class="seg-name">Banking</div>
-        <div class="seg-sub">Banks, insurance companies, financial services</div>
+        <div class="seg-sub">Banks, insurance companies, financial institutions</div>
       </div>
       <div class="seg-toggle">▾</div>
     </div>
@@ -199,7 +180,6 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
   </div>
 
-  <!-- INDUSTRY -->
   <div class="seg-card" id="industry">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">🏭</div>
@@ -231,7 +211,6 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
   </div>
 
-  <!-- GOVERNMENT -->
   <div class="seg-card" id="gov">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">🏛️</div>
@@ -244,7 +223,7 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     <div class="seg-body">
       <div class="seg-points">
         <div class="seg-point">Mission, purpose, and pride in public service</div>
-        <div class="seg-point">Departmental pride across Public Works, Security, Engineering, Welfare, Education</div>
+        <div class="seg-point">Departmental pride across Public Works, Security, Engineering, Welfare, Education, and more</div>
         <div class="seg-point">Stronger commitment to multi-year work plans with execution tracking</div>
         <div class="seg-point">Resilience and performance under uncertainty</div>
         <div class="seg-point">Connecting municipal teams to service excellence</div>
@@ -254,6 +233,7 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
         <div class="seg-point">Improving cross-department coordination</div>
         <div class="seg-point">Accelerating decision implementation</div>
         <div class="seg-point">Strengthening employee professionalism</div>
+        <div class="seg-point">Monitoring work-plan execution</div>
         <div class="seg-point">Improving resident experience</div>
         <div class="seg-point">Daily innovation and continuous process improvement</div>
         <div class="seg-point">Reducing post-election politics and rebuilding collaboration across different groups</div>
@@ -265,7 +245,6 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
   </div>
 
-  <!-- MILITARY -->
   <div class="seg-card" id="military">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">🎖️</div>
@@ -294,7 +273,6 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
   </div>
 
-  <!-- B2B SALES -->
   <div class="seg-card" id="b2b">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">💼</div>
@@ -326,24 +304,23 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
   </div>
 
-  <!-- HI-TECH -->
   <div class="seg-card" id="hitech">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">💻</div>
       <div class="seg-title-wrap">
         <div class="seg-name">Hi-Tech</div>
-        <div class="seg-sub">Tech companies, startups, R&D teams</div>
+        <div class="seg-sub">Technology companies, startups, R&D teams</div>
       </div>
       <div class="seg-toggle">▾</div>
     </div>
     <div class="seg-body">
       <div class="seg-points">
-        <div class="seg-point">Connecting employees to the company's mission and values</div>
+        <div class="seg-point">Connecting employees to company mission and values</div>
         <div class="seg-point">Strengthening mid-level managers — Team Leads and Group Managers</div>
-        <div class="seg-point">Improving cross-team and cross-department communication</div>
+        <div class="seg-point">Improving communication across teams and departments</div>
         <div class="seg-point">Employee retention in a competitive environment</div>
-        <div class="seg-point">Increasing employee engagement and satisfaction</div>
-        <div class="seg-point">Implementing organizational change and new culture</div>
+        <div class="seg-point">Increasing engagement and employee satisfaction</div>
+        <div class="seg-point">Driving organizational change and cultural adoption</div>
         <div class="seg-point">Meeting performance goals and sprint targets</div>
         <div class="seg-point">Strengthening collaboration between R&D, Product, and Sales</div>
       </div>
@@ -354,7 +331,6 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
   </div>
 
-  <!-- LOGISTICS -->
   <div class="seg-card" id="logistics">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">🚚</div>
@@ -367,11 +343,11 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     <div class="seg-body">
       <div class="seg-points">
         <div class="seg-point">Connecting drivers and field staff to mission and service values</div>
-        <div class="seg-point">Meeting delivery timelines and targets</div>
+        <div class="seg-point">Meeting delivery timelines and performance targets</div>
         <div class="seg-point">Improving communication between field and HQ</div>
         <div class="seg-point">Reducing incidents and safety events</div>
         <div class="seg-point">Retaining field employees in a high-turnover environment</div>
-        <div class="seg-point">Strengthening pride among operations and logistics teams</div>
+        <div class="seg-point">Strengthening pride in operations and logistics teams</div>
         <div class="seg-point">Improving end-customer experience</div>
         <div class="seg-point">Implementing procedures and standards in the field</div>
       </div>
@@ -382,7 +358,6 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
   </div>
 
-  <!-- EDUCATION -->
   <div class="seg-card" id="education">
     <div class="seg-header" onclick="toggleSeg(this)">
       <div class="seg-icon">🎓</div>
@@ -394,12 +369,12 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
     </div>
     <div class="seg-body">
       <div class="seg-points">
-        <div class="seg-point">Connecting teachers and principals to the educational mission</div>
-        <div class="seg-point">Strengthening staff pride and sense of purpose</div>
+        <div class="seg-point">Connecting teachers and principals to educational mission</div>
+        <div class="seg-point">Strengthening staff pride and unit identity</div>
         <div class="seg-point">Improving communication between management, parents, and students</div>
-        <div class="seg-point">Implementing annual work plans across the school</div>
+        <div class="seg-point">Implementing annual work plans at the school level</div>
         <div class="seg-point">Improving management excellence of school principals</div>
-        <div class="seg-point">Increasing teacher engagement and motivation</div>
+        <div class="seg-point">Increasing teacher engagement</div>
         <div class="seg-point">Retaining quality teachers</div>
         <div class="seg-point">Supporting teacher Work-Life Balance and Wellness</div>
       </div>
@@ -413,7 +388,7 @@ body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-w
 </div>
 
 <div class="bottom-cta reveal">
-  <h2>Your industry not listed?</h2>
+  <h2>Don't see your industry?</h2>
   <p>Brain works with any organization that has managers and a field. Let's talk and see what's relevant for you.</p>
   <a href="demo.html" class="btn-demo">Book a Free Demo →</a>
 </div>
@@ -439,7 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => target.scrollIntoView({behavior:'smooth', block:'start'}), 200);
     }
   }
-
   const pills = document.querySelectorAll('.seg-nav a');
   const cards = document.querySelectorAll('.seg-card');
   const observer = new IntersectionObserver(entries => {
