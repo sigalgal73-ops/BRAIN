@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="facebook-domain-verification" content="gzjgv9eghct29v046qzstfzum02ncz" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brain Co-Manager | קהלי יעד ומגזרים</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#020d1a;--card:#071828;
+  --border:rgba(45,156,255,.13);
+  --accent:#1a6fc4;--bright:#2d9cff;--sky:#7ec8ff;
+  --teal:#00d4aa;--white:#f0f6ff;--muted:#6b8aaa;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4}
+
+/* PAGE HERO */
+.page-hero{position:relative;z-index:1;padding:120px 60px 60px;text-align:center}
+.page-hero-tag{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--teal);margin-bottom:16px}
+.page-hero h1{font-size:clamp(32px,5vw,58px);font-weight:900;color:var(--white);letter-spacing:-.02em;line-height:1.1;margin-bottom:20px}
+.page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-hero p{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:600px;margin:0 auto 36px;line-height:1.7}
+
+/* SEGMENT NAV PILLS */
+.seg-nav{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:0 40px 48px}
+.seg-nav a{padding:7px 18px;border:1px solid rgba(255,255,255,.18);border-radius:20px;font-size:12px;font-weight:700;color:rgba(255,255,255,.65);text-decoration:none;letter-spacing:.04em;transition:all .2s}
+.seg-nav a:hover,.seg-nav a.active{border-color:var(--bright);color:var(--bright);background:rgba(45,156,255,.1)}
+
+/* SEGMENTS GRID */
+.segments-wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 40px 80px;display:flex;flex-direction:column;gap:48px}
+
+/* SEGMENT CARD */
+.seg-card{background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:border-color .3s}
+.seg-card:hover{border-color:rgba(45,156,255,.3)}
+.seg-card::before{content:'';display:block;height:3px;background:linear-gradient(90deg,var(--bright),var(--teal))}
+
+.seg-header{padding:28px 32px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;user-select:none}
+.seg-icon{font-size:36px;flex-shrink:0}
+.seg-title-wrap{}
+.seg-name{font-size:22px;font-weight:900;color:var(--white);letter-spacing:-.01em}
+.seg-sub{font-size:13px;color:var(--muted);margin-top:3px}
+.seg-toggle{margin-right:auto;color:var(--bright);font-size:20px;transition:transform .3s;flex-shrink:0}
+.seg-card.open .seg-toggle{transform:rotate(180deg)}
+
+.seg-body{display:none;padding:0 32px 28px}
+.seg-card.open .seg-body{display:block}
+
+.seg-points{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:4px}
+.seg-point{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;font-size:13.5px;color:var(--muted);line-height:1.5;transition:all .2s}
+.seg-point:hover{border-color:rgba(45,156,255,.2);color:var(--white);background:rgba(45,156,255,.05)}
+.seg-point::before{content:'✓';color:var(--teal);font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px}
+
+.seg-cta{margin-top:20px;padding-top:20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
+.seg-cta-text{font-size:13px;color:var(--muted)}
+.seg-cta a{padding:9px 22px;background:linear-gradient(135deg,var(--accent),var(--bright));border-radius:20px;color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:opacity .2s}
+.seg-cta a:hover{opacity:.85}
+
+/* CTA BOX */
+.bottom-cta{position:relative;z-index:1;max-width:700px;margin:0 auto 80px;background:var(--card);border:1px solid var(--border);border-radius:26px;padding:48px 40px;text-align:center}
+.bottom-cta h2{font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-.01em}
+.bottom-cta p{color:var(--muted);font-size:15px;margin-bottom:28px;line-height:1.6}
+.btn-demo{padding:13px 32px;background:linear-gradient(135deg,var(--accent),var(--bright));border-radius:24px;color:#fff;font-size:15px;font-weight:700;text-decoration:none;transition:opacity .2s}
+.btn-demo:hover{opacity:.85}
+
+@media(max-width:768px){
+  .page-hero{padding:100px 20px 40px}
+  .segments-wrap{padding:0 16px 60px}
+  .seg-header{padding:20px}
+  .seg-body{padding:0 20px 20px}
+  .seg-points{grid-template-columns:1fr}
+  .seg-cta{flex-direction:column;gap:12px;align-items:flex-start}
+  .seg-nav{padding:0 16px 32px}
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero reveal">
+  <div class="page-hero-tag">קהלי יעד</div>
+  <h1>Brain עובד בכל <em>ענף</em></h1>
+  <p>כל מגזר מגיע עם האתגרים שלו, Brain מתאים את עצמו לכל ארגון.<br>בין אם זה רשת קמעונאית, בית חולים, בנק, יחידה צבאית<br>או כל ארגון ששואף לצמיחה.</p>
+</div>
+
+<!-- QUICK NAV -->
+<div class="seg-nav">
+  <a href="#retail">🛍 קמעונאות</a>
+  <a href="#health">🏥 בריאות</a>
+  <a href="#banking">🏦 בנקאות</a>
+  <a href="#industry">🏭 תעשייה</a>
+  <a href="#gov">🏛️ ממשל ועיריות</a>
+  <a href="#military">🎖️ צבא</a>
+  <a href="#b2b">💼 מכירות B2B</a>
+  <a href="#hitech">💻 הייטק</a>
+  <a href="#logistics">🚚 לוגיסטיקה</a>
+  <a href="#education">🎓 חינוך</a>
+</div>
+
+<div class="segments-wrap">
+
+  <!-- RETAIL -->
+  <div class="seg-card open" id="retail">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">🛍</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">קמעונאות</div>
+        <div class="seg-sub">רשתות, סניפים, מנהלי שטח</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">אהבת תוכניות עבודה ויישום שלהן</div>
+        <div class="seg-point">היצמדות ליעדים ובקרת עמידה ביעד יומית</div>
+        <div class="seg-point">הגברת אנרגיות של כולם</div>
+        <div class="seg-point">חיבור Engagement של כלל הצוות</div>
+        <div class="seg-point">שיפור יחס המרה</div>
+        <div class="seg-point">שיפור אפסייל</div>
+        <div class="seg-point">שימור עובדים</div>
+        <div class="seg-point">גיוס עובדים</div>
+        <div class="seg-point">מקצוענות צוות בהיכרות מוצרים</div>
+        <div class="seg-point">יישום תדריכים בסניפים ומיקרו הדרכה</div>
+        <div class="seg-point">עבודה על פי ניתוח מספרים ומגמות</div>
+        <div class="seg-point">הגדלת טראפיק</div>
+        <div class="seg-point">חיזוק המיתוג של המחלקות: מזכירות, כספים, תפעול, IT, רכש</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEALTH -->
+  <div class="seg-card" id="health">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">🏥</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">בריאות וקופות חולים</div>
+        <div class="seg-sub">בתי חולים, קופות חולים, מוסדות סיעוד</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">גיוס לקוחות — גיוס לקוח מלקוח — איסוף לידים</div>
+        <div class="seg-point">גאוות מותג, שליחות ומשמעות</div>
+        <div class="seg-point">שירות — חיבור Engagement של צוותים</div>
+        <div class="seg-point">טון, שפת גוף, מענה לטלפון — בדרך אחרת</div>
+        <div class="seg-point">חיבור עובדים לאקרדיטציה ועמידה ביעדי שירות</div>
+        <div class="seg-point">הקטנת נפילות וזיהומים</div>
+        <div class="seg-point">שיפור יחס רופאים לצוות</div>
+        <div class="seg-point">שימור עובדים וגיוס עובדים</div>
+        <div class="seg-point">גיבוש בצוות</div>
+        <div class="seg-point">תמיכה בצוותי סיעוד לגמלאים וגיל שלישי</div>
+        <div class="seg-point">חיזוק גאוות יחידה במוסדות לבריאות הנפש</div>
+        <div class="seg-point">מתן חבילות חיזוק נפשי וארגזי כלים ללקוחות</div>
+        <div class="seg-point">WLB של העובדים ו-Wellness</div>
+        <div class="seg-point">חיזוק הורדת תכניות לשטח ועמידה ביעדים</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANKING -->
+  <div class="seg-card" id="banking">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">🏦</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">בנקאות</div>
+        <div class="seg-sub">בנקים, חברות ביטוח, פיננסים</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">שליחות, משמעות וגאוות יחידה של התפקיד הבנקאי</div>
+        <div class="seg-point">מיתוג הבנקאי כקמעונאי, איש מוצרים ופסיכולוגיה</div>
+        <div class="seg-point">חיבור לנושא השירות — יותר Engagement</div>
+        <div class="seg-point">גיוס לקוח מלקוח קיים — לידים</div>
+        <div class="seg-point">קריאה ליחס שוטף עם לקוח — היכרות עם צרכיו</div>
+        <div class="seg-point">כבוד לתפעול ו-Back Office — הרמת החשיבות שלהם</div>
+        <div class="seg-point">התעוררות יומיומית ודחיפה קדימה</div>
+        <div class="seg-point">פחות קיטורים, יותר אנרגיה</div>
+        <div class="seg-point">הגדלת נתח לקוח — מכירת עוד מוצרים לאותו לקוח</div>
+        <div class="seg-point">שימור עובדים וגיוס עובדים</div>
+        <div class="seg-point">גאוות סניף — סניף כמדינה בתוך מדינה</div>
+        <div class="seg-point">חיזוק החיבור החיובי לרגולציה וציות</div>
+        <div class="seg-point">WLB של העובדים ו-Wellness</div>
+        <div class="seg-point">חיזוק הורדת תכניות לשטח ועמידה ביעדים</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDUSTRY -->
+  <div class="seg-card" id="industry">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">🏭</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">תעשייה ותשתיות</div>
+        <div class="seg-sub">נדל"ן, הנדסה, אנרגיה, תעשיות ביטחוניות</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">חיבור חזק יותר להקטנת הוצאות ועמידה בתקציב</div>
+        <div class="seg-point">עמידה בלוחות זמנים</div>
+        <div class="seg-point">שיפור שת"פ בין פרויקטים למניעת עלויות של אי-תיאום</div>
+        <div class="seg-point">שיפור מצוינות תפעולית</div>
+        <div class="seg-point">חיזוק תרבות הבטיחות</div>
+        <div class="seg-point">הפחתת תקלות ייצור</div>
+        <div class="seg-point">שיפור תקשורת משמרות</div>
+        <div class="seg-point">הטמעת נהלי עבודה</div>
+        <div class="seg-point">חיזוק מקצועיות עובדים</div>
+        <div class="seg-point">שיפור איכות מוצרים</div>
+        <div class="seg-point">מעקב ביצועים שוטף</div>
+        <div class="seg-point">קיצור זמני מסירה</div>
+        <div class="seg-point">חיזוק ניהול קבלנים</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOV -->
+  <div class="seg-card" id="gov">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">🏛️</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">ממשל, עיריות ורשויות ציבוריות</div>
+        <div class="seg-sub">עיריות, משרדי ממשלה, רשויות מקומיות</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">גאוות יחידה, שליחות ומשמעות של התפקיד הציבורי</div>
+        <div class="seg-point">גאוות יחידה של מחלקות — שפ"ע, בטחון, הנדסה, רווחה, חינוך</div>
+        <div class="seg-point">היצמדות לתוכניות עבודה רב-שנתיות ובקרה עליהן</div>
+        <div class="seg-point">חוסן ועבודה בתנאי אי-ודאות</div>
+        <div class="seg-point">חיבור צוותי עירייה לשירות</div>
+        <div class="seg-point">שיפור שירות ציבורי ברמת עמידה ביעדי KPI עירוניים</div>
+        <div class="seg-point">הטמעת מדיניות ארגונית</div>
+        <div class="seg-point">חיזוק אחריות עובדים</div>
+        <div class="seg-point">שיפור תיאום מחלקות</div>
+        <div class="seg-point">האצת יישום החלטות</div>
+        <div class="seg-point">חיזוק מקצועיות עובדים</div>
+        <div class="seg-point">שיפור חוויית תושב</div>
+        <div class="seg-point">חדשנות יומית ושיפור תהליכים</div>
+        <div class="seg-point">הורדת פוליטיקה אחרי בחירות וחיבור אנשים מעמדות שונות</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MILITARY -->
+  <div class="seg-card" id="military">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">🎖️</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">צבא, לוחמים ויחידות מיוחדות</div>
+        <div class="seg-sub">לוחמים, תומכי לחימה, יחידות מיוחדות</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">נשימה, אנרגיות, הרגעה עצמית, הדלקה עצמית</div>
+        <div class="seg-point">העבודה בתפקיד ביטחוני כתורמת לחיים המקצועיים ולקריירה שניה</div>
+        <div class="seg-point">שליחות, משמעות וגאוות יחידה — לחייל ולמשפחתו</div>
+        <div class="seg-point">איזון חיים עם משפחה — הצדעה למשפחה כתומכי לחימה של כולנו</div>
+        <div class="seg-point">דיוק ביצועי התנהגותי — מודעות מדויקת לביצוע של לוחמים</div>
+        <div class="seg-point">חיזוק הזוגיות לאורך תקופה מאתגרת של היעדרות מהבית</div>
+        <div class="seg-point">בטיחות מעל הכול — איך מיישמים את זה</div>
+        <div class="seg-point">חיזוק המותג של נגדים — מפקדים שאינם קצינים — גאוות יחידה</div>
+        <div class="seg-point">גאוות יחידה ושליחות של תומכי לחימה — כל מי שתורם למעבר הקרב</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- B2B SALES -->
+  <div class="seg-card" id="b2b">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">💼</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">מכירות B2B</div>
+        <div class="seg-sub">מוצרים, ציוד, ציוד רפואי, תוכנה</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">אנרגיות של איש המכירות — איך מעלים</div>
+        <div class="seg-point">התקרבות לזה שקונה ממך — למקבלי החלטות</div>
+        <div class="seg-point">אספקת ערך למנהלים שמוכרים אותך</div>
+        <div class="seg-point">שיפור יחסים בין איש שטח למנהל אזור</div>
+        <div class="seg-point">חיבור לניתוח קטגוריה ומגמות</div>
+        <div class="seg-point">מקצוענות מוצרים, בידול מוצרים — איך מיישמים</div>
+        <div class="seg-point">הורדת הדרכת מקצוענות מוצרים לשטח</div>
+        <div class="seg-point">ניהול נכון יותר של פרטו נקודות מכירה על פי פוטנציאל</div>
+        <div class="seg-point">התייעלות בעומסים — הורדת עומסים</div>
+        <div class="seg-point">היצמדות ליעדים, אחוז עמידה ביעד, השלמת מכירות בפערים מהיעד</div>
+        <div class="seg-point">הכנה נכונה לחגים</div>
+        <div class="seg-point">הקשבה לאנשים בשטח</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HITECH -->
+  <div class="seg-card" id="hitech">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">💻</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">הייטק</div>
+        <div class="seg-sub">חברות טכנולוגיה, סטארטאפים, R&D</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">חיבור עובדים לשליחות ולערכי החברה</div>
+        <div class="seg-point">חיזוק מנהלים בדרגי ביניים — Team Leads ו-Group Managers</div>
+        <div class="seg-point">שיפור תקשורת בין צוותים ומחלקות</div>
+        <div class="seg-point">שימור עובדים בסביבה תחרותית</div>
+        <div class="seg-point">הגברת Engagement ושביעות רצון עובדים</div>
+        <div class="seg-point">הטמעת שינויים ארגוניים ותרבות חדשה</div>
+        <div class="seg-point">עמידה ביעדי ביצוע וספרינטים</div>
+        <div class="seg-point">חיזוק שת"פ בין פיתוח, מוצר ומכירות</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGISTICS -->
+  <div class="seg-card" id="logistics">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">🚚</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">לוגיסטיקה ושירות</div>
+        <div class="seg-sub">הובלה, שילוח, שירות לקוחות שטח</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">חיבור נהגים ואנשי שטח לשליחות ולשירות</div>
+        <div class="seg-point">עמידה בלוחות זמנים ויעדי משלוח</div>
+        <div class="seg-point">שיפור תקשורת בין שטח למטה</div>
+        <div class="seg-point">הפחתת תקלות ואירועי בטיחות</div>
+        <div class="seg-point">שימור עובדי שטח בסביבה עם תחלופה גבוהה</div>
+        <div class="seg-point">חיזוק גאוות יחידה של צוותי תפעול ולוגיסטיקה</div>
+        <div class="seg-point">שיפור חוויית הלקוח הסופי</div>
+        <div class="seg-point">הטמעת נהלים ותקנים בשטח</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="seg-card" id="education">
+    <div class="seg-header" onclick="toggleSeg(this)">
+      <div class="seg-icon">🎓</div>
+      <div class="seg-title-wrap">
+        <div class="seg-name">חינוך</div>
+        <div class="seg-sub">בתי ספר, מכללות, רשתות חינוך</div>
+      </div>
+      <div class="seg-toggle">▾</div>
+    </div>
+    <div class="seg-body">
+      <div class="seg-points">
+        <div class="seg-point">חיבור מורים ומנהלים לשליחות החינוכית</div>
+        <div class="seg-point">חיזוק גאוות יחידה של סגל ההוראה</div>
+        <div class="seg-point">שיפור תקשורת בין מנהלים להורים ולתלמידים</div>
+        <div class="seg-point">הטמעת תוכניות עבודה שנתיות בשטח</div>
+        <div class="seg-point">שיפור מצוינות ניהולית של מנהלי בתי ספר</div>
+        <div class="seg-point">הגברת Engagement של מורים</div>
+        <div class="seg-point">שימור מורים איכותיים</div>
+        <div class="seg-point">חיבור לנושאי WLB ו-Wellness של סגל ההוראה</div>
+      </div>
+      <div class="seg-cta">
+        <span class="seg-cta-text">רוצים לראות איך זה עובד אצלכם?</span>
+        <a href="demo.html">קבעו דמו ←</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta reveal">
+  <h2>הענף שלכם לא כאן?</h2>
+  <p>Brain עובד עם כל ארגון שיש בו מנהלים ושטח. קבעו שיחה ונראה יחד מה רלוונטי אצלכם.</p>
+  <a href="demo.html" class="btn-demo">קבעו דמו חינם ←</a>
+</div>
+
+<footer id="footer-placeholder"></footer>
+<script src="shared.js"></script>
+<script>
+renderNav('segments');
+renderFooter();
+
+function toggleSeg(header) {
+  const card = header.closest('.seg-card');
+  card.classList.toggle('open');
+}
+
+// Auto-open segment from hash
+document.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
+    if (target) {
+      // Close all first
+      document.querySelectorAll('.seg-card').forEach(c => c.classList.remove('open'));
+      target.classList.add('open');
+      setTimeout(() => target.scrollIntoView({behavior:'smooth', block:'start'}), 200);
+    }
+  }
+
+  // Highlight active nav pill
+  const pills = document.querySelectorAll('.seg-nav a');
+  const cards = document.querySelectorAll('.seg-card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        pills.forEach(p => p.classList.toggle('active', p.getAttribute('href') === '#' + id));
+      }
+    });
+  }, {threshold: 0.3});
+  cards.forEach(c => observer.observe(c));
+});
+</script>
+</body>
+</html>
