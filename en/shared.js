@@ -29,13 +29,13 @@ function renderNav(activePage, lang) {
     { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
   ] : [
-    { id: 'about',    label: 'אודותינו',    href: 'about.html' },
+    { id: 'about',    label: 'אודותינו',        href: 'about.html' },
     { id: 'what-is-brain', label: 'מה זה Brain?', href: 'what-is-brain.html' },
-    { id: 'diy',      label: 'DIY',         href: 'automated.html' },
-    { id: 'uses',     label: 'שימושים',     href: 'uses.html' },
-    { id: 'roi',      label: 'ROI',          href: 'roi.html' },
-    { id: 'smb',      label: 'SMB',          href: 'smb.html' },
-    { id: 'investors',label: 'משקיעים',     href: 'investors.html', submenu: [
+    { id: 'diy',      label: 'עשה זאת בעצמך',  href: 'automated.html' },
+    { id: 'uses',     label: 'שימושים',         href: 'uses.html' },
+    { id: 'smb',      label: 'SMB',             href: 'smb.html' },
+    { id: 'roi',      label: 'ROI',             href: 'roi.html' },
+    { id: 'investors',label: 'משקיעים',         href: 'investors.html', submenu: [
       { label: 'מנוע בתוך מנוע',    href: 'investors-engine.html' },
       { label: 'הוכחת שווי Brain',  href: 'investors-value.html' },
       { label: 'Go to Market',       href: 'investors-gtm.html' },
@@ -43,13 +43,13 @@ function renderNav(activePage, lang) {
       { label: 'קרנות VC',          href: 'investors-vc.html' },
       { label: 'שאלות תשובות',      href: 'investors-faq.html' },
     ]},
-    { id: 'demo',     label: 'Demo',         href: 'demo.html', cta: true },
-    { id: 'pricing',  label: 'מחירים',       href: 'pricing.html' },
-    { id: 'team',     label: 'החברים שלנו',  href: 'team.html' },
-    { id: 'podcast',  label: 'פודקאסט',      href: 'podcast.html' },
-    { id: 'articles', label: 'מאמרים',       href: 'articles.html' },
-    { id: 'jobs',     label: 'דרושים',        href: 'jobs.html' },
-    { id: 'join',     label: 'הצטרפו',        href: 'join.html', cta: true },
+    { id: 'demo',     label: 'Demo',            href: 'demo.html', cta: true },
+    { id: 'pricing',  label: 'מחירים',          href: 'pricing.html' },
+    { id: 'team',     label: 'החברים שלנו',     href: 'team.html' },
+    { id: 'podcast',  label: 'פודקאסט',         href: 'podcast.html' },
+    { id: 'articles', label: 'מאמרים',          href: 'articles.html' },
+    { id: 'jobs',     label: 'דרושים',           href: 'jobs.html' },
+    { id: 'join',     label: 'הצטרפו',           href: 'join.html', cta: true },
   ];
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
