@@ -114,7 +114,12 @@ function renderNav(activePage, lang) {
       const legal = document.createElement('div');
       legal.className = 'footer-legal-links';
       legal.style.cssText = 'width:100%;text-align:center;margin:10px 0 6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);';
-      legal.innerHTML = '<a href="/privacy.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">מדיניות פרטיות</a><a href="/terms.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">תקנון שימוש</a>';
+      const isEnLegal = window.location.pathname.includes('/en/');
+      if (isEnLegal) {
+        legal.innerHTML = '<a href="privacy.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">Privacy Policy</a><a href="terms.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">Terms of Use</a>';
+      } else {
+        legal.innerHTML = '<a href="/privacy.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">מדיניות פרטיות</a><a href="/terms.html" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 14px;">תקנון שימוש</a>';
+      }
       if (copy) copy.parentNode.insertBefore(legal, copy);
       else footer2.appendChild(legal);
     }
