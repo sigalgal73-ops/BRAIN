@@ -72,10 +72,54 @@
       <h2>5. Data Security</h2>
       <p>We implement reasonable security measures to protect your information, including SSL encryption. However, we cannot guarantee absolute security of data transmitted over the internet.</p>
 
-      <h2>6. Cookies</h2>
+      <h2>6. Information Security Policy</h2>
+      <p>This section details the information security measures we implement in practice as an integral part of our Privacy Policy.</p>
+
+      <h3>6.1 Communication Encryption</h3>
+      <p>All communication between the application and servers is conducted via encrypted protocol (HTTPS/TLS). The server sets security headers including HTTPS enforcement (HSTS), iframe embedding prevention (X-Frame-Options), and Content-Security-Policy, to reduce exposure to common browser-based attacks.</p>
+
+      <h3>6.2 User Authentication</h3>
+      <p>User authentication is managed through Supabase's authentication service, based on signed access tokens (JWT). Password policy requires at least 8 characters including a letter and a digit. User passwords are not stored in our database.</p>
+
+      <h3>6.3 Access Control</h3>
+      <p>Protected endpoints require a valid access token. The authentication middleware checks every request before it reaches business logic, ensuring users can only access data associated with their own account.</p>
+
+      <h3>6.4 Data Storage and Protection</h3>
+      <p>User data is stored in a managed PostgreSQL database (Supabase) on secure cloud infrastructure. Data is stored encrypted at rest. Files uploaded by users are stored in private (non-public) storage, accessible only via signed, time-limited URLs.</p>
+
+      <h3>6.5 API Layer Protection</h3>
+      <ul>
+        <li>Rate limiting to reduce abuse attempts and unusual server load</li>
+        <li>Strict validation of all user input (Zod schemas), including email address and phone number validation</li>
+        <li>Prisma ORM with parameterized queries, preventing SQL injection attacks</li>
+        <li>Restricted CORS policy permitting requests only from authorized origins</li>
+      </ul>
+
+      <h3>6.6 Secrets and Key Management</h3>
+      <p>API keys and system secrets are stored as environment variables and not within application code. Incoming requests from external services (webhooks) are authenticated using shared secrets and timing-safe comparison to prevent request forgery.</p>
+
+      <h3>6.7 Third-Party Data Processors</h3>
+      <p>We rely on leading third-party providers to deliver the service. Only the information required for the relevant feature is shared with each provider:</p>
+      <ul>
+        <li><strong style="color:var(--white)">Supabase</strong> — authentication, database, and file storage</li>
+        <li><strong style="color:var(--white)">OpenAI</strong> — text processing and AI capabilities</li>
+        <li><strong style="color:var(--white)">HeyGen</strong> — video creation</li>
+        <li><strong style="color:var(--white)">JAKO</strong> — WhatsApp message delivery</li>
+      </ul>
+
+      <h3>6.8 Payments</h3>
+      <p>Our system does not store or process credit card details on our servers. All payment processing is handled exclusively through a dedicated external payment provider.</p>
+
+      <h3>6.9 Logging and Monitoring</h3>
+      <p>All server requests are logged with a unique request ID, enabling identification and diagnosis of errors and anomalies. Error messages in the production environment do not expose internal system details to users.</p>
+
+      <h3>6.10 Security Incident Reporting</h3>
+      <p>In the event of a material security incident affecting user data, we will send notification by email and in-app system message within 24 hours of identification.</p>
+
+      <h2>7. Cookies</h2>
       <p>The Site may use cookies to improve user experience and analyze traffic. You can disable cookies through your browser settings.</p>
 
-      <h2>7. Your Rights</h2>
+      <h2>8. Your Rights</h2>
       <p>Under the Israeli Privacy Protection Law and GDPR (for EU users), you have the following rights:</p>
       <ul>
         <li>Access to your personal data</li>
@@ -86,13 +130,13 @@
       </ul>
       <p>To exercise these rights: <a href="mailto:office@brian2spark.ai" style="color:var(--sky)">office@brian2spark.ai</a></p>
 
-      <h2>8. Data Retention</h2>
+      <h2>9. Data Retention</h2>
       <p>We retain personal information for as long as necessary for service purposes, or until deletion upon request, whichever comes first.</p>
 
-      <h2>9. Changes to This Policy</h2>
+      <h2>10. Changes to This Policy</h2>
       <p>We may update this policy from time to time. Material changes will be published on this page with an updated date.</p>
 
-      <h2>10. Contact</h2>
+      <h2>11. Contact</h2>
       <p>Brain Co-Manager / Brain2Spark Ltd<br>
       Vibe Center, Kfar Saba, Israel<br>
       <a href="mailto:office@brian2spark.ai" style="color:var(--sky)">office@brian2spark.ai</a></p>
