@@ -1,3 +1,4 @@
+
 // Brain Co-Manager shared.js v1
 // ── SHARED NAV ──
 function renderNav(activePage, lang) {
