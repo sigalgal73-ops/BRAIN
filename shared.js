@@ -1,4 +1,3 @@
-
 // Brain Co-Manager shared.js v1
 // ── SHARED NAV ──
 function renderNav(activePage, lang) {
@@ -68,9 +67,9 @@ function renderNav(activePage, lang) {
   }).join('');
 
   document.getElementById('nav-placeholder').innerHTML = `
-    <nav>
+    <nav${isEn ? ' dir="ltr"' : ''}>
       <a href="${isEn ? 'index.html' : 'index_he.html'}" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
-      <div class="nav-links">${desktopLinks}</div>
+      <div class="nav-links"${isEn ? ' style="direction:ltr"' : ''}>${desktopLinks}</div>
       <div class="nav-left">
         <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="24" height="17" alt="IL" style="border-radius:2px;display:block;"></button>
         <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="24" height="17" alt="US" style="border-radius:2px;display:block;"></button>
