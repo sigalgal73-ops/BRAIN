@@ -7,6 +7,12 @@ function renderNav(activePage, lang) {
   }
   const isEn = lang === 'en';
   const pages = isEn ? [
+    { id: 'about',    label: 'About',      href: 'about.html' },
+    { id: 'what-is-brain', label: 'What is Brain?', href: 'what-is-brain.html' },
+    { id: 'diy',      label: 'DIY',        href: 'automated.html' },
+    { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
+    { id: 'roi',      label: 'ROI',        href: 'roi.html' },
+    { id: 'smb',      label: 'SMB',        href: 'smb.html' },
     { id: 'investors',label: 'Investors',  href: 'investors.html', submenu: [
       { label: 'Engine Within Engine', href: 'investors-engine.html' },
       { label: 'Brain Value Proof',    href: 'investors-value.html' },
@@ -22,12 +28,6 @@ function renderNav(activePage, lang) {
     { id: 'articles', label: 'Articles',   href: 'articles.html' },
     { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
-    { id: 'about',    label: 'About',      href: 'about.html' },
-    { id: 'what-is-brain', label: 'What is Brain?', href: 'what-is-brain.html' },
-    { id: 'diy',      label: 'DIY',        href: 'automated.html' },
-    { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
-    { id: 'roi',      label: 'ROI',        href: 'roi.html' },
-    { id: 'smb',      label: 'SMB',        href: 'smb.html' },
   ] : [
     { id: 'about',    label: 'אודותינו',    href: 'about.html' },
     { id: 'what-is-brain', label: 'מה זה Brain?', href: 'what-is-brain.html' },
