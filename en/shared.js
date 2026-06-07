@@ -135,7 +135,7 @@ function renderFooter() {
   </div>
     <div class="footer-links">
       <a href="about.html">אודותינו</a>
-      <a href="process.html">התהליך</a>
+      <a href="automated.html">עשה זאת בעצמך</a>
       <a href="uses.html">שימושים</a>
       <a href="roi.html">ROI</a>
       <a href="smb.html">SMB</a>
