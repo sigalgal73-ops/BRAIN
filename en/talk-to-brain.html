@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
 <style>
   :root{--navy:#020d1a;--navy-2:#06182e;--accent:#1a6fc4;--bright:#2d9cff;--teal:#00d4aa;--ink:#dce8f5;--mute:#7d93ad}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -38,9 +39,12 @@
     border:2px solid rgba(45,156,255,.45);box-shadow:0 0 0 6px rgba(2,13,26,.6),0 14px 50px rgba(26,111,196,.4);
     transform-origin:50% 50%}
   .avatar video{width:100%;height:100%;object-fit:cover;object-position:center 28%;display:block}
+  /* rest: stable, very subtle glow breathing */
   .stage:not(.speaking):not(.listening) .avatar{animation:breath 5s ease-in-out infinite}
   @keyframes breath{0%,100%{box-shadow:0 0 0 6px rgba(2,13,26,.6),0 14px 50px rgba(26,111,196,.35)}50%{box-shadow:0 0 0 6px rgba(2,13,26,.6),0 14px 56px rgba(26,111,196,.55)}}
+  /* listening: steady blue glow */
   .stage.listening .avatar{border-color:rgba(45,156,255,.95);box-shadow:0 0 0 6px rgba(2,13,26,.6),0 0 50px rgba(45,156,255,.6)}
+  /* speaking: strong, clear green-teal glow pulse */
   .stage.speaking .avatar{border-color:rgba(0,212,170,.95);animation:talkGlow .7s ease-in-out infinite}
   @keyframes talkGlow{0%,100%{box-shadow:0 0 0 6px rgba(2,13,26,.6),0 0 26px rgba(0,212,170,.45)}50%{box-shadow:0 0 0 6px rgba(2,13,26,.6),0 0 70px rgba(0,212,170,.95)}}
 
@@ -56,8 +60,8 @@
   .log{width:100%;display:flex;flex-direction:column;gap:10px}
   .bubble{padding:12px 15px;border-radius:16px;font-size:15px;line-height:1.55;max-width:88%;animation:rise .25s ease}
   @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .bubble.brain{align-self:flex-start;background:var(--navy-2);border:1px solid rgba(45,156,255,.18);border-bottom-left-radius:5px}
-  .bubble.user{align-self:flex-end;background:linear-gradient(135deg,rgba(26,111,196,.28),rgba(0,212,170,.18));border:1px solid rgba(0,212,170,.25);border-bottom-right-radius:5px}
+  .bubble.brain{align-self:flex-start;background:var(--navy-2);border:1px solid rgba(45,156,255,.18);border-bottom-right-radius:5px}
+  .bubble.user{align-self:flex-end;background:linear-gradient(135deg,rgba(26,111,196,.28),rgba(0,212,170,.18));border:1px solid rgba(0,212,170,.25);border-bottom-left-radius:5px}
   .who{display:block;font-size:11px;color:var(--mute);margin-bottom:3px}
   .demo{display:none;text-decoration:none;font-family:inherit;font-weight:700;font-size:16px;color:#03101f;
     background:linear-gradient(135deg,var(--bright),var(--teal));padding:14px 26px;border-radius:50px}
@@ -71,9 +75,13 @@
   .note{color:var(--mute);font-size:12.5px;text-align:center;line-height:1.6;max-width:92%}
   .err{color:#ff9aa9;font-size:13px;text-align:center;min-height:18px}
   @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important}}
+  /* ── site nav + footer integration ── */
+  body{padding-top:88px;direction:ltr;}
+  footer{width:100%;margin-top:40px;}
 </style>
 </head>
 <body>
+<div id="nav-placeholder"></div>
   <div class="wrap">
     <div class="brandline"><span class="dot"></span>BRAIN · Live Co-Manager</div>
 
@@ -90,23 +98,26 @@
     <div class="err" id="err"></div>
 
     <div class="log" id="log"></div>
-    <a class="demo" id="demo" href="/en/join.html">📅 Book a demo</a>
+    <a class="demo" id="demo" href="/en/join.html">📅 Book a demo meeting</a>
 
     <div class="row">
-      <input id="textInput" placeholder="…or type here" autocomplete="off">
+      <input id="textInput" placeholder="or type here…" autocomplete="off">
       <button id="sendText">Send</button>
     </div>
-    <p class="note">Works on the live site (https). Chrome recommended on mobile/desktop — please allow microphone access.</p>
+    <p class="note">Works on the live site (https). On mobile/desktop, Chrome is recommended — please allow microphone access.</p>
   </div>
+
+<div id="footer-placeholder"></div>
 
 <script>
 const BRAIN_URL = "/.netlify/functions/brain";
 const TTS_URL   = "/.netlify/functions/tts";
-const GREETING_NEW = "Hi, I'm BRAIN. I'm here to understand what's holding your organization back from moving faster. So let's start with the most pressing thing — what's the hardest thing for you to implement right now?";
-const GREETING_RETURN = "Hi, great to see you here again. What would you like to talk about today?";
+const GREETING_NEW = "Hi, I'm BRAIN. I'm here to understand what's stopping your organization from moving faster. So let's start with the most urgent thing — what's hardest for you to implement today?";
+const GREETING_RETURN = "Hi, glad you're back. What should we talk about today?";
+// checks whether the visitor has been here before (stored on their device); returns the new/returning greeting and marks the visit.
 function pickGreeting(){
   let returning=false;
-  try{ returning = localStorage.getItem('brain_visited_en')==='1'; localStorage.setItem('brain_visited_en','1'); }catch(e){}
+  try{ returning = localStorage.getItem('brain_visited')==='1'; localStorage.setItem('brain_visited','1'); }catch(e){}
   return returning ? GREETING_RETURN : GREETING_NEW;
 }
 
@@ -119,7 +130,7 @@ const stage=document.getElementById('stage'),statusEl=document.getElementById('s
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 let conversation=[],started=false,listening=false,rec=null,convoActive=false;
 
-// ----- audio playback (Mark's voice). The character is alive via the video itself -----
+// ----- audio playback. The avatar comes alive through the video itself -----
 let audioCtx=null,analyser=null,srcNode=null,audioEl=null;
 function ensureAudio(){
   if(audioCtx) return;
@@ -132,20 +143,20 @@ function ensureAudio(){
 
 function setState(s){
   stage.className='stage'+(s==='idle'?'':' '+s);
-  if(s==='listening'){statusEl.innerHTML='<b>Listening…</b> go ahead';talkBtn.textContent='■ Stop conversation';talkBtn.classList.add('live');}
+  if(s==='listening'){statusEl.innerHTML='<b>Listening…</b> speak now';talkBtn.textContent='■ Stop conversation';talkBtn.classList.add('live');}
   else if(s==='thinking'){statusEl.innerHTML='<b>BRAIN is thinking…</b>';talkBtn.textContent=convoActive?'■ Stop conversation':'🎤 Talk to BRAIN';talkBtn.classList.toggle('live',convoActive);}
   else if(s==='speaking'){statusEl.innerHTML='<b>BRAIN is speaking…</b>';talkBtn.textContent=convoActive?'■ Stop conversation':'🎤 Talk to BRAIN';talkBtn.classList.toggle('live',convoActive);}
-  else{statusEl.textContent=started?'Conversation paused — tap to continue':'Tap the button to start a voice conversation with BRAIN';talkBtn.textContent=started?'🎤 Continue conversation':'▶ Start a conversation with BRAIN';talkBtn.classList.remove('live');}
+  else{statusEl.textContent=started?'Conversation paused — tap to continue':'Tap the button to start a voice conversation with BRAIN';talkBtn.textContent=started?'🎤 Resume conversation':'▶ Start a conversation with BRAIN';talkBtn.classList.remove('live');}
 }
 function addBubble(who,text){const b=document.createElement('div');b.className='bubble '+(who==='user'?'user':'brain');
   b.innerHTML='<span class="who">'+(who==='user'?'You':'BRAIN')+'</span>'+esc(text);logEl.appendChild(b);b.scrollIntoView({behavior:'smooth',block:'end'});}
 function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
-function maybeDemo(t){if(/demo|see it live|book a|schedule/i.test(t)) demoBtn.classList.add('show');}
+function maybeDemo(t){if(/demo|see it live|book a|schedule|meeting/i.test(t)) demoBtn.classList.add('show');}
 
 // fallback voice if ElevenLabs fails
 function browserSpeak(text,onend,onstart){
   try{speechSynthesis.cancel();}catch(e){}
-  const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=1;
+  const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.97;
   const v=(speechSynthesis.getVoices()||[]).find(x=>(x.lang||'').toLowerCase().startsWith('en'));
   if(v)u.voice=v;
   u.onstart=()=>{setState('speaking');if(onstart)onstart();};
@@ -156,6 +167,7 @@ function browserSpeak(text,onend,onstart){
 async function speak(text,onend,onstart){
   ensureAudio();
   try{ if(audioCtx.state==='suspended') await audioCtx.resume(); }catch(e){}
+  // stay in "thinking..." until the voice actually starts — so text and speech appear together
   try{
     const r=await fetch(TTS_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({text})});
     if(!r.ok) throw new Error('tts '+r.status);
@@ -166,6 +178,7 @@ async function speak(text,onend,onstart){
     setState('speaking');
     if(onstart) onstart();
   }catch(e){
+    // graceful fallback: browser voice (the bubble also appears when speech starts)
     browserSpeak(text,onend,onstart);
   }
 }
@@ -173,30 +186,33 @@ async function speak(text,onend,onstart){
 async function callBrain(userText){
   conversation.push({role:'user',content:userText});addBubble('user',userText);setState('thinking');errEl.textContent='';
   try{
-    const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation,lang:'en'})});
+    const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation})});
     const data=await r.json();
     if(!r.ok) throw new Error(JSON.stringify(data));
-    const reply=(data.reply||'').trim()||"Sorry, I couldn't answer just now. Shall we try again?";
+    const reply=(data.reply||'').trim()||"Sorry, I couldn't answer right now. Shall we try again?";
     conversation.push({role:'assistant',content:reply});
     speak(reply,afterBrainSpoke,()=>{addBubble('brain',reply);maybeDemo(reply);});
-  }catch(e){addBubble('brain',"There was a connection error. Please check that the functions and API keys are set.");afterBrainSpoke();}
+  }catch(e){addBubble('brain',"There was a connection error with the server. Check that the functions and API keys are configured.");afterBrainSpoke();}
 }
 
+// after BRAIN finishes speaking — if the conversation is active, reopen the mic automatically
 function afterBrainSpoke(){ if(convoActive) relisten(); else setState('idle'); }
+// reopens listening (with a short delay so it does not clash with the previous session)
 function relisten(){ if(!convoActive||listening) return; setTimeout(()=>{ if(convoActive&&!listening) startListening(); },300); }
 
 function startListening(){
-  if(!SR){errEl.textContent="This browser doesn't support speech recognition — type below, or open in Chrome.";return;}
+  if(!SR){errEl.textContent="Your browser does not support speech recognition — type below, or open in Chrome.";return;}
   rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
   let finalText='';listening=true;setState('listening');errEl.textContent='';
   rec.onresult=(e)=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;
     if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();if(shown)statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';};
   rec.onerror=(e)=>{listening=false;
     if(e.error==='not-allowed'||e.error==='service-not-allowed'){convoActive=false;setState('idle');errEl.textContent="Microphone access was blocked. Allow the microphone in your browser and try again.";}
+    // no-speech / aborted — handled in onend (reopen)
   };
   rec.onend=()=>{listening=false;
-    if(finalText.trim()) callBrain(finalText.trim());
-    else relisten();
+    if(finalText.trim()) callBrain(finalText.trim());      // the visitor spoke → BRAIN answers → then the mic reopens
+    else relisten();                                        // silence → just keep listening
     if(!convoActive) setState('idle');
   };
   try{rec.start();}catch(e){listening=false;relisten();}
@@ -204,18 +220,25 @@ function startListening(){
 function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 
 talkBtn.addEventListener('click',()=>{
-  ensureAudio(); try{audioCtx.resume();}catch(e){}
+  ensureAudio(); try{audioCtx.resume();}catch(e){}   // unlock audio on a user gesture
   talkBtn.classList.remove('invite');
   if(!started){started=true;convoActive=true;const g=pickGreeting();speak(g,afterBrainSpoke,()=>addBubble('brain',g));return;}
-  if(convoActive){ convoActive=false; stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle'); }
-  else { convoActive=true; relisten(); }
+  if(convoActive){ // stop the conversation
+    convoActive=false; stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle');
+  } else { // resume conversation
+    convoActive=true; relisten();
+  }
 });
 function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
 sendBtn.addEventListener('click',submitText);
 textIn.addEventListener('keydown',e=>{if(e.key==='Enter')submitText();});
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();speechSynthesis.getVoices();}
 
-statusEl.innerHTML='<b>BRAIN is ready to start</b> — tap and it will speak to you';
+// on load: do not show the opening bubble — it appears only when tapped and BRAIN starts speaking
+statusEl.innerHTML='<b>BRAIN is ready to talk</b> — tap and it will speak to you';
 </script>
+<script src="../shared.js"></script>
+<script>renderNav('talk-to-brain');</script>
+<script>renderFooter();</script>
 </body>
 </html>
