@@ -123,7 +123,7 @@ const stage=document.getElementById('stage'),statusEl=document.getElementById('s
       mouth=document.getElementById('mouth');
 
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-let conversation=[],started=false,listening=false,rec=null;
+let conversation=[],started=false,listening=false,rec=null,convoActive=false;
 const MOUTH={closed:"M86 120 Q100 126 114 120",small:"M90 118 Q100 124 110 118 Q100 130 90 118 Z",wide:"M86 116 Q100 122 114 116 Q100 134 86 116 Z"};
 
 // ----- audio + real lip-sync -----
@@ -148,10 +148,10 @@ function lipLoop(){
 
 function setState(s){
   stage.className='stage'+(s==='idle'?'':' '+s);
-  if(s==='listening'){statusEl.innerHTML='<b>מקשיב…</b> דברו עכשיו';talkBtn.textContent='■ עצרו';talkBtn.classList.add('live');}
-  else if(s==='thinking'){statusEl.innerHTML='<b>BRAIN חושב…</b>';talkBtn.textContent='🎤 דברו עם BRAIN';talkBtn.classList.remove('live');}
-  else if(s==='speaking'){statusEl.innerHTML='<b>BRAIN מדבר…</b>';talkBtn.textContent='🎤 דברו עם BRAIN';talkBtn.classList.remove('live');}
-  else{statusEl.textContent=started?'תורכם — לחצו ודברו':'לחצו על הכפתור כדי לפתוח שיחה קולית עם BRAIN';talkBtn.textContent='🎤 דברו עם BRAIN';talkBtn.classList.remove('live');}
+  if(s==='listening'){statusEl.innerHTML='<b>מקשיב…</b> דברו עכשיו';talkBtn.textContent='■ עצרו שיחה';talkBtn.classList.add('live');}
+  else if(s==='thinking'){statusEl.innerHTML='<b>BRAIN חושב…</b>';talkBtn.textContent=convoActive?'■ עצרו שיחה':'🎤 דברו עם BRAIN';talkBtn.classList.toggle('live',convoActive);}
+  else if(s==='speaking'){statusEl.innerHTML='<b>BRAIN מדבר…</b>';talkBtn.textContent=convoActive?'■ עצרו שיחה':'🎤 דברו עם BRAIN';talkBtn.classList.toggle('live',convoActive);}
+  else{statusEl.textContent=started?'השיחה הופסקה — לחצו כדי להמשיך':'לחצו על הכפתור כדי לפתוח שיחה קולית עם BRAIN';talkBtn.textContent=started?'🎤 המשך שיחה':'▶ התחילו שיחה עם BRAIN';talkBtn.classList.remove('live');}
 }
 function addBubble(who,text){const b=document.createElement('div');b.className='bubble '+(who==='user'?'user':'brain');
   b.innerHTML='<span class="who">'+(who==='user'?'אתם':'BRAIN')+'</span>'+esc(text);logEl.appendChild(b);b.scrollIntoView({behavior:'smooth',block:'end'});}
@@ -159,19 +159,20 @@ function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 function maybeDemo(t){if(/הדגמ|לראות חי|demo|נקבע/i.test(t)) demoBtn.classList.add('show');}
 
 // fallback voice if ElevenLabs fails
-function browserSpeak(text,onend){
+function browserSpeak(text,onend,onstart){
   try{speechSynthesis.cancel();}catch(e){}
   const u=new SpeechSynthesisUtterance(text);u.lang='he-IL';u.rate=.97;
   const v=(speechSynthesis.getVoices()||[]).find(x=>(x.lang||'').toLowerCase().startsWith('he'));
   if(v)u.voice=v;
+  u.onstart=()=>{setState('speaking');if(onstart)onstart();};
   u.onend=()=>{if(onend)onend();else setState('idle');};u.onerror=u.onend;
   speechSynthesis.speak(u);
 }
 
-async function speak(text,onend){
+async function speak(text,onend,onstart){
   ensureAudio();
   try{ if(audioCtx.state==='suspended') await audioCtx.resume(); }catch(e){}
-  setState('speaking');
+  // נשארים במצב "חושב…" עד שהקול באמת מתחיל — שהטקסט והדיבור יופיעו יחד
   try{
     const r=await fetch(TTS_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({text})});
     if(!r.ok) throw new Error('tts '+r.status);
@@ -179,10 +180,12 @@ async function speak(text,onend){
     audioEl.src=URL.createObjectURL(blob);
     audioEl.onended=()=>{ if(rafId)cancelAnimationFrame(rafId); mouth.setAttribute('d',MOUTH.closed); if(onend)onend();else setState('idle'); };
     await audioEl.play();
+    setState('speaking');
+    if(onstart) onstart();
     lipLoop();
   }catch(e){
-    // נפילה חיננית: קול דפדפן
-    browserSpeak(text,onend);
+    // נפילה חיננית: קול דפדפן (גם שם הבועה תופיע כשהדיבור מתחיל)
+    browserSpeak(text,onend,onstart);
   }
 }
 
@@ -193,10 +196,15 @@ async function callBrain(userText){
     const data=await r.json();
     if(!r.ok) throw new Error(JSON.stringify(data));
     const reply=(data.reply||'').trim()||"סליחה, לא הצלחתי לענות כרגע. ננסה שוב?";
-    conversation.push({role:'assistant',content:reply});addBubble('brain',reply);maybeDemo(reply);
-    speak(reply,()=>setState('idle'));
-  }catch(e){addBubble('brain',"הייתה תקלה בחיבור לשרת. בדקו שהפונקציות ומפתחות ה-API מוגדרים.");setState('idle');}
+    conversation.push({role:'assistant',content:reply});
+    speak(reply,afterBrainSpoke,()=>{addBubble('brain',reply);maybeDemo(reply);});
+  }catch(e){addBubble('brain',"הייתה תקלה בחיבור לשרת. בדקו שהפונקציות ומפתחות ה-API מוגדרים.");afterBrainSpoke();}
 }
+
+// אחרי שמרק סיים לדבר — אם השיחה פעילה, פותחים שוב את המיקרופון לבד
+function afterBrainSpoke(){ if(convoActive) relisten(); else setState('idle'); }
+// פותח האזנה מחדש (עם השהיה קצרה כדי לא להתנגש בסשן הקודם)
+function relisten(){ if(!convoActive||listening) return; setTimeout(()=>{ if(convoActive&&!listening) startListening(); },300); }
 
 function startListening(){
   if(!SR){errEl.textContent="הדפדפן לא תומך בזיהוי דיבור — הקלידו למטה, או פתחו ב-Chrome.";return;}
@@ -204,28 +212,35 @@ function startListening(){
   let finalText='';listening=true;setState('listening');errEl.textContent='';
   rec.onresult=(e)=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;
     if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();if(shown)statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';};
-  rec.onerror=(e)=>{listening=false;setState('idle');
-    if(e.error==='not-allowed'||e.error==='service-not-allowed')errEl.textContent="הגישה למיקרופון נחסמה. אשרו מיקרופון בדפדפן ונסו שוב.";
-    else if(e.error==='no-speech')errEl.textContent="לא נקלט דיבור. נסו שוב.";};
-  rec.onend=()=>{listening=false;if(finalText.trim())callBrain(finalText.trim());else setState('idle');};
-  try{rec.start();}catch(e){listening=false;setState('idle');}
+  rec.onerror=(e)=>{listening=false;
+    if(e.error==='not-allowed'||e.error==='service-not-allowed'){convoActive=false;setState('idle');errEl.textContent="הגישה למיקרופון נחסמה. אשרו מיקרופון בדפדפן ונסו שוב.";}
+    // 'no-speech' / 'aborted' — נטופל ב-onend (פתיחה מחדש)
+  };
+  rec.onend=()=>{listening=false;
+    if(finalText.trim()) callBrain(finalText.trim());      // הלקוח דיבר → מרק עונה → ואז מיקרופון נפתח שוב
+    else relisten();                                        // שתיקה → פשוט ממשיכים להקשיב
+    if(!convoActive) setState('idle');
+  };
+  try{rec.start();}catch(e){listening=false;relisten();}
 }
 function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 
 talkBtn.addEventListener('click',()=>{
   ensureAudio(); try{audioCtx.resume();}catch(e){}   // פותח אודיו במחווה של המשתמש
   talkBtn.classList.remove('invite');
-  if(!started){started=true;speak(GREETING,()=>startListening());return;}
-  if(listening)stopListening();
-  else{try{if(audioEl)audioEl.pause();}catch(e){}startListening();}
+  if(!started){started=true;convoActive=true;speak(GREETING,afterBrainSpoke,()=>addBubble('brain',GREETING));return;}
+  if(convoActive){ // עצירת השיחה
+    convoActive=false; stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle');
+  } else { // המשך שיחה
+    convoActive=true; relisten();
+  }
 });
 function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
 sendBtn.addEventListener('click',submitText);
 textIn.addEventListener('keydown',e=>{if(e.key==='Enter')submitText();});
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();speechSynthesis.getVoices();}
 
-// פתיחה מיידית: מציג את בועת הפתיחה של BRAIN ברגע הכניסה (הקול יתחיל בלחיצה — מגבלת דפדפן)
-addBubble('brain',GREETING);
+// בכניסה: לא מציגים את בועת הפתיחה — היא תופיע רק כשלוחצים ומרק מתחיל לדבר
 statusEl.innerHTML='<b>BRAIN מוכן לפתוח בשיחה</b> — לחצו והוא ידבר אליכם';
 </script>
 </body>
