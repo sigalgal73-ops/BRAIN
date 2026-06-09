@@ -74,8 +74,8 @@ function renderNav(activePage, lang) {
 
   document.getElementById('nav-placeholder').innerHTML = `
     <nav${isEn ? ' dir="ltr"' : ''}>
-      <a href="${isEn ? 'index.html' : 'index_he.html'}" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
-      <div class="nav-stack">
+      <div class="nav-top">
+        <a href="${isEn ? 'index.html' : 'index_he.html'}" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
         <div class="nav-left">
           ${ctaLinks}
           <a href="${talk.href || '#'}" class="nav-talk${talk.id===activePage?' active':''}">${talk.label || ''}</a>
@@ -84,6 +84,8 @@ function renderNav(activePage, lang) {
           <a href="https://www.youtube.com/@Brain.co.manager" class="nav-icon" title="YouTube" target="_blank">▶</a>
           <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
         </div>
+      </div>
+      <div class="nav-bottom">
         <div class="nav-links"${isEn ? ' style="direction:ltr"' : ''}>${desktopLinks}</div>
       </div>
     </nav>
