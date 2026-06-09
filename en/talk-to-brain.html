@@ -107,6 +107,7 @@ const GREETING_RETURN = "Hi, great to see you here again. What would you like to
 function pickGreeting(){
   let returning=false;
   try{ returning = localStorage.getItem('brain_visited_en')==='1'; localStorage.setItem('brain_visited_en','1'); }catch(e){}
+  isReturning = returning;
   return returning ? GREETING_RETURN : GREETING_NEW;
 }
 
@@ -117,7 +118,7 @@ const stage=document.getElementById('stage'),statusEl=document.getElementById('s
       avatarVid=document.getElementById('avatarVid');
 
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-let conversation=[],started=false,listening=false,rec=null,convoActive=false,emptyTries=0;
+let conversation=[],started=false,listening=false,rec=null,convoActive=false,emptyTries=0,inFlight=false,isReturning=false;
 
 // ----- audio playback (Mark's voice). The character is alive via the video itself -----
 let audioCtx=null,analyser=null,srcNode=null,audioEl=null;
@@ -171,9 +172,10 @@ async function speak(text,onend,onstart){
 }
 
 async function callBrain(userText){
+  inFlight=true; stopListening();
   conversation.push({role:'user',content:userText});addBubble('user',userText);setState('thinking');errEl.textContent='';
   try{
-    const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation,lang:'en'})});
+    const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation,lang:'en',returning:isReturning})});
     const data=await r.json();
     if(!r.ok) throw new Error(JSON.stringify(data));
     const reply=(data.reply||'').trim()||"Sorry, I couldn't answer just now. Shall we try again?";
@@ -182,24 +184,23 @@ async function callBrain(userText){
   }catch(e){addBubble('brain',"There was a connection error. Please check that the functions and API keys are set.");afterBrainSpoke();}
 }
 
-function afterBrainSpoke(){ if(convoActive) relisten(); else setState('idle'); }
-function relisten(){ if(!convoActive||listening) return; setTimeout(()=>{ if(convoActive&&!listening) startListening(); },350); }
+function afterBrainSpoke(){ inFlight=false; if(convoActive) relisten(); else setState('idle'); }
+function relisten(){ if(!convoActive||listening||inFlight) return; setTimeout(()=>{ if(convoActive&&!listening&&!inFlight) startListening(); },350); }
 
 const REASK_LINES=["Sorry, I didn't quite catch that — could you say it again?","I didn't hear that clearly, please try again.","I missed that — could you repeat it?"];
-function reAsk(){ const r=REASK_LINES[Math.floor(Math.random()*REASK_LINES.length)]; speak(r,afterBrainSpoke,()=>addBubble('brain',r)); }
+function reAsk(){ inFlight=true; const r=REASK_LINES[Math.floor(Math.random()*REASK_LINES.length)]; speak(r,afterBrainSpoke,()=>addBubble('brain',r)); }
 
 function startListening(){
   if(!SR){errEl.textContent="This browser doesn't support speech recognition — type below, or open in Chrome.";return;}
   rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
   let finalText='';listening=true;setState('listening');errEl.textContent='';
-  let watchdog=setTimeout(()=>{ try{rec.stop();}catch(e){} },9000);
   rec.onresult=(e)=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;
-    if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();
-    if(shown){statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';clearTimeout(watchdog);watchdog=setTimeout(()=>{try{rec.stop();}catch(e){}},9000);}};
-  rec.onerror=(e)=>{listening=false;clearTimeout(watchdog);
+    if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();if(shown)statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';};
+  rec.onerror=(e)=>{listening=false;
     if(e.error==='not-allowed'||e.error==='service-not-allowed'){convoActive=false;setState('idle');errEl.textContent="Microphone access was blocked. Allow the microphone in your browser and try again.";}
   };
-  rec.onend=()=>{listening=false;clearTimeout(watchdog);
+  rec.onend=()=>{listening=false;
+    if(inFlight) return;
     if(finalText.trim()){ emptyTries=0; callBrain(finalText.trim()); }
     else {
       if(!convoActive){ setState('idle'); return; }
@@ -208,7 +209,7 @@ function startListening(){
       else relisten();
     }
   };
-  try{rec.start();}catch(e){listening=false;clearTimeout(watchdog);relisten();}
+  try{rec.start();}catch(e){listening=false;relisten();}
 }
 function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 
@@ -219,7 +220,7 @@ talkBtn.addEventListener('click',()=>{
   if(convoActive){ convoActive=false; stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle'); }
   else { convoActive=true; relisten(); }
 });
-function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
+function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';stopListening();emptyTries=0;started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
 sendBtn.addEventListener('click',submitText);
 textIn.addEventListener('keydown',e=>{if(e.key==='Enter')submitText();});
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();speechSynthesis.getVoices();}
