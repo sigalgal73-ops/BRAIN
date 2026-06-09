@@ -625,6 +625,44 @@ nav{
 
 </section>
 
+<!-- POSITIONING BAND -->
+<style>
+.posband{position:relative;padding:54px 24px;text-align:center;background:linear-gradient(180deg,rgba(2,13,26,0) 0%,rgba(8,22,40,.55) 50%,rgba(2,13,26,0) 100%);border-top:1px solid rgba(45,156,255,.12);border-bottom:1px solid rgba(45,156,255,.12);overflow:hidden}
+.posband::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--teal),var(--bright),transparent)}
+.posband-eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--teal);text-transform:uppercase;margin-bottom:20px;opacity:.9}
+.posband-stage{position:relative;max-width:880px;margin:0 auto;min-height:118px;display:flex;align-items:center;justify-content:center}
+.posband-line{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease;font-size:clamp(19px,2.5vw,30px);font-weight:800;line-height:1.4;color:#dbe7f5}
+.posband-line.active{opacity:1;transform:translateY(0)}
+.posband-line b{background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
+.posband-dots{display:flex;gap:8px;justify-content:center;margin-top:26px}
+.posband-dot{width:7px;height:7px;border-radius:50%;background:rgba(107,138,170,.35);transition:.4s}
+.posband-dot.active{background:var(--teal);box-shadow:0 0 10px var(--teal);width:22px;border-radius:4px}
+@media(max-width:640px){.posband{padding:40px 18px}.posband-stage{min-height:170px}}
+</style>
+<section class="posband" aria-label="Positioning">
+  <div class="posband-eyebrow">A New Category of Enterprise Software</div>
+  <div class="posband-stage" id="posStage">
+    <div class="posband-line active">Brain is the world's first <b>Analysis &amp; Execution Engine</b> — turning organizational insight into execution and measurable results.</div>
+    <div class="posband-line">A new category of enterprise software: ERP manages operations, BI manages insights, <b>Brain manages execution</b>.</div>
+    <div class="posband-line">After ERP and BI comes the <b>Analysis &amp; Execution Engine</b> — from analysis, to action, to results.</div>
+  </div>
+  <div class="posband-dots" id="posDots"></div>
+</section>
+<script>
+(function(){
+  var stage=document.getElementById('posStage');if(!stage)return;
+  var lines=stage.querySelectorAll('.posband-line');
+  var dotsWrap=document.getElementById('posDots');
+  lines.forEach(function(_,i){var d=document.createElement('span');d.className='posband-dot'+(i===0?' active':'');dotsWrap.appendChild(d);});
+  var dots=dotsWrap.querySelectorAll('.posband-dot');var i=0;
+  setInterval(function(){
+    lines[i].classList.remove('active');dots[i].classList.remove('active');
+    i=(i+1)%lines.length;
+    lines[i].classList.add('active');dots[i].classList.add('active');
+  },4200);
+})();
+</script>
+
 <!-- TICKER -->
 <div class="ticker"><div class="ticker-inner">
   <div class="ti hi"><div class="tidot"></div>AI Management · Next Gen</div>
