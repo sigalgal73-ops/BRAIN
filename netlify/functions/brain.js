@@ -36,12 +36,15 @@ exports.handler = async (event) => {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
   try {
-    const { messages, lang } = JSON.parse(event.body || "{}");
+    const { messages, lang, returning } = JSON.parse(event.body || "{}");
     if (!Array.isArray(messages) || messages.length === 0) {
       return { statusCode: 400, body: JSON.stringify({ error: "messages required" }) };
     }
     // הדף האנגלי שולח lang:'en' — מאלץ תשובה באנגלית
     let system = SYSTEM;
+    if (returning === true) {
+      system += "\n\nהקשר: זה לקוח חוזר שכבר מכיר את BRAIN. אל תגיד/י \"שמח להכיר\" ואל תבקש/י את שמו — פשוט המשך/י את השיחה בטבעיות וענייניות.";
+    }
     if (lang === "en") {
       system += "\n\nIMPORTANT: This is the English interface. Always respond in natural, fluent English, regardless of the language used. (The gender-neutral rule applies only to Hebrew and can be ignored here.)";
     }
