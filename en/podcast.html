@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מה שפספסתם | Brain Co-Manager</title>
+<!-- ═══ SEO METADATA ═══ -->
+<meta name="description" content="הפודקאסט של ערן שחר — מה ארגונים מפספסים כשהם לא משתמשים ב-AI נכון, ואיך Brain נותן מענה לאתגרי ניהול, מכירות, שימור עובדים וצמיחה.">
+<meta name="keywords" content="פודקאסט, מה שפספסתם, ערן שחר, Brain Co-Manager, AI, ניהול">
+<meta name="author" content="Brain Co-Manager">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://brain2spark.ai/podcast.html">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brain2spark.ai/podcast.html">
+<meta property="og:title" content="מה שפספסתם | הפודקאסט של Brain">
+<meta property="og:description" content="ערן שחר מסביר איך Brain פותר אתגרים אמיתיים של ארגונים ולקוחות.">
+<meta property="og:image" content="https://brain2spark.ai/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Brain Co-Manager">
+<meta property="og:locale" content="he_IL">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://brain2spark.ai/podcast.html">
+<meta name="twitter:title" content="מה שפספסתם | הפודקאסט של Brain">
+<meta name="twitter:description" content="ערן שחר מסביר איך Brain פותר אתגרים אמיתיים של ארגונים ולקוחות.">
+<meta name="twitter:image" content="https://brain2spark.ai/og-image.png">
+
+<!-- Theme color (mobile browsers) -->
+<meta name="theme-color" content="#020d1a">
+
+<!-- Hebrew/English alternates -->
+<link rel="alternate" hreflang="he" href="https://brain2spark.ai/podcast.html">
+<link rel="alternate" hreflang="en" href="https://brain2spark.ai/en/podcast.html">
+<link rel="alternate" hreflang="x-default" href="https://brain2spark.ai/podcast.html">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Brain Co-Manager",
+  "url": "https://brain2spark.ai",
+  "logo": "https://brain2spark.ai/Brain2SPARK_LTD__1_.png",
+  "description": "הפודקאסט של ערן שחר — מה ארגונים מפספסים כשהם לא משתמשים ב-AI נכון, ואיך Brain נותן מענה לאתגרי ניהול, מכירות, שימור עובדים וצמיחה.",
+  "sameAs": []
+}
+</script>
+<!-- ═══ END SEO METADATA ═══ -->
+
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.podcast-embed {
+  max-width: 900px;
+  margin: 0 auto 48px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(45,156,255,0.15);
+  border: 1px solid var(--border);
+}
+.podcast-embed iframe {
+  display: block;
+  width: 100%;
+  height: 500px;
+}
+.podcast-desc {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+.podcast-desc p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.85;
+}
+.podcast-cta {
+  text-align: center;
+  margin-top: 32px;
+}
+.host-card {
+  max-width: 480px;
+  margin: 0 auto 48px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.host-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--teal));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  flex-shrink: 0;
+}
+.host-info {
+  text-align: right;
+}
+.host-name {
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.host-title {
+  font-size: 12px;
+  color: var(--teal);
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+@media(max-width:900px) {
+  .podcast-embed iframe { height: 320px; }
+  .host-card { flex-direction: column; text-align: center; }
+  .host-info { text-align: center; }
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+
+  <div class="page-hero">
+    <div class="page-tag">PODCAST</div>
+    <h1 class="page-title"><em>מה שפספסתם</em></h1>
+    <p class="page-sub">ערן שחר מסביר איך Brain פותר אתגרים אמיתיים של ארגונים ולקוחות</p>
+  </div>
+
+  <div class="sec reveal">
+
+    <!-- Host card -->
+    <div class="host-card">
+      <div class="host-avatar">ע</div>
+      <div class="host-info">
+        <div class="host-name">ערן שחר</div>
+        <div class="host-title">מנכ"ל ומייסד · Brain Co-Manager</div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="podcast-desc">
+      <p>
+        בפודקאסט "מה שפספסתם" ערן שחר לוקח אתכם לעומק — מה ארגונים מפספסים כשהם לא משתמשים ב-AI כמו שצריך, ואיך Brain נותן מענה מעשי לאתגרי ניהול, מכירות, שימור עובדים וצמיחה עסקית.
+        <br><br>
+        כל פרק מסביר פתרון אחר — ישיר, ממוקד, עם דוגמאות מהשטח.
+      </p>
+    </div>
+
+    <!-- 4 Videos in order -->
+    <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:32px;">
+
+      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 0 30px rgba(45,156,255,0.1);">
+        <div style="padding:14px 20px;background:var(--card);border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--teal);letter-spacing:.06em;">פרק 1</div>
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/JaqRakw7bKA" title="מה שפספסתם - פרק 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+      </div>
+
+      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 0 30px rgba(45,156,255,0.1);">
+        <div style="padding:14px 20px;background:var(--card);border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--teal);letter-spacing:.06em;">פרק 2</div>
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/kEJeQbuiJ5I" title="מה שפספסתם - פרק 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+      </div>
+
+      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 0 30px rgba(45,156,255,0.1);">
+        <div style="padding:14px 20px;background:var(--card);border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--teal);letter-spacing:.06em;">פרק 3</div>
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/2OAwtA5WGWM" title="מה שפספסתם - פרק 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+      </div>
+
+      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 0 30px rgba(45,156,255,0.1);">
+        <div style="padding:14px 20px;background:var(--card);border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--teal);letter-spacing:.06em;">פרק 4</div>
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/4eFaC32gPKA" title="מה שפספסתם - פרק 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div style="height:60px"></div>
+  <div id="footer-placeholder"></div>
+</div>
+<script src="shared.js"></script>
+<script>renderNav('podcast');</script>
+<script>renderFooter();</script>
+</body>
+</html>
