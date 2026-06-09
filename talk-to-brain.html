@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>דברו עם BRAIN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#020d1a;--navy-2:#06182e;--accent:#1a6fc4;--bright:#2d9cff;--teal:#00d4aa;--ink:#dce8f5;--mute:#7d93ad}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Heebo',system-ui,sans-serif;
+    background:radial-gradient(1200px 700px at 50% -10%,#0a2240 0%,rgba(10,34,64,0) 60%),var(--navy);
+    color:var(--ink);min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+    padding:clamp(16px,4vw,40px);overflow-x:hidden}
+  .wrap{width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center;gap:20px}
+  .brandline{display:flex;align-items:center;gap:10px;color:var(--mute);font-size:13px;letter-spacing:.04em}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal)}
+
+  .stage{position:relative;width:260px;height:260px;display:grid;place-items:center;margin-top:4px}
+  .halo{position:absolute;width:230px;height:230px;border-radius:50%;
+    background:radial-gradient(circle,rgba(45,156,255,.30) 0%,rgba(0,212,170,.12) 45%,rgba(2,13,26,0) 70%);
+    filter:blur(2px);animation:glow 5s ease-in-out infinite}
+  @keyframes glow{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+  .ring{position:absolute;width:210px;height:210px;border-radius:50%;border:1px solid rgba(45,156,255,.4);opacity:0}
+  .stage.listening .ring{animation:sonar 2s ease-out infinite}
+  .stage.listening .ring:nth-of-type(2){animation-delay:.66s}
+  .stage.listening .ring:nth-of-type(3){animation-delay:1.33s}
+  @keyframes sonar{0%{transform:scale(.7);opacity:.7}100%{transform:scale(1.06);opacity:0}}
+  .stage.speaking .ring{animation:pulseout 1.05s ease-out infinite;border-color:rgba(0,212,170,.55)}
+  .stage.speaking .ring:nth-of-type(2){animation-delay:.3s}
+  .stage.speaking .ring:nth-of-type(3){animation-delay:.6s}
+  @keyframes pulseout{0%{transform:scale(.72);opacity:.55}100%{transform:scale(1.08);opacity:0}}
+
+  .avatar{position:relative;width:200px;height:215px;animation:idleSway 6s ease-in-out infinite;transform-origin:50% 90%}
+  @keyframes idleSway{0%,100%{transform:rotate(-1deg) translateY(0)}50%{transform:rotate(1deg) translateY(-3px)}}
+  .stage.speaking .avatar{animation:talkBob .5s ease-in-out infinite}
+  @keyframes talkBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  .eye{transform-origin:center;animation:blink 5.2s infinite}.eye.r{animation-delay:.08s}
+  @keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+
+  .status{min-height:26px;text-align:center;font-size:16px;color:var(--mute);line-height:1.5;max-width:90%}
+  .status b{color:var(--ink);font-weight:600}
+  .talk{appearance:none;border:none;cursor:pointer;font-family:inherit;font-size:18px;font-weight:700;color:#03101f;
+    padding:16px 30px;border-radius:50px;background:linear-gradient(135deg,var(--teal),var(--bright));
+    box-shadow:0 10px 30px rgba(0,212,170,.35);display:flex;align-items:center;gap:10px;transition:transform .15s,box-shadow .15s}
+  .talk:hover{transform:translateY(-2px)}.talk.live{background:linear-gradient(135deg,#ff5a7a,#ff8a5a);color:#fff}
+
+  .log{width:100%;display:flex;flex-direction:column;gap:10px}
+  .bubble{padding:12px 15px;border-radius:16px;font-size:15px;line-height:1.55;max-width:88%;animation:rise .25s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .bubble.brain{align-self:flex-start;background:var(--navy-2);border:1px solid rgba(45,156,255,.18);border-bottom-right-radius:5px}
+  .bubble.user{align-self:flex-end;background:linear-gradient(135deg,rgba(26,111,196,.28),rgba(0,212,170,.18));border:1px solid rgba(0,212,170,.25);border-bottom-left-radius:5px}
+  .who{display:block;font-size:11px;color:var(--mute);margin-bottom:3px}
+  .demo{display:none;text-decoration:none;font-family:inherit;font-weight:700;font-size:16px;color:#03101f;
+    background:linear-gradient(135deg,var(--bright),var(--teal));padding:14px 26px;border-radius:50px}
+  .demo.show{display:inline-flex;align-items:center;gap:8px}
+  .row{width:100%;display:flex;gap:8px}
+  .row input{flex:1;font-family:inherit;font-size:15px;color:var(--ink);background:var(--navy-2);
+    border:1px solid rgba(125,147,173,.3);border-radius:14px;padding:13px 15px;outline:none}
+  .row input:focus{border-color:var(--bright)}.row input::placeholder{color:var(--mute)}
+  .row button{font-family:inherit;font-weight:600;font-size:15px;color:var(--ink);
+    background:rgba(45,156,255,.18);border:1px solid rgba(45,156,255,.4);border-radius:14px;padding:0 18px;cursor:pointer}
+  .note{color:var(--mute);font-size:12.5px;text-align:center;line-height:1.6;max-width:92%}
+  .err{color:#ff9aa9;font-size:13px;text-align:center;min-height:18px}
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brandline"><span class="dot"></span>BRAIN · קו-מנג'ר חי</div>
+
+    <div class="stage" id="stage">
+      <div class="halo"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+      <svg class="avatar" viewBox="0 0 200 215" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf4ff"/><stop offset="1" stop-color="#c4dcf2"/></linearGradient>
+          <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e3a66"/><stop offset="1" stop-color="#06182e"/></linearGradient>
+          <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c3b6b"/><stop offset="1" stop-color="#0a2c50"/></linearGradient>
+        </defs>
+        <path d="M30 215 C30 168 64 150 100 150 C136 150 170 168 170 215 Z" fill="url(#suit)"/>
+        <path d="M100 150 L84 196 L100 206 L116 196 Z" fill="#0a2c50"/>
+        <circle cx="100" cy="178" r="4.5" fill="#00d4aa"/>
+        <rect x="88" y="120" width="24" height="34" rx="11" fill="#bcd4ec"/>
+        <ellipse cx="100" cy="86" rx="46" ry="52" fill="url(#skin)"/>
+        <path d="M54 84 C50 40 78 26 100 26 C122 26 150 40 146 84 C141 60 128 50 100 50 C72 50 59 60 54 84 Z" fill="url(#hair)"/>
+        <ellipse cx="55" cy="90" rx="7" ry="11" fill="#bcd4ec"/><ellipse cx="145" cy="90" rx="7" ry="11" fill="#bcd4ec"/>
+        <rect x="68" y="72" width="22" height="4" rx="2" fill="#0c3b6b"/><rect x="110" y="72" width="22" height="4" rx="2" fill="#0c3b6b"/>
+        <g class="eye l"><ellipse cx="79" cy="86" rx="8" ry="9" fill="#fff"/><circle cx="80" cy="87" r="4.2" fill="#0c3b6b"/><circle cx="81.5" cy="85.5" r="1.3" fill="#fff"/></g>
+        <g class="eye r"><ellipse cx="121" cy="86" rx="8" ry="9" fill="#fff"/><circle cx="120" cy="87" r="4.2" fill="#0c3b6b"/><circle cx="121.5" cy="85.5" r="1.3" fill="#fff"/></g>
+        <path d="M100 92 L96 106 Q100 110 104 106 Z" fill="#aecae6"/>
+        <path id="mouth" d="M86 120 Q100 126 114 120" fill="#7a2f3a" stroke="#5e2530" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="status" id="status">לחצו על הכפתור כדי לפתוח שיחה קולית עם BRAIN</div>
+    <button class="talk" id="talk">🎤 דברו עם BRAIN</button>
+    <div class="err" id="err"></div>
+
+    <div class="log" id="log"></div>
+    <a class="demo" id="demo" href="/join.html">📅 קבעו פגישת הדגמה</a>
+
+    <div class="row">
+      <input id="textInput" placeholder="או הקלידו כאן…" autocomplete="off">
+      <button id="sendText">שלח</button>
+    </div>
+    <p class="note">עובד על האתר החי (https). בנייד/דסקטופ מומלץ Chrome, ואשרו גישה למיקרופון.</p>
+  </div>
+
+<script>
+const BRAIN_URL = "/.netlify/functions/brain";
+const TTS_URL   = "/.netlify/functions/tts";
+const GREETING  = "היי, אני BRAIN. אני לא כאן כדי להציג לך מצגת. אני כאן כדי להבין מה עוצר את הארגון שלך מלזוז מהר יותר. ספר לי, מה הדבר שהכי קשה לכם להטמיע היום?";
+
+const stage=document.getElementById('stage'),statusEl=document.getElementById('status'),
+      talkBtn=document.getElementById('talk'),logEl=document.getElementById('log'),
+      demoBtn=document.getElementById('demo'),textIn=document.getElementById('textInput'),
+      sendBtn=document.getElementById('sendText'),errEl=document.getElementById('err'),
+      mouth=document.getElementById('mouth');
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+let conversation=[],started=false,listening=false,rec=null;
+const MOUTH={closed:"M86 120 Q100 126 114 120",small:"M90 118 Q100 124 110 118 Q100 130 90 118 Z",wide:"M86 116 Q100 122 114 116 Q100 134 86 116 Z"};
+
+// ----- audio + real lip-sync -----
+let audioCtx=null,analyser=null,srcNode=null,audioEl=null,rafId=null;
+function ensureAudio(){
+  if(audioCtx) return;
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  audioEl=new Audio(); audioEl.crossOrigin="anonymous";
+  srcNode=audioCtx.createMediaElementSource(audioEl);
+  analyser=audioCtx.createAnalyser(); analyser.fftSize=256;
+  srcNode.connect(analyser); analyser.connect(audioCtx.destination);
+}
+function lipLoop(){
+  const data=new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(data);
+  let sum=0; for(let i=0;i<data.length;i++) sum+=data[i];
+  const vol=sum/data.length;
+  mouth.setAttribute('d', vol<6?MOUTH.closed : vol<18?MOUTH.small : MOUTH.wide);
+  if(!audioEl.paused && !audioEl.ended) rafId=requestAnimationFrame(lipLoop);
+  else { mouth.setAttribute('d',MOUTH.closed); }
+}
+
+function setState(s){
+  stage.className='stage'+(s==='idle'?'':' '+s);
+  if(s==='listening'){statusEl.innerHTML='<b>מקשיב…</b> דברו עכשיו';talkBtn.textContent='■ עצרו';talkBtn.classList.add('live');}
+  else if(s==='thinking'){statusEl.innerHTML='<b>BRAIN חושב…</b>';talkBtn.textContent='🎤 דברו עם BRAIN';talkBtn.classList.remove('live');}
+  else if(s==='speaking'){statusEl.innerHTML='<b>BRAIN מדבר…</b>';talkBtn.textContent='🎤 דברו עם BRAIN';talkBtn.classList.remove('live');}
+  else{statusEl.textContent=started?'תורכם — לחצו ודברו':'לחצו על הכפתור כדי לפתוח שיחה קולית עם BRAIN';talkBtn.textContent='🎤 דברו עם BRAIN';talkBtn.classList.remove('live');}
+}
+function addBubble(who,text){const b=document.createElement('div');b.className='bubble '+(who==='user'?'user':'brain');
+  b.innerHTML='<span class="who">'+(who==='user'?'אתם':'BRAIN')+'</span>'+esc(text);logEl.appendChild(b);b.scrollIntoView({behavior:'smooth',block:'end'});}
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function maybeDemo(t){if(/הדגמ|לראות חי|demo|נקבע/i.test(t)) demoBtn.classList.add('show');}
+
+// fallback voice if ElevenLabs fails
+function browserSpeak(text,onend){
+  try{speechSynthesis.cancel();}catch(e){}
+  const u=new SpeechSynthesisUtterance(text);u.lang='he-IL';u.rate=.97;
+  const v=(speechSynthesis.getVoices()||[]).find(x=>(x.lang||'').toLowerCase().startsWith('he'));
+  if(v)u.voice=v;
+  u.onend=()=>{if(onend)onend();else setState('idle');};u.onerror=u.onend;
+  speechSynthesis.speak(u);
+}
+
+async function speak(text,onend){
+  ensureAudio();
+  try{ if(audioCtx.state==='suspended') await audioCtx.resume(); }catch(e){}
+  setState('speaking');
+  try{
+    const r=await fetch(TTS_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({text})});
+    if(!r.ok) throw new Error('tts '+r.status);
+    const blob=await r.blob();
+    audioEl.src=URL.createObjectURL(blob);
+    audioEl.onended=()=>{ if(rafId)cancelAnimationFrame(rafId); mouth.setAttribute('d',MOUTH.closed); if(onend)onend();else setState('idle'); };
+    await audioEl.play();
+    lipLoop();
+  }catch(e){
+    // נפילה חיננית: קול דפדפן
+    browserSpeak(text,onend);
+  }
+}
+
+async function callBrain(userText){
+  conversation.push({role:'user',content:userText});addBubble('user',userText);setState('thinking');errEl.textContent='';
+  try{
+    const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation})});
+    const data=await r.json();
+    if(!r.ok) throw new Error(JSON.stringify(data));
+    const reply=(data.reply||'').trim()||"סליחה, לא הצלחתי לענות כרגע. ננסה שוב?";
+    conversation.push({role:'assistant',content:reply});addBubble('brain',reply);maybeDemo(reply);
+    speak(reply,()=>setState('idle'));
+  }catch(e){addBubble('brain',"הייתה תקלה בחיבור לשרת. בדקו שהפונקציות ומפתחות ה-API מוגדרים.");setState('idle');}
+}
+
+function startListening(){
+  if(!SR){errEl.textContent="הדפדפן לא תומך בזיהוי דיבור — הקלידו למטה, או פתחו ב-Chrome.";return;}
+  rec=new SR();rec.lang='he-IL';rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
+  let finalText='';listening=true;setState('listening');errEl.textContent='';
+  rec.onresult=(e)=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;
+    if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();if(shown)statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';};
+  rec.onerror=(e)=>{listening=false;setState('idle');
+    if(e.error==='not-allowed'||e.error==='service-not-allowed')errEl.textContent="הגישה למיקרופון נחסמה. אשרו מיקרופון בדפדפן ונסו שוב.";
+    else if(e.error==='no-speech')errEl.textContent="לא נקלט דיבור. נסו שוב.";};
+  rec.onend=()=>{listening=false;if(finalText.trim())callBrain(finalText.trim());else setState('idle');};
+  try{rec.start();}catch(e){listening=false;setState('idle');}
+}
+function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
+
+talkBtn.addEventListener('click',()=>{
+  ensureAudio(); try{audioCtx.resume();}catch(e){}   // פותח אודיו במחווה של המשתמש
+  if(!started){started=true;addBubble('brain',GREETING);speak(GREETING,()=>startListening());return;}
+  if(listening)stopListening();
+  else{try{if(audioEl)audioEl.pause();}catch(e){}startListening();}
+});
+function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
+sendBtn.addEventListener('click',submitText);
+textIn.addEventListener('keydown',e=>{if(e.key==='Enter')submitText();});
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();speechSynthesis.getVoices();}
+</script>
+</body>
+</html>
