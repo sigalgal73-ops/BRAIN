@@ -8,6 +8,8 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Heebo',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;direction:rtl;}
 html[dir="ltr"] body{direction:ltr;}
+html[dir="ltr"] .page-hero,html[dir="ltr"] .page-tag,html[dir="ltr"] .page-title,html[dir="ltr"] .page-sub{text-align:left !important;}
+html[dir="ltr"] .page-sub{margin-left:0 !important;}
 a{text-decoration:none !important;}
 #bg{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
