@@ -43,8 +43,8 @@ exports.handler = async (event) => {
         "anthropic-version": "2023-06-01"
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-6",   // אפשר להחליף ל-"claude-haiku-4-5-20251001" למהירות/עלות
-        max_tokens: 400,
+        model: "claude-sonnet-4-6",   // נשאר Sonnet לאיכות. למהירות מקסימלית (ופחות עומק): "claude-haiku-4-5-20251001"
+        max_tokens: 260,               // תשובות קצרות = תגובה מהירה יותר וקול קצר יותר
         system: SYSTEM,
         messages: safe
       })
