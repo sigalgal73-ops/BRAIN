@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
 <style>
   :root{--navy:#020d1a;--navy-2:#06182e;--accent:#1a6fc4;--bright:#2d9cff;--teal:#00d4aa;--ink:#dce8f5;--mute:#7d93ad}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -71,6 +72,11 @@
   .note{color:var(--mute);font-size:12.5px;text-align:center;line-height:1.6;max-width:92%}
   .err{color:#ff9aa9;font-size:13px;text-align:center;min-height:18px}
   @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important}}
+  /* shared nav/footer integration */
+  body{padding-top:120px}
+  #footer-placeholder{width:100%}
+  footer{width:100%}
+  @media (max-width:900px){body{padding-top:96px}}
   .typing{align-self:flex-start;background:var(--navy-2);border:1px solid rgba(45,156,255,.18);border-bottom-left-radius:5px;padding:14px 16px;border-radius:16px;display:inline-flex;gap:5px;align-items:center;animation:rise .25s ease}
   .typing span{width:7px;height:7px;border-radius:50%;background:var(--bright);animation:blink 1.2s infinite}
   .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
@@ -78,6 +84,7 @@
 </style>
 </head>
 <body>
+<div id="nav-placeholder"></div>
   <div class="wrap">
     <div class="brandline"><span class="dot"></span>BRAIN · Live Co-Manager</div>
 
@@ -101,6 +108,7 @@
       <button id="sendText">Send</button>
     </div>
   </div>
+<div id="footer-placeholder"></div>
 
 <script>
 const BRAIN_URL = "/.netlify/functions/brain";
@@ -224,5 +232,6 @@ if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthe
 
 statusEl.innerHTML='<b>BRAIN is ready to start</b> — tap and it will speak to you';
 </script>
+<script src="../shared.js"></script>
 </body>
 </html>
