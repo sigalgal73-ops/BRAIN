@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Process | Brain Co-Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="../shared.css">
 </head>
 <body>
 <canvas id="bg"></canvas>
@@ -18,7 +18,7 @@
     <p class="page-sub">Our goal: give you peace of mind, full control, and confidence every step of the way. Simple stages — with your approval at every checkpoint.</p>
   </div>
 
-<div class="sec reveal">
+<div class="sec">
   <div style="max-width:820px;margin:0 auto;position:relative">
     <div style="position:absolute;top:0;bottom:0;left:32px;width:1px;background:linear-gradient(to bottom,transparent,var(--border),var(--border),transparent)"></div>
 
@@ -96,17 +96,9 @@
 </div>
 
   <div style="height:60px"></div>
-  <footer>
-    <div class="footer-links">
-      <a href="about.html">About</a><a href="process.html">Process</a>
-      <a href="uses.html">Use Cases</a><a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a><a href="pricing.html">Pricing</a>
-      <a href="demo.html">Demo</a><a href="articles.html">Articles</a><a href="jobs.html">Careers</a>
-    </div>
-    <div class="footer-copy">© All rights reserved · Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">Website design <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
-  </footer>
+  <div id="footer-placeholder"></div>
 </div>
-<script src="shared.js"></script>
-<script>renderNav('process','en');</script>
+<script src="../shared.js"></script>
+<script>renderNav('process','en');renderFooter();</script>
 </body>
 </html>
