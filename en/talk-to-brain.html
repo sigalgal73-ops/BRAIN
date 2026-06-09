@@ -71,6 +71,10 @@
   .note{color:var(--mute);font-size:12.5px;text-align:center;line-height:1.6;max-width:92%}
   .err{color:#ff9aa9;font-size:13px;text-align:center;min-height:18px}
   @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important}}
+  .typing{align-self:flex-start;background:var(--navy-2);border:1px solid rgba(45,156,255,.18);border-bottom-left-radius:5px;padding:14px 16px;border-radius:16px;display:inline-flex;gap:5px;align-items:center;animation:rise .25s ease}
+  .typing span{width:7px;height:7px;border-radius:50%;background:var(--bright);animation:blink 1.2s infinite}
+  .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
 </style>
 </head>
 <body>
@@ -133,13 +137,16 @@ function ensureAudio(){
 function setState(s){
   stage.className='stage'+(s==='idle'?'':' '+s);
   if(s==='listening'){statusEl.innerHTML='<b>Listening…</b> go ahead';talkBtn.textContent='■ Stop conversation';talkBtn.classList.add('live');}
-  else if(s==='thinking'){statusEl.innerHTML='<b>BRAIN is thinking…</b>';talkBtn.textContent=convoActive?'■ Stop conversation':'🎤 Talk to BRAIN';talkBtn.classList.toggle('live',convoActive);}
+  else if(s==='thinking'){statusEl.innerHTML='<b>BRAIN is composing a reply…</b>';talkBtn.textContent=convoActive?'■ Stop conversation':'🎤 Talk to BRAIN';talkBtn.classList.toggle('live',convoActive);}
   else if(s==='speaking'){statusEl.innerHTML='<b>BRAIN is speaking…</b>';talkBtn.textContent=convoActive?'■ Stop conversation':'🎤 Talk to BRAIN';talkBtn.classList.toggle('live',convoActive);}
   else{statusEl.textContent=started?'Conversation paused — tap to continue':'Tap the button to start a voice conversation with BRAIN';talkBtn.textContent=started?'🎤 Continue conversation':'▶ Start a conversation with BRAIN';talkBtn.classList.remove('live');}
 }
 function addBubble(who,text){const b=document.createElement('div');b.className='bubble '+(who==='user'?'user':'brain');
   b.innerHTML='<span class="who">'+(who==='user'?'You':'BRAIN')+'</span>'+esc(text);logEl.appendChild(b);b.scrollIntoView({behavior:'smooth',block:'end'});}
 function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+let typingEl=null;
+function showTyping(){ if(typingEl)return; typingEl=document.createElement('div'); typingEl.className='typing'; typingEl.innerHTML='<span></span><span></span><span></span>'; logEl.appendChild(typingEl); typingEl.scrollIntoView({behavior:'smooth',block:'end'}); }
+function hideTyping(){ if(typingEl){ typingEl.remove(); typingEl=null; } }
 function maybeDemo(t){if(/demo|see it live|book a|schedule/i.test(t)) demoBtn.classList.add('show');}
 
 // fallback voice if ElevenLabs fails
@@ -172,15 +179,15 @@ async function speak(text,onend,onstart){
 
 async function callBrain(userText){
   inFlight=true; stopListening();
-  conversation.push({role:'user',content:userText});addBubble('user',userText);setState('thinking');errEl.textContent='';
+  conversation.push({role:'user',content:userText});addBubble('user',userText);setState('thinking');showTyping();errEl.textContent='';
   try{
     const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation,lang:'en',returning:isReturning})});
     const data=await r.json();
     if(!r.ok) throw new Error(JSON.stringify(data));
     const reply=(data.reply||'').trim()||"Sorry, I couldn't answer just now. Shall we try again?";
     conversation.push({role:'assistant',content:reply});
-    speak(reply,afterBrainSpoke,()=>{addBubble('brain',reply);maybeDemo(reply);});
-  }catch(e){addBubble('brain',"There was a connection error. Please check that the functions and API keys are set.");afterBrainSpoke();}
+    speak(reply,afterBrainSpoke,()=>{hideTyping();addBubble('brain',reply);maybeDemo(reply);});
+  }catch(e){hideTyping();addBubble('brain',"There was a connection error. Please check that the functions and API keys are set.");afterBrainSpoke();}
 }
 
 function afterBrainSpoke(){ inFlight=false; if(convoActive) relisten(); else setState('idle'); }
