@@ -121,7 +121,7 @@ const stage=document.getElementById('stage'),statusEl=document.getElementById('s
       avatarVid=document.getElementById('avatarVid');
 
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-let conversation=[],started=false,listening=false,rec=null,convoActive=false,emptyTries=0,inFlight=false,isReturning=false;
+let conversation=[],started=false,listening=false,rec=null,convoActive=false,isReturning=false;
 
 // ----- audio playback (Mark's voice). The character is alive via the video itself -----
 let audioCtx=null,analyser=null,srcNode=null,audioEl=null;
@@ -178,7 +178,6 @@ async function speak(text,onend,onstart){
 }
 
 async function callBrain(userText){
-  inFlight=true; stopListening();
   conversation.push({role:'user',content:userText});addBubble('user',userText);setState('thinking');showTyping();errEl.textContent='';
   try{
     const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation,lang:'en',returning:isReturning})});
@@ -190,11 +189,8 @@ async function callBrain(userText){
   }catch(e){hideTyping();addBubble('brain',"There was a connection error. Please check that the functions and API keys are set.");afterBrainSpoke();}
 }
 
-function afterBrainSpoke(){ inFlight=false; if(convoActive) relisten(); else setState('idle'); }
-function relisten(){ if(!convoActive||listening||inFlight) return; setTimeout(()=>{ if(convoActive&&!listening&&!inFlight) startListening(); },350); }
-
-const REASK_LINES=["Sorry, I didn't quite catch that — could you say it again?","I didn't hear that clearly, please try again.","I missed that — could you repeat it?"];
-function reAsk(){ inFlight=true; const r=REASK_LINES[Math.floor(Math.random()*REASK_LINES.length)]; speak(r,afterBrainSpoke,()=>addBubble('brain',r)); }
+function afterBrainSpoke(){ if(convoActive) relisten(); else setState('idle'); }
+function relisten(){ if(!convoActive||listening) return; setTimeout(()=>{ if(convoActive&&!listening) startListening(); },300); }
 
 function startListening(){
   if(!SR){errEl.textContent="This browser doesn't support speech recognition — type below, or open in Chrome.";return;}
@@ -206,14 +202,9 @@ function startListening(){
     if(e.error==='not-allowed'||e.error==='service-not-allowed'){convoActive=false;setState('idle');errEl.textContent="Microphone access was blocked. Allow the microphone in your browser and try again.";}
   };
   rec.onend=()=>{listening=false;
-    if(inFlight) return;
-    if(finalText.trim()){ emptyTries=0; callBrain(finalText.trim()); }
-    else {
-      if(!convoActive){ setState('idle'); return; }
-      emptyTries++;
-      if(emptyTries>=2){ emptyTries=0; reAsk(); }
-      else relisten();
-    }
+    if(finalText.trim()) callBrain(finalText.trim());
+    else relisten();
+    if(!convoActive) setState('idle');
   };
   try{rec.start();}catch(e){listening=false;relisten();}
 }
@@ -226,7 +217,7 @@ talkBtn.addEventListener('click',()=>{
   if(convoActive){ convoActive=false; stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle'); }
   else { convoActive=true; relisten(); }
 });
-function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';stopListening();emptyTries=0;started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
+function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
 sendBtn.addEventListener('click',submitText);
 textIn.addEventListener('keydown',e=>{if(e.key==='Enter')submitText();});
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();speechSynthesis.getVoices();}
