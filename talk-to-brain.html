@@ -114,7 +114,14 @@
 <script>
 const BRAIN_URL = "/.netlify/functions/brain";
 const TTS_URL   = "/.netlify/functions/tts";
-const GREETING  = "היי, אני BRAIN. אני לא כאן כדי להציג לך מצגת. אני כאן כדי להבין מה עוצר את הארגון שלך מלזוז מהר יותר. ספר לי, מה הדבר שהכי קשה לכם להטמיע היום?";
+const GREETING_NEW = "היי, אני BRAIN. אני כאן כדי להבין מה עוצר את הארגון שלך מלזוז מהר יותר. אז נתחיל מהדבר הכי בוער — מה הכי קשה לכם להטמיע היום?";
+const GREETING_RETURN = "היי, שמח שחזרת. על מה נדבר היום?";
+// בודק אם הלקוח כבר ביקר (נשמר במכשיר שלו). מחזיר את פתיחת החדש/חוזר ומסמן ביקור.
+function pickGreeting(){
+  let returning=false;
+  try{ returning = localStorage.getItem('brain_visited')==='1'; localStorage.setItem('brain_visited','1'); }catch(e){}
+  return returning ? GREETING_RETURN : GREETING_NEW;
+}
 
 const stage=document.getElementById('stage'),statusEl=document.getElementById('status'),
       talkBtn=document.getElementById('talk'),logEl=document.getElementById('log'),
@@ -228,7 +235,7 @@ function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 talkBtn.addEventListener('click',()=>{
   ensureAudio(); try{audioCtx.resume();}catch(e){}   // פותח אודיו במחווה של המשתמש
   talkBtn.classList.remove('invite');
-  if(!started){started=true;convoActive=true;speak(GREETING,afterBrainSpoke,()=>addBubble('brain',GREETING));return;}
+  if(!started){started=true;convoActive=true;const g=pickGreeting();speak(g,afterBrainSpoke,()=>addBubble('brain',g));return;}
   if(convoActive){ // עצירת השיחה
     convoActive=false; stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle');
   } else { // המשך שיחה
