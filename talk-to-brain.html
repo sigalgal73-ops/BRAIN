@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
 <style>
   :root{--navy:#020d1a;--navy-2:#06182e;--accent:#1a6fc4;--bright:#2d9cff;--teal:#00d4aa;--ink:#dce8f5;--mute:#7d93ad}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -75,13 +74,9 @@
   .note{color:var(--mute);font-size:12.5px;text-align:center;line-height:1.6;max-width:92%}
   .err{color:#ff9aa9;font-size:13px;text-align:center;min-height:18px}
   @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important}}
-  /* ── site nav + footer integration ── */
-  body{padding-top:88px;}
-  footer{width:100%;margin-top:40px;}
 </style>
 </head>
 <body>
-<div id="nav-placeholder"></div>
   <div class="wrap">
     <div class="brandline"><span class="dot"></span>BRAIN · קו-מנג'ר חי</div>
 
@@ -107,13 +102,11 @@
     <p class="note">עובד על האתר החי (https). בנייד/דסקטופ מומלץ Chrome, ואשרו גישה למיקרופון.</p>
   </div>
 
-<div id="footer-placeholder"></div>
-
 <script>
 const BRAIN_URL = "/.netlify/functions/brain";
 const TTS_URL   = "/.netlify/functions/tts";
 const GREETING_NEW = "היי, אני BRAIN. אני כאן כדי להבין מה עוצר את הארגון שלך מלזוז מהר יותר. אז נתחיל מהדבר הכי בוער — מה הכי קשה לכם להטמיע היום?";
-const GREETING_RETURN = "היי, שמח שחזרת. על מה נדבר היום?";
+const GREETING_RETURN = "היי, כיף שחזרתם לכאן שוב. על מה נדבר היום?";
 // בודק אם הלקוח כבר ביקר (נשמר במכשיר שלו). מחזיר את פתיחת החדש/חוזר ומסמן ביקור.
 function pickGreeting(){
   let returning=false;
@@ -237,8 +230,5 @@ if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthe
 // בכניסה: לא מציגים את בועת הפתיחה — היא תופיע רק כשלוחצים ומרק מתחיל לדבר
 statusEl.innerHTML='<b>BRAIN מוכן לפתוח בשיחה</b> — לחצו והוא ידבר אליכם';
 </script>
-<script src="shared.js"></script>
-<script>renderNav('talk-to-brain');</script>
-<script>renderFooter();</script>
 </body>
 </html>
