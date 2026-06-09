@@ -25,7 +25,7 @@ exports.handler = async (event) => {
         },
         body: JSON.stringify({
           text: clean,
-          model_id: "eleven_multilingual_v2", // תומך עברית. לחלופין: "eleven_turbo_v2_5" (מהיר יותר)
+          model_id: "eleven_v3", // קורא עברית טוב. אם תקבלי שגיאת "model not available" בלוג — החזירי ל-"eleven_multilingual_v2"
           voice_settings: {
             stability: 0.45,
             similarity_boost: 0.8,
