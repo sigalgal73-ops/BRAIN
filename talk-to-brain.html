@@ -130,7 +130,7 @@ const stage=document.getElementById('stage'),statusEl=document.getElementById('s
       avatarVid=document.getElementById('avatarVid');
 
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-let conversation=[],started=false,listening=false,rec=null,convoActive=false;
+let conversation=[],started=false,listening=false,rec=null,convoActive=false,emptyTries=0;
 
 // ----- audio playback (הקול של מרק). הדמות חיה דרך הווידאו עצמו -----
 let audioCtx=null,analyser=null,srcNode=null,audioEl=null;
@@ -200,24 +200,35 @@ async function callBrain(userText){
 // אחרי שמרק סיים לדבר — אם השיחה פעילה, פותחים שוב את המיקרופון לבד
 function afterBrainSpoke(){ if(convoActive) relisten(); else setState('idle'); }
 // פותח האזנה מחדש (עם השהיה קצרה כדי לא להתנגש בסשן הקודם)
-function relisten(){ if(!convoActive||listening) return; setTimeout(()=>{ if(convoActive&&!listening) startListening(); },300); }
+function relisten(){ if(!convoActive||listening) return; setTimeout(()=>{ if(convoActive&&!listening) startListening(); },350); }
+
+// אם לא נקלט כלום — מרק מבקש בעדינות לחזור (במקום דממה)
+const REASK_LINES=["סליחה, לא קלטתי טוב — אפשר לחזור על זה?","לא שמעתי ברור, נסו שוב בבקשה.","רגע, פספסתי את זה — תוכלו לחזור שוב?"];
+function reAsk(){ const r=REASK_LINES[Math.floor(Math.random()*REASK_LINES.length)]; speak(r,afterBrainSpoke,()=>addBubble('brain',r)); }
 
 function startListening(){
   if(!SR){errEl.textContent="הדפדפן לא תומך בזיהוי דיבור — הקלידו למטה, או פתחו ב-Chrome.";return;}
   rec=new SR();rec.lang='he-IL';rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
   let finalText='';listening=true;setState('listening');errEl.textContent='';
+  // טיימר בטיחות: אם ההאזנה נתקעת בלי אירוע, סוגרים בכוח כדי לא להישאר בדממה
+  let watchdog=setTimeout(()=>{ try{rec.stop();}catch(e){} },9000);
   rec.onresult=(e)=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;
-    if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();if(shown)statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';};
-  rec.onerror=(e)=>{listening=false;
+    if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();
+    if(shown){statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';clearTimeout(watchdog);watchdog=setTimeout(()=>{try{rec.stop();}catch(e){}},9000);}};
+  rec.onerror=(e)=>{listening=false;clearTimeout(watchdog);
     if(e.error==='not-allowed'||e.error==='service-not-allowed'){convoActive=false;setState('idle');errEl.textContent="הגישה למיקרופון נחסמה. אשרו מיקרופון בדפדפן ונסו שוב.";}
-    // 'no-speech' / 'aborted' — נטופל ב-onend (פתיחה מחדש)
+    // 'no-speech' / 'aborted' / 'network' — נטופל ב-onend
   };
-  rec.onend=()=>{listening=false;
-    if(finalText.trim()) callBrain(finalText.trim());      // הלקוח דיבר → מרק עונה → ואז מיקרופון נפתח שוב
-    else relisten();                                        // שתיקה → פשוט ממשיכים להקשיב
-    if(!convoActive) setState('idle');
+  rec.onend=()=>{listening=false;clearTimeout(watchdog);
+    if(finalText.trim()){ emptyTries=0; callBrain(finalText.trim()); }   // נקלט דיבור → מרק עונה → מיקרופון נפתח שוב
+    else {
+      if(!convoActive){ setState('idle'); return; }
+      emptyTries++;
+      if(emptyTries>=2){ emptyTries=0; reAsk(); }   // אחרי 2 פעמים ריקות — מבקש בעדינות לחזור
+      else relisten();                              // שתיקה קצרה אחת → פשוט ממשיכים להקשיב
+    }
   };
-  try{rec.start();}catch(e){listening=false;relisten();}
+  try{rec.start();}catch(e){listening=false;clearTimeout(watchdog);relisten();}
 }
 function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 
