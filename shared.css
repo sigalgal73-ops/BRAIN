@@ -148,6 +148,9 @@ footer{
 @media(max-width:900px){
   nav{padding:0 14px;}
   .nav-links{display:none;}
+  .nav-left{gap:6px;}
+  .nav-left .nav-talk{font-size:11px;padding:5px 10px;letter-spacing:0;}
+  .nav-icon{display:none;}
   .nav-mobile-btn{
     display:flex;align-items:center;justify-content:center;
     width:36px;height:36px;background:rgba(45,156,255,0.1);
@@ -167,9 +170,10 @@ footer{
   }
   .nav-mobile-menu a:hover,.nav-mobile-menu a.active{color:var(--white);background:rgba(45,156,255,0.1);}
   .nav-mobile-menu .nav-demo{
-    margin-top:8px;text-align:center;padding:12px;
-    background:linear-gradient(135deg,var(--accent),var(--bright));
-    color:#fff!important;border-radius:12px;font-weight:700;
+    padding:10px 14px;border-radius:9px;font-weight:700;
+    background:rgba(45,156,255,0.12);
+    color:var(--bright)!important;
+    border:1px solid rgba(45,156,255,0.35);
   }
   .page-hero{padding:32px 18px 24px;}
   .sec{padding:32px 18px;}
