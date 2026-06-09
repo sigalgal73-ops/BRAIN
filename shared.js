@@ -53,12 +53,13 @@ function renderNav(activePage, lang) {
     { id: 'talk-to-brain', label: '🧠 דבר עם Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'הצטרפו',           href: 'join.html', cta: true },
   ];
+  const talk = pages.find(p => p.pulse) || {};
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
       const sub = p.submenu.map(s => `<a href="${s.href}" class="nav-sub-link">${s.label}</a>`).join('');
       return `<div class="nav-dropdown${p.id===activePage?' active':''}"><a href="${p.href}" class="nav-link">${p.label} ▾</a><div class="nav-dropdown-menu">${sub}</div></div><span class="sep">|</span>`;
     }
-    if (p.pulse) return `<a href="${isEn ? '' : ''}${p.href}" class="nav-talk${p.id===activePage?' active':''}">${p.label}</a>`;
+    if (p.pulse) return '';
     if (p.cta) return `<a href="${p.href}" class="nav-demo${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
     return `<a href="${p.href}" class="nav-link${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
   }).join('');
@@ -66,7 +67,7 @@ function renderNav(activePage, lang) {
     if (p.submenu) {
       return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>`;
     }
-    if (p.pulse) return `<a href="${p.href}" class="nav-talk${p.id===activePage?' active':''}">${p.label}</a>`;
+    if (p.pulse) return '';
     return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
   }).join('');
 
@@ -75,6 +76,7 @@ function renderNav(activePage, lang) {
       <a href="${isEn ? 'index.html' : 'index_he.html'}" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
       <div class="nav-links"${isEn ? ' style="direction:ltr"' : ''}>${desktopLinks}</div>
       <div class="nav-left">
+        <a href="${talk.href || '#'}" class="nav-talk${talk.id===activePage?' active':''}">${talk.label || ''}</a>
         <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="24" height="17" alt="IL" style="border-radius:2px;display:block;"></button>
         <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="24" height="17" alt="US" style="border-radius:2px;display:block;"></button>
         <a href="https://www.youtube.com/@Brain.co.manager" class="nav-icon" title="YouTube" target="_blank">▶</a>
