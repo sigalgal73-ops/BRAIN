@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Investor FAQ | Brain Co-Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="../shared.css">
 <style>
 .faq-section{max-width:820px;margin:0 auto 40px}
 .faq-category{font-size:11px;color:var(--teal);font-weight:700;letter-spacing:.12em;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
@@ -30,7 +30,7 @@
     <p class="page-sub">Everything you want to know about Brain Co-Manager before investing</p>
   </div>
 
-<div class="sec reveal">
+<div class="sec">
 
   <!-- Product & Core -->
   <div class="faq-section">
@@ -66,7 +66,7 @@
   <div class="faq-section">
     <div class="faq-category">Economic Value</div>
 
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">איזה Economic Value אתם מייצרים? <span class="faq-arrow">▼</span></div><div class="faq-a">About 20% sales growth, about 30% professionalism improvement, doubled employee retention.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What Economic Value do you generate? <span class="faq-arrow">▼</span></div><div class="faq-a">About 20% sales growth, about 30% professionalism improvement, doubled employee retention.</div></div>
 
     <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What does this look like in numbers? <span class="faq-arrow">▼</span></div><div class="faq-a">An organization with $55M revenue can expect an addition of about $11M per year.</div></div>
 
@@ -124,18 +124,10 @@
 </div>
 
   <div style="height:60px"></div>
-  <footer>
-    <div class="footer-links">
-      <a href="about.html">About</a><a href="process.html">Process</a>
-      <a href="uses.html">Use Cases</a><a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a><a href="pricing.html">Pricing</a>
-      <a href="demo.html">Demo</a><a href="articles.html">Articles</a><a href="jobs.html">Careers</a>
-    </div>
-    <div class="footer-copy">© All rights reserved · Brain Co-Manager<br><span style="font-size:11px;opacity:0.6;">Website design <a href="https://sigalraichmansocial.com" target="_blank" style="color:var(--muted);text-decoration:underline;transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">sigalraichmansocial.com</a></span></div>
-  </footer>
+  <div id="footer-placeholder"></div>
 </div>
-<script src="shared.js"></script>
-<script>renderNav('investors','en');</script>
+<script src="../shared.js"></script>
+<script>renderNav('investors','en');renderFooter();</script>
 <script>
 function toggle(el) {
   const ans = el.nextElementSibling;
