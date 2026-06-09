@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Talk to BRAIN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#020d1a;--navy-2:#06182e;--accent:#1a6fc4;--bright:#2d9cff;--teal:#00d4aa;--ink:#dce8f5;--mute:#7d93ad}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Heebo',system-ui,sans-serif;
+    background:radial-gradient(1200px 700px at 50% -10%,#0a2240 0%,rgba(10,34,64,0) 60%),var(--navy);
+    color:var(--ink);min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+    padding:clamp(16px,4vw,40px);overflow-x:hidden}
+  .wrap{width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center;gap:20px}
+  .brandline{display:flex;align-items:center;gap:10px;color:var(--mute);font-size:13px;letter-spacing:.04em}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal)}
+
+  .stage{position:relative;width:260px;height:260px;display:grid;place-items:center;margin-top:4px}
+  .halo{position:absolute;width:230px;height:230px;border-radius:50%;
+    background:radial-gradient(circle,rgba(45,156,255,.30) 0%,rgba(0,212,170,.12) 45%,rgba(2,13,26,0) 70%);
+    filter:blur(2px);animation:glow 5s ease-in-out infinite}
+  @keyframes glow{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+  .ring{position:absolute;width:210px;height:210px;border-radius:50%;border:1px solid rgba(45,156,255,.4);opacity:0}
+  .stage.listening .ring{animation:sonar 2s ease-out infinite}
+  .stage.listening .ring:nth-of-type(2){animation-delay:.66s}
+  .stage.listening .ring:nth-of-type(3){animation-delay:1.33s}
+  @keyframes sonar{0%{transform:scale(.7);opacity:.7}100%{transform:scale(1.06);opacity:0}}
+  .stage.speaking .ring{animation:pulseout 1s ease-out infinite;border:2px solid rgba(0,212,170,.9)}
+  .stage.speaking .ring:nth-of-type(2){animation-delay:.33s}
+  .stage.speaking .ring:nth-of-type(3){animation-delay:.66s}
+  @keyframes pulseout{0%{transform:scale(.7);opacity:.85}100%{transform:scale(1.22);opacity:0}}
+
+  .avatar{position:relative;width:210px;height:210px;border-radius:50%;overflow:hidden;
+    border:2px solid rgba(45,156,255,.45);box-shadow:0 0 0 6px rgba(2,13,26,.6),0 14px 50px rgba(26,111,196,.4);
+    transform-origin:50% 50%}
+  .avatar video{width:100%;height:100%;object-fit:cover;object-position:center 28%;display:block}
+  .stage:not(.speaking):not(.listening) .avatar{animation:breath 5s ease-in-out infinite}
+  @keyframes breath{0%,100%{box-shadow:0 0 0 6px rgba(2,13,26,.6),0 14px 50px rgba(26,111,196,.35)}50%{box-shadow:0 0 0 6px rgba(2,13,26,.6),0 14px 56px rgba(26,111,196,.55)}}
+  .stage.listening .avatar{border-color:rgba(45,156,255,.95);box-shadow:0 0 0 6px rgba(2,13,26,.6),0 0 50px rgba(45,156,255,.6)}
+  .stage.speaking .avatar{border-color:rgba(0,212,170,.95);animation:talkGlow .7s ease-in-out infinite}
+  @keyframes talkGlow{0%,100%{box-shadow:0 0 0 6px rgba(2,13,26,.6),0 0 26px rgba(0,212,170,.45)}50%{box-shadow:0 0 0 6px rgba(2,13,26,.6),0 0 70px rgba(0,212,170,.95)}}
+
+  .status{min-height:26px;text-align:center;font-size:16px;color:var(--mute);line-height:1.5;max-width:90%}
+  .status b{color:var(--ink);font-weight:600}
+  .talk{appearance:none;border:none;cursor:pointer;font-family:inherit;font-size:18px;font-weight:700;color:#03101f;
+    padding:16px 30px;border-radius:50px;background:linear-gradient(135deg,var(--teal),var(--bright));
+    box-shadow:0 10px 30px rgba(0,212,170,.35);display:flex;align-items:center;gap:10px;transition:transform .15s,box-shadow .15s}
+  .talk:hover{transform:translateY(-2px)}.talk.live{background:linear-gradient(135deg,#ff5a7a,#ff8a5a);color:#fff}
+  .talk.invite{animation:invite 1.8s ease-in-out infinite}
+  @keyframes invite{0%,100%{box-shadow:0 10px 30px rgba(0,212,170,.35)}50%{box-shadow:0 10px 44px rgba(0,212,170,.7)}}
+
+  .log{width:100%;display:flex;flex-direction:column;gap:10px}
+  .bubble{padding:12px 15px;border-radius:16px;font-size:15px;line-height:1.55;max-width:88%;animation:rise .25s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .bubble.brain{align-self:flex-start;background:var(--navy-2);border:1px solid rgba(45,156,255,.18);border-bottom-left-radius:5px}
+  .bubble.user{align-self:flex-end;background:linear-gradient(135deg,rgba(26,111,196,.28),rgba(0,212,170,.18));border:1px solid rgba(0,212,170,.25);border-bottom-right-radius:5px}
+  .who{display:block;font-size:11px;color:var(--mute);margin-bottom:3px}
+  .demo{display:none;text-decoration:none;font-family:inherit;font-weight:700;font-size:16px;color:#03101f;
+    background:linear-gradient(135deg,var(--bright),var(--teal));padding:14px 26px;border-radius:50px}
+  .demo.show{display:inline-flex;align-items:center;gap:8px}
+  .row{width:100%;display:flex;gap:8px}
+  .row input{flex:1;font-family:inherit;font-size:15px;color:var(--ink);background:var(--navy-2);
+    border:1px solid rgba(125,147,173,.3);border-radius:14px;padding:13px 15px;outline:none}
+  .row input:focus{border-color:var(--bright)}.row input::placeholder{color:var(--mute)}
+  .row button{font-family:inherit;font-weight:600;font-size:15px;color:var(--ink);
+    background:rgba(45,156,255,.18);border:1px solid rgba(45,156,255,.4);border-radius:14px;padding:0 18px;cursor:pointer}
+  .note{color:var(--mute);font-size:12.5px;text-align:center;line-height:1.6;max-width:92%}
+  .err{color:#ff9aa9;font-size:13px;text-align:center;min-height:18px}
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brandline"><span class="dot"></span>BRAIN · Live Co-Manager</div>
+
+    <div class="stage" id="stage">
+      <div class="halo"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+      <div class="avatar">
+        <video id="avatarVid" src="../brain-avatar.mp4" poster="../brain-avatar-poster.jpg"
+               autoplay loop muted playsinline></video>
+      </div>
+    </div>
+
+    <div class="status" id="status">Tap the button to start a voice conversation with BRAIN</div>
+    <button class="talk invite" id="talk">▶ Start a conversation with BRAIN</button>
+    <div class="err" id="err"></div>
+
+    <div class="log" id="log"></div>
+    <a class="demo" id="demo" href="/en/join.html">📅 Book a demo</a>
+
+    <div class="row">
+      <input id="textInput" placeholder="…or type here" autocomplete="off">
+      <button id="sendText">Send</button>
+    </div>
+    <p class="note">Works on the live site (https). Chrome recommended on mobile/desktop — please allow microphone access.</p>
+  </div>
+
+<script>
+const BRAIN_URL = "/.netlify/functions/brain";
+const TTS_URL   = "/.netlify/functions/tts";
+const GREETING_NEW = "Hi, I'm BRAIN. I'm here to understand what's holding your organization back from moving faster. So let's start with the most pressing thing — what's the hardest thing for you to implement right now?";
+const GREETING_RETURN = "Hi, great to see you here again. What would you like to talk about today?";
+function pickGreeting(){
+  let returning=false;
+  try{ returning = localStorage.getItem('brain_visited_en')==='1'; localStorage.setItem('brain_visited_en','1'); }catch(e){}
+  return returning ? GREETING_RETURN : GREETING_NEW;
+}
+
+const stage=document.getElementById('stage'),statusEl=document.getElementById('status'),
+      talkBtn=document.getElementById('talk'),logEl=document.getElementById('log'),
+      demoBtn=document.getElementById('demo'),textIn=document.getElementById('textInput'),
+      sendBtn=document.getElementById('sendText'),errEl=document.getElementById('err'),
+      avatarVid=document.getElementById('avatarVid');
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+let conversation=[],started=false,listening=false,rec=null,convoActive=false;
+
+// ----- audio playback (Mark's voice). The character is alive via the video itself -----
+let audioCtx=null,analyser=null,srcNode=null,audioEl=null;
+function ensureAudio(){
+  if(audioCtx) return;
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  audioEl=new Audio(); audioEl.crossOrigin="anonymous";
+  srcNode=audioCtx.createMediaElementSource(audioEl);
+  analyser=audioCtx.createAnalyser(); analyser.fftSize=256;
+  srcNode.connect(analyser); analyser.connect(audioCtx.destination);
+}
+
+function setState(s){
+  stage.className='stage'+(s==='idle'?'':' '+s);
+  if(s==='listening'){statusEl.innerHTML='<b>Listening…</b> go ahead';talkBtn.textContent='■ Stop conversation';talkBtn.classList.add('live');}
+  else if(s==='thinking'){statusEl.innerHTML='<b>BRAIN is thinking…</b>';talkBtn.textContent=convoActive?'■ Stop conversation':'🎤 Talk to BRAIN';talkBtn.classList.toggle('live',convoActive);}
+  else if(s==='speaking'){statusEl.innerHTML='<b>BRAIN is speaking…</b>';talkBtn.textContent=convoActive?'■ Stop conversation':'🎤 Talk to BRAIN';talkBtn.classList.toggle('live',convoActive);}
+  else{statusEl.textContent=started?'Conversation paused — tap to continue':'Tap the button to start a voice conversation with BRAIN';talkBtn.textContent=started?'🎤 Continue conversation':'▶ Start a conversation with BRAIN';talkBtn.classList.remove('live');}
+}
+function addBubble(who,text){const b=document.createElement('div');b.className='bubble '+(who==='user'?'user':'brain');
+  b.innerHTML='<span class="who">'+(who==='user'?'You':'BRAIN')+'</span>'+esc(text);logEl.appendChild(b);b.scrollIntoView({behavior:'smooth',block:'end'});}
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function maybeDemo(t){if(/demo|see it live|book a|schedule/i.test(t)) demoBtn.classList.add('show');}
+
+// fallback voice if ElevenLabs fails
+function browserSpeak(text,onend,onstart){
+  try{speechSynthesis.cancel();}catch(e){}
+  const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=1;
+  const v=(speechSynthesis.getVoices()||[]).find(x=>(x.lang||'').toLowerCase().startsWith('en'));
+  if(v)u.voice=v;
+  u.onstart=()=>{setState('speaking');if(onstart)onstart();};
+  u.onend=()=>{if(onend)onend();else setState('idle');};u.onerror=u.onend;
+  speechSynthesis.speak(u);
+}
+
+async function speak(text,onend,onstart){
+  ensureAudio();
+  try{ if(audioCtx.state==='suspended') await audioCtx.resume(); }catch(e){}
+  try{
+    const r=await fetch(TTS_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({text})});
+    if(!r.ok) throw new Error('tts '+r.status);
+    const blob=await r.blob();
+    audioEl.src=URL.createObjectURL(blob);
+    audioEl.onended=()=>{ if(onend)onend();else setState('idle'); };
+    await audioEl.play();
+    setState('speaking');
+    if(onstart) onstart();
+  }catch(e){
+    browserSpeak(text,onend,onstart);
+  }
+}
+
+async function callBrain(userText){
+  conversation.push({role:'user',content:userText});addBubble('user',userText);setState('thinking');errEl.textContent='';
+  try{
+    const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation,lang:'en'})});
+    const data=await r.json();
+    if(!r.ok) throw new Error(JSON.stringify(data));
+    const reply=(data.reply||'').trim()||"Sorry, I couldn't answer just now. Shall we try again?";
+    conversation.push({role:'assistant',content:reply});
+    speak(reply,afterBrainSpoke,()=>{addBubble('brain',reply);maybeDemo(reply);});
+  }catch(e){addBubble('brain',"There was a connection error. Please check that the functions and API keys are set.");afterBrainSpoke();}
+}
+
+function afterBrainSpoke(){ if(convoActive) relisten(); else setState('idle'); }
+function relisten(){ if(!convoActive||listening) return; setTimeout(()=>{ if(convoActive&&!listening) startListening(); },300); }
+
+function startListening(){
+  if(!SR){errEl.textContent="This browser doesn't support speech recognition — type below, or open in Chrome.";return;}
+  rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
+  let finalText='';listening=true;setState('listening');errEl.textContent='';
+  rec.onresult=(e)=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;
+    if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();if(shown)statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';};
+  rec.onerror=(e)=>{listening=false;
+    if(e.error==='not-allowed'||e.error==='service-not-allowed'){convoActive=false;setState('idle');errEl.textContent="Microphone access was blocked. Allow the microphone in your browser and try again.";}
+  };
+  rec.onend=()=>{listening=false;
+    if(finalText.trim()) callBrain(finalText.trim());
+    else relisten();
+    if(!convoActive) setState('idle');
+  };
+  try{rec.start();}catch(e){listening=false;relisten();}
+}
+function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
+
+talkBtn.addEventListener('click',()=>{
+  ensureAudio(); try{audioCtx.resume();}catch(e){}
+  talkBtn.classList.remove('invite');
+  if(!started){started=true;convoActive=true;const g=pickGreeting();speak(g,afterBrainSpoke,()=>addBubble('brain',g));return;}
+  if(convoActive){ convoActive=false; stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle'); }
+  else { convoActive=true; relisten(); }
+});
+function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
+sendBtn.addEventListener('click',submitText);
+textIn.addEventListener('keydown',e=>{if(e.key==='Enter')submitText();});
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();speechSynthesis.getVoices();}
+
+statusEl.innerHTML='<b>BRAIN is ready to start</b> — tap and it will speak to you';
+</script>
+</body>
+</html>
