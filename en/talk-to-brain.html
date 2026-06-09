@@ -117,7 +117,7 @@ const stage=document.getElementById('stage'),statusEl=document.getElementById('s
       avatarVid=document.getElementById('avatarVid');
 
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-let conversation=[],started=false,listening=false,rec=null,convoActive=false;
+let conversation=[],started=false,listening=false,rec=null,convoActive=false,emptyTries=0;
 
 // ----- audio playback (Mark's voice). The character is alive via the video itself -----
 let audioCtx=null,analyser=null,srcNode=null,audioEl=null;
@@ -183,23 +183,32 @@ async function callBrain(userText){
 }
 
 function afterBrainSpoke(){ if(convoActive) relisten(); else setState('idle'); }
-function relisten(){ if(!convoActive||listening) return; setTimeout(()=>{ if(convoActive&&!listening) startListening(); },300); }
+function relisten(){ if(!convoActive||listening) return; setTimeout(()=>{ if(convoActive&&!listening) startListening(); },350); }
+
+const REASK_LINES=["Sorry, I didn't quite catch that — could you say it again?","I didn't hear that clearly, please try again.","I missed that — could you repeat it?"];
+function reAsk(){ const r=REASK_LINES[Math.floor(Math.random()*REASK_LINES.length)]; speak(r,afterBrainSpoke,()=>addBubble('brain',r)); }
 
 function startListening(){
   if(!SR){errEl.textContent="This browser doesn't support speech recognition — type below, or open in Chrome.";return;}
   rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
   let finalText='';listening=true;setState('listening');errEl.textContent='';
+  let watchdog=setTimeout(()=>{ try{rec.stop();}catch(e){} },9000);
   rec.onresult=(e)=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;
-    if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();if(shown)statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';};
-  rec.onerror=(e)=>{listening=false;
+    if(e.results[i].isFinal)finalText+=t;else interim+=t;}const shown=(finalText||interim).trim();
+    if(shown){statusEl.innerHTML='<b>«'+esc(shown)+'»</b>';clearTimeout(watchdog);watchdog=setTimeout(()=>{try{rec.stop();}catch(e){}},9000);}};
+  rec.onerror=(e)=>{listening=false;clearTimeout(watchdog);
     if(e.error==='not-allowed'||e.error==='service-not-allowed'){convoActive=false;setState('idle');errEl.textContent="Microphone access was blocked. Allow the microphone in your browser and try again.";}
   };
-  rec.onend=()=>{listening=false;
-    if(finalText.trim()) callBrain(finalText.trim());
-    else relisten();
-    if(!convoActive) setState('idle');
+  rec.onend=()=>{listening=false;clearTimeout(watchdog);
+    if(finalText.trim()){ emptyTries=0; callBrain(finalText.trim()); }
+    else {
+      if(!convoActive){ setState('idle'); return; }
+      emptyTries++;
+      if(emptyTries>=2){ emptyTries=0; reAsk(); }
+      else relisten();
+    }
   };
-  try{rec.start();}catch(e){listening=false;relisten();}
+  try{rec.start();}catch(e){listening=false;clearTimeout(watchdog);relisten();}
 }
 function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 
