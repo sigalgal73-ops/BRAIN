@@ -212,7 +212,7 @@ function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 
 talkBtn.addEventListener('click',()=>{
   ensureAudio(); try{audioCtx.resume();}catch(e){}   // פותח אודיו במחווה של המשתמש
-  if(!started){started=true;addBubble('brain',GREETING);speak(GREETING,()=>startListening());return;}
+  if(!started){started=true;speak(GREETING,()=>startListening());return;}
   if(listening)stopListening();
   else{try{if(audioEl)audioEl.pause();}catch(e){}startListening();}
 });
@@ -220,6 +220,10 @@ function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';s
 sendBtn.addEventListener('click',submitText);
 textIn.addEventListener('keydown',e=>{if(e.key==='Enter')submitText();});
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();speechSynthesis.getVoices();}
+
+// פתיחה מיידית: מציג את בועת הפתיחה של BRAIN ברגע הכניסה (הקול יתחיל בלחיצה — מגבלת דפדפן)
+addBubble('brain',GREETING);
+statusEl.innerHTML='<b>BRAIN מוכן.</b> לחצו על הכפתור כדי לדבר';
 </script>
 </body>
 </html>
