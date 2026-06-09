@@ -27,6 +27,7 @@ function renderNav(activePage, lang) {
     { id: 'podcast',  label: 'Podcast',    href: 'podcast.html' },
     { id: 'articles', label: 'Articles',   href: 'articles.html' },
     { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
+    { id: 'talk-to-brain', label: '🧠 Talk to Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
   ] : [
     { id: 'about',    label: 'אודותינו',        href: 'about.html' },
@@ -49,6 +50,7 @@ function renderNav(activePage, lang) {
     { id: 'podcast',  label: 'פודקאסט',         href: 'podcast.html' },
     { id: 'articles', label: 'מאמרים',          href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',           href: 'jobs.html' },
+    { id: 'talk-to-brain', label: '🧠 דבר עם Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'הצטרפו',           href: 'join.html', cta: true },
   ];
   const desktopLinks = pages.map(p => {
@@ -56,6 +58,7 @@ function renderNav(activePage, lang) {
       const sub = p.submenu.map(s => `<a href="${s.href}" class="nav-sub-link">${s.label}</a>`).join('');
       return `<div class="nav-dropdown${p.id===activePage?' active':''}"><a href="${p.href}" class="nav-link">${p.label} ▾</a><div class="nav-dropdown-menu">${sub}</div></div><span class="sep">|</span>`;
     }
+    if (p.pulse) return `<a href="${isEn ? '' : ''}${p.href}" class="nav-talk${p.id===activePage?' active':''}">${p.label}</a>`;
     if (p.cta) return `<a href="${p.href}" class="nav-demo${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
     return `<a href="${p.href}" class="nav-link${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
   }).join('');
@@ -63,6 +66,7 @@ function renderNav(activePage, lang) {
     if (p.submenu) {
       return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>`;
     }
+    if (p.pulse) return `<a href="${p.href}" class="nav-talk${p.id===activePage?' active':''}">${p.label}</a>`;
     return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
   }).join('');
 
