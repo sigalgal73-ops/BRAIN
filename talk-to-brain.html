@@ -47,6 +47,8 @@
     padding:16px 30px;border-radius:50px;background:linear-gradient(135deg,var(--teal),var(--bright));
     box-shadow:0 10px 30px rgba(0,212,170,.35);display:flex;align-items:center;gap:10px;transition:transform .15s,box-shadow .15s}
   .talk:hover{transform:translateY(-2px)}.talk.live{background:linear-gradient(135deg,#ff5a7a,#ff8a5a);color:#fff}
+  .talk.invite{animation:invite 1.8s ease-in-out infinite}
+  @keyframes invite{0%,100%{box-shadow:0 10px 30px rgba(0,212,170,.35)}50%{box-shadow:0 10px 44px rgba(0,212,170,.7)}}
 
   .log{width:100%;display:flex;flex-direction:column;gap:10px}
   .bubble{padding:12px 15px;border-radius:16px;font-size:15px;line-height:1.55;max-width:88%;animation:rise .25s ease}
@@ -96,7 +98,7 @@
     </div>
 
     <div class="status" id="status">לחצו על הכפתור כדי לפתוח שיחה קולית עם BRAIN</div>
-    <button class="talk" id="talk">🎤 דברו עם BRAIN</button>
+    <button class="talk invite" id="talk">▶ התחילו שיחה עם BRAIN</button>
     <div class="err" id="err"></div>
 
     <div class="log" id="log"></div>
@@ -212,6 +214,7 @@ function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 
 talkBtn.addEventListener('click',()=>{
   ensureAudio(); try{audioCtx.resume();}catch(e){}   // פותח אודיו במחווה של המשתמש
+  talkBtn.classList.remove('invite');
   if(!started){started=true;speak(GREETING,()=>startListening());return;}
   if(listening)stopListening();
   else{try{if(audioEl)audioEl.pause();}catch(e){}startListening();}
@@ -223,7 +226,7 @@ if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>speechSynthe
 
 // פתיחה מיידית: מציג את בועת הפתיחה של BRAIN ברגע הכניסה (הקול יתחיל בלחיצה — מגבלת דפדפן)
 addBubble('brain',GREETING);
-statusEl.innerHTML='<b>BRAIN מוכן.</b> לחצו על הכפתור כדי לדבר';
+statusEl.innerHTML='<b>BRAIN מוכן לפתוח בשיחה</b> — לחצו והוא ידבר אליכם';
 </script>
 </body>
 </html>
