@@ -160,6 +160,19 @@ function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 let typingEl=null;
 function showTyping(){ if(typingEl)return; typingEl=document.createElement('div'); typingEl.className='typing'; typingEl.innerHTML='<span></span><span></span><span></span>'; logEl.appendChild(typingEl); typingEl.scrollIntoView({behavior:'smooth',block:'end'}); }
 function hideTyping(){ if(typingEl){ typingEl.remove(); typingEl=null; } }
+
+// צליל "חושב" עדין — חשוב במיוחד בנהיגה, כשלא רואים את הנקודות
+let thinkTimer=null;
+function playBlip(){ if(!audioCtx) return; try{
+  const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type='sine'; o.frequency.value=466;
+  g.gain.setValueAtTime(0.0001,audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.05,audioCtx.currentTime+0.04);
+  g.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+0.35);
+  o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime+0.4);
+}catch(e){} }
+function startThinkSound(){ if(thinkTimer)return; ensureAudio(); try{audioCtx.resume();}catch(e){} playBlip(); thinkTimer=setInterval(playBlip,1600); }
+function stopThinkSound(){ if(thinkTimer){ clearInterval(thinkTimer); thinkTimer=null; } }
 function maybeDemo(t){if(/הדגמ|לראות חי|demo|נקבע/i.test(t)) demoBtn.classList.add('show');}
 
 // fallback voice if ElevenLabs fails
@@ -178,7 +191,9 @@ async function speak(text,onend,onstart){
   try{ if(audioCtx.state==='suspended') await audioCtx.resume(); }catch(e){}
   // נשארים במצב "חושב…" עד שהקול באמת מתחיל — שהטקסט והדיבור יופיעו יחד
   try{
-    const r=await fetch(TTS_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({text})});
+    const ctrl=new AbortController(); const tto=setTimeout(()=>ctrl.abort(),15000);  // לא נחכה לקול יותר מ-15ש'
+    const r=await fetch(TTS_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({text}),signal:ctrl.signal});
+    clearTimeout(tto);
     if(!r.ok) throw new Error('tts '+r.status);
     const blob=await r.blob();
     audioEl.src=URL.createObjectURL(blob);
@@ -187,21 +202,28 @@ async function speak(text,onend,onstart){
     setState('speaking');
     if(onstart) onstart();
   }catch(e){
-    // נפילה חיננית: קול דפדפן (גם שם הבועה תופיע כשהדיבור מתחיל)
+    // נפילה חיננית: אם הקול נתקע/נכשל — קול דפדפן, שהמשתמש עדיין ישמע את התשובה
     browserSpeak(text,onend,onstart);
   }
 }
 
 async function callBrain(userText){
-  conversation.push({role:'user',content:userText});addBubble('user',userText);setState('thinking');showTyping();errEl.textContent='';
+  conversation.push({role:'user',content:userText});addBubble('user',userText);setState('thinking');showTyping();startThinkSound();errEl.textContent='';
+  const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),20000);  // קריטי: לא נשאיר את המשתמש תקוע. תקרה של 20ש'
   try{
-    const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation,returning:isReturning})});
+    const r=await fetch(BRAIN_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:conversation,returning:isReturning}),signal:ctrl.signal});
+    clearTimeout(to);
     const data=await r.json();
     if(!r.ok) throw new Error(JSON.stringify(data));
     const reply=(data.reply||'').trim()||"סליחה, לא הצלחתי לענות כרגע. ננסה שוב?";
     conversation.push({role:'assistant',content:reply});
-    speak(reply,afterBrainSpoke,()=>{hideTyping();addBubble('brain',reply);maybeDemo(reply);});
-  }catch(e){hideTyping();addBubble('brain',"הייתה תקלה בחיבור לשרת. בדקו שהפונקציות ומפתחות ה-API מוגדרים.");afterBrainSpoke();}
+    speak(reply,afterBrainSpoke,()=>{stopThinkSound();hideTyping();addBubble('brain',reply);maybeDemo(reply);});
+  }catch(e){
+    clearTimeout(to); stopThinkSound(); hideTyping();
+    const timedOut = e&&e.name==='AbortError';
+    const msg = timedOut ? "סליחה, יש עומס רגעי ולא קיבלתי תשובה בזמן — אפשר לנסות שוב?" : "הייתה תקלה רגעית בחיבור. ננסה שוב?";
+    speak(msg,afterBrainSpoke,()=>{addBubble('brain',msg);});   // נאמר בקול + מופיע, ואז המיקרופון נפתח שוב
+  }
 }
 
 // אחרי שמרק סיים לדבר — אם השיחה פעילה, פותחים שוב את המיקרופון לבד
