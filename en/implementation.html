@@ -61,6 +61,48 @@
 .impl-acc ul.cmd-list b{display:block;color:var(--white);font-weight:700;font-size:13.5px;margin-bottom:4px}
 .impl-acc .cmd{display:block;color:var(--teal);font-size:13px;font-style:italic}
 @media(max-width:640px){.impl-acc ol{padding:12px 28px 16px}}
+/* infographics EN */
+.ig-head{text-align:center;margin-bottom:22px}
+.ig-banner{max-width:900px;margin:22px auto 0;text-align:center;background:linear-gradient(135deg,var(--accent),var(--bright));color:#fff;font-weight:800;font-size:14px;padding:13px 22px;border-radius:999px;box-shadow:0 14px 34px -14px rgba(45,156,255,.6)}
+/* campaigns */
+.ig-camps{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:14px}
+.ig-camp{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--c);border-radius:14px;padding:18px 18px 16px;position:relative}
+.ig-camp .ig-no{position:absolute;top:14px;inset-inline-end:14px;width:24px;height:24px;border-radius:50%;background:var(--c);color:#fff;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center}
+.ig-camp .ig-ic{width:42px;height:42px;border-radius:12px;background:color-mix(in srgb,var(--c) 18%,transparent);display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:10px}
+.ig-camp h3{margin:0 0 6px;font-size:15.5px;font-weight:800;color:var(--c)}
+.ig-camp .ig-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:10px}
+.ig-camp ul{margin:0;padding:0;list-style:none}
+.ig-camp li{font-size:12.5px;color:var(--white);opacity:.85;padding:4px 0 4px 15px;position:relative;line-height:1.4}
+.ig-camp li::before{content:'';position:absolute;inset-inline-start:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--c)}
+/* journey */
+.ig-jrny-wrap{max-width:1080px;margin:0 auto;overflow-x:auto;padding-bottom:8px}
+.ig-jrny{display:flex;gap:12px;min-width:920px}
+.ig-stage{flex:1;min-width:128px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.ig-stage-h{background:var(--c);color:#fff;padding:12px 12px 11px;text-align:center}
+.ig-stage-h .e{font-size:20px}
+.ig-stage-h .n{font-size:11px;font-weight:800;opacity:.85}
+.ig-stage-h h4{margin:3px 0 2px;font-size:13.5px;font-weight:800}
+.ig-stage-h .s{font-size:10.5px;opacity:.9;line-height:1.3}
+.ig-cell{padding:9px 11px;border-top:1px solid var(--border);font-size:11px;line-height:1.45;color:var(--white);opacity:.9}
+.ig-cell b{display:block;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:3px;opacity:.9}
+.ig-cell.feel{font-size:13px;text-align:center}
+.ig-loop{text-align:center;color:var(--teal);font-weight:800;font-size:13px;margin-top:16px}
+.ig-hint{text-align:center;color:var(--muted);font-size:11px;margin-top:6px}
+/* metrics */
+.ig-mets{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.ig-met{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;text-align:center;position:relative}
+.ig-met .ig-no{position:absolute;top:13px;inset-inline-start:13px;width:23px;height:23px;border-radius:50%;background:var(--c);color:#fff;font-weight:900;font-size:11px;display:flex;align-items:center;justify-content:center}
+.ig-met .ig-ic{width:46px;height:46px;border-radius:50%;background:color-mix(in srgb,var(--c) 16%,transparent);display:flex;align-items:center;justify-content:center;font-size:22px;margin:4px auto 9px;border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
+.ig-met h4{margin:0 0 8px;font-size:12.5px;font-weight:700;color:var(--white);line-height:1.35;min-height:34px}
+.ig-met .big{font-size:30px;font-weight:900;color:var(--c);line-height:1}
+.ig-met .tgt{font-size:11px;color:var(--muted);margin-top:5px;font-weight:700}
+.ig-donut{margin:10px auto 2px;display:block}
+.ig-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.1);margin:12px 6px 2px;overflow:hidden}
+.ig-bar i{display:block;height:100%;background:var(--c);border-radius:999px}
+.ig-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:11px}
+.ig-tags span{font-size:10px;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border-radius:999px;padding:3px 9px}
+.ig-foot{max-width:1000px;margin:22px auto 0;text-align:center;background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.3);border-radius:14px;padding:14px 20px;color:var(--white);font-size:13px;font-weight:600;line-height:1.55}
+@media(max-width:640px){.ig-met h4{min-height:0}}
 </style>
 </head>
 <body>
@@ -173,41 +215,34 @@
 
   <!-- CAMPAIGN TYPES -->
   <div class="sec">
-    <h2 class="sec-title">Campaign types — <em>a focus for every area</em></h2>
-    <p class="sec-sub">Each campaign = 30 videos (15 personal life + 15 work) — every other day. Results that land in the field.</p>
-    <div class="impl-grid">
-      <div class="impl-card"><div class="num">01</div><h3>Energy, drive &amp; motivation</h3>
-        <ul><li>Self-ignition &amp; daily energy</li><li>Connection to meaning &amp; mission</li><li>Encouragement &amp; positive culture</li><li>Proportion, gratitude &amp; resilience</li></ul></div>
-      <div class="impl-card"><div class="num">02</div><h3>Sales &amp; growth</h3>
-        <ul><li>Communication, listening &amp; needs</li><li>Handling objections &amp; closing</li><li>Upsell, cross-sell &amp; bigger baskets</li><li>Sales plan &amp; results tracking</li></ul></div>
-      <div class="impl-card"><div class="num">03</div><h3>Professionalism</h3>
-        <ul><li>Raising performance in every role</li><li>Learning, improvement &amp; measurement</li><li>Product &amp; service expertise</li><li>Workflows &amp; common mistakes</li></ul></div>
-      <div class="impl-card"><div class="num">04</div><h3>Innovation &amp; creative thinking</h3>
-        <ul><li>Encouraging thinking &amp; initiative</li><li>New ideas &amp; continuous improvement</li><li>Innovation in products, service &amp; processes</li><li>Implementing ideas &amp; innovation culture</li></ul></div>
-      <div class="impl-card"><div class="num">05</div><h3>Leadership &amp; management</h3>
-        <ul><li>Listening, feedback &amp; 1:1s</li><li>Drive, performance &amp; assertiveness</li><li>Hiring, developing &amp; retaining people</li><li>Team management &amp; decision-making</li></ul></div>
-      <div class="impl-card"><div class="num">06</div><h3>Relationships &amp; family</h3>
-        <ul><li>Communication, listening &amp; appreciation</li><li>Resolving conflicts &amp; strengthening love</li><li>Parenting, kids &amp; teens</li><li>Quality time, meaning &amp; balance</li></ul></div>
-      <div class="impl-card"><div class="num">07</div><h3>Health, sport &amp; nutrition</h3>
-        <ul><li>Sport, movement &amp; daily habits</li><li>Nutrition, weight &amp; good habits</li><li>Sleep, recovery &amp; energy</li><li>Mental health &amp; key checkups</li></ul></div>
-      <div class="impl-card"><div class="num">08</div><h3>Life as one system</h3>
-        <ul><li>Work–life balance</li><li>Goals, time &amp; personal planning</li><li>Connecting energy, health, money &amp; relationships</li><li>Self-management &amp; high awareness</li></ul></div>
+    <div class="ig-head"><h2 class="sec-title">Our campaign types — <em>a focus for every area</em></h2><p class="sec-sub">Each campaign includes 30 videos — one personal day, one work day, alternating.</p></div>
+    <div class="ig-camps">
+      <div class="ig-camp" style="--c:#f59e0b"><div class="ig-no">1</div><div class="ig-ic">⚡</div><h3>Energy, drive &amp; motivation</h3><div class="ig-desc">Ignite people, sustain energy and reinforce motivation and meaning</div><ul><li>Self-ignition &amp; daily energy</li><li>Connection to meaning &amp; mission</li><li>Encouragement, positive culture &amp; team bonding</li><li>Proportion, gratitude &amp; resilience</li></ul></div>
+      <div class="ig-camp" style="--c:#10b981"><div class="ig-no">2</div><div class="ig-ic">📈</div><h3>Sales &amp; growth</h3><div class="ig-desc">Improve performance, grow sales and sustain continuous growth</div><ul><li>Communication, listening &amp; needs</li><li>Handling objections &amp; closing</li><li>Upsell, cross-sell &amp; bigger baskets</li><li>Sales plan &amp; results tracking</li></ul></div>
+      <div class="ig-camp" style="--c:#8b5cf6"><div class="ig-no">3</div><div class="ig-ic">🏅</div><h3>Professionalism</h3><div class="ig-desc">Raise the level of performance, precision and accountability in every role</div><ul><li>Standards, processes &amp; performance control</li><li>Learning, improvement &amp; measurement</li><li>Product &amp; service expertise</li><li>Workflows &amp; common mistakes</li></ul></div>
+      <div class="ig-camp" style="--c:#3b82f6"><div class="ig-no">4</div><div class="ig-ic">💡</div><h3>Innovation &amp; creative thinking</h3><div class="ig-desc">Encourage thinking, initiative and innovation as a constant path to growth</div><ul><li>Encouraging thinking &amp; initiative</li><li>New ideas &amp; continuous improvement</li><li>Innovation in products, service &amp; processes</li><li>Implementing ideas &amp; a culture of innovation</li></ul></div>
+      <div class="ig-camp" style="--c:#ef4444"><div class="ig-no">5</div><div class="ig-ic">👥</div><h3>Leadership &amp; management</h3><div class="ig-desc">Build strong managers and leaders who lead people to success</div><ul><li>Listening, feedback &amp; 1:1s</li><li>Drive, performance &amp; assertiveness</li><li>Hiring, developing &amp; retaining people</li><li>Team management, decisions &amp; influence</li></ul></div>
+      <div class="ig-camp" style="--c:#ec4899"><div class="ig-no">6</div><div class="ig-ic">❤️</div><h3>Relationships &amp; family</h3><div class="ig-desc">Strengthen life's most important bonds and build a happy, supportive home</div><ul><li>Communication, listening &amp; appreciation</li><li>Resolving conflicts &amp; strengthening love</li><li>Parenting, kids &amp; teens</li><li>Quality time, meaning &amp; balance</li></ul></div>
+      <div class="ig-camp" style="--c:#06b6d4"><div class="ig-no">7</div><div class="ig-ic">🩺</div><h3>Health, sport &amp; nutrition</h3><div class="ig-desc">Live a healthy, energetic and balanced life over time</div><ul><li>Sport, movement &amp; daily habits</li><li>Nutrition, weight &amp; good habits</li><li>Sleep, recovery &amp; energy</li><li>Mental health &amp; key checkups</li></ul></div>
+      <div class="ig-camp" style="--c:#a16207"><div class="ig-no">8</div><div class="ig-ic">🔗</div><h3>Life as one system</h3><div class="ig-desc">Connect all areas of life and reach balance, calm and harmony</div><ul><li>Work–life balance</li><li>Goals, time &amp; personal planning</li><li>Connecting energy, health, money &amp; relationships</li><li>Self-management &amp; high life awareness</li></ul></div>
     </div>
+    <div class="ig-banner">Each campaign = 30 videos = 15 personal-life videos + 15 work videos — every other day — results that land in the field!</div>
   </div>
 
   <!-- JOURNEY MAP -->
   <div class="sec sec-alt">
-    <h2 class="sec-title">The usage journey — <em>Customer Journey</em></h2>
-    <p class="sec-sub">The seven stages of using Brain — from awareness and onboarding to mastery and ongoing growth.</p>
-    <div class="impl-grid">
-      <div class="impl-card"><div class="num">01</div><h3>Awareness</h3><div class="impl-target">Recognizing the need</div></div>
-      <div class="impl-card"><div class="num">02</div><h3>Onboarding</h3><div class="impl-target">A fast, simple start</div></div>
-      <div class="impl-card"><div class="num">03</div><h3>Discovery</h3><div class="impl-target">Getting to know Brain</div></div>
-      <div class="impl-card"><div class="num">04</div><h3>Daily use</h3><div class="impl-target">Embedding into the routine</div></div>
-      <div class="impl-card"><div class="num">05</div><h3>Value</h3><div class="impl-target">Felt results &amp; confidence</div></div>
-      <div class="impl-card"><div class="num">06</div><h3>Adoption</h3><div class="impl-target">Scaling &amp; optimization</div></div>
-      <div class="impl-card"><div class="num">07</div><h3>Mastery &amp; growth</h3><div class="impl-target">Advanced management with Brain</div></div>
-    </div>
+    <div class="ig-head"><h2 class="sec-title">The usage journey — <em>Customer Journey</em></h2><p class="sec-sub">The seven stages of using Brain — from awareness to mastery and ongoing growth.</p></div>
+    <div class="ig-jrny-wrap"><div class="ig-jrny">
+      <div class="ig-stage" style="--c:#0d9488"><div class="ig-stage-h"><div class="e">👁️</div><div class="n">Stage 1</div><h4>Awareness</h4><div class="s">Recognizing the need</div></div><div class="ig-cell"><b>User</b>Senses a need to be better in life or business</div><div class="ig-cell"><b>Brain</b>Explains how Brain helps, supports and drives results</div><div class="ig-cell feel"><b>Feeling</b>🤔 “There’s a problem, I need a solution”</div><div class="ig-cell"><b>Touchpoints</b>Marketing, referrals, content, search</div><div class="ig-cell"><b>Outcome</b>✅ Aware of a life-improvement solution</div></div>
+      <div class="ig-stage" style="--c:#10b981"><div class="ig-stage-h"><div class="e">📝</div><div class="n">Stage 2</div><h4>Onboarding</h4><div class="s">A fast start</div></div><div class="ig-cell"><b>User</b>Signs up and connects their relevant areas</div><div class="ig-cell"><b>Brain</b>Initial setup, basic configuration &amp; profile</div><div class="ig-cell feel"><b>Feeling</b>🙂 Curious and ready</div><div class="ig-cell"><b>Touchpoints</b>Sign-up, first questions, initial setup</div><div class="ig-cell"><b>Outcome</b>✅ Fast, simple entry to Brain</div></div>
+      <div class="ig-stage" style="--c:#3b82f6"><div class="ig-stage-h"><div class="e">🔍</div><div class="n">Stage 3</div><h4>Discovery</h4><div class="s">Getting to know Brain</div></div><div class="ig-cell"><b>User</b>Asks questions, gets answers, builds confidence</div><div class="ig-cell"><b>Brain</b>Answers, ideas, tailored plans &amp; habits</div><div class="ig-cell feel"><b>Feeling</b>😀 Surprised by the capabilities</div><div class="ig-cell"><b>Touchpoints</b>First conversation, first questions, exploring</div><div class="ig-cell"><b>Outcome</b>✅ Understanding the value — immediately</div></div>
+      <div class="ig-stage" style="--c:#8b5cf6"><div class="ig-stage-h"><div class="e">📅</div><div class="n">Stage 4</div><h4>Daily use</h4><div class="s">Embedding into routine</div></div><div class="ig-cell"><b>User</b>Uses Brain daily in personal &amp; work routine</div><div class="ig-cell"><b>Brain</b>Initiates reminders, tracking &amp; follow-ups</div><div class="ig-cell feel"><b>Feeling</b>😌 Calm, organized — a real partner</div><div class="ig-cell"><b>Touchpoints</b>Voice, reminders, tracking, reports</div><div class="ig-cell"><b>Outcome</b>✅ Orderly routine, control &amp; time saved</div></div>
+      <div class="ig-stage" style="--c:#f59e0b"><div class="ig-stage-h"><div class="e">📈</div><div class="n">Stage 5</div><h4>Value</h4><div class="s">Felt results</div></div><div class="ig-cell"><b>User</b>Sees results, saves time, feels confident</div><div class="ig-cell"><b>Brain</b>Shows progress, metrics &amp; impact for improvement</div><div class="ig-cell feel"><b>Feeling</b>😎 Seeing results, a calmer life</div><div class="ig-cell"><b>Touchpoints</b>Dashboards, summaries, metrics</div><div class="ig-cell"><b>Outcome</b>✅ Real, measurable performance improvement</div></div>
+      <div class="ig-stage" style="--c:#ec4899"><div class="ig-stage-h"><div class="e">🎯</div><div class="n">Stage 6</div><h4>Adoption</h4><div class="s">Scaling &amp; optimization</div></div><div class="ig-cell"><b>User</b>Deepens across areas, defines processes &amp; optimization</div><div class="ig-cell"><b>Brain</b>Optimizes &amp; automates processes, more connected</div><div class="ig-cell feel"><b>Feeling</b>😍 In control, leading &amp; efficient</div><div class="ig-cell"><b>Touchpoints</b>Focused plans, configuration, AI Agents</div><div class="ig-cell"><b>Outcome</b>✅ High potential, automated processes</div></div>
+      <div class="ig-stage" style="--c:#1e3a8a"><div class="ig-stage-h"><div class="e">🚀</div><div class="n">Stage 7</div><h4>Mastery &amp; growth</h4><div class="s">Advanced management via Brain</div></div><div class="ig-cell"><b>User</b>Manages all areas &amp; executes via Brain as a super-manager</div><div class="ig-cell"><b>Brain</b>Manages, drives &amp; leads continuous growth</div><div class="ig-cell feel"><b>Feeling</b>🏆 Full control, ongoing growth</div><div class="ig-cell"><b>Touchpoints</b>Dashboard, control, advanced execution, org-wide</div><div class="ig-cell"><b>Outcome</b>✅ Continuous personal &amp; organizational growth</div></div>
+    </div></div>
+    <div class="ig-loop">↻ A continuous improvement loop with Brain</div>
+    <div class="ig-hint">← swipe to see all stages</div>
   </div>
 
   <!-- VIDEO IDEAS -->
@@ -275,19 +310,18 @@
 
   <!-- ADOPTION SCORE -->
   <div class="sec">
-    <h2 class="sec-title">Success metrics — <em>Brain Adoption Score</em></h2>
-    <p class="sec-sub">A complete picture of usage and impact — in 30 seconds you see whether Brain was truly adopted, not just installed.</p>
-    <div class="impl-grid">
-      <div class="impl-card"><div class="num">01</div><h3>Active users %</h3><div class="impl-target">Target: 70%–90%</div></div>
-      <div class="impl-card"><div class="num">02</div><h3>Weekly minutes per user</h3><div class="impl-target">Target: 20–60 min</div></div>
-      <div class="impl-card"><div class="num">03</div><h3>Users who took a real action %</h3><div class="impl-target">Target: 60%–80%</div></div>
-      <div class="impl-card"><div class="num">04</div><h3>Tasks completed %</h3><div class="impl-target">Target: 50%–80%</div></div>
-      <div class="impl-card"><div class="num">05</div><h3>Managers using regularly %</h3><div class="impl-target">Target: 80%–100%</div></div>
-      <div class="impl-card"><div class="num">06</div><h3>Perceived value score (1–10)</h3><div class="impl-target">Target: 8+</div></div>
-      <div class="impl-card"><div class="num">07</div><h3>Active processes</h3><div class="impl-target">Target: 3–10</div></div>
-      <div class="impl-card"><div class="num">08</div><h3>Weekly returning users · Retention</h3><div class="impl-target">Target: 70%–90%</div></div>
+    <div class="ig-head"><h2 class="sec-title">Brain adoption metrics — <em>Brain Adoption Score</em></h2><p class="sec-sub">A complete picture of usage and impact in the organization (sample values shown).</p></div>
+    <div class="ig-mets">
+      <div class="ig-met" style="--c:#10b981"><div class="ig-no">1</div><div class="ig-ic">👥</div><h4>Active users</h4><div class="big">78%</div><svg class="ig-donut" width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="27" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="8"/><circle cx="39" cy="39" r="27" fill="none" stroke="#10b981" stroke-width="8" stroke-linecap="round" stroke-dasharray="132.324 37.3221" transform="rotate(-90 39 39)"/><text x="39" y="44" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">78%</text></svg><div class="tgt">Target: 70%–90%</div></div>
+      <div class="ig-met" style="--c:#3b82f6"><div class="ig-no">2</div><div class="ig-ic">⏱️</div><h4>Weekly minutes per user</h4><div class="big">32</div><div class="ig-bar"><i style="width:53%"></i></div><div class="tgt">Target: 20–60 min</div></div>
+      <div class="ig-met" style="--c:#8b5cf6"><div class="ig-no">3</div><div class="ig-ic">✅</div><h4>Users who took a real action</h4><div class="big">72%</div><svg class="ig-donut" width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="27" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="8"/><circle cx="39" cy="39" r="27" fill="none" stroke="#8b5cf6" stroke-width="8" stroke-linecap="round" stroke-dasharray="122.145 47.5009" transform="rotate(-90 39 39)"/><text x="39" y="44" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">72%</text></svg><div class="tgt">Target: 60%–80%</div></div>
+      <div class="ig-met" style="--c:#06b6d4"><div class="ig-no">4</div><div class="ig-ic">📋</div><h4>Tasks completed</h4><div class="big">65%</div><svg class="ig-donut" width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="27" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="8"/><circle cx="39" cy="39" r="27" fill="none" stroke="#06b6d4" stroke-width="8" stroke-linecap="round" stroke-dasharray="110.27 59.3761" transform="rotate(-90 39 39)"/><text x="39" y="44" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">65%</text></svg><div class="tgt">Target: 50%–80%</div></div>
+      <div class="ig-met" style="--c:#f59e0b"><div class="ig-no">5</div><div class="ig-ic">🧑‍💼</div><h4>Managers using regularly</h4><div class="big">92%</div><svg class="ig-donut" width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="27" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="8"/><circle cx="39" cy="39" r="27" fill="none" stroke="#f59e0b" stroke-width="8" stroke-linecap="round" stroke-dasharray="156.074 13.5717" transform="rotate(-90 39 39)"/><text x="39" y="44" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">92%</text></svg><div class="tgt">Target: 80%–100%</div></div>
+      <div class="ig-met" style="--c:#3b82f6"><div class="ig-no">6</div><div class="ig-ic">⭐</div><h4>Perceived value score (1–10)</h4><div class="big">8.6</div><div class="ig-bar"><i style="width:86%"></i></div><div class="tgt">Target: 8+</div></div>
+      <div class="ig-met" style="--c:#10b981"><div class="ig-no">7</div><div class="ig-ic">📊</div><h4>Active processes</h4><div class="big">6</div><div class="ig-tags"><span>Innovation</span><span>Service</span><span>Sales</span><span>Professionalism</span><span>Automation</span></div><div class="tgt" style="margin-top:8px">Target: 3–10</div></div>
+      <div class="ig-met" style="--c:#a855f7"><div class="ig-no">8</div><div class="ig-ic">🔄</div><h4>Weekly returning users (Retention)</h4><div class="big">81%</div><svg class="ig-donut" width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="27" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="8"/><circle cx="39" cy="39" r="27" fill="none" stroke="#a855f7" stroke-width="8" stroke-linecap="round" stroke-dasharray="137.413 32.2327" transform="rotate(-90 39 39)"/><text x="39" y="44" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">81%</text></svg><div class="tgt">Target: 70%–90%</div></div>
     </div>
-    <div class="impl-final" style="margin-top:24px">Successful adoption = regular use + real actions + high perceived value + active processes + results.</div>
+    <div class="ig-foot">🎯 Goal: make Brain an inseparable part of every employee’s daily work — successful adoption = regular use + real actions + high perceived value + active processes + results.</div>
   </div>
 
   <div class="impl-support">
