@@ -81,27 +81,43 @@
   document.getElementById('vidClose').addEventListener('click',closeVid);
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeVid();});
 
-  function fallback(){
-    grid.innerHTML='<div class="vid-empty">לצפייה בכל הסרטונים: <a href="'+CHANNEL_URL+'" target="_blank" rel="noopener" style="color:var(--teal)">ערוץ היוטיוב שלנו ↗</a></div>'
-      +'<div style="grid-column:1/-1;max-width:900px;margin:8px auto 0;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--border)"><iframe width="100%" height="100%" style="border:0" src="https://www.youtube.com/embed/videoseries?list='+UPLOADS_PLAYLIST+'" title="Brain Co-Manager" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>';
-  }
+  var RSS='https://www.youtube.com/feeds/videos.xml?channel_id=UCWF03qbriOtNCx8M19QFGQQ';
+  var PROXY='https://api.allorigins.win/raw?url=';
 
-  fetch('/.netlify/functions/videos')
-    .then(function(r){if(!r.ok)throw 0;return r.json();})
-    .then(function(data){
-      var vids=(data&&data.videos)||[];
-      if(!vids.length){fallback();return;}
-      grid.innerHTML='';
-      vids.forEach(function(v){
-        var card=document.createElement('div');
-        card.className='vid-card';
-        card.innerHTML='<div class="vid-thumb"><img loading="lazy" src="'+v.thumb+'" alt=""><div class="vid-play"><span></span></div></div>'
-          +'<div class="vid-meta"><div class="vid-title">'+escapeHtml(v.title)+'</div><div class="vid-date">'+fmtDate(v.published)+'</div></div>';
-        card.addEventListener('click',function(){openVid(v.id);});
-        grid.appendChild(card);
-      });
-    })
-    .catch(function(){fallback();});
+  function render(vids){
+    if(!vids||!vids.length){linkFallback();return;}
+    grid.innerHTML='';
+    vids.forEach(function(v){
+      var card=document.createElement('div');
+      card.className='vid-card';
+      card.innerHTML='<div class="vid-thumb"><img loading="lazy" src="'+v.thumb+'" alt=""><div class="vid-play"><span></span></div></div>'
+        +'<div class="vid-meta"><div class="vid-title">'+escapeHtml(v.title)+'</div><div class="vid-date">'+fmtDate(v.published)+'</div></div>';
+      card.addEventListener('click',function(){openVid(v.id);});
+      grid.appendChild(card);
+    });
+  }
+  function linkFallback(){
+    grid.innerHTML='<div class="vid-empty">לא הצלחנו לטעון את הסרטונים כרגע. <a href="'+CHANNEL_URL+'" target="_blank" rel="noopener" style="color:var(--teal)">צפו בערוץ היוטיוב שלנו ↗</a></div>';
+  }
+  function parseRss(xml){
+    var doc=new DOMParser().parseFromString(xml,'text/xml');
+    var entries=doc.getElementsByTagName('entry');var out=[];
+    for(var i=0;i<entries.length;i++){
+      var e=entries[i];
+      var idEl=e.getElementsByTagName('yt:videoId')[0]||e.getElementsByTagName('videoId')[0];
+      if(!idEl)continue;var id=(idEl.textContent||'').trim();if(!id)continue;
+      var tEl=e.getElementsByTagName('media:title')[0]||e.getElementsByTagName('title')[0];
+      var pEl=e.getElementsByTagName('published')[0];
+      out.push({id:id,title:tEl?(tEl.textContent||'').trim():'',published:pEl?(pEl.textContent||'').trim():'',thumb:'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg'});
+    }
+    return out;
+  }
+  function fromFunction(){return fetch('/.netlify/functions/videos').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){return (d&&d.videos)||[];});}
+  function fromProxy(){return fetch(PROXY+encodeURIComponent(RSS)).then(function(r){if(!r.ok)throw 0;return r.text();}).then(parseRss);}
+
+  fromFunction()
+    .then(function(v){if(v&&v.length){render(v);}else{return fromProxy().then(render);}})
+    .catch(function(){fromProxy().then(render).catch(linkFallback);});
 })();
 </script>
 </body>
