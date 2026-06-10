@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="facebook-domain-verification" content="gzjgv9eghct29v046qzstfzum02ncz" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fast, Easy Onboarding | Brain Co-Manager</title>
+<meta name="description" content="Fast, easy onboarding — usable in 3 minutes. No ERP, no integrations, no IT project. Plug & Play, gradual rollout, personal guidance, and value proof within months.">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+<style>
+.impl-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.impl-chip{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border:1px solid rgba(0,212,170,.3);background:rgba(0,212,170,.07);border-radius:999px;font-size:13px;font-weight:700;color:var(--sky)}
+.impl-chip::before{content:'✓';color:var(--teal);font-weight:900}
+.impl-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:8px}
+.impl-flow-step{padding:14px 24px;border:1px solid var(--border);background:rgba(45,156,255,.06);border-radius:14px;font-weight:800;color:var(--white);text-align:center;font-size:15px}
+.impl-flow-step small{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-top:3px}
+.impl-flow-arrow{color:var(--teal);font-size:20px;font-weight:900}
+.impl-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px}
+.impl-step{position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 22px 20px}
+.impl-step-n{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--bright));color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:15px}
+.impl-step-t{font-size:15px;font-weight:700;color:var(--white);line-height:1.5}
+.impl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.impl-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;transition:transform .25s,border-color .25s}
+.impl-card:hover{border-color:rgba(45,156,255,.4);transform:translateY(-3px)}
+.impl-card .num{font-size:12px;font-weight:900;letter-spacing:.1em;color:var(--teal)}
+.impl-card h3{font-size:17px;font-weight:800;color:var(--white);margin:6px 0 6px}
+.impl-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.impl-card ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px}
+.impl-card li{font-size:12.5px;color:var(--sky);background:rgba(45,156,255,.07);border:1px solid var(--border);border-radius:8px;padding:5px 10px}
+.impl-result{background:linear-gradient(135deg,rgba(45,156,255,.08),rgba(0,212,170,.08));border:1px solid rgba(0,212,170,.3);border-radius:20px;padding:28px 32px;margin-top:24px}
+.impl-result h4{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--teal);margin-bottom:16px}
+.impl-check{display:flex;flex-wrap:wrap;gap:10px}
+.impl-check span{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--white)}
+.impl-check span::before{content:'✅'}
+.impl-final{background:linear-gradient(135deg,rgba(0,212,170,.1),rgba(45,156,255,.06));border:1px solid rgba(0,212,170,.35);border-radius:20px;padding:32px 36px;text-align:center;font-size:clamp(16px,2vw,21px);font-weight:700;color:var(--white);line-height:1.6}
+.impl-final b{background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.impl-cta{text-align:center;margin-top:40px}
+.impl-cta a{display:inline-flex;align-items:center;gap:9px;padding:15px 34px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--bright));color:#fff;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 12px 34px -12px rgba(45,156,255,.6);transition:transform .2s}
+.impl-cta a:hover{transform:translateY(-2px)}
+.impl-phase-tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;color:var(--navy);background:var(--teal);border-radius:8px;padding:5px 12px;margin-bottom:14px}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="nav-placeholder"></div>
+<div class="page">
+
+  <div class="page-hero">
+    <div class="page-tag">ONBOARDING</div>
+    <h1 class="page-title">Fast, easy onboarding — <em>live in minutes</em></h1>
+    <p class="page-sub">Usable in 3 minutes. No ERP, no integrations, no IT project — Plug &amp; Play, zero complexity. No need to fear a software rollout.</p>
+    <div class="impl-chips">
+      <span class="impl-chip">No ERP</span>
+      <span class="impl-chip">No integrations</span>
+      <span class="impl-chip">No IT project</span>
+      <span class="impl-chip">Plug &amp; Play</span>
+      <span class="impl-chip">Zero complexity</span>
+    </div>
+  </div>
+
+  <!-- GRADUAL ROLLOUT -->
+  <div class="sec">
+    <h2 class="sec-title">A <em>gradual, safe</em> rollout</h2>
+    <p class="sec-sub">Start small, grow with confidence. Pilot with a small group, then expand gradually across the whole organization — at your pace.</p>
+    <div class="impl-flow">
+      <div class="impl-flow-step">20 users<small>Initial pilot</small></div>
+      <div class="impl-flow-arrow">→</div>
+      <div class="impl-flow-step">100 users<small>Expansion</small></div>
+      <div class="impl-flow-arrow">→</div>
+      <div class="impl-flow-step">200+ users<small>Growth</small></div>
+      <div class="impl-flow-arrow">→</div>
+      <div class="impl-flow-step">Whole org<small>Full rollout</small></div>
+    </div>
+  </div>
+
+  <!-- JOURNEY -->
+  <div class="sec sec-alt">
+    <h2 class="sec-title">Your <em>onboarding journey</em></h2>
+    <p class="sec-sub">A simple process, personally guided from day one.</p>
+    <div class="impl-steps">
+      <div class="impl-step"><div class="impl-step-n">1</div><div class="impl-step-t">Get a link + our YouTube channel — and explore</div></div>
+      <div class="impl-step"><div class="impl-step-n">2</div><div class="impl-step-t">Receive product training videos</div></div>
+      <div class="impl-step"><div class="impl-step-n">3</div><div class="impl-step-t">Close personal guidance throughout (Kobi &amp; Donna)</div></div>
+      <div class="impl-step"><div class="impl-step-n">4</div><div class="impl-step-t">Launch your first campaign</div></div>
+      <div class="impl-step"><div class="impl-step-n">5</div><div class="impl-step-t">Work with the Cockpit / menu as your control center</div></div>
+      <div class="impl-step"><div class="impl-step-n">6</div><div class="impl-step-t">Get a one-pager and videos on more use cases</div></div>
+      <div class="impl-step"><div class="impl-step-n">7</div><div class="impl-step-t">Continuously measure satisfaction — WhatsApp survey or in-product</div></div>
+    </div>
+  </div>
+
+  <!-- PHASE A -->
+  <div class="sec">
+    <div class="impl-phase-tag">PHASE 1</div>
+    <h2 class="sec-title">Fast onboarding <em>&amp; value proof</em> <span style="font-size:.5em;font-weight:700;color:var(--muted)">(0–6 months)</span></h2>
+    <p class="sec-sub">No ERP · No integrations · No IT project</p>
+    <div class="impl-grid">
+      <div class="impl-card">
+        <div class="num">01</div><h3>Campaigner &amp; Implementor Engine</h3>
+        <p>Brain's engine for motivation, encouragement and execution. Launch any initiative, goal or change — from day one.</p>
+        <ul><li>Videos</li><li>Images</li><li>Messages</li><li>Reminders</li><li>Follow-Up</li><li>Tasks</li></ul>
+      </div>
+      <div class="impl-card">
+        <div class="num">02</div><h3>Automatic onboarding campaign</h3>
+        <p>Right after go-live:</p>
+        <ul><li>30 videos</li><li>30 images</li><li>Calls to action</li><li>90-day onboarding plan</li></ul>
+      </div>
+      <div class="impl-card">
+        <div class="num">03</div><h3>Advanced Follow-Upper</h3>
+        <p>A smart tracking engine that makes sure things actually happen:</p>
+        <ul><li>Commitment tracking</li><li>Smart reminders</li><li>Closing execution loops</li><li>Persistence &amp; adoption</li></ul>
+      </div>
+      <div class="impl-card">
+        <div class="num">04</div><h3>The organizational knowledge book</h3>
+        <p>All organizational knowledge in one place:</p>
+        <ul><li>Procedures</li><li>Best Practices</li><li>Workflows</li><li>Q&amp;A</li><li>Accumulated knowledge</li></ul>
+      </div>
+      <div class="impl-card">
+        <div class="num">05</div><h3>Management Cockpit</h3>
+        <p>An instant, ready-to-use control screen:</p>
+        <ul><li>Status overview</li><li>Tasks</li><li>Exceptions</li><li>Opportunities</li><li>Priorities</li></ul>
+      </div>
+      <div class="impl-card">
+        <div class="num">06</div><h3>Personal Co-Manager</h3>
+        <p>A personal management assistant for every manager and employee:</p>
+        <ul><li>Order &amp; organization</li><li>Decision-making</li><li>Planning</li><li>Tracking</li><li>Execution</li></ul>
+      </div>
+      <div class="impl-card">
+        <div class="num">07</div><h3>Measurement &amp; ROI proof</h3>
+        <p>See the impact in numbers:</p>
+        <ul><li>Usage</li><li>Engagement</li><li>Adoption</li><li>Performance</li><li>Results</li></ul>
+      </div>
+      <div class="impl-card">
+        <div class="num">08</div><h3>Organizational expansion</h3>
+        <p>From an initial pilot to a broad rollout across the whole organization — at your pace.</p>
+      </div>
+    </div>
+
+    <div class="impl-result">
+      <h4>THE RESULT AFTER A FEW MONTHS</h4>
+      <div class="impl-check">
+        <span>Campaigner &amp; Implementor Engine</span>
+        <span>Automatic Follow-Up</span>
+        <span>Organizational knowledge book</span>
+        <span>Management Cockpit</span>
+        <span>Personal Co-Manager for every employee &amp; manager</span>
+        <span>Improved adoption, engagement &amp; performance</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE B -->
+  <div class="sec sec-alt">
+    <div class="impl-phase-tag">PHASE 2</div>
+    <h2 class="sec-title">Connecting to <em>your org systems</em></h2>
+    <p class="sec-sub">When you're ready — Brain connects deeply to your organization's infrastructure.</p>
+    <div class="impl-grid">
+      <div class="impl-card"><div class="num">01</div><h3>Connect to ERP, CRM &amp; BI</h3></div>
+      <div class="impl-card"><div class="num">02</div><h3>Data-driven organizational Cockpit</h3></div>
+      <div class="impl-card"><div class="num">03</div><h3>Smart role-based Agents</h3></div>
+      <div class="impl-card"><div class="num">04</div><h3>Automation of organizational processes</h3></div>
+      <div class="impl-card"><div class="num">05</div><h3>Real-time, data-driven management &amp; execution</h3></div>
+    </div>
+    <div class="impl-final">
+      Brain becomes your organization's <b>Execution Intelligence</b> layer — one system that moves people, implements processes, and connects knowledge, execution and results.
+    </div>
+  </div>
+
+  <div class="impl-cta">
+    <a href="demo.html">Let's start — book a demo →</a>
+  </div>
+  <div style="height:50px"></div>
+
+  <div id="footer-placeholder"></div>
+</div>
+
+<script src="../shared.js"></script>
+<script>renderNav('implementation','en');renderFooter();</script>
+</body>
+</html>
