@@ -82,7 +82,8 @@
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeVid();});
 
   var RSS='https://www.youtube.com/feeds/videos.xml?channel_id=UCWF03qbriOtNCx8M19QFGQQ';
-  var PROXY='https://api.allorigins.win/raw?url=';
+  var PROXIES=['https://api.allorigins.win/raw?url=','https://corsproxy.io/?url='];
+  function withTimeout(p,ms){return new Promise(function(res,rej){var t=setTimeout(function(){rej(new Error('timeout'));},ms||9000);p.then(function(v){clearTimeout(t);res(v);},function(e){clearTimeout(t);rej(e);});});}
 
   function render(vids){
     if(!vids||!vids.length){linkFallback();return;}
@@ -112,12 +113,13 @@
     }
     return out;
   }
-  function fromFunction(){return fetch('/.netlify/functions/videos').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){return (d&&d.videos)||[];});}
-  function fromProxy(){return fetch(PROXY+encodeURIComponent(RSS)).then(function(r){if(!r.ok)throw 0;return r.text();}).then(parseRss);}
+  function fromFunction(){return withTimeout(fetch('/.netlify/functions/videos'),9000).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){return (d&&d.videos)||[];});}
+  function fromProxy(i){i=i||0;if(i>=PROXIES.length)return Promise.reject(0);return withTimeout(fetch(PROXIES[i]+encodeURIComponent(RSS)),9000).then(function(r){if(!r.ok)throw 0;return r.text();}).then(parseRss).then(function(v){if(v&&v.length)return v;throw 0;}).catch(function(){return fromProxy(i+1);});}
 
   fromFunction()
-    .then(function(v){if(v&&v.length){render(v);}else{return fromProxy().then(render);}})
-    .catch(function(){fromProxy().then(render).catch(linkFallback);});
+    .then(function(v){if(v&&v.length)return v;return fromProxy(0);})
+    .then(render)
+    .catch(function(){linkFallback();});
 })();
 </script>
 </body>
