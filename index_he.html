@@ -628,26 +628,30 @@ nav{
 
 <!-- POSITIONING BAND -->
 <style>
-.posband{position:relative;padding:54px 24px;text-align:center;background:linear-gradient(180deg,rgba(2,13,26,0) 0%,rgba(8,22,40,.55) 50%,rgba(2,13,26,0) 100%);border-top:1px solid rgba(45,156,255,.12);border-bottom:1px solid rgba(45,156,255,.12);overflow:hidden}
-.posband::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--teal),var(--bright),transparent)}
-.posband-eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--teal);margin-bottom:20px;opacity:.9}
-.posband-stage{position:relative;max-width:880px;margin:0 auto;min-height:118px;display:flex;align-items:center;justify-content:center}
-.posband-line{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease;font-size:clamp(19px,2.5vw,30px);font-weight:800;line-height:1.5;color:#dbe7f5}
+.posband{position:relative;padding:64px 24px;display:flex;justify-content:center}
+.posband-card{position:relative;width:100%;max-width:920px;padding:46px 40px 40px;border-radius:22px;background:linear-gradient(160deg,rgba(10,28,52,.85),rgba(4,16,32,.92));border:1px solid rgba(45,156,255,.18);box-shadow:0 30px 80px -40px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.04);text-align:center;overflow:hidden}
+.posband-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:2px;background:linear-gradient(90deg,transparent,var(--teal),var(--bright),transparent)}
+.posband-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;color:#9fd9ec;background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.25);padding:7px 16px;border-radius:999px;margin-bottom:26px}
+.posband-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+.posband-stage{position:relative;max-width:760px;margin:0 auto;min-height:104px;display:flex;align-items:center;justify-content:center}
+.posband-line{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s ease;font-size:clamp(18px,2.3vw,27px);font-weight:700;line-height:1.6;color:#eaf2fc}
 .posband-line.active{opacity:1;transform:translateY(0)}
-.posband-line b{background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
-.posband-dots{display:flex;gap:8px;justify-content:center;margin-top:26px}
-.posband-dot{width:7px;height:7px;border-radius:50%;background:rgba(107,138,170,.35);transition:.4s}
-.posband-dot.active{background:var(--teal);box-shadow:0 0 10px var(--teal);width:22px;border-radius:4px}
-@media(max-width:640px){.posband{padding:40px 18px}.posband-stage{min-height:185px}}
+.posband-line b{color:var(--teal);font-weight:900;text-shadow:0 0 18px rgba(0,212,170,.35)}
+.posband-dots{display:flex;gap:9px;justify-content:center;margin-top:30px}
+.posband-dot{width:8px;height:8px;border-radius:50%;background:rgba(120,150,185,.3);transition:.4s}
+.posband-dot.active{background:var(--teal);box-shadow:0 0 12px var(--teal);width:24px;border-radius:5px}
+@media(max-width:640px){.posband{padding:44px 16px}.posband-card{padding:34px 22px 30px}.posband-stage{min-height:172px}.posband-line{font-size:18px;line-height:1.55}}
 </style>
 <section class="posband" aria-label="מיצוב">
-  <div class="posband-eyebrow">קטגוריה חדשה של תוכנה ארגונית</div>
-  <div class="posband-stage" id="posStage">
-    <div class="posband-line active">Brain הוא ה-<b>Analysis &amp; Execution Engine</b> הראשון בעולם — הופך תובנות ארגוניות לביצוע ולתוצאות מדידות.</div>
-    <div class="posband-line">קטגוריה חדשה של תוכנה ארגונית: ERP מנהל תפעול, BI מנהל תובנות, <b>Brain מנהל ביצוע</b>.</div>
-    <div class="posband-line">אחרי ERP ו-BI מגיע ה-<b>Analysis &amp; Execution Engine</b> — מניתוח, לפעולה, לתוצאות.</div>
+  <div class="posband-card">
+    <div class="posband-eyebrow">קטגוריה חדשה של תוכנה ארגונית</div>
+    <div class="posband-stage" id="posStage">
+      <div class="posband-line active">Brain הוא ה-<b>Analysis &amp; Execution Engine</b> הראשון בעולם — הופך תובנות ארגוניות לביצוע ולתוצאות מדידות.</div>
+      <div class="posband-line">ERP מנהל תפעול. BI מנהל תובנות. <b>Brain מנהל ביצוע.</b></div>
+      <div class="posband-line">אחרי ERP ו-BI מגיע ה-<b>Analysis &amp; Execution Engine</b> — מניתוח, לפעולה, לתוצאות.</div>
+    </div>
+    <div class="posband-dots" id="posDots"></div>
   </div>
-  <div class="posband-dots" id="posDots"></div>
 </section>
 <script>
 (function(){
@@ -737,7 +741,7 @@ nav{
 </div>
 
 <!-- FEATURES -->
-<div style="position:relative;z-index:1;padding:52px 60px 40px;" class="reveal">
+<div style="position:relative;z-index:1;padding:52px clamp(18px,5vw,60px) 40px;" class="reveal">
   <div style="text-align:center;margin-bottom:36px">
     <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:10px">HOW IT WORKS</div>
     <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;color:var(--white);letter-spacing:-.02em">לא רק ידע – <em style="font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">שינוי התנהגות</em></h2>
