@@ -229,6 +229,14 @@
     @keyframes robotglow{50%{opacity:.6;transform:scale(1.06)}}
     .parr svg{animation:chev 1.6s ease-in-out infinite}
   }
+
+  @media (max-width:900px){
+    /* mobile: crisp & full — no fade-in reveals, no dimmed phones */
+    .reveal{opacity:1!important;transform:none!important;transition:none!important}
+    .up,.up.inup{opacity:1!important;transform:none!important;transition:none!important}
+    .phones .pwrap,.phones.seq .pwrap,.phones.seq .pwrap.act{opacity:1!important;transform:none!important}
+    .phones.seq .pwrap.act .ph{box-shadow:0 16px 40px rgba(0,0,0,.5)}
+  }
 </style>
 </head>
 <body>
@@ -459,6 +467,7 @@
 
   var seqTimer=null, seqEl=null;
   function startSeq(slide){
+    if(window.matchMedia('(max-width:900px)').matches) return;
     var box=slide.querySelector('.phones'); if(!box||!reducedOK||seqEl===box) return;
     var ph=[].slice.call(box.querySelectorAll('.pwrap')); if(!ph.length) return;
     ph.forEach(function(p){ p.style.transitionDelay='0ms'; });
