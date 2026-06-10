@@ -188,7 +188,7 @@
     .flow::after{animation:flowline 4s linear infinite}
     @keyframes flowline{0%{background-position:120% 0}100%{background-position:-120% 0}}
     .flow .arr svg{animation:chev 1.5s ease-in-out infinite}
-    @keyframes chev{0%,100%{transform:translateX(0);opacity:.5}50%{transform:translateX(-5px);opacity:1}}
+    @keyframes chev{0%{transform:translateX(9px);opacity:0}25%{opacity:1}75%{opacity:1}100%{transform:translateX(-11px);opacity:0}}
     .wave span{animation:eq 1.1s ease-in-out infinite}
     .wave span:nth-child(1){animation-delay:0s}.wave span:nth-child(2){animation-delay:.12s}.wave span:nth-child(3){animation-delay:.24s}.wave span:nth-child(4){animation-delay:.36s}.wave span:nth-child(5){animation-delay:.18s}.wave span:nth-child(6){animation-delay:.30s}.wave span:nth-child(7){animation-delay:.06s}.wave span:nth-child(8){animation-delay:.22s}.wave span:nth-child(9){animation-delay:.14s}
     @keyframes eq{0%,100%{height:8px}50%{height:32px}}
@@ -207,6 +207,28 @@
   .vthumb img{width:42px;height:58px;object-fit:cover;border-radius:9px;flex:none}
   .vthumb span{font-size:14.5px;font-weight:700}
   @media (max-width:900px){ .vsel{width:100%;flex-direction:row;flex-wrap:wrap} .vthumb{flex:1;min-width:140px} }
+
+  /* ---- cover robot ---- */
+  .cover-grid{display:flex;align-items:center;gap:50px}
+  .cover-text{flex:1;min-width:0}
+  .cover-robot{flex:none;position:relative}
+  .cover-robot video{width:min(32vw,360px);aspect-ratio:1;object-fit:cover;border-radius:28px;border:1px solid rgba(0,212,170,.4);box-shadow:0 0 64px rgba(0,212,170,.22),0 30px 80px rgba(0,0,0,.55);display:block;background:#04101d}
+  .cover-robot::before{content:"";position:absolute;inset:-16px;border-radius:38px;background:radial-gradient(circle at 50% 45%,rgba(0,212,170,.32),transparent 68%);filter:blur(24px);z-index:-1}
+  /* ---- inter-screen arrows (in practice) ---- */
+  .phones{align-items:flex-start}
+  .parr{flex:none;align-self:flex-start;margin-top:148px;color:var(--teal)}
+  .parr svg{width:24px;height:24px;display:block}
+  @media (max-width:900px){
+    .cover-grid{flex-direction:column-reverse;gap:26px;text-align:center}
+    .cover-text{text-align:right}
+    .cover-robot video{width:190px}
+    .parr{display:none}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .cover-robot::before{animation:robotglow 3.4s ease-in-out infinite}
+    @keyframes robotglow{50%{opacity:.6;transform:scale(1.06)}}
+    .parr svg{animation:chev 1.6s ease-in-out infinite}
+  }
 </style>
 </head>
 <body>
@@ -234,19 +256,19 @@
   <section class="slide" data-title="הכאב">
     <div class="inner">
       <div class="reveal">
-        <div class="eyebrow">01 · <b>הכאב</b></div>
-        <h2>יש בעיית ניהול <span class="hl">בדרגי הביניים</span></h2>
-        <p class="lead">לא חוסר רצון — חוסר זמן וכלים. המוח עמוס, אז לא מגיעים לדברים שמזיזים תוצאות.</p>
+        <div class="eyebrow">01 · <b>הצורך</b></div>
+        <h2>הכל כבר קיים — <span class="hl">חוץ ממערכת ניהול</span></h2>
+        <p class="lead">ERP לנתונים, BI לדוחות, מייל ו‑Monday למשימות — אבל אין מערכת שמניעה ביצוע בשטח. וזה בדיוק מה שחסר.</p>
       </div>
       <div class="pgrid stag">
-        <div class="pain"><div class="h">עומס</div><p>לא מגיעים להדרכה, עידוד ושימור עובדים. אין זמן לדברים השורשיים.</p></div>
-        <div class="pain"><div class="h">אפסייל</div><p>לעובדים אין משפטי מכירה. חוששים מה להגיד — אז לא דוחפים.</p></div>
-        <div class="pain"><div class="h">מקצוענות</div><p>המון מוצרים, בלי משפטי יתרון ברורים. קשה לזכור, לא נגיש.</p></div>
-        <div class="pain"><div class="h">שורשים</div><p>לא מבינים למה אנשים לא עושים — אז אי אפשר לפתור את זה.</p></div>
-        <div class="pain"><div class="h">הטמעה</div><p>אין מי שיעשה פולואפ שוב ושוב, עד שתהליך הופך להרגל.</p></div>
-        <div class="pain"><div class="h">מדידה</div><p>אין מדידה של מדדי ההשפעה: אנרגיות, פתיחות, מודעות, מענה.</p></div>
+        <div class="pain"><div class="h">עומס</div><p>התפעול השוטף בולע את היום — הדרכה ועידוד נדחקים.</p></div>
+        <div class="pain"><div class="h">אפסייל</div><p>לעובדים אין משפטי מכירה מוכנים — אז אפסייל פשוט לא קורה.</p></div>
+        <div class="pain"><div class="h">מקצוענות</div><p>המון מוצרים, בלי משפטי יתרון נגישים — קשה לזכור הכל.</p></div>
+        <div class="pain"><div class="h">שורשים</div><p>קשה לדעת למה אנשים לא מבצעים — ובלי זה אי אפשר לפתור.</p></div>
+        <div class="pain"><div class="h">הטמעה</div><p>תהליך הופך להרגל רק עם פולואפ חוזר — שאין מי שיעשה ידנית.</p></div>
+        <div class="pain"><div class="h">מדידה</div><p>מדדי ההשפעה — אנרגיות, פתיחות, מודעות — פשוט לא נמדדים.</p></div>
       </div>
-      <div class="punch reveal">יש ERP לנתונים, BI לדוחות, מייל ו‑Monday למשימות — <b>אבל אין מערכת ניהול</b>. כשמנהל מגיע בבוקר לעבודה, אין לו אחת.</div>
+      <div class="punch reveal">לא חסר ידע — <b>חסרה מערכת שדואגת שהוא יקרה בשטח.</b></div>
     </div>
   </section>
 
@@ -398,6 +420,7 @@
   var bar=document.querySelector('.progress>span');
   var dotsBox=document.querySelector('.dots');
   var pgnum=document.getElementById('pgnum');
+  var PRACTICE='\u05d1\u05e4\u05d5\u05e2\u05dc';
 
   slides.forEach(function(s,i){
     var b=document.createElement('button');
@@ -436,7 +459,7 @@
 
   var seqTimer=null, seqEl=null;
   function startSeq(slide){
-    var box=slide.querySelector('.phones'); if(!box||!reducedOK) return;
+    var box=slide.querySelector('.phones'); if(!box||!reducedOK||seqEl===box) return;
     var ph=[].slice.call(box.querySelectorAll('.pwrap')); if(!ph.length) return;
     ph.forEach(function(p){ p.style.transitionDelay='0ms'; });
     box.classList.add('seq'); seqEl=box; var i=0;
@@ -445,21 +468,32 @@
   }
   function stopSeq(){ if(seqTimer){clearInterval(seqTimer);seqTimer=null;} if(seqEl){ seqEl.classList.remove('seq'); seqEl.querySelectorAll('.pwrap').forEach(function(p){p.classList.remove('act');}); seqEl=null; } }
 
-  var cur=-1;
-  function update(){
-    var h=deck.scrollHeight-deck.clientHeight;
-    bar.style.width=(h>0?(deck.scrollTop/h*100):0)+'%';
-    var best=0,bd=1e9;
-    slides.forEach(function(s,i){ var d=Math.abs(s.offsetTop-deck.scrollTop); if(d<bd){bd=d;best=i;} });
-    activate(slides[best]);
-    if(best!==cur){
-      stopSeq(); cur=best;
-      dots.forEach(function(d,i){d.classList.toggle('on',i===cur);});
-      pgnum.textContent=('0'+(cur+1)).slice(-2);
-      if(slides[cur].getAttribute('data-title')==='בפועל') startSeq(slides[cur]);
-    }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ activate(e.target); if(e.target.getAttribute('data-title')===PRACTICE) startSeq(e.target); }
+        else if(e.target.getAttribute('data-title')===PRACTICE){ stopSeq(); }
+      });
+    },{threshold:0.01});
+    slides.forEach(function(s){io.observe(s);});
+  } else {
+    slides.forEach(activate);
   }
-  deck.addEventListener('scroll',update,{passive:true});
+  setTimeout(function(){ slides.forEach(activate); }, 2500);
+
+  var cur=-1;
+  function updateChrome(){
+    var useDeck = deck.scrollHeight>deck.clientHeight+2;
+    var t,h;
+    if(useDeck){ t=deck.scrollTop; h=deck.scrollHeight-deck.clientHeight; }
+    else { t=window.pageYOffset||document.documentElement.scrollTop||0; h=document.documentElement.scrollHeight-window.innerHeight; }
+    bar.style.width=(h>0? t/h*100:0)+'%';
+    var best=0,bd=1e9;
+    slides.forEach(function(s,i){ var d=Math.abs(s.getBoundingClientRect().top); if(d<bd){bd=d;best=i;} });
+    if(best!==cur){ cur=best; dots.forEach(function(d,i){d.classList.toggle('on',i===cur);}); pgnum.textContent=('0'+(cur+1)).slice(-2); }
+  }
+  deck.addEventListener('scroll',updateChrome,{passive:true});
+  window.addEventListener('scroll',updateChrome,{passive:true});
 
   function go(n){ n=Math.max(0,Math.min(slides.length-1,n)); slides[n].scrollIntoView({behavior:'smooth'}); }
   addEventListener('keydown',function(e){
@@ -468,11 +502,8 @@
     else if(e.key==='Home'){ e.preventDefault(); go(0); }
     else if(e.key==='End'){ e.preventDefault(); go(slides.length-1); }
   });
+  updateChrome();
 
-  if(!reducedOK){ document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
-  update();
-
-  // video selector
   (function(){
     var av=document.getElementById('avvid'); if(!av) return;
     document.querySelectorAll('.vthumb').forEach(function(t){
@@ -484,6 +515,16 @@
         av.load(); var p=av.play(); if(p&&p.catch)p.catch(function(){});
       });
     });
+  })();
+
+  (function(){
+    var box=document.querySelector('section[data-title="'+PRACTICE+'"] .phones'); if(!box) return;
+    var ph=[].slice.call(box.querySelectorAll('.pwrap'));
+    for(var i=ph.length-1;i>0;i--){
+      var a=document.createElement('div'); a.className='parr';
+      a.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>';
+      box.insertBefore(a, ph[i]);
+    }
   })();
 </script>
 </body>
