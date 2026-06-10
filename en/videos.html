@@ -90,7 +90,7 @@
     vids.forEach(function(v){
       var card=document.createElement('div');
       card.className='vid-card';
-      card.innerHTML='<div class="vid-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/'+v.id+'/oardefault.jpg" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg\'" alt=""><div class="vid-play"><span></span></div></div>'
+      card.innerHTML='<div class="vid-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/'+v.id+'/oardefault.jpg" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg\'" onload="if(this.naturalWidth<201&&!this._f){this._f=1;this.src=\'https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg\';}" alt=""><div class="vid-play"><span></span></div></div>'
         +'<div class="vid-meta"><div class="vid-title">'+escapeHtml(v.title)+'</div></div>';
       card.addEventListener('click',function(){openVid(v.id);});
       grid.appendChild(card);
