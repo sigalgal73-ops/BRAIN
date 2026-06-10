@@ -632,6 +632,7 @@ nav{
 .posband-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:2px;background:linear-gradient(90deg,transparent,var(--teal),var(--bright),transparent)}
 .posband-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9fd9ec;background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.25);padding:7px 16px;border-radius:999px;margin-bottom:28px}
 .posband-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+.posband-mark{display:block;width:min(72%,440px);height:auto;margin:8px auto 26px;filter:drop-shadow(0 8px 30px rgba(45,156,255,.3))}
 .posband-stage{display:grid;max-width:720px;margin:0 auto}
 .posband-line{grid-area:1/1;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(8px);transition:opacity .55s ease,transform .55s ease;font-size:clamp(20px,2.4vw,30px);font-weight:800;line-height:1.45;color:#eef4fc;letter-spacing:-.01em}
 .posband-line.active{opacity:1;transform:translateY(0)}
@@ -644,6 +645,7 @@ nav{
 <section class="posband" aria-label="Positioning">
   <div class="posband-card">
     <div class="posband-eyebrow">A New Category of Enterprise Software</div>
+    <img class="posband-mark" src="../execution-engine.png" alt="Execution Engine" loading="lazy">
     <div class="posband-stage" id="posStage">
       <div class="posband-line active">The world's first <b>Analysis &amp; Execution Engine</b>.</div>
       <div class="posband-line">ERP manages operations. BI manages insights. <b>Brain manages execution.</b></div>
