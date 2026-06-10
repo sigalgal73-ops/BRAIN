@@ -11,6 +11,7 @@ function renderNav(activePage, lang) {
     { id: 'what-is-brain', label: 'What is Brain?', href: 'what-is-brain.html' },
     { id: 'diy',      label: 'DIY',        href: 'automated.html' },
     { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
+    { id: 'implementation', label: 'Onboarding', href: 'implementation.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
     { id: 'investors',label: 'Investors',  href: 'investors.html', submenu: [
@@ -35,6 +36,7 @@ function renderNav(activePage, lang) {
     { id: 'what-is-brain', label: 'מה זה Brain?', href: 'what-is-brain.html' },
     { id: 'diy',      label: 'עשה זאת בעצמך',  href: 'automated.html' },
     { id: 'uses',     label: 'שימושים',         href: 'uses.html' },
+    { id: 'implementation', label: 'הטמעה',     href: 'implementation.html' },
     { id: 'smb',      label: 'SMB',             href: 'smb.html' },
     { id: 'roi',      label: 'ROI',             href: 'roi.html' },
     { id: 'investors',label: 'משקיעים',         href: 'investors.html', submenu: [
