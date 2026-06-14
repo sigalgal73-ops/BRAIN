@@ -25,7 +25,7 @@ exports.handler = async (event) => {
         },
         body: JSON.stringify({
           text: clean,
-          model_id: "eleven_multilingual_v2", // עברית טובה + מהיר בהרבה מ-v3. (turbo/flash מהירים יותר אך עברית חלשה)
+          model_id: "eleven_v3", // המודל שמדבר עברית בוודאות (היה הבוקר). turbo/flash/multilingual לא עבדו עברית אצלך
           voice_settings: {
             stability: 0.45,
             similarity_boost: 0.8,
