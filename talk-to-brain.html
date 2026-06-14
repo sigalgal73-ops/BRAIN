@@ -191,7 +191,7 @@ async function speak(text,onend,onstart){
   try{ if(audioCtx.state==='suspended') await audioCtx.resume(); }catch(e){}
   // נשארים במצב "חושב…" עד שהקול באמת מתחיל — שהטקסט והדיבור יופיעו יחד
   try{
-    const ctrl=new AbortController(); const tto=setTimeout(()=>ctrl.abort(),15000);  // לא נחכה לקול יותר מ-15ש'
+    const ctrl=new AbortController(); const tto=setTimeout(()=>ctrl.abort(),45000);  // ElevenLabs יכול להיות איטי (cold start) - נותנים לו זמן
     const r=await fetch(TTS_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({text}),signal:ctrl.signal});
     clearTimeout(tto);
     if(!r.ok) throw new Error('tts '+r.status);
