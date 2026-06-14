@@ -13,6 +13,7 @@ function renderNav(activePage, lang) {
     { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
     { id: 'implementation', label: 'Onboarding', href: 'implementation.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
+    { id: 'success',  label: 'Success Stories', href: 'success-stories.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
     { id: 'investors',label: 'Investors',  href: 'investors.html', submenu: [
       { label: 'Engine Within Engine', href: 'investors-engine.html' },
@@ -25,9 +26,8 @@ function renderNav(activePage, lang) {
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
     { id: 'team',     label: 'Our Network',href: 'team.html' },
-    { id: 'podcast',  label: 'Podcast',    href: 'podcast.html' },
     { id: 'videos',   label: 'Videos',     href: 'videos.html' },
-    { id: 'articles', label: 'Articles',   href: 'articles.html' },
+    { id: 'articles', label: 'Knowledge',  href: 'articles.html' },
     { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 Talk to Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
@@ -39,6 +39,7 @@ function renderNav(activePage, lang) {
     { id: 'implementation', label: 'הטמעה',     href: 'implementation.html' },
     { id: 'smb',      label: 'SMB',             href: 'smb.html' },
     { id: 'roi',      label: 'ROI',             href: 'roi.html' },
+    { id: 'success',  label: 'סיפורי הצלחה',     href: 'success-stories.html' },
     { id: 'investors',label: 'משקיעים',         href: 'investors.html', submenu: [
       { label: 'מנוע בתוך מנוע',    href: 'investors-engine.html' },
       { label: 'הוכחת שווי Brain',  href: 'investors-value.html' },
@@ -50,9 +51,8 @@ function renderNav(activePage, lang) {
     { id: 'demo',     label: 'Demo',            href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'מחירים',          href: 'pricing.html' },
     { id: 'team',     label: 'החברים שלנו',     href: 'team.html' },
-    { id: 'podcast',  label: 'פודקאסט',         href: 'podcast.html' },
     { id: 'videos',   label: 'סרטונים',         href: 'videos.html' },
-    { id: 'articles', label: 'מאמרים',          href: 'articles.html' },
+    { id: 'articles', label: 'ידע',             href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',           href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 דבר עם Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'הצטרפו',           href: 'join.html', cta: true },
@@ -164,7 +164,7 @@ function renderFooter() {
       <a href="smb.html">SMB</a>
       <a href="pricing.html">Pricing</a>
       <a href="../demo.html">Demo</a>
-      <a href="articles.html">Articles</a>
+      <a href="articles.html">Knowledge</a>
       <a href="jobs.html">Careers</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
@@ -188,7 +188,7 @@ function renderFooter() {
       <a href="smb.html">SMB</a>
       <a href="pricing.html">מחירים</a>
       <a href="demo.html">Demo</a>
-      <a href="articles.html">מאמרים</a>
+      <a href="articles.html">ידע</a>
       <a href="jobs.html">דרושים</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
