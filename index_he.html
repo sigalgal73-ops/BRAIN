@@ -771,6 +771,79 @@ nav{
   </div>
 </div>
 
+<style>
+.hv-sec{position:relative;z-index:1;padding:56px clamp(18px,5vw,60px) 30px;max-width:1180px;margin:0 auto}
+.hv-head{text-align:center;margin-bottom:24px}
+.hv-eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--teal);margin-bottom:10px}
+.hv-title{font-size:clamp(24px,3.4vw,38px);font-weight:900;color:var(--white);margin:0 0 10px}
+.hv-title em{font-style:normal;color:var(--bright)}
+.hv-sub{font-size:15px;color:var(--muted);max-width:560px;margin:0 auto;line-height:1.6}
+.hv-strip{display:flex;gap:14px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.hv-strip::-webkit-scrollbar{height:6px}
+.hv-strip::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:99px}
+.hv-card{flex:0 0 auto;width:178px;scroll-snap-align:start;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s}
+.hv-card:hover{transform:translateY(-4px);border-color:rgba(45,156,255,.4);box-shadow:0 18px 40px -24px rgba(0,0,0,.85)}
+.hv-thumb{position:relative;aspect-ratio:9/16;background:#06121f;overflow:hidden}
+.hv-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.hv-card:hover .hv-thumb img{transform:scale(1.05)}
+.hv-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,13,26,.18);transition:background .25s}
+.hv-card:hover .hv-play{background:rgba(2,13,26,.05)}
+.hv-play span{width:46px;height:46px;border-radius:50%;background:rgba(45,156,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(45,156,255,.5)}
+.hv-play span::after{content:'';border-style:solid;border-width:8px 0 8px 14px;border-color:transparent transparent transparent #fff;margin-inline-start:3px}
+.hv-cta{text-align:center;margin-top:6px}
+.hv-cta a{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--bright));color:#fff;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 12px 34px -12px rgba(45,156,255,.6);transition:transform .2s}
+.hv-cta a:hover{transform:translateY(-2px)}
+.hv-loading,.hv-empty{color:var(--muted);font-size:14px;padding:30px;text-align:center;width:100%}
+.hv-modal{position:fixed;inset:0;background:rgba(2,8,18,.92);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+.hv-modal.open{display:flex}
+.hv-modal-in{position:relative;width:min(420px,92vw);aspect-ratio:9/16;max-height:88vh}
+.hv-modal-in iframe{width:100%;height:100%;border:0;border-radius:16px;display:block}
+.hv-close{position:absolute;top:-44px;inset-inline-end:0;background:none;border:0;color:#fff;font-size:30px;cursor:pointer;line-height:1}
+@media(max-width:600px){.hv-close{top:auto;bottom:-46px;inset-inline-end:50%;transform:translateX(50%)}.hv-card{width:150px}}
+</style>
+<!-- HOME VIDEOS -->
+<div class="hv-sec reveal">
+  <div class="hv-head">
+    <div class="hv-eyebrow">▶ סרטונים</div>
+    <h2 class="hv-title">צפו ב-<em>Brain</em> בפעולה</h2>
+    <p class="hv-sub">דקה אחת מראה יותר מאלף מילים — הצצה לסרטונים שלנו. לחצו וצפו.</p>
+  </div>
+  <div class="hv-strip" id="hvStrip"><div class="hv-loading">טוען סרטונים…</div></div>
+  <div class="hv-cta"><a href="videos.html">לכל הסרטונים ←</a></div>
+</div>
+<div class="hv-modal" id="hvModal"><div class="hv-modal-in"><button class="hv-close" id="hvClose" aria-label="close">✕</button><iframe id="hvFrame" src="" title="YouTube video" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></div>
+<script>
+(function(){
+  var strip=document.getElementById('hvStrip'),modal=document.getElementById('hvModal'),frame=document.getElementById('hvFrame');
+  if(!strip||!modal)return;
+  function openV(id){frame.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';modal.classList.add('open');document.body.style.overflow='hidden';}
+  function closeV(){modal.classList.remove('open');frame.src='';document.body.style.overflow='';}
+  modal.addEventListener('click',function(e){if(e.target===modal)closeV();});
+  document.getElementById('hvClose').addEventListener('click',closeV);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeV();});
+  var RSS='https://www.youtube.com/feeds/videos.xml?channel_id=UCWF03qbriOtNCx8M19QFGQQ';
+  var PROXIES=['https://api.allorigins.win/raw?url=','https://corsproxy.io/?url='];
+  function wt(p,ms){return new Promise(function(res,rej){var t=setTimeout(function(){rej(0);},ms||9000);p.then(function(v){clearTimeout(t);res(v);},function(e){clearTimeout(t);rej(e);});});}
+  function render(vids){
+    if(!vids||!vids.length){fb();return;}
+    strip.innerHTML='';
+    vids.slice(0,8).forEach(function(v){
+      var c=document.createElement('div');c.className='hv-card';
+      c.innerHTML='<div class="hv-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/'+v.id+'/oardefault.jpg" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg\'" onload="if(this.naturalWidth<201&&!this._f){this._f=1;this.src=\'https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg\';}" alt=""><div class="hv-play"><span></span></div></div>';
+      c.addEventListener('click',function(){openV(v.id);});
+      strip.appendChild(c);
+    });
+  }
+  function fb(){strip.innerHTML='<div class="hv-empty">צפו בכל הסרטונים ב<a href="https://www.youtube.com/@Brain.co.manager" target="_blank" rel="noopener" style="color:var(--teal)">ערוץ היוטיוב שלנו ↗</a></div>';}
+  function parseRss(xml){var doc=new DOMParser().parseFromString(xml,'text/xml');var es=doc.getElementsByTagName('entry');var o=[];for(var i=0;i<es.length;i++){var e=es[i];var idEl=e.getElementsByTagName('yt:videoId')[0]||e.getElementsByTagName('videoId')[0];if(!idEl)continue;var id=(idEl.textContent||'').trim();if(!id)continue;o.push({id:id});}return o;}
+  function fromFunction(){return wt(fetch('/.netlify/functions/videos'),9000).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){return (d&&d.videos)||[];});}
+  function fromProxy(i){i=i||0;if(i>=PROXIES.length)return Promise.reject(0);return wt(fetch(PROXIES[i]+encodeURIComponent(RSS)),9000).then(function(r){if(!r.ok)throw 0;return r.text();}).then(parseRss).then(function(v){if(v&&v.length)return v;throw 0;}).catch(function(){return fromProxy(i+1);});}
+  function fromRss2Json(){var url='https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(RSS);return wt(fetch(url),9000).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){if(!d||d.status!=='ok'||!d.items)throw 0;var o=[];d.items.forEach(function(it){var m=(it.link||'').match(/[?&]v=([^&]+)/)||(it.guid||'').match(/video:([\w-]+)/);if(!m)return;o.push({id:m[1]});});if(!o.length)throw 0;return o;});}
+  function tryInOrder(fns,i){i=i||0;if(i>=fns.length)return Promise.reject(0);return fns[i]().then(function(v){if(v&&v.length)return v;throw 0;}).catch(function(){return tryInOrder(fns,i+1);});}
+  tryInOrder([fromFunction,fromRss2Json,function(){return fromProxy(0);}]).then(render).catch(fb);
+})();
+</script>
+
 <!-- CTA -->
 <div style="position:relative;z-index:1;padding:36px 60px 60px;" class="reveal">
   <div class="cta-box">
