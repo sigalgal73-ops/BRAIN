@@ -25,7 +25,7 @@ exports.handler = async (event) => {
         },
         body: JSON.stringify({
           text: clean,
-          model_id: "eleven_multilingual_v2", // עברית מצוינת + מהיר בהרבה מ-v3. אם משהו לא טוב — חזרי ל-"eleven_v3"
+          model_id: "eleven_v3", // היחיד שמדבר עברית טוב אצלנו. אל תחליפי — multilingual/turbo/flash יוצאים גיבריש
           voice_settings: {
             stability: 0.45,
             similarity_boost: 0.8,
