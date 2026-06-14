@@ -250,14 +250,21 @@ function startListening(){
 }
 function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 
+// Wake Lock — שומר את המסך דולק בזמן שיחה (קריטי לנהיגה)
+let wakeLock=null;
+async function requestWake(){ try{ if('wakeLock' in navigator && !wakeLock){ wakeLock=await navigator.wakeLock.request('screen'); wakeLock.addEventListener('release',()=>{ wakeLock=null; }); } }catch(e){} }
+async function releaseWake(){ try{ if(wakeLock){ await wakeLock.release(); wakeLock=null; } }catch(e){} }
+// אם חוזרים לטאב והשיחה פעילה — הדפדפן משחרר את ה-lock לבד, אז מבקשים שוב
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && convoActive) requestWake(); });
+
 talkBtn.addEventListener('click',()=>{
   ensureAudio(); try{audioCtx.resume();}catch(e){}   // פותח אודיו במחווה של המשתמש
   talkBtn.classList.remove('invite');
-  if(!started){started=true;convoActive=true;const g=pickGreeting();speak(g,afterBrainSpoke,()=>addBubble('brain',g));return;}
+  if(!started){started=true;convoActive=true;requestWake();const g=pickGreeting();speak(g,afterBrainSpoke,()=>addBubble('brain',g));return;}
   if(convoActive){ // עצירת השיחה
-    convoActive=false; stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle');
+    convoActive=false; releaseWake(); stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle');
   } else { // המשך שיחה
-    convoActive=true; relisten();
+    convoActive=true; requestWake(); relisten();
   }
 });
 function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
