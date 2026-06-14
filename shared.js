@@ -9,9 +9,8 @@ function renderNav(activePage, lang) {
   const pages = isEn ? [
     { id: 'about',    label: 'About',      href: 'about.html' },
     { id: 'what-is-brain', label: 'What is Brain?', href: 'what-is-brain.html' },
-    { id: 'diy',      label: 'DIY',        href: 'automated.html' },
     { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
-    { id: 'implementation', label: 'Onboarding', href: 'implementation.html' },
+    { id: 'diy',      label: 'DIY',        href: 'automated.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'success',  label: 'Success Stories', href: 'success-stories.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
@@ -27,16 +26,15 @@ function renderNav(activePage, lang) {
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
     { id: 'team',     label: 'Our Network',href: 'team.html' },
     { id: 'videos',   label: 'Videos',     href: 'videos.html' },
-    { id: 'articles', label: 'Knowledge',  href: 'articles.html' },
+    { id: 'articles', label: 'Articles',   href: 'articles.html' },
     { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 Talk to Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
   ] : [
     { id: 'about',    label: 'אודותינו',        href: 'about.html' },
     { id: 'what-is-brain', label: 'מה זה Brain?', href: 'what-is-brain.html' },
-    { id: 'diy',      label: 'עשה זאת בעצמך',  href: 'automated.html' },
     { id: 'uses',     label: 'שימושים',         href: 'uses.html' },
-    { id: 'implementation', label: 'הטמעה',     href: 'implementation.html' },
+    { id: 'diy',      label: 'עשה זאת בעצמך',  href: 'automated.html' },
     { id: 'smb',      label: 'SMB',             href: 'smb.html' },
     { id: 'roi',      label: 'ROI',             href: 'roi.html' },
     { id: 'success',  label: 'סיפורי הצלחה',     href: 'success-stories.html' },
@@ -164,7 +162,7 @@ function renderFooter() {
       <a href="smb.html">SMB</a>
       <a href="pricing.html">Pricing</a>
       <a href="../demo.html">Demo</a>
-      <a href="articles.html">Knowledge</a>
+      <a href="articles.html">Articles</a>
       <a href="jobs.html">Careers</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
