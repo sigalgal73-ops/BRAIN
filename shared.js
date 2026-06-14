@@ -13,6 +13,7 @@ function renderNav(activePage, lang) {
     { id: 'diy',      label: 'DIY',        href: 'automated.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'success',  label: 'Success Stories', href: 'success-stories.html' },
+    { id: 'research', label: 'Research',   href: 'research.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
     { id: 'investors',label: 'Investors',  href: 'investors.html', submenu: [
       { label: 'Engine Within Engine', href: 'investors-engine.html' },
@@ -38,6 +39,7 @@ function renderNav(activePage, lang) {
     { id: 'smb',      label: 'SMB',             href: 'smb.html' },
     { id: 'roi',      label: 'ROI',             href: 'roi.html' },
     { id: 'success',  label: 'סיפורי הצלחה',     href: 'success-stories.html' },
+    { id: 'research', label: 'מחקר',            href: 'research.html' },
     { id: 'investors',label: 'משקיעים',         href: 'investors.html', submenu: [
       { label: 'מנוע בתוך מנוע',    href: 'investors-engine.html' },
       { label: 'הוכחת שווי Brain',  href: 'investors-value.html' },
@@ -163,6 +165,7 @@ function renderFooter() {
       <a href="pricing.html">Pricing</a>
       <a href="../demo.html">Demo</a>
       <a href="articles.html">Articles</a>
+      <a href="research.html">Research</a>
       <a href="jobs.html">Careers</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
@@ -187,6 +190,7 @@ function renderFooter() {
       <a href="pricing.html">מחירים</a>
       <a href="demo.html">Demo</a>
       <a href="articles.html">ידע</a>
+      <a href="research.html">מחקר</a>
       <a href="jobs.html">דרושים</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
