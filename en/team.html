@@ -94,6 +94,20 @@
 @media(max-width:900px) {
   .team-grid { grid-template-columns: 1fr; }
 }
+.auditor-band{
+  max-width:720px; margin:0 auto 44px; padding:20px 28px;
+  background:var(--card); border:1px solid var(--border); border-radius:18px;
+  display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;
+}
+.auditor-line{ color:var(--muted); font-size:15px; letter-spacing:.4px; }
+.auditor-line strong{ color:var(--bright); font-weight:700; }
+.auditor-logo-wrap{ background:#fff; padding:10px 20px; border-radius:10px;
+  display:inline-flex; align-items:center; box-shadow:0 4px 18px rgba(0,0,0,.25); }
+.auditor-logo{ height:36px; width:auto; display:block; }
+.auditor-logo-text{ font-family:Georgia,'Times New Roman',serif; font-weight:700;
+  font-size:25px; color:#000; letter-spacing:.5px; }
+.auditor-logo-text span{ color:#86BC25; }
+@media(max-width:560px){ .auditor-band{flex-direction:column; gap:14px;} }
 </style>
 </head>
 <body>
@@ -108,6 +122,16 @@
   </div>
 
   <div class="sec reveal">
+
+    <div class="auditor-band">
+      <span class="auditor-line"><strong>BRAIN</strong> is audited by</span>
+      <a href="https://www.deloitte.com/il/he.html" target="_blank" rel="noopener" class="auditor-logo-wrap" aria-label="Deloitte">
+        <img src="../deloitte-logo.png" alt="Deloitte" class="auditor-logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+        <span class="auditor-logo-text" style="display:none;">Deloitte<span>.</span></span>
+      </a>
+    </div>
+
     <div class="team-grid">
 
       <!-- Dror Shaked -->
