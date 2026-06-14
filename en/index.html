@@ -490,14 +490,15 @@ nav{
   .hero-bottom{grid-template-columns:1fr !important;gap:12px !important;margin-top:12px !important}
   .ss-inner{padding:24px 16px !important}
   .clients{padding:12px 16px !important;gap:8px !important}
+  .client-pill{font-size:14.5px !important;padding:9px 20px !important}
   .clients-label{width:100% !important;text-align:center !important}
   .features-grid{grid-template-columns:1fr !important}
   .cta-box{padding:26px 16px !important}
 }
 
 .clients{position:relative;z-index:2;padding:18px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;background:rgba(4,20,40,.3)}
-.clients-label{font-size:11px;color:var(--white);letter-spacing:.1em;font-weight:700;opacity:.7;white-space:nowrap}
-.client-pill{padding:5px 16px;border:1px solid rgba(255,255,255,.2);border-radius:14px;font-size:12px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.05em;transition:all .2s;cursor:pointer;text-decoration:none;display:inline-block}
+.clients-label{font-size:14px;color:var(--white);letter-spacing:.1em;font-weight:700;opacity:.7;white-space:nowrap}
+.client-pill{padding:11px 26px;border:1px solid rgba(255,255,255,.22);border-radius:18px;font-size:17px;font-weight:700;color:rgba(255,255,255,.82);letter-spacing:.03em;transition:all .2s;cursor:pointer;text-decoration:none;display:inline-block}
 .client-pill:hover{border-color:var(--bright);color:#fff;background:rgba(45,156,255,.12);transform:translateY(-2px)}
 .features-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto}
 .feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:all .3s;position:relative;overflow:hidden;text-align:center}
@@ -625,6 +626,20 @@ nav{
 
 </section>
 
+<div class="clients">
+  <div class="clients-label">Chosen by managers in leading industries ·</div>
+  <a href="segments.html#retail"    class="client-pill">🛍 Retail</a>
+  <a href="segments.html#logistics" class="client-pill">🚚 Logistics</a>
+  <a href="segments.html#health"    class="client-pill">🏥 Healthcare</a>
+  <a href="segments.html#education" class="client-pill">🎓 Education</a>
+  <a href="segments.html#banking"   class="client-pill">🏦 Banking</a>
+  <a href="segments.html#industry"  class="client-pill">🏭 Industry</a>
+  <a href="segments.html#hitech"    class="client-pill">💻 Hi-Tech</a>
+  <a href="segments.html#gov"       class="client-pill">🏛️ Government</a>
+  <a href="segments.html#military"  class="client-pill">🎖️ Military</a>
+  <a href="segments.html#b2b"       class="client-pill">💼 B2B Sales</a>
+</div>
+
 <!-- POSITIONING BAND -->
 <style>
 .posband{position:relative;padding:60px 20px;display:flex;justify-content:center}
@@ -717,20 +732,6 @@ nav{
 <script>
 !function(){var e=document.querySelectorAll(".ss-count");e.forEach(function(el){var t=+el.getAttribute("data-target"),s=0,n=50;var iv=setInterval(function(){s++;el.textContent=Math.round(t*s/n);if(s>=n){el.textContent=t;clearInterval(iv);}},32);});}();
 </script>
-
-<div class="clients">
-  <div class="clients-label">Chosen by managers in leading industries ·</div>
-  <a href="segments.html#retail"    class="client-pill">🛍 Retail</a>
-  <a href="segments.html#logistics" class="client-pill">🚚 Logistics</a>
-  <a href="segments.html#health"    class="client-pill">🏥 Healthcare</a>
-  <a href="segments.html#education" class="client-pill">🎓 Education</a>
-  <a href="segments.html#banking"   class="client-pill">🏦 Banking</a>
-  <a href="segments.html#industry"  class="client-pill">🏭 Industry</a>
-  <a href="segments.html#hitech"    class="client-pill">💻 Hi-Tech</a>
-  <a href="segments.html#gov"       class="client-pill">🏛️ Government</a>
-  <a href="segments.html#military"  class="client-pill">🎖️ Military</a>
-  <a href="segments.html#b2b"       class="client-pill">💼 B2B Sales</a>
-</div>
 
 <div style="position:relative;z-index:1;padding:52px clamp(18px,5vw,60px) 40px;" class="reveal">
   <div style="text-align:center;margin-bottom:36px">
