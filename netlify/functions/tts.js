@@ -25,7 +25,7 @@ exports.handler = async (event) => {
         },
         body: JSON.stringify({
           text: clean,
-          model_id: "eleven_v3", // הקול שאת אוהבת. למהירות גדולה יותר (פחות דיליי): החליפי ל-"eleven_turbo_v2_5"
+          model_id: "eleven_turbo_v2_5", // מהיר מאוד (דיליי נמוך). לאיכות עשירה יותר (ואיטי): "eleven_v3"
           voice_settings: {
             stability: 0.45,
             similarity_boost: 0.8,
