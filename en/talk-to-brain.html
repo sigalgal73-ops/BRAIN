@@ -240,12 +240,18 @@ function startListening(){
 }
 function stopListening(){if(rec){try{rec.stop();}catch(e){}}}
 
+// Wake Lock — keep the screen awake during a conversation (critical while driving)
+let wakeLock=null;
+async function requestWake(){ try{ if('wakeLock' in navigator && !wakeLock){ wakeLock=await navigator.wakeLock.request('screen'); wakeLock.addEventListener('release',()=>{ wakeLock=null; }); } }catch(e){} }
+async function releaseWake(){ try{ if(wakeLock){ await wakeLock.release(); wakeLock=null; } }catch(e){} }
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && convoActive) requestWake(); });
+
 talkBtn.addEventListener('click',()=>{
   ensureAudio(); try{audioCtx.resume();}catch(e){}
   talkBtn.classList.remove('invite');
-  if(!started){started=true;convoActive=true;const g=pickGreeting();speak(g,afterBrainSpoke,()=>addBubble('brain',g));return;}
-  if(convoActive){ convoActive=false; stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle'); }
-  else { convoActive=true; relisten(); }
+  if(!started){started=true;convoActive=true;requestWake();const g=pickGreeting();speak(g,afterBrainSpoke,()=>addBubble('brain',g));return;}
+  if(convoActive){ convoActive=false; releaseWake(); stopListening(); try{if(audioEl)audioEl.pause();}catch(e){} setState('idle'); }
+  else { convoActive=true; requestWake(); relisten(); }
 });
 function submitText(){const t=textIn.value.trim();if(!t)return;textIn.value='';started=true;ensureAudio();try{audioCtx.resume();}catch(e){}callBrain(t);}
 sendBtn.addEventListener('click',submitText);
