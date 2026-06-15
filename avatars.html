@@ -83,6 +83,7 @@
   .scene .cover-mark{position:absolute;top:8px;inset-inline-start:8px;background:rgba(0,212,170,.9);color:#04121f;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px}
   .scene .sbody{padding:11px 13px;display:flex;flex-direction:column;gap:8px;flex:1}
   .scene .sit{font-size:13px}
+  .scene .sidrow{display:flex;width:100%;margin:0} .scene .sidrow code{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
   .scene .rec{font-size:12.5px;color:var(--ink)} .scene .rec .k{color:var(--amber);font-size:11px;margin-bottom:2px}
   .scene .note{font-size:12.5px;background:var(--navy);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
   .scene .note .k{color:var(--bright);font-size:11px;margin-bottom:3px}
@@ -183,9 +184,9 @@
       <label class="full" id="nameWrap">שם הדמות<input name="name" placeholder="מיכל / BRAIN"></label>
       <label>מגדר<select name="gender"><option value="">—</option><option>גבר</option><option>אישה</option><option>אחר</option></select></label>
       <label>קבוצת גיל<select name="age_group"><option value="">—</option><option>צעיר/ה</option><option>גיל אמצע</option><option>גיל שלישי</option><option>אחר</option></select></label>
-      <label class="full">ID אווטאר (HeyGen)<input name="avatar_id" placeholder="65ccd11adfec45e7ba2dc61e3f80e2b7"></label>
 
-      <div class="sectionlbl">הסצנה הזו</div>
+      <div class="sectionlbl">הסצנה הזו (ID נפרד לכל סצנה)</div>
+      <label class="full">ID הסצנה (HeyGen)<input name="avatar_id" placeholder="65ccd11adfec45e7ba2dc61e3f80e2b7"></label>
       <label class="full">תמונה
         <div class="imgpick">
           <img id="formThumb" class="thumb empty" alt="">
@@ -258,7 +259,7 @@ function render(){
     if(g && c.gender!==g) return false;
     if(ag && c.age_group!==ag) return false;
     if(!q) return true;
-    const hay=[c.name,c.avatar_id,...c.scenes.flatMap(s=>[s.situation,s.recommendation,(s.tags||[]).join(" ")])].join(" ").toLowerCase();
+    const hay=[c.name,...c.scenes.flatMap(s=>[s.avatar_id,s.situation,s.recommendation,(s.tags||[]).join(" ")])].join(" ").toLowerCase();
     return hay.includes(q);
   });
   $("count").textContent=groups.length;
@@ -288,7 +289,7 @@ function openChar(name){
   $("cmName").textContent=c.name;
   const attrs=[c.gender,c.age_group].filter(Boolean).join(" · ");
   $("cmSub").textContent=attrs;
-  $("cmIdWrap").innerHTML=c.avatar_id?`<div class="idrow"><span class="k">ID</span><code>${esc(c.avatar_id)}</code><button class="copy" data-copy="${esc(c.avatar_id)}">העתק</button></div>`:"";
+  $("cmIdWrap").innerHTML="";
   $("cmCountLbl").textContent=`${c.scenes.length} ${c.scenes.length===1?"סצנה":"סצנות"}`;
   $("cmScenes").innerHTML=c.scenes.map(s=>`<div class="scene">
       <div class="simg" ${s.image_url?`data-big="${esc(s.id)}"`:""}>
@@ -296,6 +297,7 @@ function openChar(name){
         ${s.is_cover?`<span class="cover-mark">שער</span>`:""}
       </div>
       <div class="sbody">
+        ${s.avatar_id?`<div class="idrow sidrow"><span class="k">ID</span><code>${esc(s.avatar_id)}</code><button class="copy" data-copy="${esc(s.avatar_id)}">העתק</button></div>`:""}
         ${s.situation?`<div class="sit">${esc(s.situation)}</div>`:`<div class="sit" style="color:var(--muted)">— ללא תיאור —</div>`}
         ${s.recommendation?`<div class="rec"><div class="k">למי מתאים</div>${esc(s.recommendation)}</div>`:""}
         ${(s.tags&&s.tags.length)?`<div class="tags">${s.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`:""}
@@ -357,7 +359,7 @@ function fillCharPick(selected){
 }
 function applyCharFields(name){
   const c=groups.find(x=>x.name===name);
-  if(c){form.name.value=c.name;form.gender.value=c.gender||"";form.age_group.value=c.age_group||"";form.avatar_id.value=c.avatar_id||"";}
+  if(c){form.name.value=c.name;form.gender.value=c.gender||"";form.age_group.value=c.age_group||"";}
 }
 function setMode(mode){ // 'newchar' shows name input; 'existing' hides picker behavior accordingly
   $("charPickWrap").style.display = mode==="editscene" ? "none" : "block";
@@ -365,7 +367,7 @@ function setMode(mode){ // 'newchar' shows name input; 'existing' hides picker b
 }
 charPick.addEventListener("change",()=>{
   if(charPick.value==="__new__"){form.name.value="";form.gender.value="";form.age_group.value="";form.avatar_id.value="";$("nameWrap").style.display="block";}
-  else{applyCharFields(charPick.value);$("nameWrap").style.display="none";}
+  else{applyCharFields(charPick.value);form.avatar_id.value="";$("nameWrap").style.display="none";}
 });
 
 // open form in 3 ways
@@ -409,8 +411,8 @@ form.addEventListener("submit",async e=>{
       if(up.error)throw up.error;
       image_url=sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
     }
-    const charFields={name:charName,gender:form.gender.value||null,age_group:form.age_group.value||null,avatar_id:form.avatar_id.value.trim()||null};
-    const sceneFields={status:form.status.value,situation:form.situation.value.trim()||null,recommendation:form.recommendation.value.trim()||null,
+    const charFields={name:charName,gender:form.gender.value||null,age_group:form.age_group.value||null};
+    const sceneFields={avatar_id:form.avatar_id.value.trim()||null,status:form.status.value,situation:form.situation.value.trim()||null,recommendation:form.recommendation.value.trim()||null,
       notes:form.notes.value.trim()||null,body_prompt:form.body_prompt.value.trim()||null,
       tags:form.tags.value.split(",").map(s=>s.trim()).filter(Boolean)};
     let wantCover=$("coverChk").checked;
