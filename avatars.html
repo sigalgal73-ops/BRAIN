@@ -84,6 +84,10 @@
   .scene .sbody{padding:11px 13px;display:flex;flex-direction:column;gap:8px;flex:1}
   .scene .sit{font-size:13px}
   .scene .rec{font-size:12.5px;color:var(--ink)} .scene .rec .k{color:var(--amber);font-size:11px;margin-bottom:2px}
+  .scene .note{font-size:12.5px;background:var(--navy);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+  .scene .note .k{color:var(--bright);font-size:11px;margin-bottom:3px}
+  .scene .bp{font-size:12.5px;background:var(--navy);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+  .scene .bp .k{color:var(--teal);font-size:11px;margin-bottom:3px} .scene .bp .copy{margin-top:7px}
   .scene .sact{display:none;gap:6px;margin-top:auto;padding-top:4px} body.editing .scene .sact{display:flex}
   .mini{cursor:pointer;border:1px solid var(--line);background:none;color:var(--muted);border-radius:7px;padding:3px 9px;font-size:11.5px;font-family:inherit}
   .mini:hover{color:var(--ink)} .mini.del:hover{color:#ff7a7a;border-color:#ff7a7a}
@@ -194,6 +198,8 @@
       <label class="full">מאפיינים (מופרד בפסיק)<input name="tags" placeholder="עסקי, אנגלית, נמרץ"></label>
       <label class="full">תיאור הסיטואציה<textarea name="situation" placeholder="למשל: עומדת, לבושה רשמי, אווירה משרדית"></textarea></label>
       <label class="full">למי מתאים / המלצות<textarea name="recommendation" placeholder="לאיזה סוג תוכן / קהל"></textarea></label>
+      <label class="full">הערות (עבד / לא עבד / לתיקון)<textarea name="notes" placeholder="מה עבד טוב, מה פחות, ומה מומלץ לתקן בפעם הבאה"></textarea></label>
+      <label class="full">פרומפט לשפת גוף מומלצת<textarea name="body_prompt" placeholder="תיאור/פרומפט לתנוחה ולשפת גוף שמתאימות לסצנה"></textarea></label>
       <div class="modal-act full">
         <button type="submit" class="btn primary" id="saveBtn">שמירה</button>
         <button type="button" class="btn ghost" id="cancelBtn">ביטול</button>
@@ -293,6 +299,8 @@ function openChar(name){
         ${s.situation?`<div class="sit">${esc(s.situation)}</div>`:`<div class="sit" style="color:var(--muted)">— ללא תיאור —</div>`}
         ${s.recommendation?`<div class="rec"><div class="k">למי מתאים</div>${esc(s.recommendation)}</div>`:""}
         ${(s.tags&&s.tags.length)?`<div class="tags">${s.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`:""}
+        ${s.notes?`<div class="note"><div class="k">הערות · עבד / לא עבד / לתיקון</div>${esc(s.notes)}</div>`:""}
+        ${s.body_prompt?`<div class="bp"><div class="k">פרומפט שפת גוף</div><div class="bptext">${esc(s.body_prompt)}</div><button class="copy" data-copy="${esc(s.body_prompt)}">העתק פרומפט</button></div>`:""}
         <div class="sact"><button class="mini" data-editscene="${esc(s.id)}">עריכה</button><button class="mini del" data-delscene="${esc(s.id)}">מחיקה</button></div>
       </div>
     </div>`).join("");
@@ -368,6 +376,7 @@ function openForm(scene){ // edit existing scene
   form.name.value=scene.name||"";form.gender.value=scene.gender||"";form.age_group.value=scene.age_group||"";form.avatar_id.value=scene.avatar_id||"";
   form.status.value=scene.status||"active";form.situation.value=scene.situation||"";form.recommendation.value=scene.recommendation||"";
   form.tags.value=(scene.tags||[]).join(", ");$("coverChk").checked=!!scene.is_cover;
+  form.notes.value=scene.notes||"";form.body_prompt.value=scene.body_prompt||"";
   formImage=scene.image_url||"";updateThumb();overlay.classList.add("open");
 }
 function openNewChar(){resetForm();fillCharPick("__new__");$("charPickWrap").style.display="block";$("nameWrap").style.display="block";
@@ -402,6 +411,7 @@ form.addEventListener("submit",async e=>{
     }
     const charFields={name:charName,gender:form.gender.value||null,age_group:form.age_group.value||null,avatar_id:form.avatar_id.value.trim()||null};
     const sceneFields={status:form.status.value,situation:form.situation.value.trim()||null,recommendation:form.recommendation.value.trim()||null,
+      notes:form.notes.value.trim()||null,body_prompt:form.body_prompt.value.trim()||null,
       tags:form.tags.value.split(",").map(s=>s.trim()).filter(Boolean)};
     let wantCover=$("coverChk").checked;
     // first scene of a brand-new character is always cover
