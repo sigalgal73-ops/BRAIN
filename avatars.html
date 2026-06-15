@@ -10,119 +10,105 @@
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-  :root{
-    --navy:#020d1a; --panel:#0a1827; --panel2:#0f2235;
-    --accent:#1a6fc4; --bright:#2d9cff; --teal:#00d4aa;
-    --amber:#f5b945; --muted:#9fb2c8; --ink:#eaf2fb;
-    --line:rgba(159,178,200,.16); --radius:14px;
-    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  }
+  :root{--navy:#020d1a;--panel:#0a1827;--panel2:#0f2235;--accent:#1a6fc4;--bright:#2d9cff;
+    --teal:#00d4aa;--amber:#f5b945;--muted:#9fb2c8;--ink:#eaf2fb;--line:rgba(159,178,200,.16);
+    --radius:14px;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
   *{box-sizing:border-box} html,body{margin:0;padding:0}
   body{font-family:'Heebo',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
     background:radial-gradient(1100px 520px at 85% -10%, rgba(45,156,255,.10), transparent 60%),
       radial-gradient(900px 480px at 0% 0%, rgba(0,212,170,.07), transparent 55%), var(--navy);
-    color:var(--ink); min-height:100vh; line-height:1.55;}
+    color:var(--ink);min-height:100vh;line-height:1.55;}
   .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 80px}
-
   header.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
-  .mark{width:46px;height:46px;border-radius:12px;flex:0 0 auto;
-    background:linear-gradient(135deg,var(--accent),var(--teal));display:grid;place-items:center;
-    font-weight:800;font-size:22px;color:#04121f;box-shadow:0 6px 22px rgba(45,156,255,.28)}
+  .mark{width:46px;height:46px;border-radius:12px;flex:0 0 auto;background:linear-gradient(135deg,var(--accent),var(--teal));
+    display:grid;place-items:center;font-weight:800;font-size:22px;color:#04121f;box-shadow:0 6px 22px rgba(45,156,255,.28)}
   .mark sup{font-size:.55em;top:-.5em}
   .title h1{margin:0;font-size:23px;font-weight:800;letter-spacing:-.2px}
   .title p{margin:2px 0 0;color:var(--muted);font-size:13.5px}
-  .count{margin-inline-start:auto;text-align:center;background:var(--panel);border:1px solid var(--line);
-    border-radius:12px;padding:8px 16px;min-width:78px}
+  .count{margin-inline-start:auto;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 16px;min-width:78px}
   .count b{display:block;font-size:24px;font-weight:800;color:var(--bright);line-height:1}
   .count span{font-size:11.5px;color:var(--muted)}
   .lede{color:var(--muted);font-size:14px;margin:14px 2px 18px;max-width:820px}
 
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--panel);
-    border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:18px}
-  .search{flex:1 1 220px;display:flex;align-items:center;gap:8px;background:var(--navy);
-    border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:18px}
+  .search{flex:1 1 220px;display:flex;align-items:center;gap:8px;background:var(--navy);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
   .search svg{flex:0 0 auto;opacity:.7}
   .search input{flex:1;background:none;border:0;outline:none;color:var(--ink);font-family:inherit;font-size:14.5px}
   .search input::placeholder{color:var(--muted)}
-  select.flt{background:var(--navy);border:1px solid var(--line);border-radius:10px;padding:9px 11px;
-    color:var(--ink);font-family:inherit;font-size:13.5px;outline:none}
+  select.flt{background:var(--navy);border:1px solid var(--line);border-radius:10px;padding:9px 11px;color:var(--ink);font-family:inherit;font-size:13.5px;outline:none}
   .chips{display:flex;gap:6px;flex-wrap:wrap}
-  .chip{cursor:pointer;border:1px solid var(--line);background:var(--navy);color:var(--muted);
-    border-radius:999px;padding:7px 13px;font-size:13px;font-family:inherit;transition:.15s;white-space:nowrap}
-  .chip:hover{color:var(--ink);border-color:rgba(45,156,255,.4)}
-  .chip.on{background:rgba(45,156,255,.16);border-color:var(--bright);color:var(--ink)}
-  .btn{cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:9px 15px;font-size:13.5px;
-    font-family:inherit;font-weight:600;background:var(--navy);color:var(--ink);transition:.15s;white-space:nowrap}
-  .btn:hover{border-color:rgba(45,156,255,.45)}
-  .btn.primary{background:linear-gradient(135deg,var(--accent),var(--bright));border:0;color:#04121f}
-  .btn.ghost{background:none}
+  .chip{cursor:pointer;border:1px solid var(--line);background:var(--navy);color:var(--muted);border-radius:999px;padding:7px 13px;font-size:13px;font-family:inherit;transition:.15s;white-space:nowrap}
+  .chip:hover{color:var(--ink);border-color:rgba(45,156,255,.4)} .chip.on{background:rgba(45,156,255,.16);border-color:var(--bright);color:var(--ink)}
+  .btn{cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:9px 15px;font-size:13.5px;font-family:inherit;font-weight:600;background:var(--navy);color:var(--ink);transition:.15s;white-space:nowrap}
+  .btn:hover{border-color:rgba(45,156,255,.45)} .btn.primary{background:linear-gradient(135deg,var(--accent),var(--bright));border:0;color:#04121f} .btn.ghost{background:none}
   .spacer{margin-inline-start:auto}
-  .who{font-size:12.5px;color:var(--teal);display:none;align-items:center;gap:8px}
-  body.editing .who{display:inline-flex}
-  .admin-only{display:none}
-  body.editing .admin-only{display:inline-flex;align-items:center;gap:6px}
+  .who{font-size:12.5px;color:var(--teal);display:none;align-items:center;gap:8px} body.editing .who{display:inline-flex}
+  .admin-only{display:none} body.editing .admin-only{display:inline-flex;align-items:center;gap:6px}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
-  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);
-    border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.15s}
-  .card:hover{border-color:rgba(45,156,255,.32);transform:translateY(-2px)}
-  .imgwrap{position:relative;width:100%;aspect-ratio:4/5;background:var(--navy);cursor:zoom-in;overflow:hidden}
-  .imgwrap img{width:100%;height:100%;object-fit:cover;display:block;transition:.25s}
-  .imgwrap:hover img{transform:scale(1.03)}
-  .noimg{display:grid;place-items:center;color:var(--muted);font-size:13px;height:100%}
-  .body{padding:16px 18px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
-  .head{display:flex;align-items:flex-start;gap:10px}
-  .label{font-size:17px;font-weight:700;letter-spacing:-.2px;margin:0;unicode-bidi:plaintext}
-  .status{margin-inline-start:auto;flex:0 0 auto;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
-  .s-active{background:rgba(0,212,170,.16);color:var(--teal)}
-  .s-experimental{background:rgba(45,156,255,.16);color:var(--bright)}
-  .s-deferred{background:rgba(245,185,69,.16);color:var(--amber)}
-  .s-archived{background:rgba(159,178,200,.14);color:var(--muted)}
-  .idrow{display:flex;align-items:center;gap:8px;background:var(--navy);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
-  .idrow .k{font-size:11px;color:var(--muted);flex:0 0 auto}
-  .idrow code{font-family:var(--mono);font-size:12.5px;color:var(--ink);direction:ltr;unicode-bidi:plaintext;
-    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
-  .copy{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:7px;
-    padding:4px 9px;font-size:11.5px;font-family:inherit;flex:0 0 auto;transition:.15s}
-  .copy:hover{color:var(--ink);border-color:var(--bright)} .copy.done{color:var(--teal);border-color:var(--teal)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+  .charcard{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.15s;cursor:pointer}
+  .charcard:hover{border-color:rgba(45,156,255,.4);transform:translateY(-2px)}
+  .ccimg{position:relative;width:100%;aspect-ratio:4/5;background:var(--navy);overflow:hidden}
+  .ccimg img{width:100%;height:100%;object-fit:cover;display:block;transition:.25s}
+  .charcard:hover .ccimg img{transform:scale(1.04)}
+  .ccimg .noimg{display:grid;place-items:center;height:100%;color:var(--muted);font-size:13px}
+  .badge{position:absolute;top:10px;inset-inline-start:10px;background:rgba(2,8,16,.78);backdrop-filter:blur(4px);
+    border:1px solid var(--line);color:var(--ink);font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:999px}
+  .badge b{color:var(--teal)}
+  .ccbody{padding:12px 14px;display:flex;flex-direction:column;gap:7px}
+  .ccname{font-size:16px;font-weight:700;margin:0;unicode-bidi:plaintext}
   .tags{display:flex;gap:6px;flex-wrap:wrap}
-  .tag{font-size:11.5px;color:var(--muted);background:var(--navy);border:1px solid var(--line);border-radius:7px;padding:3px 9px}
+  .tag{font-size:11px;color:var(--muted);background:var(--navy);border:1px solid var(--line);border-radius:7px;padding:3px 8px}
   .tag.attr{color:var(--ink)}
-  .field .k{color:var(--muted);font-size:11.5px;margin-bottom:2px}
-  .field{font-size:13.5px}
-  .field.rec{color:var(--ink)} .field.rec .k{color:var(--amber)}
-  .meta{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:6px;color:var(--muted);font-size:11.5px}
-  .rowact{display:none;gap:6px;margin-inline-start:auto} body.editing .rowact{display:flex}
-  .mini{cursor:pointer;border:1px solid var(--line);background:none;color:var(--muted);border-radius:7px;padding:3px 9px;font-size:11.5px;font-family:inherit}
-  .mini:hover{color:var(--ink)} .mini.del:hover{color:#ff7a7a;border-color:#ff7a7a}
   .empty{text-align:center;color:var(--muted);padding:60px 20px;border:1px dashed var(--line);border-radius:var(--radius)}
 
-  .overlay{position:fixed;inset:0;background:rgba(2,8,16,.72);backdrop-filter:blur(3px);display:none;
-    align-items:flex-start;justify-content:center;padding:30px 16px;z-index:50;overflow:auto}
+  /* character modal */
+  .overlay{position:fixed;inset:0;background:rgba(2,8,16,.74);backdrop-filter:blur(3px);display:none;align-items:flex-start;justify-content:center;padding:24px 16px;z-index:50;overflow:auto}
   .overlay.open{display:flex}
+  .sheet{width:100%;max-width:920px;background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:22px}
+  .chead{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  .chead h2{margin:0;font-size:22px;unicode-bidi:plaintext}
+  .chead .sub{color:var(--muted);font-size:13px;margin-top:2px}
+  .closeX{margin-inline-start:auto;cursor:pointer;border:1px solid var(--line);background:var(--navy);color:var(--ink);border-radius:9px;padding:7px 12px;font-family:inherit;font-size:13px}
+  .idrow{display:inline-flex;align-items:center;gap:8px;background:var(--navy);border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin-top:8px}
+  .idrow .k{font-size:11px;color:var(--muted)} .idrow code{font-family:var(--mono);font-size:12.5px;color:var(--ink);direction:ltr;unicode-bidi:plaintext}
+  .copy{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:7px;padding:3px 9px;font-size:11.5px;font-family:inherit}
+  .copy:hover{color:var(--ink);border-color:var(--bright)} .copy.done{color:var(--teal);border-color:var(--teal)}
+  .charbar{display:flex;gap:10px;align-items:center;margin:14px 0 4px}
+  .charbar h3{margin:0;font-size:15px;color:var(--muted);font-weight:600}
+  .scenes{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:12px}
+  .scene{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .scene .simg{position:relative;width:100%;aspect-ratio:4/5;background:var(--navy);cursor:zoom-in;overflow:hidden}
+  .scene .simg img{width:100%;height:100%;object-fit:cover;display:block}
+  .scene .cover-mark{position:absolute;top:8px;inset-inline-start:8px;background:rgba(0,212,170,.9);color:#04121f;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px}
+  .scene .sbody{padding:11px 13px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .scene .sit{font-size:13px}
+  .scene .rec{font-size:12.5px;color:var(--ink)} .scene .rec .k{color:var(--amber);font-size:11px;margin-bottom:2px}
+  .scene .sact{display:none;gap:6px;margin-top:auto;padding-top:4px} body.editing .scene .sact{display:flex}
+  .mini{cursor:pointer;border:1px solid var(--line);background:none;color:var(--muted);border-radius:7px;padding:3px 9px;font-size:11.5px;font-family:inherit}
+  .mini:hover{color:var(--ink)} .mini.del:hover{color:#ff7a7a;border-color:#ff7a7a}
+
+  /* form + login */
   .modal{width:100%;max-width:580px;background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:24px}
   .modal.sm{max-width:380px}
   .modal h2{margin:0 0 16px;font-size:19px}
   .frm{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .frm label{display:flex;flex-direction:column;gap:5px;font-size:12.5px;color:var(--muted)}
   .frm label.full{grid-column:1 / -1}
-  .frm input,.frm select,.frm textarea{background:var(--navy);border:1px solid var(--line);border-radius:9px;
-    padding:9px 11px;color:var(--ink);font-family:inherit;font-size:14px;outline:none}
+  .frm input,.frm select,.frm textarea{background:var(--navy);border:1px solid var(--line);border-radius:9px;padding:9px 11px;color:var(--ink);font-family:inherit;font-size:14px;outline:none}
   .frm input:focus,.frm select:focus,.frm textarea:focus{border-color:var(--bright)}
-  .frm textarea{resize:vertical;min-height:56px}
+  .frm textarea{resize:vertical;min-height:54px}
   .frm input[name=avatar_id]{direction:ltr;font-family:var(--mono);font-size:13px}
+  .sectionlbl{grid-column:1/-1;font-size:12px;color:var(--bright);font-weight:700;border-top:1px solid var(--line);padding-top:12px;margin-top:2px}
   .imgpick{display:flex;align-items:center;gap:12px}
-  .imgpick .thumb{width:64px;height:80px;border-radius:8px;object-fit:cover;border:1px solid var(--line);background:var(--navy);flex:0 0 auto}
+  .imgpick .thumb{width:60px;height:75px;border-radius:8px;object-fit:cover;border:1px solid var(--line);background:var(--navy);flex:0 0 auto}
   .imgpick .thumb.empty{display:grid;place-items:center;color:var(--muted);font-size:10px}
-  .modal-act{display:flex;gap:10px;justify-content:flex-start;margin-top:18px}
-
-  .lightbox{position:fixed;inset:0;background:rgba(2,8,16,.92);display:none;align-items:center;justify-content:center;padding:24px;z-index:70;cursor:zoom-out}
-  .lightbox.open{display:flex}
-  .lightbox img{max-width:100%;max-height:92vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--teal);
-    color:#04121f;font-weight:700;padding:11px 20px;border-radius:10px;font-size:13.5px;opacity:0;pointer-events:none;transition:.25s;z-index:80;max-width:90vw;text-align:center}
-  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-  .toast.err{background:#ff7a7a}
+  .chk{flex-direction:row!important;align-items:center;gap:8px;color:var(--ink)} .chk input{width:auto}
+  .modal-act{display:flex;gap:10px;margin-top:18px}
+  .lightbox{position:fixed;inset:0;background:rgba(2,8,16,.93);display:none;align-items:center;justify-content:center;padding:24px;z-index:90;cursor:zoom-out}
+  .lightbox.open{display:flex} .lightbox img{max-width:100%;max-height:92vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--teal);color:#04121f;font-weight:700;padding:11px 20px;border-radius:10px;font-size:13.5px;opacity:0;pointer-events:none;transition:.25s;z-index:100;max-width:90vw;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)} .toast.err{background:#ff7a7a}
   footer{margin-top:40px;text-align:center;color:var(--muted);font-size:12px}
   @media(max-width:520px){.frm{grid-template-columns:1fr}.wrap{padding:18px 14px 70px}}
 </style>
@@ -132,14 +118,14 @@
   <header class="top">
     <div class="mark"><b>b<sup>2</sup></b></div>
     <div class="title"><h1>ספריית אווטארים</h1><p>מאגר פנימי לצוות הפיתוח · Brain Co-Manager</p></div>
-    <div class="count"><b id="count">—</b><span>אווטארים</span></div>
+    <div class="count"><b id="count">—</b><span>דמויות</span></div>
   </header>
-  <p class="lede">כל אווטאר עם תמונה, ID, מגדר, קבוצת גיל וסיטואציה. חיפוש וסינון בראש הדף; לחיצה על "העתק" מעתיקה ID, לחיצה על תמונה מגדילה. עריכה זמינה אחרי התחברות.</p>
+  <p class="lede">כרטיס לכל דמות עם תמונת שער ומספר הסצנות. לחיצה על דמות פותחת את כל הסצנות שלה, כל אחת עם הסיטואציה הספציפית. עריכה זמינה אחרי התחברות.</p>
 
   <div class="toolbar">
     <div class="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input id="q" type="search" placeholder="חיפוש לפי שם, ID, סיטואציה…" autocomplete="off">
+      <input id="q" type="search" placeholder="חיפוש לפי דמות, ID, סיטואציה…" autocomplete="off">
     </div>
     <select class="flt" id="fGender"><option value="">כל המגדרים</option><option>גבר</option><option>אישה</option><option>אחר</option></select>
     <select class="flt" id="fAge"><option value="">כל הגילאים</option><option>צעיר/ה</option><option>גיל אמצע</option><option>גיל שלישי</option><option>אחר</option></select>
@@ -152,12 +138,68 @@
     <span class="spacer"></span>
     <span class="who"><span id="whoEmail"></span><button class="btn ghost" id="logoutBtn">התנתקות</button></span>
     <button class="btn" id="loginBtn">התחברות לעריכה</button>
-    <button class="btn primary admin-only" id="addBtn">+ הוסף אווטאר</button>
+    <button class="btn primary admin-only" id="addCharBtn">+ הוסף דמות</button>
   </div>
 
   <div id="grid" class="grid"></div>
   <div id="empty" class="empty" style="display:none">טוען…</div>
   <footer>Brain Co-Manager · brain2spark.ai</footer>
+</div>
+
+<!-- character gallery -->
+<div class="overlay" id="charOverlay">
+  <div class="sheet">
+    <div class="chead">
+      <div>
+        <h2 id="cmName"></h2>
+        <div class="sub" id="cmSub"></div>
+        <div id="cmIdWrap"></div>
+      </div>
+      <button class="closeX" id="charClose">סגירה</button>
+    </div>
+    <div class="charbar">
+      <h3 id="cmCountLbl"></h3>
+      <span class="spacer"></span>
+      <button class="btn primary admin-only" id="addSceneBtn">+ הוסף סצנה</button>
+    </div>
+    <div class="scenes" id="cmScenes"></div>
+  </div>
+</div>
+
+<!-- add / edit form -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2 id="modalTitle">הוספת דמות</h2>
+    <form class="frm" id="form" autocomplete="off">
+      <input type="hidden" name="id"><input type="hidden" name="origName">
+      <div class="sectionlbl">פרטי הדמות</div>
+      <label class="full" id="charPickWrap">דמות
+        <select id="charPick"></select>
+      </label>
+      <label class="full" id="nameWrap">שם הדמות<input name="name" placeholder="מיכל / BRAIN"></label>
+      <label>מגדר<select name="gender"><option value="">—</option><option>גבר</option><option>אישה</option><option>אחר</option></select></label>
+      <label>קבוצת גיל<select name="age_group"><option value="">—</option><option>צעיר/ה</option><option>גיל אמצע</option><option>גיל שלישי</option><option>אחר</option></select></label>
+      <label class="full">ID אווטאר (HeyGen)<input name="avatar_id" placeholder="65ccd11adfec45e7ba2dc61e3f80e2b7"></label>
+
+      <div class="sectionlbl">הסצנה הזו</div>
+      <label class="full">תמונה
+        <div class="imgpick">
+          <img id="formThumb" class="thumb empty" alt="">
+          <input type="file" id="imageFile" accept="image/*" style="flex:1">
+          <button type="button" class="btn ghost" id="rmImg" style="display:none">הסר</button>
+        </div>
+      </label>
+      <label>סטטוס<select name="status"><option value="active">פעיל</option><option value="experimental">ניסיוני</option><option value="archived">ארכיון</option></select></label>
+      <label class="chk full"><input type="checkbox" name="is_cover" id="coverChk"> תמונת השער של הדמות</label>
+      <label class="full">מאפיינים (מופרד בפסיק)<input name="tags" placeholder="עסקי, אנגלית, נמרץ"></label>
+      <label class="full">תיאור הסיטואציה<textarea name="situation" placeholder="למשל: עומדת, לבושה רשמי, אווירה משרדית"></textarea></label>
+      <label class="full">למי מתאים / המלצות<textarea name="recommendation" placeholder="לאיזה סוג תוכן / קהל"></textarea></label>
+      <div class="modal-act full">
+        <button type="submit" class="btn primary" id="saveBtn">שמירה</button>
+        <button type="button" class="btn ghost" id="cancelBtn">ביטול</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!-- login -->
@@ -167,39 +209,7 @@
     <form class="frm" id="loginForm">
       <label class="full">אימייל<input type="email" name="email" required></label>
       <label class="full">סיסמה<input type="password" name="password" required></label>
-      <div class="modal-act full">
-        <button type="submit" class="btn primary">התחברות</button>
-        <button type="button" class="btn ghost" id="loginCancel">ביטול</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- add / edit -->
-<div class="overlay" id="overlay">
-  <div class="modal">
-    <h2 id="modalTitle">הוספת אווטאר</h2>
-    <form class="frm" id="form" autocomplete="off">
-      <input type="hidden" name="id">
-      <label class="full">תמונה
-        <div class="imgpick">
-          <img id="formThumb" class="thumb empty" alt="">
-          <input type="file" id="imageFile" accept="image/*" style="flex:1">
-          <button type="button" class="btn ghost" id="rmImg" style="display:none">הסר</button>
-        </div>
-      </label>
-      <label class="full">שם<input name="name" required placeholder="BRAIN / נעמה / KYLE"></label>
-      <label class="full">ID (אווטאר)<input name="avatar_id" placeholder="777b1b9f20cb4e2e9a265d1506491a5c"></label>
-      <label>מגדר<select name="gender"><option value="">—</option><option>גבר</option><option>אישה</option><option>אחר</option></select></label>
-      <label>קבוצת גיל<select name="age_group"><option value="">—</option><option>צעיר/ה</option><option>גיל אמצע</option><option>גיל שלישי</option><option>אחר</option></select></label>
-      <label>סטטוס<select name="status"><option value="active">פעיל</option><option value="experimental">ניסיוני</option><option value="archived">ארכיון</option></select></label>
-      <label>מאפיינים (מופרד בפסיק)<input name="tags" placeholder="עסקי, אנגלית, נמרץ"></label>
-      <label class="full">תיאור סיטואציה<textarea name="situation" placeholder="היכן ומתי משתמשים באווטאר"></textarea></label>
-      <label class="full">למי מתאים / המלצות<textarea name="recommendation" placeholder="לאיזה סוג תוכן / קהל מומלץ"></textarea></label>
-      <div class="modal-act full">
-        <button type="submit" class="btn primary" id="saveBtn">שמירה</button>
-        <button type="button" class="btn ghost" id="cancelBtn">ביטול</button>
-      </div>
+      <div class="modal-act full"><button type="submit" class="btn primary">התחברות</button><button type="button" class="btn ghost" id="loginCancel">ביטול</button></div>
     </form>
   </div>
 </div>
@@ -208,148 +218,217 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const SUPABASE_URL = "https://hkptvdceywfpltkcwkps.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrcHR2ZGNleXdmcGx0a2N3a3BzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjM2ODAsImV4cCI6MjA5NzA5OTY4MH0.g82I_jP6QwxtQII9HtOqGUZjTZ2I4BblDuB_NBIT-es";
-const BUCKET = "BrainAvatars";
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const SUPABASE_URL="https://hkptvdceywfpltkcwkps.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrcHR2ZGNleXdmcGx0a2N3a3BzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjM2ODAsImV4cCI6MjA5NzA5OTY4MH0.g82I_jP6QwxtQII9HtOqGUZjTZ2I4BblDuB_NBIT-es";
+const BUCKET="BrainAvatars";
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+const STATUS_HE={active:"פעיל",experimental:"ניסיוני",archived:"ארכיון"};
 
-const STATUS_HE = {active:"פעיל", experimental:"ניסיוני", archived:"ארכיון", deferred:"מושהה"};
-let data = [], filter = "all", formImage = "", editing = false, pendingFile = null;
-
-function esc(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
-function toast(msg,isErr){const t=document.getElementById("toast");t.textContent=msg;
-  t.className="toast show"+(isErr?" err":"");clearTimeout(t._h);t._h=setTimeout(()=>t.className="toast",2600);}
+let rows=[], groups=[], filter="all", editing=false, formImage="", pendingFile=null, openCharName=null;
+const $=id=>document.getElementById(id);
+function esc(s){return (s==null?"":String(s)).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function toast(m,e){const t=$("toast");t.textContent=m;t.className="toast show"+(e?" err":"");clearTimeout(t._h);t._h=setTimeout(()=>t.className="toast",2600);}
 
 async function loadData(){
-  const emp=document.getElementById("empty");emp.textContent="טוען…";emp.style.display="block";
-  const {data:rows,error}=await sb.from("avatars").select("*").order("created_at",{ascending:false});
-  if(error){emp.textContent="שגיאה בטעינת הנתונים: "+error.message;data=[];render();return;}
-  data=rows||[];render();
+  const emp=$("empty");emp.textContent="טוען…";emp.style.display="block";
+  const {data,error}=await sb.from("avatars").select("*").order("created_at",{ascending:true});
+  if(error){emp.textContent="שגיאה בטעינה: "+error.message;rows=[];buildGroups();render();return;}
+  rows=data||[];buildGroups();render();
+  if(openCharName) openChar(openCharName); // refresh open gallery
+}
+function buildGroups(){
+  const m=new Map();
+  for(const r of rows){const k=r.name||"(ללא שם)";if(!m.has(k))m.set(k,[]);m.get(k).push(r);}
+  groups=[...m.entries()].map(([name,scenes])=>{
+    const cover=scenes.find(s=>s.is_cover)||scenes[0];
+    return {name,gender:cover.gender,age_group:cover.age_group,avatar_id:cover.avatar_id,status:cover.status,cover,scenes};
+  }).sort((a,b)=>a.name.localeCompare(b.name,"he"));
 }
 
 function render(){
-  const q=document.getElementById("q").value.trim().toLowerCase();
-  const g=document.getElementById("fGender").value, ag=document.getElementById("fAge").value;
-  const list=data.filter(a=>{
-    if(filter!=="all" && (a.status||"active")!==filter) return false;
-    if(g && a.gender!==g) return false;
-    if(ag && a.age_group!==ag) return false;
+  const q=$("q").value.trim().toLowerCase(), g=$("fGender").value, ag=$("fAge").value;
+  const list=groups.filter(c=>{
+    if(filter!=="all" && (c.status||"active")!==filter) return false;
+    if(g && c.gender!==g) return false;
+    if(ag && c.age_group!==ag) return false;
     if(!q) return true;
-    return [a.name,a.avatar_id,a.situation,a.recommendation,(a.tags||[]).join(" ")].some(v=>(v||"").toLowerCase().includes(q));
+    const hay=[c.name,c.avatar_id,...c.scenes.flatMap(s=>[s.situation,s.recommendation,(s.tags||[]).join(" ")])].join(" ").toLowerCase();
+    return hay.includes(q);
   });
-  document.getElementById("count").textContent=data.length;
-  const emp=document.getElementById("empty");
+  $("count").textContent=groups.length;
+  const emp=$("empty");
   if(list.length){emp.style.display="none";}
-  else{emp.style.display="block";emp.textContent=data.length?"לא נמצאו אווטארים תואמים.":"אין עדיין אווטארים. התחברי והוסיפי, או הריצי את סקריפט ההזרעה.";}
-
-  document.getElementById("grid").innerHTML=list.map(a=>{
-    const st=a.status||"active";
-    const attrs=[];if(a.gender)attrs.push(a.gender);if(a.age_group)attrs.push(a.age_group);
-    return `<div class="card">
-      ${a.image_url?`<div class="imgwrap" data-big="${esc(String(a.id))}"><img src="${esc(a.image_url)}" loading="lazy" alt="${esc(a.name)}"></div>`
-        :`<div class="imgwrap"><div class="noimg">אין תמונה</div></div>`}
-      <div class="body">
-        <div class="head"><p class="label">${esc(a.name)}</p><span class="status s-${st}">${STATUS_HE[st]||st}</span></div>
-        ${a.avatar_id?`<div class="idrow"><span class="k">ID</span><code>${esc(a.avatar_id)}</code><button class="copy" data-copy="${esc(a.avatar_id)}">העתק</button></div>`:""}
-        ${attrs.length?`<div class="tags">${attrs.map(t=>`<span class="tag attr">${esc(t)}</span>`).join("")}</div>`:""}
-        ${a.situation?`<div class="field"><div class="k">סיטואציה</div><div>${esc(a.situation)}</div></div>`:""}
-        ${a.recommendation?`<div class="field rec"><div class="k">למי מתאים</div><div>${esc(a.recommendation)}</div></div>`:""}
-        ${(a.tags&&a.tags.length)?`<div class="tags">${a.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`:""}
-        <div class="meta"><span></span>
-          <span class="rowact"><button class="mini" data-edit="${esc(String(a.id))}">עריכה</button><button class="mini del" data-del="${esc(String(a.id))}">מחיקה</button></span>
-        </div>
+  else{emp.style.display="block";emp.textContent=groups.length?"לא נמצאו דמויות תואמות.":"אין עדיין דמויות. התחברי והוסיפי דמות, או הריצי את סקריפט ההזרעה.";}
+  $("grid").innerHTML=list.map(c=>{
+    const attrs=[];if(c.gender)attrs.push(c.gender);if(c.age_group)attrs.push(c.age_group);
+    const img=c.cover&&c.cover.image_url;
+    return `<div class="charcard" data-char="${esc(c.name)}">
+      <div class="ccimg">
+        ${img?`<img src="${esc(img)}" loading="lazy" alt="${esc(c.name)}">`:`<div class="noimg">אין תמונה</div>`}
+        <span class="badge"><b>${c.scenes.length}</b> ${c.scenes.length===1?"סצנה":"סצנות"}</span>
+      </div>
+      <div class="ccbody">
+        <p class="ccname">${esc(c.name)}</p>
+        ${attrs.length?`<div class="tags">${attrs.map(a=>`<span class="tag attr">${esc(a)}</span>`).join("")}</div>`:""}
       </div>
     </div>`;
   }).join("");
 }
 
-document.getElementById("q").addEventListener("input",render);
-document.getElementById("fGender").addEventListener("change",render);
-document.getElementById("fAge").addEventListener("change",render);
-document.getElementById("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;
-  filter=b.dataset.f;document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c===b));render();});
+// open character gallery
+function openChar(name){
+  const c=groups.find(x=>x.name===name); if(!c){$("charOverlay").classList.remove("open");openCharName=null;return;}
+  openCharName=name;
+  $("cmName").textContent=c.name;
+  const attrs=[c.gender,c.age_group].filter(Boolean).join(" · ");
+  $("cmSub").textContent=attrs;
+  $("cmIdWrap").innerHTML=c.avatar_id?`<div class="idrow"><span class="k">ID</span><code>${esc(c.avatar_id)}</code><button class="copy" data-copy="${esc(c.avatar_id)}">העתק</button></div>`:"";
+  $("cmCountLbl").textContent=`${c.scenes.length} ${c.scenes.length===1?"סצנה":"סצנות"}`;
+  $("cmScenes").innerHTML=c.scenes.map(s=>`<div class="scene">
+      <div class="simg" ${s.image_url?`data-big="${esc(s.id)}"`:""}>
+        ${s.image_url?`<img src="${esc(s.image_url)}" loading="lazy" alt="">`:`<div class="noimg" style="height:100%;display:grid;place-items:center;color:var(--muted)">אין תמונה</div>`}
+        ${s.is_cover?`<span class="cover-mark">שער</span>`:""}
+      </div>
+      <div class="sbody">
+        ${s.situation?`<div class="sit">${esc(s.situation)}</div>`:`<div class="sit" style="color:var(--muted)">— ללא תיאור —</div>`}
+        ${s.recommendation?`<div class="rec"><div class="k">למי מתאים</div>${esc(s.recommendation)}</div>`:""}
+        ${(s.tags&&s.tags.length)?`<div class="tags">${s.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`:""}
+        <div class="sact"><button class="mini" data-editscene="${esc(s.id)}">עריכה</button><button class="mini del" data-delscene="${esc(s.id)}">מחיקה</button></div>
+      </div>
+    </div>`).join("");
+  $("charOverlay").classList.add("open");
+}
 
-const lightbox=document.getElementById("lightbox"),lightboxImg=document.getElementById("lightboxImg");
-document.getElementById("grid").addEventListener("click",async e=>{
+$("grid").addEventListener("click",e=>{const c=e.target.closest("[data-char]");if(c)openChar(c.dataset.char);});
+$("q").addEventListener("input",render);$("fGender").addEventListener("change",render);$("fAge").addEventListener("change",render);
+$("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;filter=b.dataset.f;document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c===b));render();});
+
+const lightbox=$("lightbox"),lightboxImg=$("lightboxImg");
+$("charOverlay").addEventListener("click",async e=>{
+  if(e.target===$("charOverlay")){$("charOverlay").classList.remove("open");openCharName=null;return;}
   const big=e.target.closest("[data-big]");
-  if(big){const a=data.find(x=>String(x.id)===big.dataset.big);if(a&&a.image_url){lightboxImg.src=a.image_url;lightbox.classList.add("open");}return;}
+  if(big){const s=rows.find(x=>String(x.id)===big.dataset.big);if(s&&s.image_url){lightboxImg.src=s.image_url;lightbox.classList.add("open");}return;}
   const cp=e.target.closest("[data-copy]");
-  if(cp){navigator.clipboard.writeText(cp.dataset.copy).then(()=>{cp.textContent="הועתק ✓";cp.classList.add("done");
-    setTimeout(()=>{cp.textContent="העתק";cp.classList.remove("done");},1400);});return;}
-  const ed=e.target.closest("[data-edit]");
-  if(ed){openForm(data.find(x=>String(x.id)===ed.dataset.edit));return;}
-  const dl=e.target.closest("[data-del]");
-  if(dl){const a=data.find(x=>String(x.id)===dl.dataset.del);
-    if(a&&confirm(`למחוק את "${a.name}"?`)){const {error}=await sb.from("avatars").delete().eq("id",a.id);
-      if(error)toast("מחיקה נכשלה: "+error.message,true);else{toast("נמחק");loadData();}}}
+  if(cp){navigator.clipboard.writeText(cp.dataset.copy).then(()=>{cp.textContent="הועתק ✓";cp.classList.add("done");setTimeout(()=>{cp.textContent="העתק";cp.classList.remove("done");},1300);});return;}
+  const es=e.target.closest("[data-editscene]");
+  if(es){openForm(rows.find(x=>String(x.id)===es.dataset.editscene));return;}
+  const ds=e.target.closest("[data-delscene]");
+  if(ds){const s=rows.find(x=>String(x.id)===ds.dataset.delscene);
+    if(s&&confirm("למחוק את הסצנה הזו?")){
+      const {error}=await sb.from("avatars").delete().eq("id",s.id);
+      if(error){toast("מחיקה נכשלה: "+error.message,true);return;}
+      // if it was cover, promote another scene of same character
+      const rest=rows.filter(r=>r.name===s.name&&r.id!==s.id);
+      if(s.is_cover&&rest.length){await sb.from("avatars").update({is_cover:true}).eq("id",rest[0].id);}
+      toast("נמחק");loadData();
+    }}
 });
+$("charClose").addEventListener("click",()=>{$("charOverlay").classList.remove("open");openCharName=null;});
 lightbox.addEventListener("click",()=>lightbox.classList.remove("open"));
 
-const loginOverlay=document.getElementById("loginOverlay");
-document.getElementById("loginBtn").addEventListener("click",()=>loginOverlay.classList.add("open"));
-document.getElementById("loginCancel").addEventListener("click",()=>loginOverlay.classList.remove("open"));
-document.getElementById("loginForm").addEventListener("submit",async e=>{
-  e.preventDefault();const f=Object.fromEntries(new FormData(e.target).entries());
+// auth
+const loginOverlay=$("loginOverlay");
+$("loginBtn").addEventListener("click",()=>loginOverlay.classList.add("open"));
+$("loginCancel").addEventListener("click",()=>loginOverlay.classList.remove("open"));
+$("loginForm").addEventListener("submit",async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target).entries());
   const {error}=await sb.auth.signInWithPassword({email:f.email,password:f.password});
-  if(error)toast("התחברות נכשלה: "+error.message,true);
-  else{loginOverlay.classList.remove("open");e.target.reset();toast("מחובר/ת — עריכה זמינה");}
-});
-document.getElementById("logoutBtn").addEventListener("click",async()=>{await sb.auth.signOut();toast("התנתקת");});
+  if(error)toast("התחברות נכשלה: "+error.message,true);else{loginOverlay.classList.remove("open");e.target.reset();toast("מחובר/ת — עריכה זמינה");}});
+$("logoutBtn").addEventListener("click",async()=>{await sb.auth.signOut();toast("התנתקת");});
 function setAuth(session){editing=!!session;document.body.classList.toggle("editing",editing);
-  document.getElementById("loginBtn").style.display=editing?"none":"inline-flex";
-  document.getElementById("whoEmail").textContent=session?("מחובר/ת: "+session.user.email):"";}
+  $("loginBtn").style.display=editing?"none":"inline-flex";$("whoEmail").textContent=session?("מחובר/ת: "+session.user.email):"";}
 sb.auth.onAuthStateChange((_e,session)=>setAuth(session));
 
-const overlay=document.getElementById("overlay"),form=document.getElementById("form");
-const formThumb=document.getElementById("formThumb"),rmImg=document.getElementById("rmImg");
+// form
+const overlay=$("overlay"),form=$("form"),formThumb=$("formThumb"),rmImg=$("rmImg"),charPick=$("charPick");
 function updateThumb(){if(formImage){formThumb.src=formImage;formThumb.classList.remove("empty");rmImg.style.display="inline-flex";}
   else{formThumb.removeAttribute("src");formThumb.classList.add("empty");rmImg.style.display="none";}}
-function openForm(av){
-  document.getElementById("modalTitle").textContent=av?"עריכת אווטאר":"הוספת אווטאר";
-  form.reset();document.getElementById("imageFile").value="";pendingFile=null;
-  form.id.value=av?av.id:"";formImage=av?(av.image_url||""):"";
-  if(av){form.name.value=av.name||"";form.avatar_id.value=av.avatar_id||"";form.gender.value=av.gender||"";
-    form.age_group.value=av.age_group||"";form.status.value=av.status||"active";
-    form.situation.value=av.situation||"";form.recommendation.value=av.recommendation||"";
-    form.tags.value=(av.tags||[]).join(", ");}
-  updateThumb();overlay.classList.add("open");setTimeout(()=>form.name.focus(),50);
+function fillCharPick(selected){
+  const names=[...new Set(rows.map(r=>r.name))].sort((a,b)=>a.localeCompare(b,"he"));
+  charPick.innerHTML=`<option value="__new__">— דמות חדשה —</option>`+names.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("");
+  charPick.value=selected||"__new__";
 }
-document.getElementById("imageFile").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;
-  pendingFile=f;const r=new FileReader();r.onload=()=>{formImage=r.result;updateThumb();};r.readAsDataURL(f);});
-rmImg.addEventListener("click",()=>{formImage="";pendingFile=null;document.getElementById("imageFile").value="";updateThumb();});
-document.getElementById("addBtn").addEventListener("click",()=>openForm(null));
-document.getElementById("cancelBtn").addEventListener("click",()=>overlay.classList.remove("open"));
+function applyCharFields(name){
+  const c=groups.find(x=>x.name===name);
+  if(c){form.name.value=c.name;form.gender.value=c.gender||"";form.age_group.value=c.age_group||"";form.avatar_id.value=c.avatar_id||"";}
+}
+function setMode(mode){ // 'newchar' shows name input; 'existing' hides picker behavior accordingly
+  $("charPickWrap").style.display = mode==="editscene" ? "none" : "block";
+  $("nameWrap").style.display = (charPick.value==="__new__"&&mode!=="editscene") ? "block" : (mode==="editscene"?"block":"none");
+}
+charPick.addEventListener("change",()=>{
+  if(charPick.value==="__new__"){form.name.value="";form.gender.value="";form.age_group.value="";form.avatar_id.value="";$("nameWrap").style.display="block";}
+  else{applyCharFields(charPick.value);$("nameWrap").style.display="none";}
+});
+
+// open form in 3 ways
+function openForm(scene){ // edit existing scene
+  resetForm();form.id.value=scene.id;form.origName.value=scene.name||"";
+  fillCharPick(scene.name);$("charPickWrap").style.display="none";$("nameWrap").style.display="block";
+  $("modalTitle").textContent="עריכת סצנה";
+  form.name.value=scene.name||"";form.gender.value=scene.gender||"";form.age_group.value=scene.age_group||"";form.avatar_id.value=scene.avatar_id||"";
+  form.status.value=scene.status||"active";form.situation.value=scene.situation||"";form.recommendation.value=scene.recommendation||"";
+  form.tags.value=(scene.tags||[]).join(", ");$("coverChk").checked=!!scene.is_cover;
+  formImage=scene.image_url||"";updateThumb();overlay.classList.add("open");
+}
+function openNewChar(){resetForm();fillCharPick("__new__");$("charPickWrap").style.display="block";$("nameWrap").style.display="block";
+  $("modalTitle").textContent="הוספת דמות חדשה";$("coverChk").checked=true;overlay.classList.add("open");setTimeout(()=>form.name.focus(),50);}
+function openAddScene(name){resetForm();fillCharPick(name);applyCharFields(name);
+  $("charPickWrap").style.display="block";$("nameWrap").style.display="none";
+  $("modalTitle").textContent="הוספת סצנה ל"+name;overlay.classList.add("open");}
+function resetForm(){form.reset();$("imageFile").value="";pendingFile=null;formImage="";form.id.value="";form.origName.value="";updateThumb();}
+
+$("addCharBtn").addEventListener("click",openNewChar);
+$("addSceneBtn").addEventListener("click",()=>{if(openCharName)openAddScene(openCharName);});
+$("cancelBtn").addEventListener("click",()=>overlay.classList.remove("open"));
 overlay.addEventListener("click",e=>{if(e.target===overlay)overlay.classList.remove("open");});
+$("imageFile").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;pendingFile=f;const r=new FileReader();r.onload=()=>{formImage=r.result;updateThumb();};r.readAsDataURL(f);});
+rmImg.addEventListener("click",()=>{formImage="";pendingFile=null;$("imageFile").value="";updateThumb();});
 
 form.addEventListener("submit",async e=>{
   e.preventDefault();
-  const saveBtn=document.getElementById("saveBtn");saveBtn.disabled=true;saveBtn.textContent="שומר…";
+  const isEditScene=!!form.id.value;
+  const isNewChar=!isEditScene && charPick.value==="__new__";
+  const charName=(isEditScene||charPick.value==="__new__")?form.name.value.trim():charPick.value;
+  if(!charName){toast("צריך שם דמות",true);return;}
+  const saveBtn=$("saveBtn");saveBtn.disabled=true;saveBtn.textContent="שומר…";
   try{
-    let image_url = formImage && !pendingFile ? formImage : null;
+    let image_url=(formImage&&!pendingFile)?formImage:null;
     if(pendingFile){
       const ext=(pendingFile.name.split(".").pop()||"jpg").toLowerCase();
       const path=Date.now()+"-"+Math.random().toString(36).slice(2,7)+"."+ext;
-      const up=await sb.storage.from(BUCKET).upload(path,pendingFile,{cacheControl:"3600",upsert:false});
+      const up=await sb.storage.from(BUCKET).upload(path,pendingFile,{cacheControl:"3600",upsert:false,contentType:pendingFile.type||undefined});
       if(up.error)throw up.error;
       image_url=sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
     }
-    const f=Object.fromEntries(new FormData(form).entries());
-    const row={name:f.name.trim(),avatar_id:f.avatar_id.trim()||null,gender:f.gender||null,
-      age_group:f.age_group||null,status:f.status,situation:f.situation.trim()||null,
-      recommendation:f.recommendation.trim()||null,
-      tags:f.tags.split(",").map(s=>s.trim()).filter(Boolean),image_url:image_url};
-    let res;
-    if(f.id) res=await sb.from("avatars").update(row).eq("id",f.id);
-    else res=await sb.from("avatars").insert(row);
-    if(res.error)throw res.error;
-    overlay.classList.remove("open");toast(f.id?"עודכן":"נוסף");loadData();
+    const charFields={name:charName,gender:form.gender.value||null,age_group:form.age_group.value||null,avatar_id:form.avatar_id.value.trim()||null};
+    const sceneFields={status:form.status.value,situation:form.situation.value.trim()||null,recommendation:form.recommendation.value.trim()||null,
+      tags:form.tags.value.split(",").map(s=>s.trim()).filter(Boolean)};
+    let wantCover=$("coverChk").checked;
+    // first scene of a brand-new character is always cover
+    const existingForChar=rows.filter(r=>r.name===charName && String(r.id)!==form.id.value);
+    if(isNewChar && existingForChar.length===0) wantCover=true;
+
+    let savedId=form.id.value;
+    if(isEditScene){
+      const row={...charFields,...sceneFields,is_cover:wantCover};
+      if(image_url!==null) row.image_url=image_url;
+      const {error}=await sb.from("avatars").update(row).eq("id",form.id.value);if(error)throw error;
+    }else{
+      const row={...charFields,...sceneFields,is_cover:wantCover,image_url};
+      const {data,error}=await sb.from("avatars").insert(row).select("id").single();if(error)throw error;savedId=data.id;
+    }
+    // keep character-level fields consistent across all scenes of this character
+    await sb.from("avatars").update(charFields).eq("name",charName);
+    // exactly one cover
+    if(wantCover){await sb.from("avatars").update({is_cover:false}).eq("name",charName).neq("id",savedId);}
+    overlay.classList.remove("open");toast(isEditScene?"עודכן":"נוסף");await loadData();
   }catch(err){toast("שמירה נכשלה: "+(err.message||err),true);}
   finally{saveBtn.disabled=false;saveBtn.textContent="שמירה";}
 });
 
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){overlay.classList.remove("open");loginOverlay.classList.remove("open");lightbox.classList.remove("open");}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){overlay.classList.remove("open");loginOverlay.classList.remove("open");lightbox.classList.remove("open");$("charOverlay").classList.remove("open");openCharName=null;}});
 
-(async()=>{ const {data:{session}}=await sb.auth.getSession(); setAuth(session); await loadData(); })();
+(async()=>{const {data:{session}}=await sb.auth.getSession();setAuth(session);await loadData();})();
 </script>
 </body>
 </html>
