@@ -9,11 +9,9 @@ function renderNav(activePage, lang) {
   const pages = isEn ? [
     { id: 'about',    label: 'About',      href: 'about.html' },
     { id: 'what-is-brain', label: 'What is Brain?', href: 'what-is-brain.html' },
+    { id: 'diy',      label: 'Implementation',        href: 'automated.html' },
     { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
-    { id: 'diy',      label: 'DIY',        href: 'automated.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
-    { id: 'success',  label: 'Success Stories', href: 'success-stories.html' },
-    { id: 'research', label: 'Research',   href: 'research.html' },
     { id: 'smb',      label: 'SMB',        href: 'smb.html' },
     { id: 'investors',label: 'Investors',  href: 'investors.html', submenu: [
       { label: 'Engine Within Engine', href: 'investors-engine.html' },
@@ -26,7 +24,7 @@ function renderNav(activePage, lang) {
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
     { id: 'team',     label: 'Our Network',href: 'team.html' },
-    { id: 'videos',   label: 'Videos',     href: 'videos.html' },
+    { id: 'podcast',  label: 'Podcast',    href: 'podcast.html' },
     { id: 'articles', label: 'Articles',   href: 'articles.html' },
     { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 Talk to Brain', href: 'talk-to-brain.html', pulse: true },
@@ -34,12 +32,10 @@ function renderNav(activePage, lang) {
   ] : [
     { id: 'about',    label: 'אודותינו',        href: 'about.html' },
     { id: 'what-is-brain', label: 'מה זה Brain?', href: 'what-is-brain.html' },
+    { id: 'diy',      label: 'הטמעה',  href: 'automated.html' },
     { id: 'uses',     label: 'שימושים',         href: 'uses.html' },
-    { id: 'diy',      label: 'עשה זאת בעצמך',  href: 'automated.html' },
     { id: 'smb',      label: 'SMB',             href: 'smb.html' },
     { id: 'roi',      label: 'ROI',             href: 'roi.html' },
-    { id: 'success',  label: 'סיפורי הצלחה',     href: 'success-stories.html' },
-    { id: 'research', label: 'מחקר',            href: 'research.html' },
     { id: 'investors',label: 'משקיעים',         href: 'investors.html', submenu: [
       { label: 'מנוע בתוך מנוע',    href: 'investors-engine.html' },
       { label: 'הוכחת שווי Brain',  href: 'investors-value.html' },
@@ -51,46 +47,38 @@ function renderNav(activePage, lang) {
     { id: 'demo',     label: 'Demo',            href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'מחירים',          href: 'pricing.html' },
     { id: 'team',     label: 'החברים שלנו',     href: 'team.html' },
-    { id: 'videos',   label: 'סרטונים',         href: 'videos.html' },
-    { id: 'articles', label: 'ידע',             href: 'articles.html' },
+    { id: 'podcast',  label: 'פודקאסט',         href: 'podcast.html' },
+    { id: 'articles', label: 'מאמרים',          href: 'articles.html' },
     { id: 'jobs',     label: 'דרושים',           href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 דבר עם Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'הצטרפו',           href: 'join.html', cta: true },
   ];
-  const talk = pages.find(p => p.pulse) || {};
-  const ctaLinks = pages.filter(p => p.cta).map(p => `<a href="${p.href}" class="nav-demo${p.id===activePage?' active':''}">${p.label}</a>`).join('');
   const desktopLinks = pages.map(p => {
     if (p.submenu) {
       const sub = p.submenu.map(s => `<a href="${s.href}" class="nav-sub-link">${s.label}</a>`).join('');
       return `<div class="nav-dropdown${p.id===activePage?' active':''}"><a href="${p.href}" class="nav-link">${p.label} ▾</a><div class="nav-dropdown-menu">${sub}</div></div><span class="sep">|</span>`;
     }
-    if (p.pulse) return '';
-    if (p.cta) return '';
+    if (p.pulse) return `<a href="${isEn ? '' : ''}${p.href}" class="nav-talk${p.id===activePage?' active':''}">${p.label}</a>`;
+    if (p.cta) return `<a href="${p.href}" class="nav-demo${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
     return `<a href="${p.href}" class="nav-link${p.id===activePage?' active':''}">${p.label}</a><span class="sep">|</span>`;
   }).join('');
   const mobileLinks = pages.map(p => {
     if (p.submenu) {
       return `<a href="${p.href}" class="${p.id===activePage?' active':''}">${p.label}</a>`;
     }
-    if (p.pulse) return '';
+    if (p.pulse) return `<a href="${p.href}" class="nav-talk${p.id===activePage?' active':''}">${p.label}</a>`;
     return `<a href="${p.href}" class="${p.cta?'nav-demo':''}${p.id===activePage?' active':''}">${p.label}</a>`;
   }).join('');
 
   document.getElementById('nav-placeholder').innerHTML = `
     <nav${isEn ? ' dir="ltr"' : ''}>
-      <div class="nav-top">
-        <a href="${isEn ? 'index.html' : 'index_he.html'}" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
-        <div class="nav-left">
-          ${ctaLinks}
-          <a href="${talk.href || '#'}" class="nav-talk${talk.id===activePage?' active':''}">${talk.label || ''}</a>
-          <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="24" height="17" alt="IL" style="border-radius:2px;display:block;"></button>
-          <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="24" height="17" alt="US" style="border-radius:2px;display:block;"></button>
-          <a href="https://www.youtube.com/@Brain.co.manager" class="nav-icon" title="YouTube" target="_blank">▶</a>
-          <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
-        </div>
-      </div>
-      <div class="nav-bottom">
-        <div class="nav-links"${isEn ? ' style="direction:ltr"' : ''}>${desktopLinks}</div>
+      <a href="${isEn ? 'index.html' : 'index_he.html'}" class="nav-logo"><img src="Brain2SPARK_LTD__1_.png" alt="Brain2Spark" style="height:38px;width:auto;display:block;"></a>
+      <div class="nav-links"${isEn ? ' style="direction:ltr"' : ''}>${desktopLinks}</div>
+      <div class="nav-left">
+        <button class="nav-lang" id="nav-lang-he" title="עברית" onclick="setLang('he')"><img src="https://flagcdn.com/w20/il.png" width="24" height="17" alt="IL" style="border-radius:2px;display:block;"></button>
+        <button class="nav-lang" id="nav-lang-en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" width="24" height="17" alt="US" style="border-radius:2px;display:block;"></button>
+        <a href="https://www.youtube.com/@Brain.co.manager" class="nav-icon" title="YouTube" target="_blank">▶</a>
+        <button class="nav-mobile-btn" id="nav-hamburger" aria-label="תפריט">☰</button>
       </div>
     </nav>
     <div class="nav-mobile-menu" id="nav-mobile-menu">${mobileLinks}</div>`;
@@ -158,14 +146,13 @@ function renderFooter() {
   </div>
     <div class="footer-links">
       <a href="about.html">About</a>
-      <a href="automated.html">DIY</a>
+      <a href="automated.html">Implementation</a>
       <a href="uses.html">Use Cases</a>
       <a href="roi.html">ROI</a>
       <a href="smb.html">SMB</a>
       <a href="pricing.html">Pricing</a>
       <a href="../demo.html">Demo</a>
       <a href="articles.html">Articles</a>
-      <a href="research.html">Research</a>
       <a href="jobs.html">Careers</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
@@ -183,14 +170,13 @@ function renderFooter() {
   </div>
     <div class="footer-links">
       <a href="about.html">אודותינו</a>
-      <a href="automated.html">עשה זאת בעצמך</a>
+      <a href="automated.html">הטמעה</a>
       <a href="uses.html">שימושים</a>
       <a href="roi.html">ROI</a>
       <a href="smb.html">SMB</a>
       <a href="pricing.html">מחירים</a>
       <a href="demo.html">Demo</a>
-      <a href="articles.html">ידע</a>
-      <a href="research.html">מחקר</a>
+      <a href="articles.html">מאמרים</a>
       <a href="jobs.html">דרושים</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
