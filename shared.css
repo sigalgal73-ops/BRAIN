@@ -75,6 +75,7 @@ nav{
 }
 .nav-talk:hover{background:rgba(0,212,170,0.3);border-color:var(--teal);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,212,170,0.3);}
 .nav-talk.active{border-color:var(--teal);background:rgba(0,212,170,0.25);}
+.nav-talk + .nav-demo{margin-inline-start:14px;}
 @keyframes talkPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,212,170,0.4);}50%{box-shadow:0 0 0 6px rgba(0,212,170,0);}}
 
 /* ── PAGE WRAPPER ── */
