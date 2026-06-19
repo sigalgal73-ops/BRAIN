@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brain Education | The Co-Manager for Education</title>
+<meta name="description" content="Brain Education — the AI-powered Education Co-Manager. It turns vision, values and work plans into consistent daily action for every audience: leaders, teachers, parents and students.">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#020d1a;--card:#071828;
+  --border:rgba(45,156,255,.13);
+  --accent:#1a6fc4;--bright:#2d9cff;--sky:#7ec8ff;
+  --teal:#00d4aa;--white:#f0f6ff;--muted:#6b8aaa;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Heebo',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+.edu-wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--teal);margin-bottom:14px}
+.sec-title{font-size:clamp(26px,3.6vw,40px);font-weight:900;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px}
+.sec-title em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-lead{font-size:clamp(15px,1.8vw,18px);color:var(--muted);line-height:1.7;max-width:680px}
+
+/* HERO */
+.edu-hero{position:relative;z-index:1;padding:130px 24px 60px;text-align:center}
+.edu-hero .eyebrow{font-size:12px;letter-spacing:.18em}
+.edu-hero h1{font-size:clamp(38px,6vw,68px);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:22px}
+.edu-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.edu-hero p{font-size:clamp(16px,2.1vw,20px);color:#aac4dd;max-width:720px;margin:0 auto 34px;line-height:1.65}
+.edu-hero p b{color:var(--white);font-weight:700}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:13px 30px;border-radius:30px;background:linear-gradient(135deg,var(--accent),var(--bright));color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(45,156,255,.6)}
+.btn-ghost{padding:13px 28px;border-radius:30px;border:1.5px solid var(--border);color:var(--white);font-weight:700;font-size:15px;text-decoration:none;transition:border-color .2s,background .2s}
+.btn-ghost:hover{border-color:var(--teal);background:rgba(0,212,170,.08)}
+
+/* GENERIC SECTION */
+.edu-sec{position:relative;z-index:1;padding:64px 0}
+.edu-sec-head{text-align:center;margin-bottom:44px}
+.edu-sec-head .sec-lead{margin:0 auto}
+
+/* ENGINES */
+.engines{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.engine{position:relative;background:linear-gradient(160deg,rgba(10,28,52,.7),rgba(4,16,32,.85));border:1px solid var(--border);border-radius:18px;padding:30px 26px;overflow:hidden}
+.engine::before{content:'';position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--bright))}
+.engine-ico{width:46px;height:46px;margin-bottom:16px;color:var(--teal)}
+.engine-num{font-family:'Space Mono',monospace;font-size:13px;color:var(--teal);margin-bottom:12px}
+.engine h3{font-size:21px;font-weight:900;margin-bottom:12px}
+.engine p{color:var(--muted);font-size:15px;line-height:1.7}
+
+/* PHILOSOPHY STRIP */
+.philo{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+.philo-text p{color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:16px}
+.philo-text p b{color:var(--white);font-weight:700}
+.philo-svg{width:100%;height:auto}
+
+/* AUDIENCE PILLARS (mentor team / challenges) */
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.pillar{position:relative;background:linear-gradient(160deg,rgba(10,28,52,.7),rgba(4,16,32,.85));border:1px solid var(--border);border-radius:18px;padding:28px 26px;overflow:hidden}
+.pillar-ico{width:40px;height:40px;margin-bottom:14px;color:var(--bright)}
+.pillar h3{font-size:19px;font-weight:900;margin-bottom:10px}
+.pillar p{color:var(--muted);font-size:14.5px;line-height:1.7;margin-bottom:14px}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:12.5px;font-weight:600;color:var(--sky);background:rgba(45,156,255,.09);border:1px solid var(--border);border-radius:20px;padding:5px 12px}
+
+/* CAMPAIGN AUDIENCES */
+.camps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.camp{background:#0a1626;border:1px solid var(--border);border-radius:18px;padding:26px 24px;transition:transform .25s,border-color .25s}
+.camp:hover{transform:translateY(-4px);border-color:rgba(0,212,170,.4)}
+.camp-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.camp-ico{width:34px;height:34px;color:var(--teal);flex-shrink:0}
+.camp-head h3{font-size:18px;font-weight:900}
+.camp ul{list-style:none}
+.camp li{font-size:14px;color:var(--muted);line-height:1.6;padding:6px 0 6px 18px;position:relative}
+.camp li::before{content:'';position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+
+/* FLOW (case-based learning) */
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;justify-content:center}
+.flow-step{flex:1;min-width:130px;background:linear-gradient(160deg,rgba(10,28,52,.7),rgba(4,16,32,.85));border:1px solid var(--border);border-radius:14px;padding:20px 16px;text-align:center;margin:6px}
+.flow-step .n{font-family:'Space Mono',monospace;font-size:12px;color:var(--teal);margin-bottom:8px}
+.flow-step h4{font-size:15px;font-weight:800;line-height:1.3}
+
+/* OUTCOMES */
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:840px;margin:0 auto}
+.kpi{background:linear-gradient(160deg,rgba(10,28,52,.7),rgba(4,16,32,.85));border:1px solid var(--border);border-radius:16px;padding:26px 20px;text-align:center}
+.kpi-num{font-size:38px;font-weight:900;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.kpi-lbl{font-size:14px;color:var(--muted);margin-top:8px}
+.kpis-note{text-align:center;font-size:12px;color:var(--muted);margin-top:18px;font-family:'Space Mono',monospace}
+
+/* GOAL QUOTE */
+.goal{max-width:820px;margin:0 auto;text-align:center;background:linear-gradient(160deg,rgba(10,28,52,.55),rgba(4,16,32,.7));border:1px solid var(--border);border-radius:24px;padding:48px 36px}
+.goal blockquote{font-size:clamp(19px,2.6vw,26px);font-weight:700;line-height:1.5;letter-spacing:-.01em}
+.goal blockquote em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* BOTTOM CTA */
+.edu-bottom{position:relative;z-index:1;text-align:center;padding:74px 24px 90px}
+.edu-bottom h2{font-size:clamp(24px,3.4vw,38px);font-weight:900;margin-bottom:26px;line-height:1.2}
+
+@media(max-width:900px){
+  .engines{grid-template-columns:1fr}
+  .philo{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .camps{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr}
+  .edu-hero{padding:96px 20px 48px}
+}
+</style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- HERO (no reveal — visible on load) -->
+<section class="edu-hero">
+  <div class="eyebrow">BRAIN · EDUCATION</div>
+  <h1>Brain <em>Education</em></h1>
+  <p>The Co-Manager for education. Every school already has a vision, values and excellent teachers — <b>what's missing is a system that turns them into consistent daily action</b>, for every audience, every day, all year long.</p>
+  <div class="hero-cta">
+    <a href="demo.html" class="btn-primary">Watch the demo</a>
+    <a href="segments.html#education" class="btn-ghost">Back to segments</a>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="edu-sec">
+  <div class="edu-wrap">
+    <div class="edu-sec-head reveal">
+      <div class="eyebrow">The idea</div>
+      <h2 class="sec-title">From knowledge to action, <em>from action to impact</em></h2>
+    </div>
+    <div class="philo reveal">
+      <div class="philo-text">
+        <p>Education systems don't suffer from a lack of ideas. They suffer from a lack of implementation.</p>
+        <p>Schools already know they want stronger teachers, engaged students, better parent partnerships and higher wellbeing. <b>The real challenge is turning those goals into consistent daily behaviors.</b></p>
+        <p>Education is not a collection of isolated events — it's a system of repeated behaviors. Most challenges have already been solved somewhere. Brain captures those solutions, organizes them, and helps schools implement them consistently.</p>
+      </div>
+      <svg class="philo-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="From intention to execution">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2d9cff"/><stop offset="1" stop-color="#00d4aa"/>
+          </linearGradient>
+        </defs>
+        <circle cx="70" cy="80" r="40" fill="none" stroke="url(#g1)" stroke-width="2.5" opacity=".9"/>
+        <text x="70" y="85" text-anchor="middle" fill="#f0f6ff" font-family="Heebo,sans-serif" font-size="13" font-weight="700">Vision</text>
+        <circle cx="330" cy="220" r="48" fill="none" stroke="url(#g1)" stroke-width="2.5"/>
+        <text x="330" y="225" text-anchor="middle" fill="#f0f6ff" font-family="Heebo,sans-serif" font-size="13" font-weight="700">Impact</text>
+        <path d="M105 105 C 170 160, 200 150, 285 195" fill="none" stroke="url(#g1)" stroke-width="2.5" stroke-dasharray="6 7" opacity=".8"/>
+        <circle cx="195" cy="150" r="6" fill="#00d4aa"/>
+        <circle cx="150" cy="135" r="4.5" fill="#2d9cff" opacity=".8"/>
+        <circle cx="245" cy="172" r="4.5" fill="#2d9cff" opacity=".8"/>
+        <text x="195" y="135" text-anchor="middle" fill="#6b8aaa" font-family="Space Mono,monospace" font-size="10">daily action</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- THREE ENGINES (+ mentor) -->
+<section class="edu-sec">
+  <div class="edu-wrap">
+    <div class="edu-sec-head reveal">
+      <div class="eyebrow">The system</div>
+      <h2 class="sec-title">Three engines, <em>one product</em></h2>
+      <p class="sec-lead">The same Brain DNA, translated into the language of education — combining knowledge, analytics and a drive to action for the whole school community.</p>
+    </div>
+    <div class="engines reveal">
+      <div class="engine">
+        <svg class="engine-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <div class="engine-num">01</div>
+        <h3>Smart Knowledge System</h3>
+        <p>A living, up-to-date knowledge base: procedures and protocols, best practices from home and abroad, a case-and-response library, and leadership tools — all the organizational knowledge in one place.</p>
+      </div>
+      <div class="engine">
+        <svg class="engine-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        <div class="engine-num">02</div>
+        <h3>Analytics & Recommendations</h3>
+        <p>KPIs and impact metrics, analysis of barriers and missed opportunities, and precise insights and recommendations for action — for every audience: leaders, teachers, parents and students.</p>
+      </div>
+      <div class="engine">
+        <svg class="engine-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        <div class="engine-num">03</div>
+        <h3>Campaigns & Implementation</h3>
+        <p>Focused content — messages, images and videos — sent to every audience throughout the year, shifting attitudes and driving real action in the field.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE ADDRESS (audience pillars) -->
+<section class="edu-sec">
+  <div class="edu-wrap">
+    <div class="edu-sec-head reveal">
+      <div class="eyebrow">What we address</div>
+      <h2 class="sec-title">Built around <em>every audience</em></h2>
+      <p class="sec-lead">Brain works as a virtual team of educational experts — supporting growth across the whole school community.</p>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <svg class="pillar-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <h3>Teachers</h3>
+        <p>The most important asset in education. Brain strengthens professionalism, classroom management, confidence, resilience and work–life balance — and helps reduce burnout.</p>
+        <div class="tag-row"><span class="tag">Classroom management</span><span class="tag">Retention</span><span class="tag">Wellbeing</span><span class="tag">Coaching</span></div>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+        <h3>Students</h3>
+        <p>The focus is not only on grades, but on human development — academic, emotional and social. Confidence, resilience, responsibility, belonging and a growth mindset.</p>
+        <div class="tag-row"><span class="tag">Resilience</span><span class="tag">Confidence</span><span class="tag">Belonging</span><span class="tag">Growth mindset</span></div>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h3>Parents</h3>
+        <p>Strong schools are built on strong partnerships. Brain identifies barriers and offers practical strategies for communication, trust, involvement and shared responsibility.</p>
+        <div class="tag-row"><span class="tag">Communication</span><span class="tag">Trust</span><span class="tag">Partnership</span><span class="tag">Shared responsibility</span></div>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+        <h3>Leaders & Culture</h3>
+        <p>Culture shapes everything. Brain helps translate values into daily behaviors, strengthen morale, recognition and trust, and lead organizational change systematically.</p>
+        <div class="tag-row"><span class="tag">Values in action</span><span class="tag">Recognition</span><span class="tag">Change management</span><span class="tag">Identity</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGNS BY AUDIENCE -->
+<section class="edu-sec">
+  <div class="edu-wrap">
+    <div class="edu-sec-head reveal">
+      <div class="eyebrow">Campaigns</div>
+      <h2 class="sec-title">Content ready <em>to send</em></h2>
+      <p class="sec-lead">A powerful campaign engine — targeted messages, images and videos for each audience, with built-in follow-up.</p>
+    </div>
+    <div class="camps reveal">
+      <div class="camp">
+        <div class="camp-head">
+          <svg class="camp-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3>Teachers</h3>
+        </div>
+        <ul>
+          <li>Mission &amp; meaning</li>
+          <li>Unit pride</li>
+          <li>Professionalism</li>
+          <li>Positive communication</li>
+          <li>Appreciation culture</li>
+        </ul>
+      </div>
+      <div class="camp">
+        <div class="camp-head">
+          <svg class="camp-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          <h3>Parents</h3>
+        </div>
+        <ul>
+          <li>We are one team</li>
+          <li>Meaningful learning</li>
+          <li>Parenting authority</li>
+          <li>Student resilience</li>
+          <li>Home–school partnership</li>
+        </ul>
+      </div>
+      <div class="camp">
+        <div class="camp-head">
+          <svg class="camp-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+          <h3>Students</h3>
+        </div>
+        <ul>
+          <li>Build your value</li>
+          <li>Confidence &amp; responsibility</li>
+          <li>AI skills</li>
+          <li>Problem solving</li>
+          <li>Resilience &amp; kindness</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE-BASED LEARNING (flow) -->
+<section class="edu-sec">
+  <div class="edu-wrap">
+    <div class="edu-sec-head reveal">
+      <div class="eyebrow">Case-based learning</div>
+      <h2 class="sec-title">Every challenge becomes <em>a structured process</em></h2>
+      <p class="sec-lead">A growing case library — turning real-world situations into repeatable, measurable practice.</p>
+    </div>
+    <div class="flow reveal">
+      <div class="flow-step"><div class="n">01</div><h4>Case</h4></div>
+      <div class="flow-step"><div class="n">02</div><h4>Analysis</h4></div>
+      <div class="flow-step"><div class="n">03</div><h4>Best Practice</h4></div>
+      <div class="flow-step"><div class="n">04</div><h4>Action Plan</h4></div>
+      <div class="flow-step"><div class="n">05</div><h4>Follow-Up</h4></div>
+      <div class="flow-step"><div class="n">06</div><h4>Outcome</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="edu-sec">
+  <div class="edu-wrap">
+    <div class="edu-sec-head reveal">
+      <div class="eyebrow">Outcomes</div>
+      <h2 class="sec-title">What you see <em>in the cockpit</em></h2>
+      <p class="sec-lead">A live picture of performance and impact metrics — in one place, in real time.</p>
+    </div>
+    <div class="kpis reveal">
+      <div class="kpi"><div class="kpi-num">92%</div><div class="kpi-lbl">Graduation eligibility</div></div>
+      <div class="kpi"><div class="kpi-num">95%</div><div class="kpi-lbl">Student attendance</div></div>
+      <div class="kpi"><div class="kpi-num">86%</div><div class="kpi-lbl">Student satisfaction</div></div>
+      <div class="kpi"><div class="kpi-num">82%</div><div class="kpi-lbl">Parent satisfaction</div></div>
+      <div class="kpi"><div class="kpi-num">89%</div><div class="kpi-lbl">Participation rates</div></div>
+      <div class="kpi"><div class="kpi-num">82%</div><div class="kpi-lbl">Teaching-plan implementation</div></div>
+    </div>
+    <div class="kpis-note reveal">// sample data for illustration</div>
+  </div>
+</section>
+
+<!-- ULTIMATE GOAL -->
+<section class="edu-sec">
+  <div class="edu-wrap">
+    <div class="goal reveal">
+      <div class="eyebrow">The ultimate goal</div>
+      <blockquote>If a student leaves our school <em>loving themselves more, loving the world more</em>, and believing more strongly in their ability to contribute — then we have succeeded.</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="edu-bottom reveal">
+  <h2>Want to see how <em style="font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Brain Education</em> works for you?</h2>
+  <div class="hero-cta">
+    <a href="demo.html" class="btn-primary">Watch the demo</a>
+    <a href="join.html" class="btn-ghost">Talk to us</a>
+  </div>
+</section>
+
+<footer id="footer-placeholder"></footer>
+<script src="../shared.js"></script>
+<script>
+  renderNav('education');
+  renderFooter();
+  if (typeof initReveal === 'function') initReveal();
+</script>
+</body>
+</html>
