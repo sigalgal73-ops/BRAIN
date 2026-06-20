@@ -25,6 +25,7 @@ function renderNav(activePage, lang) {
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
     { id: 'team',     label: 'Our Network',href: 'team.html' },
     { id: 'articles', label: 'Knowledge',  href: 'articles.html' },
+    { id: 'research', label: 'Research',   href: 'research.html' },
     { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 Talk to Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
@@ -47,6 +48,7 @@ function renderNav(activePage, lang) {
     { id: 'pricing',  label: 'מחירים',          href: 'pricing.html' },
     { id: 'team',     label: 'החברים שלנו',     href: 'team.html' },
     { id: 'articles', label: 'ידע',              href: 'articles.html' },
+    { id: 'research', label: 'מחקר',            href: 'research.html' },
     { id: 'jobs',     label: 'דרושים',           href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 דבר עם Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'הצטרפו',           href: 'join.html', cta: true },
@@ -155,6 +157,7 @@ function renderFooter() {
       <a href="pricing.html">Pricing</a>
       <a href="../demo.html">Demo</a>
       <a href="articles.html">Knowledge</a>
+      <a href="research.html">Research</a>
       <a href="jobs.html">Careers</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
@@ -179,6 +182,7 @@ function renderFooter() {
       <a href="pricing.html">מחירים</a>
       <a href="demo.html">Demo</a>
       <a href="articles.html">ידע</a>
+      <a href="research.html">מחקר</a>
       <a href="jobs.html">דרושים</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
