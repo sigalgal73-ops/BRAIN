@@ -247,6 +247,20 @@ function initBot() {
   const TOTAL = 13;
   let state = {}, flowIndex = [], stepMap = {};
   function fn() { return state.name ? state.name.split(' ')[0] : ''; }
+  const isEn = window.location.pathname.includes('/en/');
+  const UI = isEn ? {
+    headSub:"Enterprise Sales Assistant", step:"Step", send:"Send", restart:"↺ Restart",
+    calP:"Pick a time directly in our calendar:", calBtn:"📅 Schedule a demo on Calendly",
+    calOpen:"✓ Calendly opened – we'd love to meet you!", calDone:"Scheduled a demo on Calendly",
+    sumTitle:"CONVERSATION SUMMARY",
+    sumK:{challenge:"Challenge",company:"Company",role:"Role",name:"Name",email:"Email",phone:"Phone",cta:"Request"}
+  } : {
+    headSub:"בוט מכירות ארגוני", step:"שלב", send:"שלח", restart:"↺ התחל מחדש",
+    calP:"בחרו מועד ישירות ביומן שלנו:", calBtn:"📅 תאמו דמו ב-Calendly",
+    calOpen:"✓ Calendly נפתח – נשמח לפגוש אתכם!", calDone:"תואם דמו ב-Calendly",
+    sumTitle:"סיכום השיחה",
+    sumK:{challenge:"אתגר",company:"חברה",role:"תפקיד",name:"שם",email:"מייל",phone:"טלפון",cta:"בקשה"}
+  };
 
   // Bot CSS
   const style = document.createElement('style');
@@ -319,6 +333,16 @@ function initBot() {
     .bot-cal-btn{display:block;width:100%;padding:9px;font-size:12px;font-weight:700;font-family:Heebo,sans-serif;
       background:#0C447C;color:#eaf4ff;border:none;border-radius:8px;cursor:pointer;}
     .bot-cal-btn:hover{background:#185FA5;}
+    .bot-window.bot-en .bot-row,
+    .bot-window.bot-en .bot-bubble,
+    .bot-window.bot-en .bot-input,
+    .bot-window.bot-en .bot-sum,
+    .bot-window.bot-en .bot-sum-row,
+    .bot-window.bot-en .bot-cal p,
+    .bot-window.bot-en .bot-head-sub,
+    .bot-window.bot-en .bot-opts{direction:ltr;}
+    .bot-window.bot-en .bot-input,
+    .bot-window.bot-en .bot-bubble{text-align:left;}
   `;
   document.head.appendChild(style);
 
@@ -372,15 +396,15 @@ function initBot() {
 
   // Window
   const win = document.createElement('div');
-  win.className = 'bot-window';
+  win.className = 'bot-window' + (isEn ? ' bot-en' : '');
   win.innerHTML = `
     <div class="bot-head">
       ${AV}
-      <div><div class="bot-head-name">Brain – Manager-Co</div><div class="bot-head-sub">בוט מכירות ארגוני</div></div>
+      <div><div class="bot-head-name">Brain – Manager-Co</div><div class="bot-head-sub">${UI.headSub}</div></div>
       <div class="bot-head-dot"></div>
       <button class="bot-close" id="bot-close">✕</button>
     </div>
-    <div class="bot-prog"><span class="bot-prog-lbl" id="bp-lbl">שלב 1 / ${TOTAL}</span><div class="bot-prog-track"><div class="bot-prog-fill" id="bp-fill" style="width:8%"></div></div></div>
+    <div class="bot-prog"><span class="bot-prog-lbl" id="bp-lbl">${UI.step} 1 / ${TOTAL}</span><div class="bot-prog-track"><div class="bot-prog-fill" id="bp-fill" style="width:8%"></div></div></div>
     <div class="bot-msgs" id="bot-msgs"></div>`;
   document.body.appendChild(win);
 
@@ -397,7 +421,7 @@ function initBot() {
 
   function updProg(step) {
     FILL.style.width = Math.round((step/TOTAL)*100)+'%';
-    PLBL.textContent = 'שלב '+step+' / '+TOTAL;
+    PLBL.textContent = UI.step+' '+step+' / '+TOTAL;
   }
 
   function addBot(text, delay) {
@@ -434,7 +458,7 @@ function initBot() {
   function addInput(ph, onSub) {
     const r=document.createElement('div'); r.className='bot-input-row';
     const inp=document.createElement('input'); inp.className='bot-input'; inp.placeholder=ph; inp.type='text';
-    const btn=document.createElement('button'); btn.className='bot-send'; btn.textContent='שלח';
+    const btn=document.createElement('button'); btn.className='bot-send'; btn.textContent=UI.send;
     function sub(){const v=inp.value.trim();if(!v)return;inp.disabled=true;btn.disabled=true;r.style.opacity='.5';onSub(v);}
     btn.onclick=sub; inp.onkeydown=e=>{if(e.key==='Enter')sub();};
     r.appendChild(inp); r.appendChild(btn); MSG.appendChild(r); MSG.scrollTop=MSG.scrollHeight;
@@ -443,20 +467,21 @@ function initBot() {
 
   function addCal(onDone) {
     const c=document.createElement('div'); c.className='bot-cal';
-    c.innerHTML='<p>בחרו מועד ישירות ביומן שלנו:</p>';
-    const b=document.createElement('button'); b.className='bot-cal-btn'; b.textContent='📅 תאמו דמו ב-Calendly';
-    b.onclick=()=>{window.open('https://calendly.com/brain-demo','_blank');c.innerHTML='<p style="color:#1D9E75;font-weight:700">✓ Calendly נפתח – נשמח לפגוש אתכם!</p>';setTimeout(()=>onDone('תואם דמו ב-Calendly'),1000);};
+    c.innerHTML='<p>'+UI.calP+'</p>';
+    const b=document.createElement('button'); b.className='bot-cal-btn'; b.textContent=UI.calBtn;
+    b.onclick=()=>{window.open('https://calendly.com/brain-demo','_blank');c.innerHTML='<p style="color:#1D9E75;font-weight:700">'+UI.calOpen+'</p>';setTimeout(()=>onDone(UI.calDone),1000);};
     c.appendChild(b); MSG.appendChild(c); MSG.scrollTop=MSG.scrollHeight;
   }
 
   function addSum(s) {
     const c=document.createElement('div'); c.className='bot-sum';
-    const rows=[['אתגר',s.challenge||'—'],['חברה',s.company||'—'],['תפקיד',s.role||'—'],['שם',s.name||'—'],['מייל',s.email||'—'],['טלפון',s.phone||'—'],['בקשה',s.cta||'—']];
-    c.innerHTML='<div style="font-size:10px;color:#00d4aa;letter-spacing:.1em;font-weight:700;margin-bottom:8px">סיכום השיחה</div>'+rows.map(r=>`<div class="bot-sum-row"><span class="bot-sum-k">${r[0]}</span><span class="bot-sum-v">${r[1]}</span></div>`).join('');
+    const k=UI.sumK;
+    const rows=[[k.challenge,s.challenge||'—'],[k.company,s.company||'—'],[k.role,s.role||'—'],[k.name,s.name||'—'],[k.email,s.email||'—'],[k.phone,s.phone||'—'],[k.cta,s.cta||'—']];
+    c.innerHTML='<div style="font-size:10px;color:#00d4aa;letter-spacing:.1em;font-weight:700;margin-bottom:8px">'+UI.sumTitle+'</div>'+rows.map(r=>`<div class="bot-sum-row"><span class="bot-sum-k">${r[0]}</span><span class="bot-sum-v">${r[1]}</span></div>`).join('');
     MSG.appendChild(c); MSG.scrollTop=MSG.scrollHeight;
   }
 
-  const FLOW = [
+  const FLOW_HE = [
     {step:1, bot:'שלום!\nאני הבוט של Brain – Manager-Co.\n\nנתחיל בהיכרות קצרה – מה שמך?', isInput:true, ph:'שם מלא', run:(v,n)=>{state.name=v;n();}},
     {step:2, bot:()=>`נעים להכיר, ${fn()}!\n\nמאיזו חברה?`, isInput:true, ph:'שם החברה', run:(v,n)=>{state.company=v;n();}},
     {step:3, bot:()=>`מעולה, ${fn()}!\nמה האתגר המרכזי ב${state.company} כרגע?`,
@@ -518,8 +543,74 @@ function initBot() {
         const PDF='https://brain2spark.mysitemail.co.il/wp-content/uploads/2026/03/Deno_%D7%90%D7%AA%D7%A8-%D7%A2%D7%91%D7%A8%D7%99%D7%AA.pdf';
         addBot(`תודה רבה, ${state.name}! 🎉<br><br>📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">לחצו כאן לצפייה במסמך</a><br><br>נציג Brain יצור איתך קשר בהקדם 🙂`,200);
       }
-      setTimeout(()=>{const rb=document.createElement('button');rb.className='bot-restart';rb.textContent='↺ התחל מחדש';rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);},2000);
+      setTimeout(()=>{const rb=document.createElement('button');rb.className='bot-restart';rb.textContent=UI.restart;rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);},2000);
     }}  ];
+
+  const FLOW_EN = [
+    {step:1, bot:"Hi!\nI'm the Brain – Manager-Co assistant.\n\nLet's start with a quick intro – what's your name?", isInput:true, ph:"Full name", run:(v,n)=>{state.name=v;n();}},
+    {step:2, bot:()=>`Nice to meet you, ${fn()}!\n\nWhich company are you with?`, isInput:true, ph:"Company name", run:(v,n)=>{state.company=v;n();}},
+    {step:3, bot:()=>`Great, ${fn()}!\nWhat's the main challenge at ${state.company} right now?`,
+      opts:["Increase sales","Improve employee performance","Employee retention","Adopting AI in the business","Other"],
+      run:(c,n)=>{if(c==="Other")n('other_ch');else{state.challenge=c;n();}}},
+    {step:3, id:'other_ch', bot:"What do you need help with?", isInput:true, ph:"Describe the challenge", run:(v,n)=>{state.challenge=v;n(10);}},
+    {step:4, bot:()=>{const m={"Increase sales":"Salespeople know what to do – but don't always execute.","Improve employee performance":"There's knowledge in the organization, but it doesn't become habit.","Employee retention":"It's hard to sustain motivation over time.","Adopting AI in the business":"AI that connects to daily management – not just a tool."};return (m[state.challenge]||"That's a challenge we know well.")+"\n\nDoes this happen at your company too?";},
+      opts:["Yes, definitely","Partially","Not really"], run:(c,n)=>{state.feels=c;n();}},
+    {step:5, bot:()=>`Got it.\n\nHow many people work at ${state.company}?`,
+      opts:["1–10","11–25","26–50","51–200","200–1,000","1,000+"], run:(c,n)=>{state.size=c;n();}},
+    {step:6, bot:()=>(state.size==="1–10"||state.size==="11–25"?"Brain works great for small businesses!\n• No IT team required\n• Up and running in days\n":"Brain is an AI layer that manages daily execution.\n1. Analyzes behavior\n2. Sends smart messages\n3. Follows up\n")+`\nWhat's your role, ${fn()}?`,
+      opts:["Business owner – CEO","VP Sales","VP HR","Manager","Other role"], run:(c,n)=>{state.role=c;n();}},
+    {step:7, bot:()=>{const r=state.role||'';const t=r.includes("Sales")?"Brain spots gaps in sales conversations and improves them within two weeks.":r.includes("HR")?"Brain detects drops in energy and suggests managerial actions.":(r.includes("CEO")||r.includes("owner"))?"Brain gives you day-to-day control over team performance.":"Brain fits anyone who wants to improve performance.";return t+`\n\nDo you have systems like a CRM at ${state.company}?`;},
+      opts:["Yes, we have a CRM","Yes, we have training","Both","No"], run:(c,n)=>{state.existing=c;n();}},
+    {step:8, bot:()=>{const e=state.existing;if(e==="Yes, we have a CRM"||e==="Both")return "Brain doesn't replace systems – it connects them.\n\nWhat's most important to improve?";if(e==="Yes, we have training")return "Brain doesn't replace training – it turns it into execution.\n\nWhat's most important to improve?";return "Brain can be the foundation of your management infrastructure.\n\nWhat's most important to improve?";},
+      opts:["Increase sales","Improve employee performance","Employee retention","Adopting AI","Other"],
+      run:(c,n)=>{if(c==="Other")n('other_b');else{state.benefit=c;n(10);}}},
+    {step:8, id:'other_b', bot:"What's important to improve?", isInput:true, ph:"Description", run:(v,n)=>{state.benefit=v;n(10);}},
+    {step:9, bot:()=>`Excellent!\n\nHow would you like to receive info about Brain?`,
+      opts:["Short demo video","Written explanation"], run:(c,n)=>{state.cta=c;n();}},
+    {step:10, bot:()=>`Great, ${fn()}!\n\nWe'd love to send you the info.\n\nPhone number:`, isInput:true, ph:"Phone number", run:(v,n)=>{state.phone=v;n();}},
+    {step:11, bot:"Email address:", isInput:true, ph:"Email address", run:(v,n)=>{
+      state.email=v;
+      fetch('/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({
+          'form-name': 'brain-demo',
+          'name': state.name || '',
+          'company': state.company || '',
+          'phone': state.phone || '',
+          'email': state.email || '',
+          'cta': state.cta || '',
+          'challenge': state.challenge || '',
+          'role': state.role || ''
+        }).toString()
+      }).catch(err=>console.log('Form send error:',err));
+      if(state.cta==="Short demo video"){
+        addBot(`Thanks ${state.name}! 🎥 The video is opening now...`,200);
+        setTimeout(()=>{
+          const ov=document.createElement('div');
+          ov.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(2,13,26,0.96);display:flex;align-items:center;justify-content:center;';
+          ov.innerHTML=`<div style="position:relative;width:min(560px,96vw);background:#020d1a;border:1px solid rgba(45,156,255,0.25);border-radius:20px;overflow:hidden;box-shadow:0 0 60px rgba(45,156,255,0.2);">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(45,156,255,0.12);">
+              <span style="font-size:15px;font-weight:700;color:#eaf4ff;font-family:Heebo,sans-serif;">Brain Co-Manager in action</span>
+              <button onclick="this.closest('div[style*=fixed]').remove();document.body.style.overflow='';" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#aaa;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+            </div>
+            <div style="position:relative;padding-top:56.25%;background:#010810;">
+              <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/O3yF5ee2iEI?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div style="padding:12px 20px;text-align:center;font-size:13px;color:#7ec8ff;font-family:Heebo,sans-serif;">A Brain representative will contact you shortly</div>
+          </div>`;
+          ov.onclick=e=>{if(e.target===ov){ov.remove();document.body.style.overflow='';}};
+          document.body.appendChild(ov);
+          document.body.style.overflow='hidden';
+        },400);
+      } else {
+        const PDF='https://brain2spark.mysitemail.co.il/wp-content/uploads/2026/03/Deno_%D7%90%D7%AA%D7%A8-%D7%A2%D7%91%D7%A8%D7%99%D7%AA.pdf';
+        addBot(`Thank you so much, ${state.name}! 🎉<br><br>📄 <a href="${PDF}" target="_blank" style="color:#2d9cff;font-weight:700">Click here to view the document</a><br><br>A Brain representative will contact you shortly 🙂`,200);
+      }
+      setTimeout(()=>{const rb=document.createElement('button');rb.className='bot-restart';rb.textContent=UI.restart;rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);},2000);
+    }}  ];
+
+  const FLOW = isEn ? FLOW_EN : FLOW_HE;
 
   FLOW.forEach((s,i)=>{ if(s.id)stepMap[s.id]=i; else flowIndex.push(i); });
 
@@ -535,7 +626,7 @@ function initBot() {
     const s=FLOW[idx]; updProg(s.step);
     const text=typeof s.bot==='function'?s.bot():s.bot;
     addBot(text,120).then(()=>{
-      if(s.isSummary){const rb=document.createElement('button');rb.className='bot-restart';rb.textContent='↺ התחל מחדש';rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);return;}
+      if(s.isSummary){const rb=document.createElement('button');rb.className='bot-restart';rb.textContent=UI.restart;rb.onclick=()=>{state={};MSG.innerHTML='';runStep(0);};MSG.appendChild(rb);return;}
       const isCal=s.isCalendly&&s.isCalendly(), isCon=s.isConfirm&&s.isConfirm();
       const ns=nextSeq(idx);
       if(isCal){addCal(v=>{addUser(v);state.contact=v;setTimeout(()=>runStep(ns),500);});return;}
