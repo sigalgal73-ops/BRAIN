@@ -342,6 +342,7 @@ function initBot() {
     .bot-window.bot-en .bot-head-sub,
     .bot-window.bot-en .bot-opts{direction:ltr;}
     .bot-window.bot-en .bot-input,
+    .bot-window.bot-en .bot-opt,
     .bot-window.bot-en .bot-bubble{text-align:left;}
   `;
   document.head.appendChild(style);
