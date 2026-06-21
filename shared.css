@@ -175,7 +175,8 @@ footer{
   .nav-mobile-menu{
     position:fixed;top:64px;left:0;right:0;z-index:10000;
     background:rgba(2,13,26,0.98);border-bottom:1px solid var(--border);
-    padding:14px 18px;flex-direction:column;gap:2px;
+    padding:14px 18px 28px;flex-direction:column;gap:2px;
+    max-height:calc(100vh - 64px);overflow-y:auto;
     backdrop-filter:blur(16px);
   }
   .nav-mobile-menu.open{display:flex;}
@@ -190,6 +191,9 @@ footer{
     color:var(--bright)!important;
     border:1px solid rgba(45,156,255,0.35);
   }
+  .nav-mobile-menu .nav-demo,
+  .nav-mobile-menu .nav-talk{align-self:flex-start;}
+  body:has(.nav-mobile-menu.open) .bot-fab{display:none!important;}
   .page-hero{padding:32px 18px 24px;}
   .sec{padding:32px 18px;}
   .grid-2,.grid-3{grid-template-columns:1fr;}
