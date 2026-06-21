@@ -346,50 +346,49 @@ function initBot() {
   document.head.appendChild(style);
 
   // Avatar SVG (small)
-  const AV = `<svg class="bot-av-sm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  const AV = `<svg class="bot-av-sm" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <radialGradient id="bm" cx="45%" cy="35%" r="55%"><stop offset="0%" stop-color="#3a6fa0"/><stop offset="100%" stop-color="#0a1e35"/></radialGradient>
-      <filter id="bg"><feGaussianBlur stdDeviation="2"/></filter>
+      <radialGradient id="av_body" cx="38%" cy="28%" r="85%"><stop offset="0%" stop-color="#5d93cb"/><stop offset="55%" stop-color="#2c5a8f"/><stop offset="100%" stop-color="#102f4e"/></radialGradient>
+      <linearGradient id="av_visor" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b2138"/><stop offset="100%" stop-color="#03101f"/></linearGradient>
+      <radialGradient id="av_eye" cx="45%" cy="38%" r="65%"><stop offset="0%" stop-color="#c4fff3"/><stop offset="45%" stop-color="#00d4aa"/><stop offset="100%" stop-color="#008f76"/></radialGradient>
+      <radialGradient id="av_orb" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#d6fff5"/><stop offset="100%" stop-color="#00d4aa"/></radialGradient>
     </defs>
-    <rect x="18" y="22" width="44" height="36" rx="10" fill="url(#bm)" stroke="#1a6fc4" stroke-width="1"/>
-    <rect x="18" y="22" width="2" height="36" rx="1" fill="rgba(45,156,255,0.6)"/>
-    <rect x="60" y="22" width="2" height="36" rx="1" fill="rgba(45,156,255,0.4)"/>
-    <rect x="24" y="29" width="13" height="9" rx="3" fill="#020d1a" stroke="#1a6fc4" stroke-width="0.8"/>
-    <ellipse cx="30" cy="33.5" rx="4.5" ry="3.5" fill="#00d4aa" filter="url(#bg)" opacity="0.9"/>
-    <ellipse cx="30" cy="33.5" rx="2.5" ry="2" fill="#7fffee"/>
-    <circle cx="30" cy="33.5" r="1" fill="white"/>
-    <rect x="43" y="29" width="13" height="9" rx="3" fill="#020d1a" stroke="#1a6fc4" stroke-width="0.8"/>
-    <ellipse cx="49" cy="33.5" rx="4.5" ry="3.5" fill="#00d4aa" filter="url(#bg)" opacity="0.9"/>
-    <ellipse cx="49" cy="33.5" rx="2.5" ry="2" fill="#7fffee"/>
-    <circle cx="49" cy="33.5" r="1" fill="white"/>
-    <rect x="24" y="44" width="32" height="7" rx="3" fill="#020d1a" stroke="#0e3a6e" stroke-width="0.8"/>
-    <rect x="28" y="17" width="24" height="6" rx="2.5" fill="#0a1e35" stroke="#0e3a6e" stroke-width="0.8"/>
-    <rect x="38" y="13" width="4" height="5" rx="2" fill="#1a6fc4"/>
-    <circle cx="40" cy="11" r="3" fill="#2d9cff" opacity="0.9"/>
-    <rect x="7" y="30" width="11" height="16" rx="5" fill="#0a1e35" stroke="#0e3a6e" stroke-width="0.8"/>
-    <rect x="62" y="30" width="11" height="16" rx="5" fill="#0a1e35" stroke="#0e3a6e" stroke-width="0.8"/>
+    <line x1="50" y1="20" x2="50" y2="11" stroke="#2d9cff" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="50" cy="8" r="4.5" fill="url(#av_orb)"/>
+    <rect x="14" y="40" width="9" height="20" rx="4.5" fill="url(#av_body)" stroke="#2d9cff" stroke-width="0.8"/>
+    <rect x="77" y="40" width="9" height="20" rx="4.5" fill="url(#av_body)" stroke="#2d9cff" stroke-width="0.8"/>
+    <circle cx="18.5" cy="50" r="2" fill="#00d4aa"/><circle cx="81.5" cy="50" r="2" fill="#00d4aa"/>
+    <rect x="22" y="20" width="56" height="55" rx="22" fill="url(#av_body)" stroke="#2d9cff" stroke-width="1"/>
+    <ellipse cx="42" cy="31" rx="18" ry="7.5" fill="#ffffff" opacity="0.16"/>
+    <rect x="28" y="33" width="44" height="27" rx="13.5" fill="url(#av_visor)" stroke="#0e3a6e" stroke-width="1"/>
+    <ellipse cx="38" cy="40" rx="11" ry="4" fill="#2d9cff" opacity="0.22"/>
+    <circle cx="40" cy="47" r="7.5" fill="url(#av_eye)"/><circle cx="60" cy="47" r="7.5" fill="url(#av_eye)"/>
+    <circle cx="42.4" cy="44.2" r="2.1" fill="#ffffff" opacity="0.95"/><circle cx="62.4" cy="44.2" r="2.1" fill="#ffffff" opacity="0.95"/>
+    <path d="M41 67 Q50 73 59 67" fill="none" stroke="#7ec8ff" stroke-width="2.4" stroke-linecap="round"/>
   </svg>`;
 
   // FAB button
   const fab = document.createElement('button');
   fab.className = 'bot-fab';
-  fab.innerHTML = `<svg class="bot-fab-av" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-    <defs><radialGradient id="fm" cx="45%" cy="35%" r="55%"><stop offset="0%" stop-color="#3a6fa0"/><stop offset="100%" stop-color="#0a1e35"/></radialGradient></defs>
-    <rect x="15" y="18" width="50" height="40" rx="12" fill="url(#fm)" stroke="#2d9cff" stroke-width="1.5"/>
-    <rect x="20" y="25" width="15" height="10" rx="3.5" fill="#020d1a" stroke="#1a6fc4" stroke-width="1"/>
-    <ellipse cx="27" cy="30" rx="5.5" ry="4" fill="#00d4aa" opacity="0.9"/>
-    <ellipse cx="27" cy="30" rx="3" ry="2.5" fill="#7fffee"/>
-    <circle cx="27" cy="30" r="1.2" fill="white"/>
-    <rect x="45" y="25" width="15" height="10" rx="3.5" fill="#020d1a" stroke="#1a6fc4" stroke-width="1"/>
-    <ellipse cx="52" cy="30" rx="5.5" ry="4" fill="#00d4aa" opacity="0.9"/>
-    <ellipse cx="52" cy="30" rx="3" ry="2.5" fill="#7fffee"/>
-    <circle cx="52" cy="30" r="1.2" fill="white"/>
-    <rect x="20" y="42" width="40" height="8" rx="4" fill="#020d1a" stroke="#0e3a6e" stroke-width="1"/>
-    <rect x="33" y="13" width="14" height="6" rx="2.5" fill="#0a1e35" stroke="#0e3a6e" stroke-width="1"/>
-    <rect x="39" y="9" width="3" height="5" rx="1.5" fill="#2d9cff"/>
-    <circle cx="40" cy="7" r="3.5" fill="#2d9cff" opacity="0.9"/>
-    <rect x="5" y="28" width="10" height="18" rx="5" fill="#0a1e35" stroke="#0e3a6e" stroke-width="1"/>
-    <rect x="65" y="28" width="10" height="18" rx="5" fill="#0a1e35" stroke="#0e3a6e" stroke-width="1"/>
+  fab.innerHTML = `<svg class="bot-fab-av" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="fab_body" cx="38%" cy="28%" r="85%"><stop offset="0%" stop-color="#5d93cb"/><stop offset="55%" stop-color="#2c5a8f"/><stop offset="100%" stop-color="#102f4e"/></radialGradient>
+      <linearGradient id="fab_visor" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b2138"/><stop offset="100%" stop-color="#03101f"/></linearGradient>
+      <radialGradient id="fab_eye" cx="45%" cy="38%" r="65%"><stop offset="0%" stop-color="#c4fff3"/><stop offset="45%" stop-color="#00d4aa"/><stop offset="100%" stop-color="#008f76"/></radialGradient>
+      <radialGradient id="fab_orb" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#d6fff5"/><stop offset="100%" stop-color="#00d4aa"/></radialGradient>
+    </defs>
+    <line x1="50" y1="20" x2="50" y2="11" stroke="#2d9cff" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="50" cy="8" r="4.5" fill="url(#fab_orb)"/>
+    <rect x="14" y="40" width="9" height="20" rx="4.5" fill="url(#fab_body)" stroke="#2d9cff" stroke-width="0.8"/>
+    <rect x="77" y="40" width="9" height="20" rx="4.5" fill="url(#fab_body)" stroke="#2d9cff" stroke-width="0.8"/>
+    <circle cx="18.5" cy="50" r="2" fill="#00d4aa"/><circle cx="81.5" cy="50" r="2" fill="#00d4aa"/>
+    <rect x="22" y="20" width="56" height="55" rx="22" fill="url(#fab_body)" stroke="#2d9cff" stroke-width="1"/>
+    <ellipse cx="42" cy="31" rx="18" ry="7.5" fill="#ffffff" opacity="0.16"/>
+    <rect x="28" y="33" width="44" height="27" rx="13.5" fill="url(#fab_visor)" stroke="#0e3a6e" stroke-width="1"/>
+    <ellipse cx="38" cy="40" rx="11" ry="4" fill="#2d9cff" opacity="0.22"/>
+    <circle cx="40" cy="47" r="7.5" fill="url(#fab_eye)"/><circle cx="60" cy="47" r="7.5" fill="url(#fab_eye)"/>
+    <circle cx="42.4" cy="44.2" r="2.1" fill="#ffffff" opacity="0.95"/><circle cx="62.4" cy="44.2" r="2.1" fill="#ffffff" opacity="0.95"/>
+    <path d="M41 67 Q50 73 59 67" fill="none" stroke="#7ec8ff" stroke-width="2.4" stroke-linecap="round"/>
   </svg><div class="bot-notif">1</div>`;
   document.body.appendChild(fab);
 
