@@ -333,7 +333,6 @@ function initBot() {
     .bot-cal-btn{display:block;width:100%;padding:9px;font-size:12px;font-weight:700;font-family:Heebo,sans-serif;
       background:#0C447C;color:#eaf4ff;border:none;border-radius:8px;cursor:pointer;}
     .bot-cal-btn:hover{background:#185FA5;}
-    .bot-window.bot-en .bot-row,
     .bot-window.bot-en .bot-bubble,
     .bot-window.bot-en .bot-input,
     .bot-window.bot-en .bot-sum,
