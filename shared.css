@@ -161,6 +161,8 @@ footer{
   .nav-stack{gap:0;margin:0;}
   .nav-links{display:none;}
   .nav-left{gap:6px;}
+  html[dir="ltr"] .nav-top{flex-direction:row-reverse;}
+  html[dir="ltr"] .nav-left{flex-direction:row-reverse;}
   .nav-left .nav-talk{font-size:11px;padding:5px 10px;letter-spacing:0;}
   .nav-left .nav-demo{display:none;}
   .nav-icon{display:none;}
@@ -171,7 +173,7 @@ footer{
     color:var(--sky);font-size:18px;cursor:pointer;margin-right:8px;
   }
   .nav-mobile-menu{
-    position:fixed;top:64px;left:0;right:0;z-index:199;
+    position:fixed;top:64px;left:0;right:0;z-index:10000;
     background:rgba(2,13,26,0.98);border-bottom:1px solid var(--border);
     padding:14px 18px;flex-direction:column;gap:2px;
     backdrop-filter:blur(16px);
