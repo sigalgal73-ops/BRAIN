@@ -271,7 +271,7 @@ function initBot() {
       border:none;transition:all .25s;animation:botPulse 3s ease-in-out infinite;}
     .bot-fab:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(45,156,255,0.7);}
     @keyframes botPulse{0%,100%{box-shadow:0 4px 24px rgba(45,156,255,0.5);}50%{box-shadow:0 4px 36px rgba(45,156,255,0.8);}}
-    .bot-fab-av{width:36px;height:36px;}
+    .bot-fab-av{width:52px;height:52px;}
     .bot-notif{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;
       background:#E24B4A;display:flex;align-items:center;justify-content:center;
       font-size:10px;font-weight:700;color:#fff;font-family:Heebo,sans-serif;}
@@ -372,7 +372,7 @@ function initBot() {
   // FAB button
   const fab = document.createElement('button');
   fab.className = 'bot-fab';
-  fab.innerHTML = `<svg class="bot-fab-av" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  fab.innerHTML = `<svg class="bot-fab-av" viewBox="10 2 80 80" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient id="fab_body" cx="38%" cy="28%" r="85%"><stop offset="0%" stop-color="#5d93cb"/><stop offset="55%" stop-color="#2c5a8f"/><stop offset="100%" stop-color="#102f4e"/></radialGradient>
       <linearGradient id="fab_visor" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b2138"/><stop offset="100%" stop-color="#03101f"/></linearGradient>
