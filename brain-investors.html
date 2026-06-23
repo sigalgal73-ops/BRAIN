@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRAIN Co-Manager — מסמך למשקיעים</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111418;        /* טקסט ראשי */
+  --ink-2:#3a4250;      /* טקסט משני */
+  --ink-3:#697585;      /* טקסט עמום */
+  --line:#e3e7ec;
+  --line-2:#d3d9e0;
+  --bg:#ffffff;
+  --soft:#f6f8fa;       /* רקע בלוק עדין */
+  --brand:#1a6fc4;      /* כחול מותגי */
+  --brand-dark:#0e3a6e;
+  --teal:#0f9e7d;       /* ירוק-טורקיז מאופק */
+  --amber:#b8842a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--ink);direction:rtl;line-height:1.7;-webkit-font-smoothing:antialiased;}
+a{color:var(--brand);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.doc{max-width:840px;margin:0 auto;padding:0 32px;}
+
+/* ── HEADER ── */
+.dochead{border-bottom:2px solid var(--ink);padding:38px 0 26px;margin-bottom:14px;}
+.dochead .top{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.dochead .logo{font-size:30px;font-weight:900;letter-spacing:.01em;}
+.dochead .logo .sub{font-size:13px;font-weight:500;color:var(--ink-3);margin-inline-start:8px;}
+.dochead .tag{font-size:13px;font-weight:600;color:var(--ink-3);letter-spacing:.04em;}
+.dochead h1{font-size:clamp(26px,3.6vw,40px);font-weight:900;letter-spacing:-.02em;line-height:1.2;margin-top:20px;}
+.dochead h1 .hl{color:var(--brand);}
+.dochead .lead{font-size:17px;color:var(--ink-2);margin-top:14px;max-width:680px;line-height:1.7;}
+.dochead .lead b{color:var(--ink);font-weight:700;}
+
+/* ── SECTION ── */
+.s{padding:34px 0;border-bottom:1px solid var(--line);}
+.s:last-of-type{border-bottom:none;}
+.s-num{font-size:13px;font-weight:700;color:var(--brand);letter-spacing:.05em;margin-bottom:6px;}
+.s h2{font-size:clamp(20px,2.6vw,28px);font-weight:800;letter-spacing:-.01em;margin-bottom:16px;color:var(--ink);}
+.s h3{font-size:17px;font-weight:700;margin:18px 0 8px;color:var(--ink);}
+.s p{font-size:15.5px;color:var(--ink-2);margin-bottom:12px;line-height:1.75;}
+.s p b{color:var(--ink);font-weight:700;}
+.s p .em{color:var(--brand);font-weight:700;}
+
+/* ── KEY MESSAGE callout ── */
+.callout{background:var(--soft);border:1px solid var(--line);border-right:4px solid var(--brand);border-radius:6px;padding:20px 24px;margin:18px 0;}
+.callout .big{font-size:19px;font-weight:800;color:var(--ink);line-height:1.5;}
+.callout .small{font-size:14.5px;color:var(--ink-2);margin-top:6px;}
+
+/* ── stat inline ── */
+.stat-row{display:flex;gap:30px;flex-wrap:wrap;align-items:center;background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:22px 26px;margin:16px 0;}
+.stat-row .n{font-size:clamp(34px,5vw,52px);font-weight:900;color:var(--brand);line-height:1;letter-spacing:-.02em;}
+.stat-row .t{font-size:16px;color:var(--ink-2);line-height:1.6;}
+.stat-row .t b{color:var(--ink);font-weight:700;}
+
+/* ── lists ── */
+.dot-list{list-style:none;padding:0;margin:10px 0;}
+.dot-list li{position:relative;padding:5px 22px 5px 0;font-size:15px;color:var(--ink-2);line-height:1.6;}
+.dot-list li::before{content:'';position:absolute;right:4px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--brand);}
+.dot-list li b{color:var(--ink);font-weight:600;}
+
+/* ══ FLOW with arrows ══ */
+.flow{margin:20px 0;}
+.fstep{display:flex;align-items:flex-start;gap:16px;}
+.fstep .col{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+.fstep .num{width:40px;height:40px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex-shrink:0;}
+.fstep .arrow{color:var(--brand);font-size:18px;line-height:1;margin:4px 0;font-weight:700;}
+.fstep:last-child .arrow{display:none;}
+.fstep .body{padding-top:7px;padding-bottom:14px;}
+.fstep:last-child .body{padding-bottom:0;}
+.fstep .body h4{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.fstep .body p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.5;}
+.flow-loop{font-size:14px;color:var(--ink-2);background:var(--soft);border:1px dashed var(--line-2);border-radius:6px;padding:12px 18px;margin-top:8px;}
+.flow-loop b{color:var(--ink);font-weight:700;}
+
+/* ── capabilities table-like ── */
+.cap{display:grid;grid-template-columns:170px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+.cap:last-child{border-bottom:none;}
+.cap .t{font-size:16px;font-weight:700;color:var(--ink);}
+.cap .d{font-size:15px;color:var(--ink-2);line-height:1.6;}
+
+/* ── industries blocks ── */
+.ind{padding:16px 0;border-bottom:1px solid var(--line);}
+.ind:last-child{border-bottom:none;}
+.ind h3{font-size:16px;font-weight:800;color:var(--brand-dark);margin:0 0 8px;}
+.ind .pts{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px 18px;}
+.ind .pts li{position:relative;padding-right:14px;font-size:14px;color:var(--ink-2);}
+.ind .pts li::before{content:'';position:absolute;right:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--teal);}
+
+/* ── team ── */
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 28px;margin-top:8px;}
+.tm{display:flex;gap:10px;font-size:15px;padding:7px 0;border-bottom:1px solid var(--line);}
+.tm .nm{font-weight:700;color:var(--ink);min-width:54px;}
+.tm .rl{color:var(--ink-2);}
+
+/* ── milestones / target ── */
+.timeline{list-style:none;padding:0;margin:10px 0;}
+.timeline li{position:relative;padding:8px 24px 8px 0;font-size:15px;color:var(--ink-2);border-right:2px solid var(--line-2);margin-right:6px;}
+.timeline li::before{content:'';position:absolute;right:-6px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--brand);}
+.timeline li b{color:var(--ink);font-weight:700;}
+
+/* ── contact / footer ── */
+.contact{display:flex;gap:26px;flex-wrap:wrap;margin-top:12px;font-size:15px;}
+.contact a{color:var(--ink);font-weight:600;}
+.docfoot{border-top:2px solid var(--ink);margin-top:10px;padding:24px 0 40px;font-size:13px;color:var(--ink-3);text-align:center;}
+
+@media(max-width:640px){
+  .doc{padding:0 20px;}
+  .cap{grid-template-columns:1fr;gap:3px;}
+  .team-grid{grid-template-columns:1fr;}
+  .stat-row{gap:14px;}
+}
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <!-- ══ HEADER ══ -->
+  <div class="dochead">
+    <div class="top">
+      <div class="logo" dir="ltr">BRAIN<span class="sub">Co-Manager</span></div>
+      <div class="tag">מסמך למשקיעים · 2026</div>
+    </div>
+    <h1>מנוע ההזזה של הארגון — <span class="hl">הופך החלטות לביצוע בשטח</span></h1>
+    <p class="lead">BRAIN הוא כלי למנהלים (עם גרסה לעובדים) להזזה של ארגונים. <b>הוא מעיר את כולם, משכנע את כולם, ומזיז את הדברים שאנחנו באמת רוצים שיקרו בארגון.</b></p>
+  </div>
+
+  <!-- ══ 1. WHAT IT IS ══ -->
+  <div class="s">
+    <div class="s-num">01</div>
+    <h2>מה זה BRAIN</h2>
+    <p>הוא מדבר איתך דרך הכלי, בוואטסאפ, ודרך שורת ה-AI (כמו שורת ה-GPT). הוא מדבר <b>בטקסט, בתמונה עם מסר, והכי רציני — באוואטר וידאו דמוי-אדם טוטאלי.</b></p>
+    <div class="callout">
+      <div class="big">על מחזור של 200 מיליון ₪ ברשת קמעונאית עם 100 חנויות, הוא מביא לך עוד 50 מיליון ₪.</div>
+    </div>
+    <p>הוא יכול לקחת כל נושא שחשוב לכם, <span class="em">ולייצר לכם את ההטמעה לבד.</span> הוא מטמיען (Implementor): לאורך שבועות, חודשים ושנה הוא מטפטף את המסרים לאנשים, מדבר איתם, מתווכח, מקשיב, ומייצר בשבילך את השינוי. הוא ה-change manager שלך.</p>
+  </div>
+
+  <!-- ══ 2. THE GAP ══ -->
+  <div class="s">
+    <div class="s-num">02</div>
+    <h2>הבעיה: הפער שבין החלטה לביצוע</h2>
+    <div class="stat-row">
+      <div class="n"><span dir="ltr">20–30%</span></div>
+      <div class="t">מהדברים שההנהלה רוצה שיקרו <b>עדיין לא קורים.</b> על ה-20% האלה אתה משלם באובדן הכנסות וצמיחה.</div>
+    </div>
+    <p>זה קורה כי כולנו עמוסים, ויש הרגלים. <b>BRAIN סוגר לך את כל מה שכרגע לא קורה.</b> יותר מהכל, הוא משכנען-על לעשות — יועץ עסקי ופסיכולוג כאחד.</p>
+  </div>
+
+  <!-- ══ 3. FLOW ══ -->
+  <div class="s">
+    <div class="s-num">03</div>
+    <h2>איך זה עובד — התהליך בשלבים</h2>
+    <div class="flow">
+      <div class="fstep"><div class="col"><div class="num">1</div><div class="arrow">↓</div></div><div class="body"><h4>מנתח</h4><p>לבד ואיתך, מה לא עובד כרגע ומה חסר.</p></div></div>
+      <div class="fstep"><div class="col"><div class="num">2</div><div class="arrow">↓</div></div><div class="body"><h4>קמפיין</h4><p>מכין סרטוני וידאו של אוואטר, תמונות וטקסטים לשכנוע לעשות.</p></div></div>
+      <div class="fstep"><div class="col"><div class="num">3</div><div class="arrow">↓</div></div><div class="body"><h4>שולח לכולם</h4><p>מפיץ את המסרים בכל הארגון.</p></div></div>
+      <div class="fstep"><div class="col"><div class="num">4</div><div class="arrow">↓</div></div><div class="body"><h4>שיחה ופולואפ</h4><p>מדבר, משכנע ומקשיב — כדי שיעשו.</p></div></div>
+      <div class="fstep"><div class="col"><div class="num">5</div><div class="arrow">↓</div></div><div class="body"><h4>מוודא</h4><p>בודק שזה קורה בשטח.</p></div></div>
+      <div class="fstep"><div class="col"><div class="num">6</div><div class="arrow">↓</div></div><div class="body"><h4>אסקלציה</h4><p>אם זה לא קורה, מתריע ומסלים.</p></div></div>
+      <div class="fstep"><div class="col"><div class="num">7</div><div class="arrow">↓</div></div><div class="body"><h4>מטלטל</h4><p>מנער ארגון או אדם כשצריך, באהבה וברגישות.</p></div></div>
+      <div class="fstep"><div class="col"><div class="num">8</div><div class="arrow">↓</div></div><div class="body"><h4>מודד</h4><p>שיש תוצאה אמיתית.</p></div></div>
+      <div class="fstep"><div class="col"><div class="num">9</div></div><div class="body"><h4>לומד</h4><p>מהשיחה, מהשכנוע ומהתהליך — מה נכון להמשיך ומה לא.</p></div></div>
+    </div>
+    <div class="flow-loop">↻ &nbsp;<b>לומד</b> מזין חזרה את <b>מנתח</b>. התהליך רץ בלי הפסקה לאורך שבועות, חודשים ושנה.</div>
+  </div>
+
+  <!-- ══ 4. CAPABILITIES ══ -->
+  <div class="s">
+    <div class="s-num">04</div>
+    <h2>מה יש במערכת</h2>
+    <div class="cap"><div class="t">צ'קליסט / קוקפיט</div><div class="d">מסכי שליטה שמראים כל מה שיש לך לטפל בו. אישי ועבודה במקום אחד — שומר על החיים של המנהלים והעובדים, ומציג גם KPIs וגם Impact KPIs (המשתנים שמשפיעים על התוצאה).</div></div>
+    <div class="cap"><div class="t">אנליסט</div><div class="d">יועץ עסקי ופסיכולוג. מנתח מה חסר, מה מפספסים בדרך כלל, מה לא עובד, ומנתח התנגדויות של אנשים ופתרונות.</div></div>
+    <div class="cap"><div class="t">משכנען</div><div class="d">עובד לפי אלגוריתם שכנוע (התקרבות, תועלת, מחיר אם לא, הזמנה לניסוי), מקשיב לעובד, מעודד אי-הסכמה ולומד מהמשתמש. לא מחפש לשכנע באמת, אלא לחשוב יחד.</div></div>
+    <div class="cap"><div class="t">קמפיינר</div><div class="d">בלחיצה אחת מריץ קמפיין שלם בארגון בוואטסאפ, לחודש, לשלושה חודשים או לשנה — סרטונים, תמונות וטקסט.</div></div>
+    <div class="cap"><div class="t">מטמיען (Follow-up)</div><div class="d">מייצר שיחה עם העובדים, מגיע להסכמה ומוודא ביצוע. אם מסכימים וזה לא קורה — עושה אסקלציה, עד שדברים מוטמעים.</div></div>
+    <div class="cap"><div class="t">קופסת ידע לומדת</div><div class="d">מספקת מיידית ספר ארגוני על הענף, צדה את ה-best practices העדכניים, ובונה חוקים ושיטות. צוברת ידע וגדלה עם הזמן — זה ה-IQ של המערכת.</div></div>
+  </div>
+
+  <!-- ══ 5. INDUSTRIES ══ -->
+  <div class="s">
+    <div class="s-num">05</div>
+    <h2>למי זה מיועד ומה תורם</h2>
+
+    <div class="ind">
+      <h3>קמעונאות</h3>
+      <ul class="pts">
+        <li>גידול 20% במכירות ובאפסייל</li><li>שיפור יחס המרה ותדריכים</li><li>מוריד עומס</li><li>הידלקות על עמידה ביעד</li><li>שימור עובדים פי 2</li><li>גיוס משתפר ב-15%</li><li>חדשנות פי 100</li><li>600 מיקרו-הדרכות בשנה</li>
+      </ul>
+    </div>
+    <div class="ind">
+      <h3>קמעונאות B2B</h3>
+      <ul class="pts">
+        <li>סוכנים שמנתחים מספרי קטגוריות ועמידה ביעדים</li><li>מקצוענות בהיכרות מוצרים</li><li>תגובתיות למתחרים</li>
+      </ul>
+    </div>
+    <div class="ind">
+      <h3>בנקים</h3>
+      <ul class="pts">
+        <li>מעיר את כל העובדים לגייס לקוחות ולידים</li><li>שירות מהסרטים</li><li>אנרגיות של שליחות ומשמעות (Engagement)</li><li>מכירת מוצרים משלימים</li><li>עידוד ופירגון בצוות</li><li>ציות לנהלים</li>
+      </ul>
+    </div>
+    <div class="ind">
+      <h3>ביטוח</h3>
+      <ul class="pts">
+        <li>נלחמים על לקוחות באהבה</li><li>שירות מהסרטים</li><li>שליחות, משמעות וגאוות תפקיד</li>
+      </ul>
+    </div>
+    <div class="ind">
+      <h3>חברות הנדסה ותשתיות</h3>
+      <ul class="pts">
+        <li>שליחות וגאוות יחידה לפרויקט</li><li>עמידה בלו"ז</li><li>עמידה בתקציב</li><li>ניהול ספקים אסרטיבי ואוהב</li>
+      </ul>
+    </div>
+    <div class="ind">
+      <h3>קופות חולים</h3>
+      <ul class="pts">
+        <li>גיוס לקוחות חדשים פי 10 ואף 20</li><li>אקרדיטציה: שירות, מניעת זיהומים ונפילות</li><li>שימוש בשירותים נוספים</li><li>שליחות ומשמעות</li>
+      </ul>
+    </div>
+    <div class="ind">
+      <h3>חינוך</h3>
+      <ul class="pts">
+        <li>מדליק צוותי חינוך פי 100</li><li>למידה רלוונטית והטבעת חותם</li><li>כישורי חיים וחשיבה עסקית + AI לתלמידים</li><li>חוסן וסיבולת</li><li>שיתוף הורים ומורים בצוות אחד</li>
+      </ul>
+    </div>
+    <div class="ind">
+      <h3>גיל שלישי ורביעי</h3>
+      <ul class="pts">
+        <li>מוציא מהבית לפעילות</li><li>חיבור חברתי ופתיחות</li><li>מעודד לעבוד, לייעץ ולהתנדב</li><li>ספורט ותזונה</li><li>כלים נגד קושי ומחשבות שליליות</li>
+      </ul>
+    </div>
+    <div class="ind">
+      <h3>רובוטים תומכי-אדם</h3>
+      <ul class="pts">
+        <li>הופך מוח רובוטי למוח שכנוע ועידוד</li><li>רובוט סיעודי שהוא גם מאמן ומעודד</li><li>חלוצים ומובילים בתחום</li>
+      </ul>
+    </div>
+    <div class="ind">
+      <h3>תמיכה באוכלוסיות נדרשות</h3>
+      <ul class="pts">
+        <li>מוציא מהבית ומרים מהמיטה</li><li>כלים לעידוד עצמי ושל אחרים</li><li>תרגילים קוגניטיביים</li><li>ליווי עקבי עד שיפור מצב</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ 6. SECURITY ══ -->
+  <div class="s">
+    <div class="s-num">06</div>
+    <h2>הגנות אבטחה</h2>
+    <ul class="dot-list">
+      <li><b>לא חייב להתחבר ל-ERP</b> — ולא לומד מ-Data של הארגון, אלא מ-Data של השיחות, המוח והרגשות עם המשתמש.</li>
+      <li><b>יודעים להתחבר ל-ERP</b> ולקיים כל דרישת אבטחה של הארגון, כשצריך.</li>
+      <li><b>LLM מבודד</b> — לא מחובר לזה של ספקים כמו OpenAI, ואחרים לא לומדים מהידע שלך.</li>
+      <li><b>בידוד מתחרים</b> — ה-LLM שלך לא מחובר אצלנו ל-LLM של אחרים. הם לא לומדים ממה שאתה לומד.</li>
+    </ul>
+  </div>
+
+  <!-- ══ 7. PROOF ══ -->
+  <div class="s">
+    <div class="s-num">07</div>
+    <h2>ניסיון מוכח</h2>
+    <ul class="dot-list">
+      <li>חברת מחקר התלהבות בדקה את המודל במשך <b>20 שנה.</b></li>
+      <li>על נתונים של <b>800 ארגונים</b> ו-<b>750,000 מודרכים</b>, ב-20 ענפים.</li>
+      <li>מחקרים זמינים ב-<a href="https://hitlahavut.com/" target="_blank">hitlahavut.com</a>.</li>
+      <li>ליזם, ערן שחר, ניסיון מוכח בהרמת פרויקטים מהסוג הזה.</li>
+    </ul>
+  </div>
+
+  <!-- ══ 8. HISTORY + TARGET ══ -->
+  <div class="s">
+    <div class="s-num">08</div>
+    <h2>היסטוריה ויעד</h2>
+    <h3>ההיסטוריה שלנו</h3>
+    <ul class="timeline">
+      <li>התחלנו ב-<b>7/2025.</b></li>
+      <li>פתחנו חברה ב-<b>מרץ 2026.</b></li>
+      <li>יש <b>MVP</b> פעיל.</li>
+      <li>יש לנו <b>פיילוטים ב-5 מקומות.</b></li>
+    </ul>
+    <h3>היעד שלנו</h3>
+    <p>למכור את הטכנולוגיה שלנו לאחת מהפלטפורמות המובילות בתחום (כגון Connecteam, Monday, Salesforce, ServiceNow, Pyramid Analytics) — <b>ולא להקים חברת SaaS.</b> לבצע את ההעברה עד פברואר 2028 (ריאלי), או ינואר 2029.</p>
+  </div>
+
+  <!-- ══ 9. TEAM ══ -->
+  <div class="s">
+    <div class="s-num">09</div>
+    <h2>הצוות שלנו</h2>
+    <div class="team-grid">
+      <div class="tm"><span class="nm">ערן</span><span class="rl">ניהול ולקוחות</span></div>
+      <div class="tm"><span class="nm">רונן</span><span class="rl">CTO</span></div>
+      <div class="tm"><span class="nm">אביאל</span><span class="rl">מוצר</span></div>
+      <div class="tm"><span class="nm">בועז</span><span class="rl">בוטים</span></div>
+      <div class="tm"><span class="nm">סיגל</span><span class="rl">אוואטרים</span></div>
+      <div class="tm"><span class="nm">קובי</span><span class="rl">אתר</span></div>
+      <div class="tm"><span class="nm">רותי</span><span class="rl">חינוך</span></div>
+      <div class="tm"><span class="nm">דונה</span><span class="rl">משקיעים</span></div>
+    </div>
+  </div>
+
+  <!-- ══ 10. CONTACT ══ -->
+  <div class="s">
+    <div class="s-num">10</div>
+    <h2>יצירת קשר</h2>
+    <p>להתנסות באב-הטיפוס: <a href="https://app.brain2spark.ai/" target="_blank">app.brain2spark.ai</a></p>
+    <div class="contact">
+      <a href="tel:0544346494">ערן · 054-434-6494</a>
+      <a href="tel:0546266044">רותי · 054-626-6044</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="docfoot">
+  BRAIN Co-Manager · brain2spark.ai · © כל הזכויות שמורות
+</div>
+
+</body>
+</html>
