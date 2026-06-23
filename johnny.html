@@ -3,25 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ג'וני | מנוע הזזה לארגונים — Brain Co-Manager</title>
-<meta name="description" content="ג'וני (brain) הוא Co-Manager מבוסס AI שמזיז ארגונים. הופך החלטות הנהלה לביצוע בשטח — דרך שיחה, שכנוע ופולואפ ב-WhatsApp.">
+<title>ג'וני | מנוע הזזה לארגונים — BRAIN Co-Manager</title>
+<meta name="description" content="ג'וני (BRAIN) הוא Co-Manager מבוסס AI שמזיז ארגונים. הופך החלטות הנהלה לביצוע בשטח — דרך שיחה, שכנוע ופולואפ ב-WhatsApp.">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
 <style>
+:root{
+  --navy:#020d1a;--deep:#041428;--blue:#0a2540;--mid:#0e3a6e;
+  --accent:#1a6fc4;--bright:#2d9cff;--sky:#7ec8ff;--teal:#00d4aa;
+  --white:#f0f8ff;--muted:rgba(180,220,255,0.8);--border:rgba(45,156,255,0.22);
+  --card:rgba(8,30,58,0.8);--card-hover:rgba(14,52,100,0.65);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Heebo',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;direction:rtl;}
+a{text-decoration:none;}
+
+/* ── TOP BRAND BAR (logo only, no nav) ── */
+.brandbar{
+  position:relative;z-index:5;display:flex;justify-content:center;align-items:center;
+  padding:26px 20px 0;
+}
+.brand-logo{
+  font-size:clamp(34px,5vw,52px);font-weight:900;letter-spacing:-.04em;color:var(--white);
+  line-height:1;display:inline-flex;align-items:baseline;gap:2px;
+  text-shadow:0 0 40px rgba(45,156,255,0.35);
+}
+.brand-logo .spark{
+  background:linear-gradient(135deg,var(--bright),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.brand-logo sup{font-size:.34em;color:var(--teal);font-weight:800;vertical-align:super;letter-spacing:.06em;}
+.brand-tag{font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--muted);text-align:center;margin-top:8px;}
+
 /* ── HERO ── */
 .lp-hero{
-  padding:96px 60px 70px;text-align:center;position:relative;overflow:hidden;
+  padding:54px 60px 70px;text-align:center;position:relative;overflow:hidden;
   background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(26,111,196,0.22),transparent 70%);
-  animation:fadeUp .8s ease both;
 }
-.lp-eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--teal);margin-bottom:20px;text-shadow:0 0 22px rgba(0,212,170,0.5);}
-.lp-h1{font-size:clamp(40px,6vw,82px);font-weight:900;letter-spacing:-.04em;line-height:1.02;margin-bottom:8px;}
+.lp-eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--teal);margin-bottom:18px;text-shadow:0 0 22px rgba(0,212,170,0.5);}
+.lp-h1{font-size:clamp(40px,6vw,82px);font-weight:900;letter-spacing:-.04em;line-height:1.02;margin-bottom:10px;}
 .lp-h1 .name{background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .lp-h1 sup{font-size:.34em;color:var(--teal);font-weight:700;vertical-align:super;}
 .lp-h2{font-size:clamp(20px,2.6vw,30px);font-weight:700;color:var(--white);margin-bottom:18px;line-height:1.3;}
 .lp-lead{font-size:clamp(16px,1.9vw,20px);color:var(--muted);line-height:1.7;max-width:640px;margin:0 auto 36px;}
 .lp-lead b{color:var(--sky);font-weight:700;}
 .lp-cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+.btn{padding:15px 34px;border-radius:30px;font-size:15px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;transition:all .25s;letter-spacing:.03em;border:none;display:inline-block;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--bright));color:#fff;box-shadow:0 0 28px rgba(45,156,255,.35);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(45,156,255,.6);}
+.btn-ghost{background:transparent;color:var(--sky);border:1.5px solid rgba(126,200,255,.4);}
+.btn-ghost:hover{border-color:var(--sky);color:var(--white);background:rgba(126,200,255,.1);}
 
 /* ── BIG NUMBER PROOF ── */
 .proof{
@@ -35,24 +67,30 @@
 
 /* ── PILL STRIP ── */
 .pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px;}
-.pill{
-  font-size:13.5px;font-weight:600;color:var(--sky);
-  background:rgba(45,156,255,0.08);border:1px solid var(--border);
-  border-radius:30px;padding:9px 18px;
-}
+.pill{font-size:13.5px;font-weight:600;color:var(--sky);background:rgba(45,156,255,0.08);border:1px solid var(--border);border-radius:30px;padding:9px 18px;}
+
+/* ── SECTIONS ── */
+.sec{padding:60px 60px;}
+.sec-alt{background:linear-gradient(to bottom,transparent,rgba(10,37,64,0.25),transparent);}
+.sec-title{font-size:clamp(26px,3.2vw,42px);font-weight:900;color:var(--white);margin-bottom:12px;letter-spacing:-.03em;}
+.sec-title em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sec-sub{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:40px;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.3),transparent);margin:0 60px;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px;position:relative;overflow:hidden;transition:all .3s;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.6),transparent);}
+.card:hover{border-color:rgba(45,156,255,.5);background:var(--card-hover);transform:translateY(-4px);box-shadow:0 8px 32px rgba(45,156,255,.12);}
+.card-title{font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px;}
+.grid-auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
 
 /* ── PROCESS FLOW ── */
 .flow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin-top:14px;}
-.flow-step{
-  font-size:14px;font-weight:700;color:var(--white);
-  background:var(--card);border:1px solid var(--border);border-radius:14px;
-  padding:12px 18px;transition:all .25s;
-}
+.flow-step{font-size:14px;font-weight:700;color:var(--white);background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 18px;transition:all .25s;}
 .flow-step:hover{border-color:rgba(0,212,170,0.5);transform:translateY(-3px);color:var(--teal);}
 .flow-arrow{color:var(--accent);font-size:18px;font-weight:900;}
 
-/* ── WHAT IT DOES CARDS ── */
-.do-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+/* ── WHAT IT DOES ── */
+.do-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1040px;margin:0 auto;}
 .do-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;transition:all .3s;position:relative;overflow:hidden;}
 .do-card::before{content:'';position:absolute;top:0;right:0;left:0;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.6),transparent);}
 .do-card:hover{border-color:rgba(45,156,255,.45);transform:translateY(-4px);box-shadow:0 8px 30px rgba(45,156,255,.12);}
@@ -60,7 +98,7 @@
 .do-title{font-size:17px;font-weight:800;color:var(--white);margin-bottom:8px;}
 .do-text{font-size:14px;color:var(--muted);line-height:1.6;}
 
-/* ── INDUSTRY GRID ── */
+/* ── INDUSTRIES ── */
 .ind-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;}
 .ind-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:all .25s;}
 .ind-card:hover{border-color:rgba(0,212,170,.35);transform:translateY(-3px);}
@@ -70,329 +108,330 @@
 .ind-points li{font-size:13px;color:var(--muted);line-height:1.5;display:flex;align-items:flex-start;gap:7px;}
 .ind-points li::before{content:'·';color:var(--teal);font-weight:900;flex-shrink:0;font-size:18px;line-height:1;}
 
-/* ── CTA BOX ── */
-.cta-box{
-  max-width:880px;margin:0 auto;text-align:center;
-  background:linear-gradient(135deg,rgba(26,111,196,0.18),rgba(0,212,170,0.08));
-  border:1px solid rgba(45,156,255,0.35);border-radius:26px;padding:50px 40px;
-}
+/* ── CTA / LEAD ── */
+.cta-box{max-width:880px;margin:0 auto;text-align:center;background:linear-gradient(135deg,rgba(26,111,196,0.18),rgba(0,212,170,0.08));border:1px solid rgba(45,156,255,0.35);border-radius:26px;padding:50px 40px;}
 .cta-box h2{font-size:clamp(26px,3.4vw,40px);font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-.02em;}
 .cta-box h2 em{font-style:normal;background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .cta-box p{font-size:17px;color:var(--muted);line-height:1.7;margin-bottom:30px;max-width:560px;margin-inline:auto;}
-
-/* ── LEAD FORM ── */
 .lead-form{max-width:520px;margin:32px auto 0;display:flex;flex-direction:column;gap:14px;text-align:right;}
 .lead-form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.lead-form input,.lead-form select,.lead-form textarea{
-  width:100%;padding:14px 16px;font-family:'Heebo',sans-serif;font-size:15px;
-  background:rgba(2,13,26,0.6);border:1px solid var(--border);border-radius:12px;
-  color:var(--white);transition:border-color .2s;
-}
+.lead-form input,.lead-form select,.lead-form textarea{width:100%;padding:14px 16px;font-family:'Heebo',sans-serif;font-size:15px;background:rgba(2,13,26,0.6);border:1px solid var(--border);border-radius:12px;color:var(--white);transition:border-color .2s;}
 .lead-form input::placeholder,.lead-form textarea::placeholder{color:rgba(180,220,255,0.4);}
 .lead-form input:focus,.lead-form select:focus,.lead-form textarea:focus{outline:none;border-color:var(--bright);}
 .lead-form select{cursor:pointer;}
 .lead-form select option{background:var(--blue);color:var(--white);}
 .lead-msg{font-size:14px;text-align:center;min-height:20px;font-weight:600;}
-
-/* ── CONTACT STRIP ── */
 .contact{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-top:34px;}
 .contact a{font-size:15px;color:var(--sky);font-weight:600;display:flex;align-items:center;gap:8px;}
 .contact a:hover{color:var(--white);}
 
+/* ── FOOTER ── */
+.lp-footer{padding:34px 60px;border-top:1px solid var(--border);text-align:center;}
+.lp-footer .flogo{font-size:22px;font-weight:900;color:var(--muted);letter-spacing:.04em;margin-bottom:8px;}
+.lp-footer .flogo sup{font-size:11px;color:var(--teal);}
+.lp-footer .fcopy{font-size:13px;color:rgba(255,255,255,0.6);}
+
 @media(max-width:900px){
-  .lp-hero{padding:48px 18px 40px;}
+  .lp-hero{padding:34px 18px 40px;}
+  .sec{padding:40px 18px;}
+  .divider{margin:0 18px;}
   .proof{padding:26px 20px;}
   .flow-arrow{display:none;}
+  .do-grid{grid-template-columns:1fr;max-width:420px;}
   .lead-form .row{grid-template-columns:1fr;}
   .cta-box{padding:36px 20px;}
+  .lp-footer{padding:26px 18px;}
 }
 </style>
 </head>
 <body>
-<canvas id="bg"></canvas>
-<div id="nav-placeholder"></div>
 
-<div class="page">
-
-  <!-- ══ HERO ══ -->
-  <div class="lp-hero">
-    <div class="lp-eyebrow">CO-MANAGER מבוסס AI</div>
-    <h1 class="lp-h1">תכירו את <span class="name">ג'וני</span><sup>brain</sup></h1>
-    <h2 class="lp-h2">מנוע ההזזה של הארגון שלך</h2>
-    <p class="lp-lead">
-      כלי למנהלים (עם גרסה לעובדים) שלוקח כל החלטה חשובה
-      <b>והופך אותה לביצוע בשטח</b> — דרך שיחה, שכנוע ופולואפ. הוא מדבר איתך
-      בטקסט, בתמונה עם מסר, ובאוואטר דמוי-אדם — בכלי ובוואטסאפ.
-    </p>
-    <div class="lp-cta-row">
-      <a href="https://app.brain2spark.ai/" target="_blank" class="btn btn-primary">התנסו ב-MVP עכשיו ←</a>
-      <a href="#lead" class="btn btn-ghost">דברו איתנו / קבעו דמו</a>
-    </div>
-
-    <div class="proof">
-      <div class="proof-line">
-        על מחזור של <span class="blue">200 מיליון ₪</span> ברשת קמעונאית עם 100 חנויות —<br>
-        ג'וני מביא לך עוד <span class="big">50 מיליון ₪</span>.
-      </div>
-    </div>
-
-    <div class="pills">
-      <span class="pill">מעיר את כולם</span>
-      <span class="pill">משכנע לעשות</span>
-      <span class="pill">סוגר את מה שלא קורה</span>
-      <span class="pill">מטמיע שינוי לאורך זמן</span>
-    </div>
+<!-- ══ BRAND BAR (no nav) ══ -->
+<div class="brandbar">
+  <div style="text-align:center;">
+    <a href="https://app.brain2spark.ai/" class="brand-logo" dir="ltr"><span>BRAIN</span><sup>co-manager</sup></a>
+    <div class="brand-tag">EVERYTHING ALREADY EXISTS · EXCEPT A MANAGEMENT SYSTEM</div>
   </div>
-
-  <div class="divider"></div>
-
-  <!-- ══ THE PROBLEM ══ -->
-  <div class="sec sec-alt" style="text-align:center;">
-    <h2 class="sec-title">ה-<em>20%–30%</em> שלא קורים</h2>
-    <p class="sec-sub" style="max-width:680px;margin-inline:auto;">
-      כ-20%–30% מהדברים שההנהלה רוצה שיקרו — עדיין לא קורים. על ה-20% האלה
-      אתה משלם באובדן הכנסות וצמיחה. זה קורה כי כולנו עמוסים, ויש הרגלים.
-      ג'וני סוגר לך בדיוק את מה שכרגע לא קורה.
-    </p>
-    <p style="font-size:18px;color:var(--white);font-weight:700;max-width:600px;margin:0 auto;">
-      יותר מהכל — הוא <span style="color:var(--teal)">משכנען-על</span> לעשות.
-      יועץ עסקי + פסיכולוג, שעובד בשבילך לאורך שבועות, חודשים ושנה.
-    </p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ══ HOW — PROCESS ══ -->
-  <div class="sec" style="text-align:center;">
-    <h2 class="sec-title">איך הוא <em>מטמיע</em> שינוי?</h2>
-    <p class="sec-sub" style="max-width:600px;margin-inline:auto;">
-      לוקח כל נושא שחשוב לך, ומייצר את ההטמעה לבד — מהניתוח ועד התוצאה.
-    </p>
-    <div class="flow">
-      <span class="flow-step">מנתח</span><span class="flow-arrow">←</span>
-      <span class="flow-step">קמפיין</span><span class="flow-arrow">←</span>
-      <span class="flow-step">שולח</span><span class="flow-arrow">←</span>
-      <span class="flow-step">שיחה ופולואפ</span><span class="flow-arrow">←</span>
-      <span class="flow-step">מוודא</span><span class="flow-arrow">←</span>
-      <span class="flow-step">אסקלציה</span><span class="flow-arrow">←</span>
-      <span class="flow-step">מודד</span><span class="flow-arrow">←</span>
-      <span class="flow-step">לומד</span>
-    </div>
-  </div>
-
-  <!-- ══ WHAT IT DOES — CARDS ══ -->
-  <div class="sec sec-alt">
-    <div class="do-grid">
-      <div class="do-card">
-        <span class="do-ico">🔍</span>
-        <div class="do-title">מנתח</div>
-        <div class="do-text">בודק לבד ואיתך מה לא עובד כרגע, מה חסר, ואיפה הדברים נתקעים — ולמה.</div>
-      </div>
-      <div class="do-card">
-        <span class="do-ico">🎬</span>
-        <div class="do-title">בונה קמפיין</div>
-        <div class="do-text">בלחיצה אחת — סרטוני אוואטר, תמונות וטקסטים לשכנוע, רצים בארגון בוואטסאפ.</div>
-      </div>
-      <div class="do-card">
-        <span class="do-ico">💬</span>
-        <div class="do-title">משכנע ומקשיב</div>
-        <div class="do-text">מדבר עם האנשים, מתווכח, מקשיב — מעודד אי-הסכמה ושהעובד יגיד את דעתו.</div>
-      </div>
-      <div class="do-card">
-        <span class="do-ico">✅</span>
-        <div class="do-title">מוודא ביצוע</div>
-        <div class="do-text">מגיע להסכמה, מוודא שהדברים קורים, ועושה אסקלציה אם לא — עד שמוטמע.</div>
-      </div>
-      <div class="do-card">
-        <span class="do-ico">📊</span>
-        <div class="do-title">מודד תוצאה</div>
-        <div class="do-text">קוקפיט עם KPIs ומדדי השפעה — אחוז עמידה ביעד, צמיחה, יחס המרה ועוד.</div>
-      </div>
-      <div class="do-card">
-        <span class="do-ico">🧠</span>
-        <div class="do-title">לומד וגדל</div>
-        <div class="do-text">קופסת ידע לומדת — איזה שכנוע ואיזו הטמעה עובדים בכל ענף. זה ה-IQ של המוצר.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ══ FOR WHOM ══ -->
-  <div class="sec">
-    <h2 class="sec-title" style="text-align:center;">למי <em>ג'וני</em> מיועד?</h2>
-    <p class="sec-sub" style="text-align:center;max-width:600px;margin-inline:auto;">
-      מתאים לכל ארגון שצריך להזיז אנשים סביב מטרה — הנה כמה מהשטחים החזקים ביותר.
-    </p>
-    <div class="ind-grid">
-      <div class="ind-card">
-        <div class="ind-head"><span class="ico">🛍️</span>קמעונאות</div>
-        <ul class="ind-points">
-          <li>גידול של עד 20% במכירות ובאפסייל</li>
-          <li>מוריד עומס ומדליק עמידה ביעד</li>
-          <li>שימור עובדים ×2, גיוס משתפר ב-15%</li>
-          <li>600 מיקרו-הדרכות בשנה</li>
-        </ul>
-      </div>
-      <div class="ind-card">
-        <div class="ind-head"><span class="ico">📦</span>קמעונאות B2B</div>
-        <ul class="ind-points">
-          <li>סוכנים שמנתחים מספרים ועמידה ביעדים</li>
-          <li>מקצוענות בהיכרות המוצרים</li>
-          <li>תגובתיות מהירה למתחרים</li>
-        </ul>
-      </div>
-      <div class="ind-card">
-        <div class="ind-head"><span class="ico">🏦</span>בנקים וביטוח</div>
-        <ul class="ind-points">
-          <li>מעיר את כולם לגייס לקוחות ולידים</li>
-          <li>שירות מהסרטים ומכירת מוצרים משלימים</li>
-          <li>אנרגיות של שליחות ומשמעות (Engagement)</li>
-        </ul>
-      </div>
-      <div class="ind-card">
-        <div class="ind-head"><span class="ico">🏥</span>קופות חולים</div>
-        <ul class="ind-points">
-          <li>גיוס לקוחות חדשים ×10 ואף ×20</li>
-          <li>חיבור לאקרדיטציה — שירות ומניעה</li>
-          <li>קידום שימוש בשירותים נוספים</li>
-        </ul>
-      </div>
-      <div class="ind-card">
-        <div class="ind-head"><span class="ico">🏗️</span>הנדסה ותשתיות</div>
-        <ul class="ind-points">
-          <li>שליחות, משמעות וגאוות יחידה לפרויקט</li>
-          <li>עמידה בלו"ז ובתקציב</li>
-          <li>ניהול ספקים אסרטיבי ואוהב גם יחד</li>
-        </ul>
-      </div>
-      <div class="ind-card">
-        <div class="ind-head"><span class="ico">🎓</span>חינוך</div>
-        <ul class="ind-points">
-          <li>מדליק צוותי חינוך ×10 ואף ×100</li>
-          <li>כישורי חיים וחשיבה עסקית + AI לתלמידים</li>
-          <li>מחבר הורים ומורים לצוות אחד</li>
-        </ul>
-      </div>
-      <div class="ind-card">
-        <div class="ind-head"><span class="ico">🌳</span>הגיל השלישי והרביעי</div>
-        <ul class="ind-points">
-          <li>מוציא מהבית לפעילות וחיבור חברתי</li>
-          <li>מעודד לעבוד, לייעץ ולהתנדב</li>
-          <li>כלים נגד קושי ומחשבות שליליות</li>
-        </ul>
-      </div>
-      <div class="ind-card">
-        <div class="ind-head"><span class="ico">🤖</span>רובוטים תומכי-אדם</div>
-        <ul class="ind-points">
-          <li>הופך מוח רובוטי למוח שכנוע ועידוד</li>
-          <li>רובוט סיעודי שהוא גם מאמן ומעודד</li>
-          <li>חלוצים ומובילים בתחום</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ══ SECURITY ══ -->
-  <div class="sec sec-alt">
-    <h2 class="sec-title" style="text-align:center;">הגנת <em>מידע ואבטחה</em></h2>
-    <div class="grid-auto" style="max-width:900px;margin:30px auto 0;">
-      <div class="card">
-        <div class="card-title">לא חייב להתחבר ל-ERP</div>
-        <p style="font-size:14px;color:var(--muted);line-height:1.6;">המוצר לא לומד מ-Data של הארגון, אלא מתוך שיחות, מוח ורגשות עם המשתמש.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">LLM מבודד</div>
-        <p style="font-size:14px;color:var(--muted);line-height:1.6;">ה-LLM שלך לא מחובר לזה של ספקים אחרים או מתחרים — אף אחד לא לומד מהידע שלך.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">עומד בכל דרישה</div>
-        <p style="font-size:14px;color:var(--muted);line-height:1.6;">יודעים להתחבר ל-ERP ולקיים כל דרישת אבטחה של הארגון, כשצריך.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ══ PROOF ══ -->
-  <div class="sec" style="text-align:center;">
-    <h2 class="sec-title">ניסיון <em>מוכח</em></h2>
-    <div class="grid-auto" style="max-width:880px;margin:30px auto 0;">
-      <div class="card" style="text-align:center;">
-        <div style="font-size:40px;font-weight:900;color:var(--bright);">20 שנה</div>
-        <div style="font-size:14px;color:var(--muted);margin-top:6px;">בדיקת המודל ע"י חברת מחקר התלהבות</div>
-      </div>
-      <div class="card" style="text-align:center;">
-        <div style="font-size:40px;font-weight:900;color:var(--teal);">800</div>
-        <div style="font-size:14px;color:var(--muted);margin-top:6px;">ארגונים ב-20 ענפים</div>
-      </div>
-      <div class="card" style="text-align:center;">
-        <div style="font-size:40px;font-weight:900;color:var(--bright);">750K</div>
-        <div style="font-size:14px;color:var(--muted);margin-top:6px;">מודרכים שעליהם נבדק המודל</div>
-      </div>
-    </div>
-    <p class="sec-sub" style="margin-top:28px;">
-      המחקרים זמינים ב-<a href="https://hitlahavut.com/" target="_blank" style="color:var(--sky);font-weight:600;">hitlahavut.com</a>.
-      ליזם, ערן שחר, ניסיון מוכח בהרמת פרויקטים מהסוג הזה.
-    </p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ══ LEAD / CTA ══ -->
-  <div class="sec" id="lead">
-    <div class="cta-box">
-      <h2>רוצים <em>להזיז</em> את הארגון שלכם?</h2>
-      <p>התנסו באב-הטיפוס עכשיו, או השאירו פרטים ונחזור אליכם לתיאום דמו אישי.</p>
-
-      <div class="lp-cta-row" style="margin-bottom:8px;">
-        <a href="https://app.brain2spark.ai/" target="_blank" class="btn btn-primary">התנסו ב-MVP ←</a>
-      </div>
-
-      <div class="lead-form">
-        <div class="row">
-          <input type="text" id="lf-name" placeholder="שם מלא *">
-          <input type="tel" id="lf-phone" placeholder="טלפון *">
-        </div>
-        <div class="row">
-          <input type="email" id="lf-email" placeholder="אימייל">
-          <input type="text" id="lf-org" placeholder="ארגון / חברה">
-        </div>
-        <select id="lf-sector">
-          <option value="">תחום הפעילות (אופציונלי)</option>
-          <option>קמעונאות</option>
-          <option>קמעונאות B2B</option>
-          <option>בנקים / ביטוח</option>
-          <option>קופות חולים</option>
-          <option>הנדסה ותשתיות</option>
-          <option>חינוך</option>
-          <option>גיל שלישי / רביעי</option>
-          <option>רובוטיקה</option>
-          <option>אחר</option>
-        </select>
-        <textarea id="lf-note" rows="2" placeholder="משהו שתרצו שנדע? (אופציונלי)"></textarea>
-        <button class="btn btn-primary" onclick="submitLead()" style="width:100%;">שלחו פרטים →</button>
-        <div class="lead-msg" id="lead-msg"></div>
-      </div>
-
-      <div class="contact">
-        <a href="tel:0544346494">📞 ערן · 054-434-6494</a>
-        <a href="tel:0546266044">📞 רותי · 054-626-6044</a>
-      </div>
-    </div>
-  </div>
-
-  <div style="height:50px"></div>
-  <div id="footer-placeholder"></div>
 </div>
 
-<script src="shared.js"></script>
-<script>
-renderNav('');
-renderFooter();
+<!-- ══ HERO ══ -->
+<div class="lp-hero">
+  <div class="lp-eyebrow">CO-MANAGER מבוסס AI</div>
+  <h1 class="lp-h1">תכירו את <span class="name">ג'וני</span></h1>
+  <h2 class="lp-h2">מנוע ההזזה של הארגון שלך</h2>
+  <p class="lp-lead">
+    כלי למנהלים (עם גרסה לעובדים) שלוקח כל החלטה חשובה <b>והופך אותה לביצוע בשטח</b> - דרך שיחה, שכנוע ופולואפ.<br>
+    הוא מדבר איתך באמצעות טקסט, תמונה עם מסר, ובוידאו אוואטר דמוי-אדם - בכלי ובוואטסאפ.
+  </p>
+  <div class="lp-cta-row">
+    <a href="https://app.brain2spark.ai/" target="_blank" class="btn btn-primary">התנסו ב-MVP עכשיו ←</a>
+    <a href="#lead" class="btn btn-ghost">דברו איתנו / קבעו דמו</a>
+  </div>
 
+  <div class="proof">
+    <div class="proof-line">
+      על מחזור של <span class="blue">200 מיליון ₪</span> ברשת קמעונאית עם 100 חנויות<br>
+      ג'וני מביא לך עוד <span class="big">50 מיליון ₪</span>.
+    </div>
+  </div>
+
+  <div class="pills">
+    <span class="pill">מעיר את כולם</span>
+    <span class="pill">משכנע לעשות</span>
+    <span class="pill">סוגר את מה שלא קורה</span>
+    <span class="pill">מטמיע שינוי לאורך זמן</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ PROBLEM ══ -->
+<div class="sec sec-alt" style="text-align:center;">
+  <h2 class="sec-title">ה-<em><span style="unicode-bidi:isolate;direction:rtl;">30%&#8211;20%</span></em> שלא קורים</h2>
+  <p class="sec-sub" style="max-width:680px;margin-inline:auto;">
+    כ-<span style="unicode-bidi:isolate;direction:rtl;">30%&#8211;20%</span> מהדברים שההנהלה רוצה שיקרו — עדיין לא קורים.<br>
+    על ה-20% האלה אתה משלם באובדן הכנסות וצמיחה.<br>
+    זה קורה כי כולנו עמוסים, ויש הרגלים.<br>
+    <b style="color:var(--white);font-weight:800;">ג'וני סוגר לך בדיוק את מה שכרגע לא קורה.</b>
+  </p>
+  <p style="font-size:18px;color:var(--white);font-weight:700;max-width:600px;margin:0 auto;">
+    יותר מהכל - הוא <span style="color:var(--teal)">משכנען-על</span> לעשות.<br>
+    יועץ עסקי + פסיכולוג, שעובד בשבילך לאורך שבועות, חודשים ושנה.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ HOW — PROCESS ══ -->
+<div class="sec" style="text-align:center;">
+  <h2 class="sec-title">איך הוא <em>מטמיע</em> שינוי?</h2>
+  <p class="sec-sub" style="max-width:600px;margin-inline:auto;">
+    לוקח כל נושא שחשוב לך, ומייצר את ההטמעה לבד — מהניתוח ועד התוצאה.
+  </p>
+  <div class="flow">
+    <span class="flow-step">מנתח</span><span class="flow-arrow">←</span>
+    <span class="flow-step">קמפיין</span><span class="flow-arrow">←</span>
+    <span class="flow-step">שולח</span><span class="flow-arrow">←</span>
+    <span class="flow-step">שיחה ופולואפ</span><span class="flow-arrow">←</span>
+    <span class="flow-step">מוודא</span><span class="flow-arrow">←</span>
+    <span class="flow-step">אסקלציה</span><span class="flow-arrow">←</span>
+    <span class="flow-step">מודד</span><span class="flow-arrow">←</span>
+    <span class="flow-step">לומד</span>
+  </div>
+</div>
+
+<!-- ══ WHAT IT DOES ══ -->
+<div class="sec sec-alt">
+  <div class="do-grid">
+    <div class="do-card">
+      <span class="do-ico">🔍</span>
+      <div class="do-title">מנתח</div>
+      <div class="do-text">בודק לבד ואיתך מה לא עובד כרגע, מה חסר, ואיפה הדברים נתקעים — ולמה.</div>
+    </div>
+    <div class="do-card">
+      <span class="do-ico">🎬</span>
+      <div class="do-title">בונה קמפיין</div>
+      <div class="do-text">בלחיצה אחת — סרטוני אוואטר, תמונות וטקסטים לשכנוע, רצים בארגון בוואטסאפ.</div>
+    </div>
+    <div class="do-card">
+      <span class="do-ico">💬</span>
+      <div class="do-title">משכנע ומקשיב</div>
+      <div class="do-text">מדבר עם האנשים, מתווכח, מקשיב — מעודד אי-הסכמה ושהעובד יגיד את דעתו.</div>
+    </div>
+    <div class="do-card">
+      <span class="do-ico">✅</span>
+      <div class="do-title">מוודא ביצוע</div>
+      <div class="do-text">מגיע להסכמה, מוודא שהדברים קורים, ועושה אסקלציה אם לא — עד שמוטמע.</div>
+    </div>
+    <div class="do-card">
+      <span class="do-ico">📊</span>
+      <div class="do-title">מודד תוצאה</div>
+      <div class="do-text">קוקפיט עם KPIs ומדדי השפעה — אחוז עמידה ביעד, צמיחה, יחס המרה ועוד.</div>
+    </div>
+    <div class="do-card">
+      <span class="do-ico">🧠</span>
+      <div class="do-title">לומד וגדל</div>
+      <div class="do-text">קופסת ידע לומדת — איזה שכנוע ואיזו הטמעה עובדים בכל ענף. זה ה-IQ של המוצר.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ FOR WHOM ══ -->
+<div class="sec">
+  <h2 class="sec-title" style="text-align:center;">למי <em>ג'וני</em> מתאים?</h2>
+  <p class="sec-sub" style="text-align:center;max-width:600px;margin-inline:auto;">
+    מתאים לכל ארגון שצריך להזיז אנשים סביב מטרה.<br>
+    הנה כמה מהתחומים החזקים ביותר:
+  </p>
+  <div class="ind-grid">
+    <div class="ind-card">
+      <div class="ind-head"><span class="ico">🛍️</span>קמעונאות</div>
+      <ul class="ind-points">
+        <li>גידול של עד 20% במכירות ובאפסייל</li>
+        <li>מוריד עומס ומדליק עמידה ביעד</li>
+        <li>שימור עובדים ×2, גיוס משתפר ב-15%</li>
+        <li>600 מיקרו-הדרכות בשנה</li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-head"><span class="ico">📦</span>קמעונאות B2B</div>
+      <ul class="ind-points">
+        <li>סוכנים שמנתחים מספרים ועמידה ביעדים</li>
+        <li>מקצוענות בהיכרות המוצרים</li>
+        <li>תגובתיות מהירה למתחרים</li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-head"><span class="ico">🏦</span>בנקים וביטוח</div>
+      <ul class="ind-points">
+        <li>מעיר את כולם לגייס לקוחות ולידים</li>
+        <li>שירות מהסרטים ומכירת מוצרים משלימים</li>
+        <li>אנרגיות של שליחות ומשמעות (Engagement)</li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-head"><span class="ico">🏥</span>קופות חולים</div>
+      <ul class="ind-points">
+        <li>גיוס לקוחות חדשים ×10 ואף ×20</li>
+        <li>חיבור לאקרדיטציה — שירות ומניעה</li>
+        <li>קידום שימוש בשירותים נוספים</li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-head"><span class="ico">🏗️</span>הנדסה ותשתיות</div>
+      <ul class="ind-points">
+        <li>שליחות, משמעות וגאוות יחידה לפרויקט</li>
+        <li>עמידה בלו"ז ובתקציב</li>
+        <li>ניהול ספקים אסרטיבי ואוהב גם יחד</li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-head"><span class="ico">🎓</span>חינוך</div>
+      <ul class="ind-points">
+        <li>מדליק צוותי חינוך ×10 ואף ×100</li>
+        <li>כישורי חיים וחשיבה עסקית + AI לתלמידים</li>
+        <li>מחבר הורים ומורים לצוות אחד</li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-head"><span class="ico">🌳</span>הגיל השלישי והרביעי</div>
+      <ul class="ind-points">
+        <li>מוציא מהבית לפעילות וחיבור חברתי</li>
+        <li>מעודד לעבוד, לייעץ ולהתנדב</li>
+        <li>כלים נגד קושי ומחשבות שליליות</li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-head"><span class="ico">🤖</span>רובוטים תומכי-אדם</div>
+      <ul class="ind-points">
+        <li>הופך מוח רובוטי למוח שכנוע ועידוד</li>
+        <li>רובוט סיעודי שהוא גם מאמן ומעודד</li>
+        <li>חלוצים ומובילים בתחום</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ SECURITY ══ -->
+<div class="sec sec-alt">
+  <h2 class="sec-title" style="text-align:center;">הגנת <em>מידע ואבטחה</em></h2>
+  <div class="grid-auto" style="max-width:900px;margin:30px auto 0;">
+    <div class="card">
+      <div class="card-title">לא חייב להתחבר ל-ERP</div>
+      <p style="font-size:14px;color:var(--muted);line-height:1.6;">המוצר לא לומד מ-Data של הארגון, אלא מתוך שיחות, מוח ורגשות עם המשתמש.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">LLM מבודד</div>
+      <p style="font-size:14px;color:var(--muted);line-height:1.6;">ה-LLM שלך לא מחובר לזה של ספקים אחרים או מתחרים — אף אחד לא לומד מהידע שלך.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">עומד בכל דרישה</div>
+      <p style="font-size:14px;color:var(--muted);line-height:1.6;">יודעים להתחבר ל-ERP ולקיים כל דרישת אבטחה של הארגון, כשצריך.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ PROOF ══ -->
+<div class="sec" style="text-align:center;">
+  <h2 class="sec-title">ניסיון <em>מוכח</em></h2>
+  <div class="grid-auto" style="max-width:880px;margin:30px auto 0;">
+    <div class="card" style="text-align:center;">
+      <div style="font-size:40px;font-weight:900;color:var(--bright);">20 שנה</div>
+      <div style="font-size:14px;color:var(--muted);margin-top:6px;">בדיקת המודל ע"י חברת מחקר התלהבות</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:40px;font-weight:900;color:var(--teal);">800</div>
+      <div style="font-size:14px;color:var(--muted);margin-top:6px;">ארגונים ב-20 ענפים</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:40px;font-weight:900;color:var(--bright);">750K</div>
+      <div style="font-size:14px;color:var(--muted);margin-top:6px;">מודרכים שעליהם נבדק המודל</div>
+    </div>
+  </div>
+  <p class="sec-sub" style="margin-top:28px;margin-bottom:0;">
+    המחקרים זמינים ב-<a href="https://hitlahavut.com/" target="_blank" style="color:var(--sky);font-weight:600;">hitlahavut.com</a>.<br>
+    ליזם, ערן שחר, ניסיון מוכח בהרמת פרויקטים מהסוג הזה.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ LEAD / CTA ══ -->
+<div class="sec" id="lead">
+  <div class="cta-box">
+    <h2>רוצים <em>להזיז</em> את הארגון שלכם?</h2>
+    <p>התנסו בג'וני עכשיו,<br>או השאירו פרטים ונחזור אליכם לתיאום דמו אישי.</p>
+
+    <div class="lp-cta-row" style="margin-bottom:8px;">
+      <a href="https://app.brain2spark.ai/" target="_blank" class="btn btn-primary">התנסו ב-MVP ←</a>
+    </div>
+
+    <div class="lead-form">
+      <div class="row">
+        <input type="text" id="lf-name" placeholder="שם מלא *">
+        <input type="tel" id="lf-phone" placeholder="טלפון *">
+      </div>
+      <div class="row">
+        <input type="email" id="lf-email" placeholder="אימייל">
+        <input type="text" id="lf-org" placeholder="ארגון / חברה">
+      </div>
+      <select id="lf-sector">
+        <option value="">תחום הפעילות (אופציונלי)</option>
+        <option>קמעונאות</option>
+        <option>קמעונאות B2B</option>
+        <option>בנקים / ביטוח</option>
+        <option>קופות חולים</option>
+        <option>הנדסה ותשתיות</option>
+        <option>חינוך</option>
+        <option>גיל שלישי / רביעי</option>
+        <option>רובוטיקה</option>
+        <option>אחר</option>
+      </select>
+      <textarea id="lf-note" rows="2" placeholder="משהו שתרצו שנדע? (אופציונלי)"></textarea>
+      <button class="btn btn-primary" onclick="submitLead()" style="width:100%;">שלחו פרטים →</button>
+      <div class="lead-msg" id="lead-msg"></div>
+    </div>
+
+    <div class="contact">
+      <a href="tel:0544346494">📞 ערן · 054-434-6494</a>
+      <a href="tel:0546266044">📞 רותי · 054-626-6044</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="lp-footer">
+  <div class="flogo" dir="ltr">BRAIN<sup>co-manager</sup></div>
+  <div class="fcopy">© כל הזכויות שמורות ל-Brain Co-Manager · brain2spark.ai</div>
+</div>
+
+<script>
 function submitLead(){
   var name = document.getElementById('lf-name').value.trim();
   var phone = document.getElementById('lf-phone').value.trim();
