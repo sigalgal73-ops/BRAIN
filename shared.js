@@ -7,12 +7,14 @@ function renderNav(activePage, lang) {
   }
   const isEn = lang === 'en';
   const pages = isEn ? [
-    { id: 'about',    label: 'About',      href: 'about.html' },
+    { id: 'about',    label: 'About',      href: 'about.html', submenu: [
+      { label: 'Our Network', href: 'team.html' },
+      { label: 'Research',    href: 'research.html' },
+    ]},
     { id: 'what-is-brain', label: 'What is Brain?', href: 'what-is-brain.html' },
     { id: 'diy',      label: 'Implementation',        href: 'automated.html' },
     { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
-    { id: 'smb',      label: 'SMB',        href: 'smb.html' },
     { id: 'investors',label: 'Investors',  href: 'investors.html', submenu: [
       { label: 'Engine Within Engine', href: 'investors-engine.html' },
       { label: 'Brain Value Proof',    href: 'investors-value.html' },
@@ -23,18 +25,18 @@ function renderNav(activePage, lang) {
     ]},
     { id: 'demo',     label: 'Demo',       href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
-    { id: 'team',     label: 'Our Network',href: 'team.html' },
     { id: 'articles', label: 'Knowledge',  href: 'articles.html' },
-    { id: 'research', label: 'Research',   href: 'research.html' },
     { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 Talk to Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
   ] : [
-    { id: 'about',    label: 'אודותינו',        href: 'about.html' },
+    { id: 'about',    label: 'אודותינו',        href: 'about.html', submenu: [
+      { label: 'החברים שלנו', href: 'team.html' },
+      { label: 'מחקר',        href: 'research.html' },
+    ]},
     { id: 'what-is-brain', label: 'מה זה Brain?', href: 'what-is-brain.html' },
     { id: 'diy',      label: 'הטמעה',  href: 'automated.html' },
     { id: 'uses',     label: 'שימושים',         href: 'uses.html' },
-    { id: 'smb',      label: 'SMB',             href: 'smb.html' },
     { id: 'roi',      label: 'ROI',             href: 'roi.html' },
     { id: 'investors',label: 'משקיעים',         href: 'investors.html', submenu: [
       { label: 'מנוע בתוך מנוע',    href: 'investors-engine.html' },
@@ -46,9 +48,7 @@ function renderNav(activePage, lang) {
     ]},
     { id: 'demo',     label: 'Demo',            href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'מחירים',          href: 'pricing.html' },
-    { id: 'team',     label: 'החברים שלנו',     href: 'team.html' },
     { id: 'articles', label: 'ידע',              href: 'articles.html' },
-    { id: 'research', label: 'מחקר',            href: 'research.html' },
     { id: 'jobs',     label: 'דרושים',           href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 דבר עם Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'הצטרפו',           href: 'join.html', cta: true },
