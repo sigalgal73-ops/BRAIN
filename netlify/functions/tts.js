@@ -15,7 +15,7 @@ exports.handler = async (event) => {
     const voiceId = process.env.ELEVENLABS_VOICE_ID;
 
     const res = await fetch(
-      `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
+      `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=mp3_22050_32`,
       {
         method: "POST",
         headers: {
@@ -29,8 +29,8 @@ exports.handler = async (event) => {
           voice_settings: {
             stability: 0.45,
             similarity_boost: 0.8,
-            style: 0.15,
-            use_speaker_boost: true
+            style: 0,
+            use_speaker_boost: false
           }
         })
       }
