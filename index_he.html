@@ -627,34 +627,33 @@ nav{
 
 </section>
 
-<!-- ════════ AVATAR STRIP — נבחרת האוואטרים ════════ -->
+<!-- ══ AVATAR STRIP ══ -->
 <style>
-.avstrip{position:relative;padding:36px 0 32px;overflow:hidden}
-.avstrip-head{text-align:center;margin-bottom:24px;padding:0 20px}
+.avstrip{position:relative;padding:30px 0 28px;overflow:hidden}
+.avstrip-head{text-align:center;margin-bottom:22px;padding:0 20px}
 .avstrip-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;color:#9fd9ec;background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.25);padding:6px 15px;border-radius:999px;margin-bottom:14px}
 .avstrip-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
 .avstrip-title{font-size:clamp(22px,3vw,34px);font-weight:900;color:#fff;letter-spacing:-.01em;margin:0}
 .avstrip-title b{background:linear-gradient(135deg,var(--bright),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .avstrip-sub{font-size:14px;color:var(--muted);margin-top:10px}
-.avstrip-viewport{position:relative;width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
-.avstrip-track{display:flex;gap:28px;width:max-content;animation:avscroll 44s linear infinite;will-change:transform}
+.avstrip-viewport{position:relative;width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.avstrip-track{display:flex;gap:30px;width:max-content;will-change:transform}
 .avstrip-viewport:hover .avstrip-track{animation-play-state:paused}
-.avstrip-item{flex:0 0 auto;width:122px;text-align:center}
-.avstrip-ph{width:112px;height:112px;border-radius:50%;margin:0 auto 11px;overflow:hidden;border:2px solid rgba(45,156,255,.35);box-shadow:0 0 26px rgba(45,156,255,.22);transition:transform .3s,box-shadow .3s,border-color .3s;background:rgba(45,156,255,.06)}
+.avstrip-item{flex:0 0 auto}
+.avstrip-ph{width:120px;height:120px;border-radius:50%;overflow:hidden;border:2px solid rgba(45,156,255,.3);box-shadow:0 0 24px rgba(45,156,255,.18);transition:transform .35s,box-shadow .35s,border-color .35s;background:rgba(45,156,255,.06)}
 .avstrip-ph img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-.avstrip-item:hover .avstrip-ph{transform:translateY(-4px) scale(1.06);box-shadow:0 0 38px rgba(0,212,170,.45);border-color:var(--teal)}
-.avstrip-name{font-size:13px;font-weight:700;color:#dfe9f5}
+.avstrip-item:hover .avstrip-ph{transform:translateY(-4px) scale(1.06);box-shadow:0 0 40px rgba(0,212,170,.5);border-color:var(--teal)}
 @keyframes avscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(max-width:600px){.avstrip-item{width:96px}.avstrip-ph{width:86px;height:86px}.avstrip-track{gap:18px;animation-duration:32s}}
-@media(prefers-reduced-motion:reduce){.avstrip-track{animation:none}}
+@media(max-width:600px){.avstrip-track{gap:20px}.avstrip-ph{width:92px;height:92px}}
+@media(prefers-reduced-motion:reduce){.avstrip-track{animation:none!important}}
 </style>
-<section class="avstrip" id="avstrip" aria-label="נבחרת האוואטרים">
+<section class="avstrip" id="avstrip" aria-label="נבחרת האווטרים">
   <div class="avstrip-head">
     <span class="avstrip-eyebrow">AI AVATARS</span>
-    <h2 class="avstrip-title">נבחרת <b>האוואטרים</b> שלנו</h2>
-    <p class="avstrip-sub">אוואטרים דמויי-אדם שמדברים, משכנעים ומניעים לפעולה</p>
+    <h2 class="avstrip-title">נבחרת <b>האווטרים</b> שלנו</h2>
+    <p class="avstrip-sub">אווטרים דמויי-אדם שמדברים, משכנעים ומניעים לפעולה</p>
   </div>
-  <div class="avstrip-viewport">
+  <div class="avstrip-viewport" id="avstripVp">
     <div class="avstrip-track" id="avstripTrack"></div>
   </div>
 </section>
@@ -662,30 +661,40 @@ nav{
 <script>
 (async function(){
   var sec=document.getElementById('avstrip');
+  var vp=document.getElementById('avstripVp');
+  var track=document.getElementById('avstripTrack');
   var esc=function(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  function fail(){if(sec)sec.style.display='none';}
   try{
-    if(!window.supabase||!window.supabase.createClient){sec.style.display='none';return;}
-    var SB=window.supabase.createClient(
-      "https://hkptvdceywfpltkcwkps.supabase.co",
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrcHR2ZGNleXdmcGx0a2N3a3BzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjM2ODAsImV4cCI6MjA5NzA5OTY4MH0.g82I_jP6QwxtQII9HtOqGUZjTZ2I4BblDuB_NBIT-es"
-    );
+    if(!window.supabase||!window.supabase.createClient){return fail();}
+    var SB=window.supabase.createClient("https://hkptvdceywfpltkcwkps.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrcHR2ZGNleXdmcGx0a2N3a3BzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MjM2ODAsImV4cCI6MjA5NzA5OTY4MH0.g82I_jP6QwxtQII9HtOqGUZjTZ2I4BblDuB_NBIT-es");
     var res=await SB.from("avatars").select("name,image_url,is_cover,created_at").order("created_at",{ascending:true});
-    if(res.error||!res.data||!res.data.length){sec.style.display='none';return;}
+    if(res.error||!res.data||!res.data.length){return fail();}
     var byName={};
     res.data.forEach(function(r){(byName[r.name]=byName[r.name]||[]).push(r);});
-    var chars=Object.keys(byName).map(function(n){
+    var imgs=Object.keys(byName).map(function(n){
       var arr=byName[n];
       var cover=arr.find(function(x){return x.is_cover&&x.image_url;})||arr.find(function(x){return x.image_url;})||arr[0];
-      return {name:n,img:cover&&cover.image_url};
-    }).filter(function(c){return c.img;});
-    if(!chars.length){sec.style.display='none';return;}
-    var track=document.getElementById('avstripTrack');
-    var html=chars.map(function(c){
-      return '<div class="avstrip-item"><div class="avstrip-ph"><img src="'+esc(c.img)+'" loading="lazy" alt="'+esc(c.name)+'"></div><div class="avstrip-name">'+esc(c.name)+'</div></div>';
-    }).join('');
-    track.innerHTML=html+html;
-    track.style.animationDuration=Math.max(28,chars.length*4)+'s';
-  }catch(e){sec.style.display='none';}
+      return cover&&cover.image_url;
+    }).filter(Boolean);
+    if(!imgs.length){return fail();}
+    var base=imgs.map(function(img){return '<div class="avstrip-item"><div class="avstrip-ph"><img src="'+esc(img)+'" loading="lazy" alt=""></div></div>';}).join('');
+    function layout(){
+      track.style.animation='none';
+      track.innerHTML=base;
+      var one=track.scrollWidth;
+      if(!one){return;}
+      var width=vp.clientWidth||window.innerWidth;
+      var copies=Math.max(2,Math.ceil((width+one)/one));
+      var half=base.repeat(copies);
+      track.innerHTML=half+half;
+      var dur=Math.max(18,(one*copies)/55);
+      void track.offsetWidth;
+      track.style.animation='avscroll '+dur+'s linear infinite';
+    }
+    layout();
+    var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(layout,200);});
+  }catch(e){fail();}
 })();
 </script>
 
