@@ -7,20 +7,16 @@ function renderNav(activePage, lang) {
   }
   const isEn = lang === 'en';
   const pages = isEn ? [
-    { id: 'about',    label: 'About',      href: 'about.html', submenu: [
-      { label: 'Our Network', href: 'team.html' },
-    ]},
-    { id: 'what-is-brain', label: 'What is Brain?', href: 'what-is-brain.html', submenu: [
-      { label: 'Research', href: 'research.html' },
-    ]},
+    { id: 'home',     label: 'Home',       href: 'index.html' },
+    { id: 'about',    label: 'About',      href: 'about.html' },
     { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
-    { id: 'roi',      label: 'ROI',        href: 'roi.html' },
     { id: 'demo',     label: 'Try me',     href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
     { id: 'articles', label: 'Knowledge',  href: 'articles.html' },
     { id: 'talk-to-brain', label: '🧠 Talk to Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
   ] : [
+    { id: 'home',     label: 'דף הבית',          href: 'index_he.html' },
     { id: 'about',    label: 'אודות',           href: 'about.html' },
     { id: 'uses',     label: 'שימושים',         href: 'uses.html' },
     { id: 'demo',     label: 'נסו אותי',         href: 'demo.html', cta: true },
@@ -127,12 +123,9 @@ function renderFooter() {
     <div class="footer-links">
       <a href="about.html">About</a>
       <a href="uses.html">Use Cases</a>
-      <a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a>
       <a href="pricing.html">Pricing</a>
       <a href="../demo.html">Try me</a>
       <a href="articles.html">Knowledge</a>
-      <a href="research.html">Research</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
       <a href="privacy.html">Privacy Policy</a>
