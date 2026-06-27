@@ -13,21 +13,11 @@ function renderNav(activePage, lang) {
     { id: 'what-is-brain', label: 'What is Brain?', href: 'what-is-brain.html', submenu: [
       { label: 'Research', href: 'research.html' },
     ]},
-    { id: 'diy',      label: 'Implementation',        href: 'automated.html' },
     { id: 'uses',     label: 'Use Cases',  href: 'uses.html' },
     { id: 'roi',      label: 'ROI',        href: 'roi.html' },
-    { id: 'investors',label: 'Investors',  href: 'investors.html', submenu: [
-      { label: 'Engine Within Engine', href: 'investors-engine.html' },
-      { label: 'Brain Value Proof',    href: 'investors-value.html' },
-      { label: 'Go to Market',         href: 'investors-gtm.html' },
-      { label: 'Competition',          href: 'investors-competition.html' },
-      { label: 'VC Funds',             href: 'investors-vc.html' },
-      { label: 'FAQ',                  href: 'investors-faq.html' },
-    ]},
     { id: 'demo',     label: 'Try me',     href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'Pricing',    href: 'pricing.html' },
     { id: 'articles', label: 'Knowledge',  href: 'articles.html' },
-    { id: 'jobs',     label: 'Careers',    href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 Talk to Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
   ] : [
@@ -37,21 +27,11 @@ function renderNav(activePage, lang) {
     { id: 'what-is-brain', label: 'מה זה Brain?', href: 'what-is-brain.html', submenu: [
       { label: 'מחקר', href: 'research.html' },
     ]},
-    { id: 'diy',      label: 'הטמעה',  href: 'automated.html' },
     { id: 'uses',     label: 'שימושים',         href: 'uses.html' },
     { id: 'roi',      label: 'ROI',             href: 'roi.html' },
-    { id: 'investors',label: 'משקיעים',         href: 'investors.html', submenu: [
-      { label: 'מנוע בתוך מנוע',    href: 'investors-engine.html' },
-      { label: 'הוכחת שווי Brain',  href: 'investors-value.html' },
-      { label: 'Go to Market',       href: 'investors-gtm.html' },
-      { label: 'מתחרים',            href: 'investors-competition.html' },
-      { label: 'קרנות VC',          href: 'investors-vc.html' },
-      { label: 'שאלות תשובות',      href: 'investors-faq.html' },
-    ]},
     { id: 'demo',     label: 'נסו אותי',         href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'מחירים',          href: 'pricing.html' },
     { id: 'articles', label: 'ידע',              href: 'articles.html' },
-    { id: 'jobs',     label: 'דרושים',           href: 'jobs.html' },
     { id: 'talk-to-brain', label: '🧠 דבר עם Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'הצטרפו',           href: 'join.html', cta: true },
   ];
@@ -152,7 +132,6 @@ function renderFooter() {
   </div>
     <div class="footer-links">
       <a href="about.html">About</a>
-      <a href="automated.html">Implementation</a>
       <a href="uses.html">Use Cases</a>
       <a href="roi.html">ROI</a>
       <a href="smb.html">SMB</a>
@@ -160,7 +139,6 @@ function renderFooter() {
       <a href="../demo.html">Try me</a>
       <a href="articles.html">Knowledge</a>
       <a href="research.html">Research</a>
-      <a href="jobs.html">Careers</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
       <a href="privacy.html">Privacy Policy</a>
@@ -177,7 +155,6 @@ function renderFooter() {
   </div>
     <div class="footer-links">
       <a href="about.html">אודותינו</a>
-      <a href="automated.html">הטמעה</a>
       <a href="uses.html">שימושים</a>
       <a href="roi.html">ROI</a>
       <a href="smb.html">SMB</a>
@@ -185,7 +162,6 @@ function renderFooter() {
       <a href="demo.html">נסו אותי</a>
       <a href="articles.html">ידע</a>
       <a href="research.html">מחקר</a>
-      <a href="jobs.html">דרושים</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
       <a href="privacy.html">מדיניות פרטיות</a>
