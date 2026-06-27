@@ -21,14 +21,8 @@ function renderNav(activePage, lang) {
     { id: 'talk-to-brain', label: '🧠 Talk to Brain', href: 'talk-to-brain.html', pulse: true },
     { id: 'join',     label: 'Join',       href: 'join.html', cta: true },
   ] : [
-    { id: 'about',    label: 'אודותינו',        href: 'about.html', submenu: [
-      { label: 'החברים שלנו', href: 'team.html' },
-    ]},
-    { id: 'what-is-brain', label: 'מה זה Brain?', href: 'what-is-brain.html', submenu: [
-      { label: 'מחקר', href: 'research.html' },
-    ]},
+    { id: 'about',    label: 'אודות',           href: 'about.html' },
     { id: 'uses',     label: 'שימושים',         href: 'uses.html' },
-    { id: 'roi',      label: 'ROI',             href: 'roi.html' },
     { id: 'demo',     label: 'נסו אותי',         href: 'demo.html', cta: true },
     { id: 'pricing',  label: 'מחירים',          href: 'pricing.html' },
     { id: 'articles', label: 'ידע',              href: 'articles.html' },
@@ -154,14 +148,11 @@ function renderFooter() {
     <a href="https://www.youtube.com/@Brain.co.manager" style="color:#7ec8ff;transition:color .2s;display:flex;align-items:center;" title="YouTube" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg></a>
   </div>
     <div class="footer-links">
-      <a href="about.html">אודותינו</a>
+      <a href="about.html">אודות</a>
       <a href="uses.html">שימושים</a>
-      <a href="roi.html">ROI</a>
-      <a href="smb.html">SMB</a>
       <a href="pricing.html">מחירים</a>
       <a href="demo.html">נסו אותי</a>
       <a href="articles.html">ידע</a>
-      <a href="research.html">מחקר</a>
     </div>
     <div class="footer-links" style="margin-top:8px;opacity:0.6;font-size:12px;">
       <a href="privacy.html">מדיניות פרטיות</a>
