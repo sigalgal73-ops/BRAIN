@@ -4,210 +4,517 @@
 <meta charset="UTF-8">
 <meta name="facebook-domain-verification" content="gzjgv9eghct29v046qzstfzum02ncz" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>אודותינו | Brain Co-Manager</title>
+<title>אודות | Brain Co-Manager</title>
+<meta name="description" content="אודות Brain, חברת סטארטאפ לפיתוח מוחות ארגוניים, ומנוע ההזזה שמבצע ומטמיע בשטח. רקע, מחקר ופיתוח, מה המוצר עושה, הצוות והרשת שלנו.">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-.about-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:16px;}
-.about-member{background:rgba(45,156,255,0.05);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;}
-.about-photo{width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 12px;display:block;border:3px solid rgba(45,156,255,0.3);box-shadow:0 0 20px rgba(45,156,255,0.15);}
-.about-role{font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.1em;margin-bottom:4px;}
-.about-name{font-size:16px;font-weight:900;color:var(--white);margin-bottom:10px;}
-.about-bio{font-size:12px;color:var(--muted);line-height:1.75;text-align:right;}
+/* background / stats */
+.bg-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:24px}
+.bg-stat{background:rgba(45,156,255,0.05);border:1px solid var(--border);border-radius:14px;padding:22px 16px;text-align:center}
+.bg-stat-num{font-size:32px;font-weight:900;color:var(--white);line-height:1}
+.bg-stat-num span{color:var(--teal)}
+.bg-stat-label{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
+.brand-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
+.brand-pill{padding:6px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--sky);font-weight:600}
+.research-credit{margin-top:22px;padding:18px 22px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:14px;font-size:13px;color:var(--muted);line-height:1.7;text-align:center}
+.research-credit a{color:var(--teal);text-decoration:none;font-weight:700}
+/* simple do steps */
+.do-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px}
+.do-step{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;position:relative}
+.do-step-num{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--bright),var(--teal));color:#04121f;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.do-step-title{font-size:16px;font-weight:900;color:var(--white);margin-bottom:6px}
+.do-step-body{font-size:13px;color:var(--muted);line-height:1.7}
+/* what-is-brain ported */
+.wib-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:32px}
+.wib-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;transition:all .25s}
+.wib-card:hover{border-color:rgba(45,156,255,.3);transform:translateY(-3px)}
+.wib-icon{font-size:32px;margin-bottom:12px}
+.wib-title{font-size:15px;font-weight:700;color:var(--white);margin-bottom:8px}
+.wib-body{font-size:13px;color:var(--muted);line-height:1.75}
+.wib-section-label{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin:36px 0 18px;text-transform:uppercase}
+.arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:32px}
+.arch-item{padding:16px;background:rgba(45,156,255,.06);border:1px solid var(--border);border-radius:12px;text-align:center}
+.arch-item-icon{font-size:26px;margin-bottom:8px}
+.arch-item-title{font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px}
+.arch-item-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-bottom:8px}
+.pain-item{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start;padding:10px 14px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px}
+.pain-item::before{content:'·';color:var(--teal);font-weight:900;flex-shrink:0}
+.mission-box{background:linear-gradient(135deg,rgba(45,156,255,.08),rgba(0,212,170,.08));border:1px solid rgba(0,212,170,.3);border-radius:20px;padding:36px 40px;text-align:center;margin-bottom:8px}
+.flow-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.flow-step{padding:10px 18px;background:rgba(45,156,255,.08);border:1px solid rgba(45,156,255,.2);border-radius:30px;font-size:12px;font-weight:700;color:var(--white)}
+.flow-arrow{color:var(--muted);font-size:16px}
+/* internal team */
+.about-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:16px}
+.about-member{background:rgba(45,156,255,0.05);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+.about-photo{width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 12px;display:block;border:3px solid rgba(45,156,255,0.3);box-shadow:0 0 20px rgba(45,156,255,0.15)}
+.about-role{font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.1em;margin-bottom:4px}
+.about-name{font-size:16px;font-weight:900;color:var(--white);margin-bottom:10px}
+.about-bio{font-size:12px;color:var(--muted);line-height:1.75;text-align:right}
+/* network friends (ported from team) */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;max-width:1100px;margin:0 auto}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px 28px;text-align:center;position:relative;overflow:hidden;transition:all .3s}
+.team-card::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(45,156,255,.35),transparent)}
+.team-card:hover{border-color:rgba(45,156,255,.3);transform:translateY(-4px)}
+.team-photo{width:130px;height:130px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 20px;display:block;border:3px solid rgba(45,156,255,0.3);box-shadow:0 0 24px rgba(45,156,255,0.2)}
+.team-photo.pos-center{object-position:center center}
+.team-photo.pos-top{object-position:center 15%}
+.team-name{font-size:22px;font-weight:900;color:var(--white);margin-bottom:6px}
+.team-role{font-size:12px;font-weight:700;color:var(--teal);letter-spacing:.1em;margin-bottom:16px;text-transform:uppercase}
+.team-divider{width:40px;height:2px;background:linear-gradient(90deg,var(--teal),var(--bright));margin:0 auto 18px;border-radius:2px}
+.team-bio{font-size:14px;color:var(--muted);line-height:1.8;text-align:right}
+.team-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.team-tag{padding:4px 12px;background:rgba(45,156,255,0.08);border:1px solid rgba(45,156,255,0.2);border-radius:20px;font-size:11px;color:var(--sky);font-weight:600}
+.auditor-band{max-width:720px;margin:0 auto 44px;padding:20px 28px;background:var(--card);border:1px solid var(--border);border-radius:18px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.auditor-line{color:var(--muted);font-size:15px;letter-spacing:.4px}
+.auditor-line strong{color:var(--bright);font-weight:700}
+.auditor-logo-wrap{background:#fff;padding:10px 20px;border-radius:10px;display:inline-flex;align-items:center;box-shadow:0 4px 18px rgba(0,0,0,.25)}
+.auditor-logo{height:36px;width:auto;display:block}
+.auditor-logo-text{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:25px;color:#000;letter-spacing:.5px}
+.auditor-logo-text span{color:#86BC25}
+@media(max-width:900px){.team-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.auditor-band{flex-direction:column;gap:14px}}
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div id="nav-placeholder"></div>
 <div class="page">
+
   <div class="page-hero">
-    <div class="page-tag">ABOUT US</div>
-    <h1 class="page-title">המוצר – <em>אודותינו</em></h1>
-    <p class="page-sub">Brain היא חברת סטארטאפ רשומה לפיתוח מוחות ארגוניים</p>
+    <div class="page-tag">ABOUT · WHAT IS BRAIN</div>
+    <h1 class="page-title">אודות <em>Brain</em></h1>
+    <p class="page-sub">חברת סטארטאפ לפיתוח מוחות ארגוניים, ומנוע ההזזה שמבצע ומטמיע בשטח</p>
   </div>
 
-<div class="sec">
-  <div style="max-width:560px;margin:0 auto 28px">
-    <div class="card" style="text-align:center">
-      <div class="card-title" style="text-align:center">🚀 Brain – חברת סטארטאפ רשומה</div>
-      <ul class="dot-list" style="text-align:right">
-        <li>חברה לפיתוח מוחות – brain 1, Brain 2, …</li>
-        <li><strong style="color:var(--sky)">לארגונים!</strong> הלקוחות מס׳ 1 שלנו מאז ולתמיד 😊</li>
-        <li><strong style="color:var(--sky)">לעיריות</strong> – גימלאים – לקוח מס׳ 2</li>
-        <li><strong style="color:var(--sky)">לרובוטים הומנואידים</strong> – רובוטים תומכי אדם</li>
-        <li>משרדים – מרכז Vibe, כפר סבא · חברה רזה (אבל חכמה)</li>
-        <li>צוות פיתוח חיצוני – חברת Commit</li>
-      </ul>
+  <!-- ════════ 1. רקע שלנו ════════ -->
+  <div class="sec">
+    <div class="sec-title">רקע שלנו</div>
+    <p class="sec-sub">מי אנחנו, ומה עומד מאחורי Brain</p>
+
+    <div style="max-width:560px;margin:24px auto 0">
+      <div class="card" style="text-align:center">
+        <div class="card-title" style="text-align:center">🚀 Brain, חברת סטארטאפ רשומה</div>
+        <ul class="dot-list" style="text-align:right">
+          <li>חברה לפיתוח מוחות, brain 1, Brain 2, ...</li>
+          <li><strong style="color:var(--sky)">לארגונים!</strong> הלקוחות מס׳ 1 שלנו מאז ולתמיד 😊</li>
+          <li><strong style="color:var(--sky)">לעיריות</strong>, גימלאים, לקוח מס׳ 2</li>
+          <li><strong style="color:var(--sky)">לרובוטים הומנואידים</strong>, רובוטים תומכי אדם</li>
+          <li>משרדים, מרכז Vibe, כפר סבא · חברה רזה (אבל חכמה)</li>
+          <li>צוות פיתוח חיצוני, חברת Commit</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- מחקר ופיתוח + ניסיון שטח -->
+    <div class="wib-section-label" style="text-align:center">מחקר ופיתוח · ניסיון שטח</div>
+    <div class="bg-stats">
+      <div class="bg-stat"><div class="bg-stat-num">20</div><div class="bg-stat-label">שנות ניסיון בהנעת עובדים בארגונים גדולים ובינוניים</div></div>
+      <div class="bg-stat"><div class="bg-stat-num">15</div><div class="bg-stat-label">שנות מחקר בנושא הנעת עובדים בארגונים</div></div>
+      <div class="bg-stat"><div class="bg-stat-num">8,000</div><div class="bg-stat-label">בריפים על צרכים, מ-8,000 ארגונים בכל העולם</div></div>
+      <div class="bg-stat"><div class="bg-stat-num">750,000</div><div class="bg-stat-label">מנהלים ועובדים שהדרכנו והכשרנו</div></div>
+      <div class="bg-stat"><div class="bg-stat-num">20</div><div class="bg-stat-label">ענפים שונים, מחקר ויישום במגוון רחב של תחומים</div></div>
+    </div>
+
+    <div style="text-align:center;font-size:13px;color:var(--muted);margin-top:26px;font-weight:700;letter-spacing:.04em">מותגים מובילים בכל ענף היו לקוחות של המודל שלנו</div>
+    <div class="brand-pills">
+      <span class="brand-pill">Microsoft</span>
+      <span class="brand-pill">Intel</span>
+      <span class="brand-pill">בנק הפועלים</span>
+      <span class="brand-pill">טבע</span>
+      <span class="brand-pill">PwC</span>
+      <span class="brand-pill">AstraZeneca</span>
+      <span class="brand-pill">שופרסל</span>
+      <span class="brand-pill">Nestlé</span>
+      <span class="brand-pill">הראל</span>
+      <span class="brand-pill">אל-על</span>
+      <span class="brand-pill">בזק</span>
+      <span class="brand-pill">שטראוס</span>
+      <span class="brand-pill">מכבי</span>
+      <span class="brand-pill">כלל</span>
+      <span class="brand-pill">Wix</span>
+      <span class="brand-pill">חברת החשמל</span>
+      <span class="brand-pill">רפאל</span>
+      <span class="brand-pill">צה"ל</span>
+      <span class="brand-pill">האוניברסיטה העברית</span>
+      <span class="brand-pill">KLA Tencor</span>
+      <span class="brand-pill">ועוד רבים אחרים</span>
+    </div>
+
+    <div class="research-credit">
+      המחקר בוצע על ידי מכון המחקר <strong style="color:var(--white)">גיאוקרטוגרפיה</strong> בראשות פרופ' אבי דגני, ומפורסם באתר חברת הבת שלנו, מחקר התלהבות, <a href="https://www.hitlahavut.com" target="_blank" rel="noopener">www.hitlahavut.com</a>.<br>
+      אנחנו ממשיכים במחקר של אלגוריתם השינוי, ותהליכי הטמעת שינוי בארגונים בעזרת AI.
     </div>
   </div>
-  <div class="grid-2">
-    <div class="card" style="grid-column:1/-1">
-      <div class="card-title">👥 הצוות שלנו</div>
-      <div class="about-team-grid">
-        <div class="about-member">
-          <img src="team-eran.jpg" alt="ערן שחר" class="about-photo" style="object-position:center 15%;">
-          <div class="about-role">FOUNDER & CEO</div>
-          <div class="about-name">ערן שחר</div>
-          <div class="about-bio">היה מעורב בניהול ובסגירת עסקאות בינלאומיות בתחום תשתיות הטכנולוגיה והתקשורת בהיקפים של כ־400 מיליון דולר בשנה. עבד מול חברות, מפיצים, רשתות וארגונים גדולים בארצות הברית, אירופה ואסיה. הניסיון כלל ניהול מו"מ מורכב, פיתוח שותפויות אסטרטגיות, הובלת פעילות מסחרית גלובלית וסגירת חוזים רחבי היקף. הפעילות שילבה עולמות של טכנולוגיה, שרשראות אספקה, שיווק בינלאומי, פיתוח עסקי וניהול לקוחות אסטרטגיים.<br><br>במסגרת פעילותו היזמית היה ממייסדי הסטארטאפ MyCockpit, שפעל בתחום הטכנולוגיה והניהול הדיגיטלי. עסק בגיוסי הון של מיליוני דולרים מול משקיעים, קרנות וגורמים אסטרטגיים. ניהל חברה עם כ-35 עובדים בתחומי פיתוח, מוצר, שיווק ותפעול. בין המשקיעים היו ErgoQuest וקרן ההשקעות של Dell בהובלת Jason Barzilay.</div>
-        </div>
+  <div class="divider"></div>
 
-        <div class="about-member">
-          <img src="team-ruti.jpeg" alt="רותי ליבנת" class="about-photo" style="object-position:center 15%;">
-          <div class="about-role">שותפה · מנהלת חטיבת החינוך</div>
-          <div class="about-name">רותי ליבנת</div>
-          <div class="about-bio">שותפה ומנהלת חטיבת החינוך ב-Brain, יועצת חינוכית בתיכון, מנחת הורים למתבגרים ומאמנת אישית. בעלת תואר שני במינהל עסקים ותואר שני בייעוץ חינוכי.<br><br>לאורך הקריירה שילבה בין עולמות החינוך, הניהול והעשייה החברתית. עבדה באמדוקס ובחברה מובילה לאיתור והשמת בכירים, שם צברה ניסיון בעבודה עם הנהלות, בפיתוח עסקי ובהובלת תהליכים ארגוניים. במקביל מובילה יוזמות חינוכיות וחברתיות ופועלת לקידום למידה, מנהיגות, הורות מיטיבה ופיתוח קהילות. השילוב בין ניסיון עסקי, מומחיות חינוכית וחשיבה מערכתית מאפשר לה ללוות אנשים וארגונים בתהליכי צמיחה, שינוי והתפתחות.</div>
-        </div>
+  <!-- ════════ 2. מה המוצר, מה Brain עושה ════════ -->
+  <div class="sec sec-alt reveal">
+    <div class="sec-title">מה Brain עושה</div>
+    <p class="sec-sub">ברור ופשוט, בארבעה צעדים</p>
 
-        <div class="about-member">
-          <img src="team-ronen.jpeg" alt="רונן לנדסמן" class="about-photo" style="object-position:center 15%;">
-          <div class="about-role">CTO · Commit</div>
-          <div class="about-name">רונן לנדסמן</div>
-          <div class="about-bio">מוביל טכנולוגי מנוסה, המשמש כ־CTO בחברת Codama וכ־Tech Lead ב־i-verse. בעל תואר B.Sc בהנדסת חשמל מהטכניון ורקע משמעותי בעולמות המודיעין הצבאי, המביאים איתם חשיבה מערכתית, דיוק ויכולת פתרון בעיות מורכבות.<br><br>מתמחה בהובלת פיתוח Full Stack, מוצרי AI ופתרונות תוכנה מתקדמים, תוך תרגום רעיונות מורכבים לפתרונות טכנולוגיים יעילים, מדויקים וישימים. עובד בעברית, אנגלית ורוסית, ומשלב בין ניסיון הנדסי רחב, הבנה עסקית ושיטות עבודה מתקדמות מבוססות AI.</div>
-        </div>
+    <div class="do-steps">
+      <div class="do-step">
+        <div class="do-step-num">1</div>
+        <div class="do-step-title">מנתח</div>
+        <div class="do-step-body">מזהה בעיות, חסמים והזדמנויות, ומבין מה באמת קורה בשטח.</div>
+      </div>
+      <div class="do-step">
+        <div class="do-step-num">2</div>
+        <div class="do-step-title">משכנע</div>
+        <div class="do-step-body">אוואטר וידאו דמוי-אדם שמעיר, משכנע ומניע לפעולה, אחד על אחד.</div>
+      </div>
+      <div class="do-step">
+        <div class="do-step-num">3</div>
+        <div class="do-step-title">מבצע ומטמיע</div>
+        <div class="do-step-body">מריץ קמפיין, שולח מסרים חכמים ועושה פולו-אפ עד שזה קורה בפועל.</div>
+      </div>
+      <div class="do-step">
+        <div class="do-step-num">4</div>
+        <div class="do-step-title">מודד ומשפר</div>
+        <div class="do-step-body">עוקב אחרי ביצוע ותוצאה בזמן אמת, לומד ומשתפר כל הזמן.</div>
+      </div>
+    </div>
 
-        <div class="about-member">
-          <img src="team-sigal.avif" alt="סיגל רייכמן" class="about-photo" style="object-position:center 20%;">
-          <div class="about-role">AVATAR DEVELOPER & DIGITAL MARKETING</div>
-          <div class="about-name">סיגל רייכמן</div>
-          <div class="about-bio">צלמת, יועצת ומרצה מומחית לשיווק דיגיטלי, יוצרת AI ומפתחת פתרונות חכמים לעסקים. בעלת ניסיון של 25 שנים בעולמות השיווק, הצילום והדיגיטל.<br><br>מלווה עסקים, חברות וארגונים בתהליכי אסטרטגיה, שיווק, מיתוג, ממשקי ווב, אוטומציות וכלים מבוססי AI – תוך שילוב ייחודי של חשיבה שיווקית, הבנה טכנולוגית ויכולת יצירתית גבוהה. מאמינה שטכנולוגיה צריכה לשרת את הבן אדם, ושהפתרון החכם ביותר הוא זה שמחובר לאתגרים האמיתיים של הארגון.</div>
-        </div>
+    <!-- MISSION -->
+    <div class="mission-box" style="margin-top:40px">
+      <div class="wib-section-label" style="margin:0 0 12px">המשימה שלו</div>
+      <p style="font-size:18px;color:var(--white);line-height:1.9;font-weight:500;max-width:680px;margin:0 auto 16px">"Brain לא חושב, לא ממליץ, לא מנתח בלבד.<br>הוא גורם לדברים לקרות."</p>
+      <p style="font-size:14px;color:var(--muted);max-width:560px;margin:0 auto">AI Co-Manager שמניע אנשים ותהליכים לארגונים, בני אדם ומערכות עתידיות</p>
+    </div>
 
-        <div class="about-member">
-          <img src="team-donna.jpeg" alt="דונה קוממי" class="about-photo" style="object-position:center 10%;">
-          <div class="about-role">לקוחות ומשקיעים</div>
-          <div class="about-name">דונה קוממי</div>
-          <div class="about-bio">מנהלת קשרי לקוחות ומשקיעים ב־BRAIN, ומביאה איתה ניסיון של מעל 11 שנים בניהול תפעול, מערכות, אנשים ותהליכים בארגון תעשייתי.<br><br>אחראית על חיבור עם לקוחות, הבנת הצרכים העסקיים שלהם, ליווי תהליכי המכירה ושמירה על קשר רציף, מקצועי ואנושי לאורך הדרך. דונה משלבת בין דיוק ניהולי, יכולת הקשבה, תקשורת בין-אישית גבוהה וחשיבה פרקטית, במטרה לייצר ללקוחות חוויה נעימה, ברורה ומקדמת, מהשיחה הראשונה ועד ליצירת פתרון מתאים.</div>
-        </div>
+    <!-- מה הוא בעצם -->
+    <div class="wib-section-label">מה הוא בעצם</div>
+    <div class="wib-grid">
+      <div class="wib-card">
+        <div class="wib-icon">🧠</div>
+        <div class="wib-title">מנוע הזזה של אנשים ותהליכים</div>
+        <div class="wib-body">Brain הוא AI שמתמחה בשכנוע, הזזה, הטמעה ויצירת שינוי התנהגותי. לא עוד פלטפורמה שמציגה נתונים, אלא כלי שגורם לדברים לקרות בפועל.</div>
+      </div>
+      <div class="wib-card">
+        <div class="wib-icon">🆕</div>
+        <div class="wib-title">קטגוריה חדשה לגמרי</div>
+        <div class="wib-body">שכבה מעל ERP, BI, CRM, Monday, Salesforce ופלטפורמות HR. כמו שה-ERP וה-BI היו פעם חדשים והפכו ל-basic, Brain היא השכבה הניהולית הבאה.</div>
+      </div>
+      <div class="wib-card">
+        <div class="wib-icon">🎯</div>
+        <div class="wib-title">כמו קסדת ה-F35 שמכוונת</div>
+        <div class="wib-body">מוח פצצה, עתידני, שתומך במנהלים ועושה להם הכול. עובד בדיאלוג ובשותפות עם המשתמש, לא במקומו. מאוד גבוה ורחב ביכולות, מאוד קשה לנצח.</div>
+      </div>
+      <div class="wib-card">
+        <div class="wib-icon">💬</div>
+        <div class="wib-title">השיחה הכי טובה שיש</div>
+        <div class="wib-body">Brain הוא השיחה הטובה ביותר שתהיה בין מכונה לאדם. לומד את המשתמש, מלווה לאורך זמן, יוצר קשר ארוך טווח, לא אינטראקציה חד פעמית.</div>
+      </div>
+      <div class="wib-card">
+        <div class="wib-icon">🔄</div>
+        <div class="wib-title">מטמיען של תהליכים</div>
+        <div class="wib-body">לוקח 10 התהליכים הכי חשובים בארגון ולאורך שנה שלמה, מפמפם, משכנע, עוקב ומוודא שזה קורה. תוכניות, יעדים, מדדים, הדרכה, רווחיות.</div>
+      </div>
+      <div class="wib-card">
+        <div class="wib-icon">🤖</div>
+        <div class="wib-title">לא אייג'נט אחד, אלא 100 אייג'נטים</div>
+        <div class="wib-body">כל אייג'נט יודע לשכנע ולעשות כמה פעולות רציפות למשימה ייעודית: אפסייל, עידוד עובדים, בדיקת הדרכות, מעקב יעדים ועוד.</div>
+      </div>
+    </div>
 
-        <div class="about-member">
-          <img src="team-kobi.jpeg" alt="קובי משיח" class="about-photo" style="object-position:center 15%;">
-          <div class="about-role">AI Product Manager</div>
-          <div class="about-name">קובי משיח</div>
-          <div class="about-bio">יזם ובעל ניסיון רחב בעולמות המחשוב, פיתוח אתרים, תמיכה טכנית והדרכה. בשנת 2008 הקים את חברת Msite, המספקת לעסקים וארגונים מעטפת טכנולוגית כוללת: פיתוח ותחזוקת אתרים, פתרונות מחשוב ורשת, אחסון, תמיכה, ייעוץ והדרכה.<br><br>קובי מביא איתו ראייה מערכתית, אחריות וניסיון מעשי, עם גישה שמטרתה לרכז עבור הלקוח את כל הצרכים הטכנולוגיים במקום אחד, בצורה מקצועית, אמינה ונגישה.</div>
-        </div>
+    <!-- ARCHITECTURE -->
+    <div class="wib-section-label">הארכיטקטורה, איך הוא בנוי</div>
+    <div class="arch-grid">
+      <div class="arch-item"><div class="arch-item-icon">🔍</div><div class="arch-item-title">מנוע אנליזה</div><div class="arch-item-desc">מזהה בעיות, חסמים והתנגדויות</div></div>
+      <div class="arch-item"><div class="arch-item-icon">💡</div><div class="arch-item-title">מנוע שכנוע</div><div class="arch-item-desc">אלגוריתם שכנוע שמניע לפעולה</div></div>
+      <div class="arch-item"><div class="arch-item-icon">🎬</div><div class="arch-item-title">אוואטרים</div><div class="arch-item-desc">אוואטר וידאו דמוי-אדם שמדוור את המסרים</div></div>
+      <div class="arch-item"><div class="arch-item-icon">📞</div><div class="arch-item-title">פולו-אפר</div><div class="arch-item-desc">מוודא ביצוע עד לתוצאה</div></div>
+      <div class="arch-item"><div class="arch-item-icon">📊</div><div class="arch-item-title">מדידה</div><div class="arch-item-desc">מדד ביצוע ותוצאה בזמן אמת</div></div>
+      <div class="arch-item"><div class="arch-item-icon">🧩</div><div class="arch-item-title">Knowledge Box</div><div class="arch-item-desc">שומר מה עבד, לומד ומשתפר</div></div>
+    </div>
 
-        <div class="about-member">
-          <img src="team-yossi.jpeg" alt="יוסי מועלם" class="about-photo" style="object-position:center 20%;">
-          <div class="about-role">יועץ קמעונאות ומכירות</div>
-          <div class="about-name">יוסי מועלם</div>
-          <div class="about-bio">יזם ובעלים של שתי חנויות, נשוי ואב לשישה ילדים. לאורך השנים צבר ניסיון מעשי ורחב בעולמות הקמעונאות, המכירות, ניהול עובדים והובלת צוותים בשטח.<br><br>מדריך עובדים ומנהלי חנויות, מלווה תהליכי מכירה, שירות ותפעול. ל-BRAIN יוסי מביא ידע רב מהשטח, ניסיון בניהול צוותים, הבנה צרכנית ומכירתית, ויכולת לזהות מה באמת מניע עובדים, לקוחות ותהליכי מכירה בפועל. השילוב בין יזמות, ניסיון ניהולי וחשיבה פרקטית הופך אותו לדמות משמעותית בפיתוח פתרונות שמחוברים לעולם העסקי האמיתי.</div>
-        </div>
+    <!-- FLOW -->
+    <div class="wib-section-label">איך הוא עובד, הזרימה</div>
+    <div class="flow-row">
+      <div class="flow-step">מזהה את הבעיה</div><div class="flow-arrow">←</div>
+      <div class="flow-step">מזהה חסמים</div><div class="flow-arrow">←</div>
+      <div class="flow-step">מביא פתרון</div><div class="flow-arrow">←</div>
+      <div class="flow-step">בונה שיחה</div><div class="flow-arrow">←</div>
+      <div class="flow-step">מפעיל תהליך</div><div class="flow-arrow">←</div>
+      <div class="flow-step">מודד ביצוע</div><div class="flow-arrow">←</div>
+      <div class="flow-step">מודד תוצאה</div>
+    </div>
 
+    <!-- THE PAIN -->
+    <div class="wib-section-label">הכאב שהוא פותר, קיים בכל ארגון</div>
+    <div class="pain-grid">
+      <div class="pain-item">קשה להטמיע דברים, עמוסים, רצים לכיבוי שרפות</div>
+      <div class="pain-item">קשה להרים אנרגיות ולחבר אנשים לארגון</div>
+      <div class="pain-item">קשה להדריך למקצוענות ולשכפל הצלחה</div>
+      <div class="pain-item">אדישות, סקפטיות, חוסר מחויבות</div>
+      <div class="pain-item">אין ידע ברור, מה, מי, מתי, איך</div>
+      <div class="pain-item">אין חיבור למשימה, חוסר Engagement</div>
+      <div class="pain-item">פחד, חשש, מבוכה, לעשות מה שהתבקש</div>
+      <div class="pain-item">מתעסקים בתוצאה, ולא מספיק בדרך שמייצרת אותה</div>
+    </div>
+  </div>
+
+  <!-- DIAGRAM: מרכיבי המוצר -->
+  <div style="position:relative;z-index:1;padding:30px 60px 20px;text-align:center;" class="reveal">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:12px">PRODUCT COMPONENTS</div>
+    <div style="max-width:520px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(45,156,255,0.15);border-radius:20px;padding:24px;overflow:hidden;">
+      <img src="product-components.jpeg" alt="מרכיבי המוצר, Dashboard, Analytical Mind, Content Engine, Follow-upper, Organizational Book, Learning System" style="width:100%;max-width:460px;height:auto;display:block;margin:0 auto;border-radius:12px;">
+    </div>
+  </div>
+
+  <!-- DIAGRAM: Brain כאקאונט מנג'ר -->
+  <div style="position:relative;z-index:1;padding:10px 60px 20px;text-align:center;" class="reveal">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:12px">BRAIN AS ACCOUNT MANAGER</div>
+    <div style="max-width:520px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(45,156,255,0.15);border-radius:20px;padding:24px;overflow:hidden;">
+      <img src="account-manager.jpeg" alt="Brain כאקאונט מנג'ר, 8 שלבי התפקוד של Brain כמנהל לקוח" style="width:100%;max-width:460px;height:auto;display:block;margin:0 auto;border-radius:12px;">
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- ════════ 3. הצלחות מוכחות ════════ -->
+  <div class="sec reveal">
+    <div class="sec-title">הצלחות מוכחות</div>
+    <p class="sec-sub">8,000 ארגונים, 40 ענפים, מכירים את האתגרים, המדדים והאילוצים</p>
+    <div class="grid-auto" style="margin-top:28px">
+      <div class="card" style="text-align:center">
+        <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">STEIMATZKY</div>
+        <div style="font-size:42px;font-weight:900;color:var(--white)">27<span style="color:var(--teal)">%</span></div>
+        <div style="font-size:12px;color:var(--muted)">גידול במכירות</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">YSB TECH</div>
+        <div style="font-size:42px;font-weight:900;color:var(--white)">35<span style="color:var(--teal)">%</span></div>
+        <div style="font-size:12px;color:var(--muted)">שיפור ביצועים</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">DELOITTE</div>
+        <div style="font-size:42px;font-weight:900;color:var(--white)">20<span style="color:var(--teal)">%+</span></div>
+        <div style="font-size:12px;color:var(--muted)">יעד צמיחה</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">SOLTAM</div>
+        <div style="font-size:42px;font-weight:900;color:var(--white)">20<span style="color:var(--teal)">%+</span></div>
+        <div style="font-size:12px;color:var(--muted)">יעד צמיחה</div>
       </div>
     </div>
   </div>
-</div>
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<!-- הלמה שמאחורי Brain -->
-<div class="sec reveal">
-  <div class="sec-title">הלמה שמאחורי Brain</div>
-  <p class="sec-sub">The Why Behind Brain: Scaling Human & Organizational Intelligence</p>
+  <!-- ════════ 4. הצוות שלנו ════════ -->
+  <div class="sec reveal">
+    <div class="sec-title">הצוות שלנו</div>
+    <p class="sec-sub">קודם כל, אנחנו</p>
+    <div class="about-team-grid">
+      <div class="about-member">
+        <img src="team-eran.jpg" alt="ערן שחר" class="about-photo" style="object-position:center 15%;">
+        <div class="about-role">FOUNDER & CEO</div>
+        <div class="about-name">ערן שחר</div>
+        <div class="about-bio">היה מעורב בניהול ובסגירת עסקאות בינלאומיות בתחום תשתיות הטכנולוגיה והתקשורת בהיקפים של כ־400 מיליון דולר בשנה. עבד מול חברות, מפיצים, רשתות וארגונים גדולים בארצות הברית, אירופה ואסיה. הניסיון כלל ניהול מו"מ מורכב, פיתוח שותפויות אסטרטגיות, הובלת פעילות מסחרית גלובלית וסגירת חוזים רחבי היקף. הפעילות שילבה עולמות של טכנולוגיה, שרשראות אספקה, שיווק בינלאומי, פיתוח עסקי וניהול לקוחות אסטרטגיים.<br><br>במסגרת פעילותו היזמית היה ממייסדי הסטארטאפ MyCockpit, שפעל בתחום הטכנולוגיה והניהול הדיגיטלי. עסק בגיוסי הון של מיליוני דולרים מול משקיעים, קרנות וגורמים אסטרטגיים. ניהל חברה עם כ-35 עובדים בתחומי פיתוח, מוצר, שיווק ותפעול. בין המשקיעים היו ErgoQuest וקרן ההשקעות של Dell בהובלת Jason Barzilay.</div>
+      </div>
 
-  <div class="grid-auto" style="margin-top:32px">
+      <div class="about-member">
+        <img src="team-ruti.jpeg" alt="רותי ליבנת" class="about-photo" style="object-position:center 15%;">
+        <div class="about-role">שותפה · מנהלת חטיבת החינוך</div>
+        <div class="about-name">רותי ליבנת</div>
+        <div class="about-bio">שותפה ומנהלת חטיבת החינוך ב-Brain, יועצת חינוכית בתיכון, מנחת הורים למתבגרים ומאמנת אישית. בעלת תואר שני במינהל עסקים ותואר שני בייעוץ חינוכי.<br><br>לאורך הקריירה שילבה בין עולמות החינוך, הניהול והעשייה החברתית. עבדה באמדוקס ובחברה מובילה לאיתור והשמת בכירים, שם צברה ניסיון בעבודה עם הנהלות, בפיתוח עסקי ובהובלת תהליכים ארגוניים. במקביל מובילה יוזמות חינוכיות וחברתיות ופועלת לקידום למידה, מנהיגות, הורות מיטיבה ופיתוח קהילות. השילוב בין ניסיון עסקי, מומחיות חינוכית וחשיבה מערכתית מאפשר לה ללוות אנשים וארגונים בתהליכי צמיחה, שינוי והתפתחות.</div>
+      </div>
 
-    <div class="card">
-      <div class="card-title">🔥 1. תשוקה לפיתוח וחדשנות</div>
-      <div class="card-body">הלב של Brain פועם מתוך אהבה טהורה ליצירה טכנולוגית. האתגר לקחת קונספט מופשט, לפצח אותו ארכיטקטונית ולהפוך אותו למוצר חי, מתפקד ומשפיע במציאות – הוא מנוע הצמיחה הפנימי שלנו והסיפוק המקצועי הגדול ביותר.</div>
-    </div>
+      <div class="about-member">
+        <img src="team-ronen.jpeg" alt="רונן לנדסמן" class="about-photo" style="object-position:center 15%;">
+        <div class="about-role">CTO · Commit</div>
+        <div class="about-name">רונן לנדסמן</div>
+        <div class="about-bio">מוביל טכנולוגי מנוסה, המשמש כ־CTO בחברת Codama וכ־Tech Lead ב־i-verse. בעל תואר B.Sc בהנדסת חשמל מהטכניון ורקע משמעותי בעולמות המודיעין הצבאי, המביאים איתם חשיבה מערכתית, דיוק ויכולת פתרון בעיות מורכבות.<br><br>מתמחה בהובלת פיתוח Full Stack, מוצרי AI ופתרונות תוכנה מתקדמים, תוך תרגום רעיונות מורכבים לפתרונות טכנולוגיים יעילים, מדויקים וישימים. עובד בעברית, אנגלית ורוסית, ומשלב בין ניסיון הנדסי רחב, הבנה עסקית ושיטות עבודה מתקדמות מבוססות AI.</div>
+      </div>
 
-    <div class="card">
-      <div class="card-title">⚙️ 2. אופטימיזציה של איכות החיים</div>
-      <div class="card-body">הקיום המודרני מאופיין במורכבות, הצפת מידע ועומס קוגניטיבי קבוע. Brain פותח כדי לשמש כ"מערכת הפעלה" אישית וארגז כלים מתקדם, המספק לאנשים תשתית חשיבה, סנכרון ויכולת התמדה בעולם דינמי.</div>
-    </div>
+      <div class="about-member">
+        <img src="team-sigal.avif" alt="סיגל רייכמן" class="about-photo" style="object-position:center 20%;">
+        <div class="about-role">AVATAR DEVELOPER & DIGITAL MARKETING</div>
+        <div class="about-name">סיגל רייכמן</div>
+        <div class="about-bio">צלמת, יועצת ומרצה מומחית לשיווק דיגיטלי, יוצרת AI ומפתחת פתרונות חכמים לעסקים. בעלת ניסיון של 25 שנים בעולמות השיווק, הצילום והדיגיטל.<br><br>מלווה עסקים, חברות וארגונים בתהליכי אסטרטגיה, שיווק, מיתוג, ממשקי ווב, אוטומציות וכלים מבוססי AI, תוך שילוב ייחודי של חשיבה שיווקית, הבנה טכנולוגית ויכולת יצירתית גבוהה. מאמינה שטכנולוגיה צריכה לשרת את הבן אדם, ושהפתרון החכם ביותר הוא זה שמחובר לאתגרים האמיתיים של הארגון.</div>
+      </div>
 
-    <div class="card">
-      <div class="card-title">🧠 3. פיתוח הון אנושי ויציאה מ"אוטומט"</div>
-      <div class="card-body">האימפקט של Brain אינו מצטמצם לייעול תהליכים יבש. המטרה שלנו היא לשדרג יכולות חשיבה, לעודד סקרנות ומקצוענות, ולטפח את האומץ לחדש וליזום. אנחנו כאן כדי לסייע לאנשים להשתחרר מדפוסי פעולה אוטומטיים ולמקסם את הפוטנציאל שלהם.</div>
-    </div>
+      <div class="about-member">
+        <img src="team-donna.jpeg" alt="דונה קוממי" class="about-photo" style="object-position:center 10%;">
+        <div class="about-role">לקוחות ומשקיעים</div>
+        <div class="about-name">דונה קוממי</div>
+        <div class="about-bio">מנהלת קשרי לקוחות ומשקיעים ב־BRAIN, ומביאה איתה ניסיון של מעל 11 שנים בניהול תפעול, מערכות, אנשים ותהליכים בארגון תעשייתי.<br><br>אחראית על חיבור עם לקוחות, הבנת הצרכים העסקיים שלהם, ליווי תהליכי המכירה ושמירה על קשר רציף, מקצועי ואנושי לאורך הדרך. דונה משלבת בין דיוק ניהולי, יכולת הקשבה, תקשורת בין-אישית גבוהה וחשיבה פרקטית, במטרה לייצר ללקוחות חוויה נעימה, ברורה ומקדמת, מהשיחה הראשונה ועד ליצירת פתרון מתאים.</div>
+      </div>
 
-    <div class="card">
-      <div class="card-title">🎯 4. סגירת הפער בין אסטרטגיה לביצוע</div>
-      <div class="card-body">האתגר הגדול של ארגונים מובילים הוא לא הגדרת ה-What, אלא פיצוח ה-How. Brain הונדס כדי להוות את החוליה המקשרת בין קבלת החלטות ברמת ה-Executive לבין דליברי מדויק ואפקטיבי בשטח.</div>
-    </div>
+      <div class="about-member">
+        <img src="team-kobi.jpeg" alt="קובי משיח" class="about-photo" style="object-position:center 15%;">
+        <div class="about-role">AI Product Manager</div>
+        <div class="about-name">קובי משיח</div>
+        <div class="about-bio">יזם ובעל ניסיון רחב בעולמות המחשוב, פיתוח אתרים, תמיכה טכנית והדרכה. בשנת 2008 הקים את חברת Msite, המספקת לעסקים וארגונים מעטפת טכנולוגית כוללת: פיתוח ותחזוקת אתרים, פתרונות מחשוב ורשת, אחסון, תמיכה, ייעוץ והדרכה.<br><br>קובי מביא איתו ראייה מערכתית, אחריות וניסיון מעשי, עם גישה שמטרתה לרכז עבור הלקוח את כל הצרכים הטכנולוגיים במקום אחד, בצורה מקצועית, אמינה ונגישה.</div>
+      </div>
 
-    <div class="card">
-      <div class="card-title">🧭 5. העצמת דרג הניהול</div>
-      <div class="card-body">עמדת המנכ"ל והמנהל הבכיר מאופיינת לעיתים קרובות בבדידות בקבלת החלטות. Brain פועל כ-Co-Pilot אסטרטגי – שכבת אנליזה וחשיבה ממוקדת, זמינה ועוצמתית, המרחיבה את הראייה הניהולית ומאפשרת קבלת החלטות מבוססת דאטה בביטחון מלא.</div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">📈 6. יצירת ערך כלכלי בר-מדידה</div>
-      <div class="card-body">אנו מאמינים שטכנולוגיה חכמה חייבת להשתקף בשורת הרווח. בארגון המייצר טרנזקציות בהיקף של 200 מיליון, ארכיטקטורת החשיבה של Brain נועדה להביא לסקייל של עוד 50 מיליון. הערך הוא קונקרטי, כמותי ומדיד.</div>
-    </div>
-
-    <div class="card" style="grid-column:1/-1">
-      <div class="card-title">🏛️ 7. חזון ארוך טווח ואימפקט מתמשך</div>
-      <div class="card-body">מעבר לשורות הקוד והיעדים העסקיים, המטרה הסופית היא השארת חותם משמעותי. שאיפת העל שלנו היא לבנות תשתית טכנולוגית ואנושית שתמשיך להשפיע, לשפר ולייצר ערך עבור משפחות, מנהלים וארגונים לאורך זמן.</div>
-    </div>
-
-  </div>
-
-  <div style="margin-top:32px;padding:36px 40px;background:linear-gradient(135deg,rgba(45,156,255,0.08),rgba(0,212,170,0.08));border:1px solid rgba(45,156,255,0.25);border-radius:20px;text-align:center;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--teal);margin-bottom:20px;">המשימה שלנו</div>
-    <p style="font-size:18px;color:var(--white);line-height:1.9;font-weight:400;max-width:700px;margin:0 auto;">"פיתחנו את Brain כדי להעניק לאנשים ולארגונים את הכלים לחשוב טוב יותר,<br>לבצע בדיוק גבוה יותר, לחיות באיכות גבוהה יותר וליצור אימפקט אנושי וערך כלכלי יוצא דופן."</p>
-  </div>
-</div>
-
-<div class="divider"></div>
-<div class="sec sec-alt reveal">
-  <div class="sec-title">מה Brain עושה?</div>
-  <p class="sec-sub">זה כמו GPT משודרג מאוד – שורת GPT עם ים של שכל ארגוני מאחוריה</p>
-  <div class="grid-auto">
-    <div class="card"><div class="card-title">🧠 מנטור/פרזנטור</div><div class="card-body">אווטאר דמוי אדם 1 על 1 – מלווה כל עובד אישית</div></div>
-    <div class="card"><div class="card-title">💡 משכנען</div><div class="card-body">מוצר AI שעושה שכנוע והנעה לפעולה</div></div>
-    <div class="card"><div class="card-title">🗣️ יודע לדבר מעולה</div><div class="card-body">מביא משפטים יותר טובים לכל דבר</div></div>
-    <div class="card"><div class="card-title">📞 פאלוואפר</div><div class="card-body">פולו-אפ וידוא שעושים – אוטומטי ומדויק</div></div>
-    <div class="card"><div class="card-title">🎯 קמפיינר / מטמיען</div><div class="card-body">מטמיע כל דבר שאתם רוצים לאורך שנה-שנתיים</div></div>
-    <div class="card"><div class="card-title">🎚️ אקווולייזר</div><div class="card-body">דיבור עממי חברי + שנון, מותאם לארגונים</div></div>
-  </div>
-</div>
-
-<!-- DIAGRAM: מרכיבי המוצר -->
-<div style="position:relative;z-index:1;padding:30px 60px 20px;text-align:center;" class="reveal">
-  <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:12px">PRODUCT COMPONENTS</div>
-  <div style="max-width:520px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(45,156,255,0.15);border-radius:20px;padding:24px;overflow:hidden;">
-    <img src="product-components.jpeg" alt="מרכיבי המוצר - Dashboard, Analytical Mind, Content Engine, Follow-upper, Organizational Book, Learning System"
-      style="width:100%;max-width:460px;height:auto;display:block;margin:0 auto;border-radius:12px;">
-  </div>
-</div>
-
-<div class="divider"></div>
-<div class="sec reveal">
-  <div class="sec-title">הצלחות מוכחות</div>
-  <p class="sec-sub">8,000 ארגונים, 40 ענפים – מכירים את האתגרים, המדדים והאילוצים</p>
-  <div class="grid-auto" style="margin-top:28px">
-    <div class="card" style="text-align:center">
-      <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">STEIMATZKY</div>
-      <div style="font-size:42px;font-weight:900;color:var(--white)">27<span style="color:var(--teal)">%</span></div>
-      <div style="font-size:12px;color:var(--muted)">גידול במכירות</div>
-    </div>
-    <div class="card" style="text-align:center">
-      <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">YSB TECH</div>
-      <div style="font-size:42px;font-weight:900;color:var(--white)">35<span style="color:var(--teal)">%</span></div>
-      <div style="font-size:12px;color:var(--muted)">שיפור ביצועים</div>
-    </div>
-    <div class="card" style="text-align:center">
-      <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">DELOITTE</div>
-      <div style="font-size:42px;font-weight:900;color:var(--white)">20<span style="color:var(--teal)">%+</span></div>
-      <div style="font-size:12px;color:var(--muted)">יעד צמיחה</div>
-    </div>
-    <div class="card" style="text-align:center">
-      <div style="font-size:11px;color:var(--teal);letter-spacing:.1em;font-weight:700;margin-bottom:8px">SOLTAM</div>
-      <div style="font-size:42px;font-weight:900;color:var(--white)">20<span style="color:var(--teal)">%+</span></div>
-      <div style="font-size:12px;color:var(--muted)">יעד צמיחה</div>
+      <div class="about-member">
+        <img src="team-yossi.jpeg" alt="יוסי מועלם" class="about-photo" style="object-position:center 20%;">
+        <div class="about-role">יועץ קמעונאות ומכירות</div>
+        <div class="about-name">יוסי מועלם</div>
+        <div class="about-bio">יזם ובעלים של שתי חנויות, נשוי ואב לשישה ילדים. לאורך השנים צבר ניסיון מעשי ורחב בעולמות הקמעונאות, המכירות, ניהול עובדים והובלת צוותים בשטח.<br><br>מדריך עובדים ומנהלי חנויות, מלווה תהליכי מכירה, שירות ותפעול. ל-BRAIN יוסי מביא ידע רב מהשטח, ניסיון בניהול צוותים, הבנה צרכנית ומכירתית, ויכולת לזהות מה באמת מניע עובדים, לקוחות ותהליכי מכירה בפועל. השילוב בין יזמות, ניסיון ניהולי וחשיבה פרקטית הופך אותו לדמות משמעותית בפיתוח פתרונות שמחוברים לעולם העסקי האמיתי.</div>
+      </div>
     </div>
   </div>
-</div>
+  <div class="divider"></div>
 
-<!-- DIAGRAM: Brain כאקאונט מנג'ר -->
-<div style="position:relative;z-index:1;padding:30px 60px 20px;text-align:center;" class="reveal">
-  <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:12px">BRAIN AS ACCOUNT MANAGER</div>
-  <div style="max-width:520px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(45,156,255,0.15);border-radius:20px;padding:24px;overflow:hidden;">
-    <img src="account-manager.jpeg" alt="ברריין כאקאונט מנגר - 8 שלבי התפקוד של Brain כמנהל לקוח"
-      style="width:100%;max-width:460px;height:auto;display:block;margin:0 auto;border-radius:12px;">
+  <!-- ════════ 5. החברים שלנו ════════ -->
+  <div class="sec reveal">
+    <div class="sec-title">החברים שלנו</div>
+    <p class="sec-sub">אנשי מקצוע מדהימים שהם חברים שלנו, מייעצים, ומלווים בדרך</p>
+
+    <div class="auditor-band" style="margin-top:28px">
+      <span class="auditor-line">רואי החשבון של <strong>BRAIN</strong></span>
+      <a href="https://www.deloitte.com/il/he.html" target="_blank" rel="noopener" class="auditor-logo-wrap" aria-label="Deloitte">
+        <img src="deloitte-logo.png" alt="Deloitte" class="auditor-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+        <span class="auditor-logo-text" style="display:none;">Deloitte<span>.</span></span>
+      </a>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <img src="team-dror.jpeg" alt="דרור שקד" class="team-photo">
+        <div class="team-name">דרור שקד</div>
+        <div class="team-role">BizDev · Strategy · M&A</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          אחד מאנשי ה-BizDev והאסטרטגיה הוותיקים והמוכרים בהייטק הישראלי, בעיקר בזכות השנים הארוכות שלו ב־Wix והמעורבות שלו בעולם היזמות, המיזוגים והרכישות והאקוסיסטם הישראלי.<br><br>
+          מזוהה מאוד עם Wix מהימים הראשונים, עם אחריות על פיתוח עסקי ומיזוגים ורכישות. ההתמחות המרכזית שלו היא Business Development ו-M&A, לא איש מוצר קלאסי, אלא אדם של חיבורים, עסקאות, שותפויות, זיהוי הזדמנויות וצמיחה אסטרטגית.<br><br>
+          נתפס כ"איש חיבורים", מחבר בין אנשים, פותח דלתות ומשדך בין גורמים בתעשייה. Geektime הכניסו אותו לרשימת אנשי ה-BizDev הבולטים בישראל כבר ב-2014. מופיע לאורך שנים ברשימות ואירועי בכירים לצד אנשי ההייטק המובילים בישראל.<br><br>
+          פעיל בקהילות יזמות, יוניסטרים, האבים אזוריים וצעירים, עם אוריינטציה חזקה לחינוך יזמי ולהשפעה על הדור הבא. מאמין שיזמות היא לא מקצוע אלא דרך חיים.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Wix</span><span class="team-tag">BizDev</span><span class="team-tag">M&A</span><span class="team-tag">Ecosystem</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="team-tal.jpeg" alt="טל סנדר" class="team-photo">
+        <div class="team-name">טל סנדר</div>
+        <div class="team-role">Global Operations · Scale · M&A</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          אחד המנהלים הבולטים שצמחו מתוך Keter Group והוביל את המעבר של כתר מחברה ישראלית תעשייתית לחברה גלובלית ענקית.<br><br>
+          ניהל את כתר בתקופת צמיחה אגרסיבית מאוד באירופה ובארה״ב. הוביל אסטרטגיית רכישות בינלאומיות, כולל רכישת חברת Allibert הצרפתית ו-EOS הדנית. בתקופתו כתר הפכה לאחת מחברות מוצרי הפלסטיק והאחסון הגדולות בעולם, עם עשרות מפעלים ופעילות בעשרות מדינות.<br><br>
+          מזוהה עם בניית יכולות ייצור, הפצה ולוגיסטיקה גלובליות. עבר מתפקיד מנכ״ל לתפקיד נשיא הקבוצה, וסייע לאחר מכן בעסקת המכירה לקרן BC Partners במיליארדי דולרים.<br><br>
+          מספרים בולטים: מעל 400 מיליון דולר מכירות, פעילות ביותר מ-40 מדינות, עשרות מפעלים בישראל, אירופה וארה״ב.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Keter Group</span><span class="team-tag">Global Scale</span><span class="team-tag">Operations</span><span class="team-tag">M&A</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="team-pazit.jpeg" alt="פזית אלחלל" class="team-photo pos-top">
+        <div class="team-name">פזית אלחלל</div>
+        <div class="team-role">Executive Search · Board Advisory</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          אחת הדמויות הוותיקות והמוכרות בישראל בתחום איתור וגיוס בכירים (Executive Search), במיוחד בדרגי מנכ״לים, סמנכ״לים ודירקטוריונים. פועלת בתחום מאז סוף שנות ה־80.<br><br>
+          מובילה את PRG Executive Search, חברת בוטיק המתמחה באיתור מנכ"לים, סמנכ"לי כספים, דירקטורים ויו"רים. עובדת מול בנקים וגופים פיננסיים, חברות ציבוריות, קבוצות אחזקה, תעשייה וייצור, ביטוח ושוק ההון, קמעונאות, נדל"ן, חברות ממשלתיות ועמותות.<br><br>
+          מזוהה מאוד עם עולם ה-Board Advisory וה-Governance, בניית הנהלות ודירקטוריונים חזקים ולא רק "השמה" רגילה. בנק הפועלים בחר בה לליווי תהליך איתור מנכ"ל חדש לבנק.<br><br>
+          עוסקת בהערכת מנהיגות, תכנון ירושה ניהולית (Succession Planning) ובניית שולחנות הנהלה. נחשבת מקושרת מאוד לשכבת ההנהלות הבכירות בישראל, מנכ"לים, יו"רים, דירקטורים ובעלי שליטה.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Executive Search</span><span class="team-tag">Board Advisory</span><span class="team-tag">Leadership</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="team-yaron.jpeg" alt="ירון כיסלו" class="team-photo">
+        <div class="team-name">ירון כיסלו</div>
+        <div class="team-role">Retail · Service · Operations</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          אדם נדיר. חד. מדויק.<br><br>
+          משנה למנכ"ל רשת אירוקה. סגן סמנכ"ל שירות לקוחות ומנהל השירות הפרונטלי ב־Partner Communications (אורנג' לשעבר). סמנכ"ל ברשת קסטרו. סמנכ"ל שירות אל-על.<br><br>
+          שילוב נדיר של Retail, Service ו-Operations, שלושה עולמות שבדרך כלל לא נפגשים באדם אחד.<br><br>
+          מפקד בכיר לשעבר בחיל האוויר, טייס מסוקים. איש ניתוח וחקר ביצועים.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">Retail</span><span class="team-tag">Service</span><span class="team-tag">Operations</span><span class="team-tag">חיל האוויר</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="team-yaron-l.jpeg" alt="ירון לבנת" class="team-photo" style="object-position: center 10%;">
+        <div class="team-name">ירון לבנת</div>
+        <div class="team-role">Defense · Systems Engineering · Operations</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          תת־אלוף בצה"ל. ראש מנהלת תוכנית המרכבה והרק"ם (מנת"ק) ומהנדס ראשי של תוכנית המרכבה. מנהל פיתוח מערכות שריון ורק"ם. מנכ"ל חברת טקמר ומנכ"ל משותף בחברת פלסן.<br><br>
+          ניהל ממשקי עבודה עם רפאל, אלביט, התעשייה האווירית ותעשיות ביטחוניות נוספות. מומחה בפרויקטים לאומיים מורכבים עם ניסיון עצום בניהול אלפי ממשקים וספקים.<br><br>
+          דמות מערכתית והנדסית, שילוב של משמעת צבאית עם חשיבה טכנולוגית. מביא יציבות ניהולית, אמינות גבוהה ויכולת להוציא לפועל תוכניות ענק.<br><br>
+          <em style="color:var(--teal);">"להיות רדיקלים בטכנולוגיה ושמרנים בארגון"</em>
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">מרכבה</span><span class="team-tag">Systems Eng.</span><span class="team-tag">Defense</span><span class="team-tag">צה"ל</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="team-elitzur.jpeg" alt="אליצח דמבינסקי" class="team-photo" style="object-position: center 15%;">
+        <div class="team-name">אליצח דמבינסקי</div>
+        <div class="team-role">Smart Mobility · Innovation · Infrastructure</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          דמות מוכרת בעולמות התחבורה החכמה, הטכנולוגיה והתשתיות בישראל, עם שילוב נדיר של חדשנות, ניהול מערכות גדולות וחיבור בין מגזר ציבורי לפרטי.<br><br>
+          משנה למנכ"ל וסמנכ"ל טכנולוגיה וחדשנות בנתיבי איילון, שם הוביל תחבורה חכמה, רמזורים אדפטיביים, מרכזי שליטה, סייבר תחבורתי, רחפנים ותשתיות עתידיות. לאחר מכן עבר למגזר הפרטי כמנהל החטיבה הטכנולוגית בקבוצת YSB Group.<br><br>
+          חושב ברמת אסטרטגיה וגם ברמת ביצוע והטמעה, שילוב יחסית נדיר. מדבר הרבה על עתיד התחבורה, קיימות, ערים חכמות וחדשנות פרקטית.<br><br>
+          תואר שני במדעים מדויקים, לצד משפטים ומנהל עסקים.
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">נתיבי איילון</span><span class="team-tag">Smart Mobility</span><span class="team-tag">Innovation</span><span class="team-tag">YSB Group</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="team-jos.jpeg" alt="ג'וס נויהאוז" class="team-photo">
+        <div class="team-name">ג'וס נויהאוז</div>
+        <div class="team-role">CFO · M&A · Mentoring</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          יועץ עסקי, פיננסי ומנטור למנכ"לים, עם מעל 35 שנות ניסיון בניהול ובתפקידים בכירים, מנכ"ל, סמנכ"ל כספים (CFO) ומנטור עסקים. יועץ עצמאי מאז 2004.<br><br>
+          ניסיון רב בחברות טכנולוגיה, תעשייה, שירותים ותיירות, עם ליווי חברות בשלבי צמיחה, שינוי, מיזוגים ורכישות והנפקות. הוביל את AxisMobile להנפקה בבורסת AIM בלונדון, וכיהן כ-CFO מייסד ב-Advanced Technology Acquisition Corp.<br><br>
+          מתוך שורת תפקידים בכירים: מנכ"ל RoadEye, Managing Director ב-Gintec, CFO ב-PassCall וב-ICTS, CFO ו-Managing Director ב-International Tourist Attractions, ומבקר בכיר (Senior Auditor) ב-KPMG Somekh Chaikin. מנטור בתוכנית ה-Executive MBA של אוניברסיטת תל אביב (Coller School of Management) במשך יותר מעשור.<br><br>
+          <em style="color:var(--teal);">"לעזור למנכ"לים ולחברות לממש את הפוטנציאל שלהן וליצור ערך אמיתי ובר-קיימא."</em>
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">CFO</span><span class="team-tag">M&A</span><span class="team-tag">Turnaround</span><span class="team-tag">IPO</span><span class="team-tag">Mentoring</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="team-ronit.jpeg" alt="עו&quot;ד רונית אמיר-יניב" class="team-photo">
+        <div class="team-name">עו"ד רונית אמיר-יניב</div>
+        <div class="team-role">Commercial Law · M&A · Investments</div>
+        <div class="team-divider"></div>
+        <div class="team-bio">
+          עורכת דין מסחרית בכירה עם מעל 30 שנות ניסיון. שותפה בכירה כיום במשרד אפיק ושות' (AFIK & CO.), ובעבר שותפה בכירה ביגאל ארנון ושות' ובכספי ושות'.<br><br>
+          מומחית במשפט מסחרי, מיזוגים ורכישות (M&A), השקעות וגיוסי הון, היי-טק, הגבלים עסקיים, ספורט ועסקאות בינלאומיות. מלווה חברות, יזמים ומשקיעים בעסקאות מורכבות בישראל ובחו"ל, משלב המשא ומתן ועד סגירת העסקה, כולל ליווי עסקאות בעשרות מדינות.<br><br>
+          בעלת תפקידים ציבוריים בולטים: יו"ר ועדת דיני ספורט בלשכת עורכי הדין, יועצת משפטית ראשית של איגוד הכדורסל בישראל, ויו"ר ועדות בתחומי ההגבלים העסקיים והמסחר הבינלאומי. לקוחותיה כוללים חברות ציבוריות ופרטיות, סטארטאפים, קרנות הון, חברות תעופה, ביטוח ופיננסים, ספורט ונדל"ן.<br><br>
+          <em style="color:var(--teal);">"שילוב של חשיבה עסקית, הבנה משפטית עמוקה ורשת קשרים ענפה, ליצירת עסקאות מנצחות ולצמיחה בת-קיימא."</em>
+        </div>
+        <div class="team-tags">
+          <span class="team-tag">M&A</span><span class="team-tag">Commercial Law</span><span class="team-tag">Investments</span><span class="team-tag">Sports Law</span><span class="team-tag">Hi-Tech</span>
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
+  <div class="divider"></div>
+
+  <!-- ════════ 6. ידע ════════ -->
+  <div class="sec reveal">
+    <div style="background:linear-gradient(135deg,rgba(26,111,196,.18),rgba(0,212,170,.1));border:1px solid rgba(0,212,170,.35);border-radius:20px;padding:36px;text-align:center">
+      <div style="font-size:11px;color:var(--teal);letter-spacing:.12em;font-weight:700;margin-bottom:12px">ידע</div>
+      <h2 style="font-size:22px;font-weight:900;color:var(--white);margin-bottom:10px">כל הידע, הכתבות והתובנות במקום אחד</h2>
+      <p style="font-size:14px;color:var(--muted);max-width:600px;margin:0 auto 24px;line-height:1.7">מאמרים, מחקרים ותובנות על הנעת עובדים, הטמעת שינוי וניהול מבוסס AI. Brain גם בונה לכל ארגון קופסת ידע, ספר הידע הארגוני שלו, שנבנה אוטומטית ומשתפר כל הזמן.</p>
+      <a href="articles.html" class="btn btn-primary">לעמוד הידע ←</a>
+    </div>
+  </div>
 
   <div style="height:60px"></div>
   <div id="footer-placeholder"></div>
