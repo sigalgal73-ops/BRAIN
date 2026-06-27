@@ -157,7 +157,7 @@ function renderFooter() {
       <a href="roi.html">ROI</a>
       <a href="smb.html">SMB</a>
       <a href="pricing.html">Pricing</a>
-      <a href="../demo.html">Demo</a>
+      <a href="../demo.html">Try me</a>
       <a href="articles.html">Knowledge</a>
       <a href="research.html">Research</a>
       <a href="jobs.html">Careers</a>
@@ -182,7 +182,7 @@ function renderFooter() {
       <a href="roi.html">ROI</a>
       <a href="smb.html">SMB</a>
       <a href="pricing.html">מחירים</a>
-      <a href="demo.html">Demo</a>
+      <a href="demo.html">נסו אותי</a>
       <a href="articles.html">ידע</a>
       <a href="research.html">מחקר</a>
       <a href="jobs.html">דרושים</a>
