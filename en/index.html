@@ -827,10 +827,10 @@ nav{
 .hv-title{font-size:clamp(24px,3.4vw,38px);font-weight:900;color:var(--white);margin:0 0 10px}
 .hv-title em{font-style:normal;color:var(--bright)}
 .hv-sub{font-size:15px;color:var(--muted);max-width:560px;margin:0 auto;line-height:1.6}
-.hv-strip{display:flex;gap:14px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-.hv-strip::-webkit-scrollbar{height:6px}
-.hv-strip::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:99px}
-.hv-card{flex:0 0 auto;width:178px;scroll-snap-align:start;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s}
+.hv-strip{position:relative;width:100%;overflow:hidden;padding:6px 0 16px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.hv-track{display:flex;gap:14px;width:max-content;will-change:transform}
+.hv-strip:hover .hv-track,.hv-track.hv-paused{animation-play-state:paused}
+.hv-card{flex:0 0 auto;width:178px;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s}
 .hv-card:hover{transform:translateY(-4px);border-color:rgba(45,156,255,.4);box-shadow:0 18px 40px -24px rgba(0,0,0,.85)}
 .hv-thumb{position:relative;aspect-ratio:9/16;background:#06121f;overflow:hidden}
 .hv-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
@@ -849,6 +849,8 @@ nav{
 .hv-modal-in iframe{width:100%;height:100%;border:0;border-radius:16px;display:block}
 .hv-close{position:absolute;top:-44px;inset-inline-end:0;background:none;border:0;color:#fff;font-size:30px;cursor:pointer;line-height:1}
 @media(max-width:600px){.hv-close{top:auto;bottom:-46px;inset-inline-end:50%;transform:translateX(50%)}.hv-card{width:150px}}
+@keyframes hvscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.hv-track{animation:none!important}}
 </style>
 <!-- HOME VIDEOS -->
 <div class="hv-sec reveal">
@@ -857,33 +859,51 @@ nav{
     <h2 class="hv-title">See <em>Brain</em> in action</h2>
     <p class="hv-sub">One minute shows more than a thousand words — a peek at our videos. Tap and watch.</p>
   </div>
-  <div class="hv-strip" id="hvStrip"><div class="hv-loading">Loading videos…</div></div>
+  <div class="hv-strip" id="hvStrip"><div class="hv-track" id="hvTrack"><div class="hv-loading">Loading videos…</div></div></div>
   <div class="hv-cta"><a href="videos.html">See all videos →</a></div>
 </div>
 <div class="hv-modal" id="hvModal"><div class="hv-modal-in"><button class="hv-close" id="hvClose" aria-label="close">✕</button><iframe id="hvFrame" src="" title="YouTube video" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></div>
 <script>
 (function(){
-  var strip=document.getElementById('hvStrip'),modal=document.getElementById('hvModal'),frame=document.getElementById('hvFrame');
-  if(!strip||!modal)return;
+  var strip=document.getElementById('hvStrip'),track=document.getElementById('hvTrack'),modal=document.getElementById('hvModal'),frame=document.getElementById('hvFrame');
+  if(!strip||!track||!modal)return;
   function openV(id){frame.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';modal.classList.add('open');document.body.style.overflow='hidden';}
   function closeV(){modal.classList.remove('open');frame.src='';document.body.style.overflow='';}
   modal.addEventListener('click',function(e){if(e.target===modal)closeV();});
   document.getElementById('hvClose').addEventListener('click',closeV);
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeV();});
+  /* click any card (even a duplicated one) to open its video */
+  track.addEventListener('click',function(e){var card=e.target.closest('.hv-card');if(card&&card.getAttribute('data-id'))openV(card.getAttribute('data-id'));});
+  /* on touch: pause the belt so a tap lands on a still card, then resume */
+  var rsmT;
+  strip.addEventListener('touchstart',function(){track.classList.add('hv-paused');clearTimeout(rsmT);},{passive:true});
+  function resumeSoon(){clearTimeout(rsmT);rsmT=setTimeout(function(){track.classList.remove('hv-paused');},2500);}
+  strip.addEventListener('touchend',resumeSoon);
+  strip.addEventListener('touchcancel',resumeSoon);
   var RSS='https://www.youtube.com/feeds/videos.xml?channel_id=UCWF03qbriOtNCx8M19QFGQQ';
   var PROXIES=['https://api.allorigins.win/raw?url=','https://corsproxy.io/?url='];
   function wt(p,ms){return new Promise(function(res,rej){var t=setTimeout(function(){rej(0);},ms||9000);p.then(function(v){clearTimeout(t);res(v);},function(e){clearTimeout(t);rej(e);});});}
+  function cardHtml(id){return '<div class="hv-card" data-id="'+id+'"><div class="hv-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/'+id+'/oardefault.jpg" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg\'" onload="if(this.naturalWidth<201&&!this._f){this._f=1;this.src=\'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg\';}" alt=""><div class="hv-play"><span></span></div></div></div>';}
   function render(vids){
     if(!vids||!vids.length){fb();return;}
-    strip.innerHTML='';
-    vids.slice(0,8).forEach(function(v){
-      var c=document.createElement('div');c.className='hv-card';
-      c.innerHTML='<div class="hv-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/'+v.id+'/oardefault.jpg" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg\'" onload="if(this.naturalWidth<201&&!this._f){this._f=1;this.src=\'https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg\';}" alt=""><div class="hv-play"><span></span></div></div>';
-      c.addEventListener('click',function(){openV(v.id);});
-      strip.appendChild(c);
-    });
+    var base=vids.slice(0,8).map(function(v){return cardHtml(v.id);}).join('');
+    function layout(){
+      track.style.animation='none';
+      track.innerHTML=base;
+      var one=track.scrollWidth;
+      if(!one)return;
+      var width=strip.clientWidth||window.innerWidth;
+      var copies=Math.max(2,Math.ceil((width+one)/one));
+      var seg='';for(var i=0;i<copies;i++){seg+=base;}
+      track.innerHTML=seg+seg;
+      var dur=Math.max(20,(one*copies)/45);
+      void track.offsetWidth;
+      track.style.animation='hvscroll '+dur+'s linear infinite';
+    }
+    layout();
+    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(layout,200);});
   }
-  function fb(){strip.innerHTML='<div class="hv-empty">Watch all our videos on <a href="https://www.youtube.com/@Brain.co.manager" target="_blank" rel="noopener" style="color:var(--teal)">our YouTube channel ↗</a></div>';}
+  function fb(){track.style.animation='none';track.innerHTML='<div class="hv-empty">Watch all our videos on <a href="https://www.youtube.com/@Brain.co.manager" target="_blank" rel="noopener" style="color:var(--teal)">our YouTube channel ↗</a></div>';}
   function parseRss(xml){var doc=new DOMParser().parseFromString(xml,'text/xml');var es=doc.getElementsByTagName('entry');var o=[];for(var i=0;i<es.length;i++){var e=es[i];var idEl=e.getElementsByTagName('yt:videoId')[0]||e.getElementsByTagName('videoId')[0];if(!idEl)continue;var id=(idEl.textContent||'').trim();if(!id)continue;o.push({id:id});}return o;}
   function fromFunction(){return wt(fetch('/.netlify/functions/videos'),9000).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){return (d&&d.videos)||[];});}
   function fromProxy(i){i=i||0;if(i>=PROXIES.length)return Promise.reject(0);return wt(fetch(PROXIES[i]+encodeURIComponent(RSS)),9000).then(function(r){if(!r.ok)throw 0;return r.text();}).then(parseRss).then(function(v){if(v&&v.length)return v;throw 0;}).catch(function(){return fromProxy(i+1);});}
