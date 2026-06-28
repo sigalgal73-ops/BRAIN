@@ -908,7 +908,7 @@ nav{
   function cardHtml(id){return '<div class="hv-card" data-id="'+id+'"><div class="hv-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/'+id+'/oardefault.jpg" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg\'" onload="if(this.naturalWidth<201&&!this._f){this._f=1;this.src=\'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg\';}" alt=""><div class="hv-play"><span></span></div></div></div>';}
   function render(vids){
     if(!vids||!vids.length){fb();return;}
-    var base=vids.slice(0,8).map(function(v){return cardHtml(v.id);}).join('');
+    var base=vids.slice(0,15).map(function(v){return cardHtml(v.id);}).join('');
     function layout(){
       track.style.animation='none';
       track.innerHTML=base;
